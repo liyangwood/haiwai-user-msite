@@ -1,0 +1,16 @@
+{
+  "name": "haiwai-user-msite",
+  "version": "0.0.0",
+  "homepage": "https://github.com/liyangwood/haiwai-user-msite",
+  "authors": [
+    "Jacky <liyang@chinagate.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
