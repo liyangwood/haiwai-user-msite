@@ -8,12 +8,15 @@ var htmlreplace = require('gulp-html-replace');
 var watch = require('gulp-watch');
 
 var JS = {
-    core : ['js/core/core.js', 'js/core/class.js'],
-    core_min : 'core.min.js'
+    core : ['js/core/core.js', 'js/core/class.js', 'js/core/util.js'],
+    core_min : 'core.min.js',
+    'class' : ['js/class/BasePage.js'],
+    'class_min' : 'class.min.js'
 };
 
 var HtmlReplace = htmlreplace({
-    js_core : '../js/dist/'+JS.core_min
+    js_core : '../js/dist/'+JS.core_min,
+    js_class : '../js/dist/'+JS.class_min
 });
 
 gulp.task('core', function(){
