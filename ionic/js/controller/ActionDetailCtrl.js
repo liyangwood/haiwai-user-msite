@@ -27,6 +27,15 @@ HW.App.controller('ActionDetailCtrl', [
 
 
             util.setTitle(rs.subject);
+
+            $scope.shareOption = {
+                title : rs.subject,
+                description : $scope.action.description,
+                image : '',
+                url : HW.config.SERVER+'/mobile/ionic/action.html?id='+$scope.actionId
+            };
+
+            HW.helper.setWeixinShare($scope.shareOption);
         });
 
 

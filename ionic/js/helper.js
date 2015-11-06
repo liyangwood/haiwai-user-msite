@@ -31,7 +31,74 @@ HW.App.factory('$helper', function(
     var F = {
         init : function(){
             //
+            F.initWeiXinConfig();
             util.log('HW.helper is ok');
+        },
+
+        initWeiXinConfig : function(){
+            $http.get('http://130.211.186.174/wxapi/js_ticket?url='+encodeURIComponent($window.location.href.replace(location.hash, '')), {}).then(function(rs){
+                var config = rs.data;
+                $window.wx.paramConfig = config;
+                $window.wx.config({
+                    debug : false,
+                    appId : config.appId,
+                    timestamp : config.timestamp,
+                    nonceStr : config.nonceStr,
+                    signature : config.signature,
+                    jsApiList : config.jsApiList
+                });
+
+
+                $window.wx.error(function(res){
+
+                });
+            });
+
+
+        },
+
+        setWeixinShare : function(opts){
+            var content = opts.description,
+                title = opts.title;
+
+            var desc = '海外同城 | haiwai.com',
+                imgUrl = 'http://www.haiwai.com/images/hw_logo1.png';
+            try{
+                desc = content.replace(/\n/g,'').replace(/<[^>]+>/gm, '').substr(0, 60);
+                var reg = /<img[^>]*src="([^"]*)"[^>]*>/gm;
+
+                var tmp;
+                if(tmp = reg.exec(content.replace(/\n/g,''))){
+                    imgUrl = tmp[1];
+                }
+            }catch(e){}
+
+
+            var wx = HW.helper.getWeixinObject();
+            wx.ready(function(){
+
+                wx.onMenuShareAppMessage({
+                    title: title, // 分享标题
+                    desc: desc, // 分享描述
+                    link: $window.location.href, // 分享链接
+                    imgUrl: opts.image || imgUrl, // 分享图标
+                    type: '', // 分享类型,music、video或link，不填默认为link
+                    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+
+                    trigger: function (res) {
+                    },
+                    success: function () {
+                    },
+                    cancel: function () {
+                    }
+                });
+
+
+            });
+        },
+
+        getWeixinObject : function(){
+            return $window.wx;
         },
 
 

@@ -503,6 +503,14 @@ HW.App.controller('HomeStoreDetailCtrl', [
 
 
             util.setTitle(data.name_cn||data.name_en);
+
+            $scope.shareOption = {
+                title : $scope.store.name_cn || $scope.store.name_en,
+                description : $scope.store.briefintro,
+                image : $scope.store.logo,
+                url : HW.config.SERVER+'/mobile/ionic/store.html?id='+sid
+            };
+            HW.helper.setWeixinShare($scope.shareOption);
         });
 
         $scope.sendComment = function(){
