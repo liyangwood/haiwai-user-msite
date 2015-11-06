@@ -577,7 +577,7 @@ HW.App.controller('HomeStoreDetailCtrl', [
             },
 
             goToMap : function(){
-                var url = 'https://www.google.com/maps/place/'+$scope.store.address;
+                var url = 'https://www.google.com/maps/place/'+$scope.store.address+' '+$scope.store.city;
                 HW.helper.openUrl(url);
             }
         });
