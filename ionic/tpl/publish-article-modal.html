@@ -1,0 +1,58 @@
+<ion-modal-view class="hw-pub-article-modal hw-modal">
+
+    <ion-header-bar class="hw-bar">
+        <button ng-click="closeModal()" class="button button-clear">
+            <i style="color: #fff;font-size: 30px;margin-left: 10px;" class="ion-ios-arrow-left"></i>
+            <span style="color: #fff;position: relative;top: -5px;">返回</span>
+        </button>
+        <h1 class="title">发文章</h1>
+
+    </ion-header-bar>
+
+    <ion-content class="hw-content modal-content">
+
+        <div class="hw-dt-pub-article">
+            <h2 class="hw-h2">发表文章，以文章推广店铺</h2>
+
+            <div class="list hw-list" style="margin-top: 0;">
+                <!--<label class="item item-select">-->
+                    <!--<select ng-model="data.category">-->
+                        <!--<option value="-1">&#45;&#45;请选择类别&#45;&#45;</option>-->
+                        <!--<option ng-repeat="item in data.categorylist" value="{{::item.category_id}}">{{::item.name}}</option>-->
+                    <!--</select>-->
+                <!--</label>-->
+
+                <label style="margin-top: 8px;" class="item item-input">
+                    <input ng-model="data.title" type="text" placeholder="文章标题">
+                </label>
+                <!--<label style="padding-bottom: 10px;margin-top: 15px;padding-right: 15px;" class="item item-input">-->
+                    <!--<textarea ng-model="data.msgbody" placeholder="文章内容"></textarea>-->
+                <!--</label>-->
+
+
+            </div>
+
+            <hw-editbox hw-title="文章内容" hw-html="data.msgbody"></hw-editbox>
+
+            <h3 class="hw-h3">发布到店铺</h3>
+            <div class="list hw-list-checkbox">
+
+
+                <label ng-repeat="item in data.bizlist" class="item item-radio">
+                    <input type="radio" name="group" ng-model="data.biz" ng-value="item.biz_id">
+                    <div class="item-content">
+                        {{::item.name_cn}}
+                    </div>
+                    <i class="radio-icon ion-checkmark"></i>
+                </label>
+
+            </div>
+
+            <a ng-click="publish()" class="button hw-blue-button btn">发布</a>
+        </div>
+
+
+    </ion-content>
+
+
+</ion-modal-view>

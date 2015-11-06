@@ -1,0 +1,29 @@
+
+
+<div class="hw-common-reply-box list hw-input-list">
+
+    <label class="item item-input hw-item-title">
+        <span class="input-label hw-title">评论({{replyData.length}})</span>
+    </label>
+
+    <div class="item item-thumbnail-left one">
+        <img src="img/02.png" />
+        <div>
+            <b>JACKYLEE</b>
+            <hw-star-num
+                    star-num="3"
+                    ></hw-star-num>
+            <em>2014-11-11</em>
+        </div>
+        <p>
+            当时，长江边上的船工们跑船常宿于小米滩（小米滩在当时是四川境内长江边上的一个很适中的码头)
+        </p>
+    </div>
+
+    <div ng-if="!hideReplyBox" class="item item-input no-border">
+        <textarea placeholder="请输入评论"></textarea>
+    </div>
+
+    <button ng-if="!hideReplyBox" class="button hw-blue-button rp-btn">回复</button>
+
+</div>

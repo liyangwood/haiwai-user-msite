@@ -1,0 +1,31 @@
+<div class="hw-dt-address-select list">
+
+    <div class="item">
+        <label>区域</label>
+
+        <div class="box">
+
+            <select ng-change="changeCountry('-1')" ng-model="data.country">
+                <!--<option value="-1">请选择国家</option>-->
+                <option ng-repeat="item in data.countryList" value="{{::item.id}}">{{::item.name}}</option>
+            </select>
+
+            <select ng-change="changeState('-1')" ng-model="data.state">
+                <option value="-1">请选择一个州或省</option>
+                <option ng-repeat="item in data.stateList" value="{{::item.id}}">{{::item.name}}</option>
+            </select>
+
+
+            <select ng-change="changeCity('-1')" ng-model="data.city" ng-show="data.cityList.length>0">
+                <option value="-1">请选择一个地区</option>
+                <option ng-repeat="item in data.cityList" value="{{::item.id}}">{{::item.name}}</option>
+            </select>
+            <select ng-change="changeArea('-1')" ng-model="data.area" ng-show="data.areaList.length>0">
+                <option value="-1">请选择一个城市</option>
+                <option ng-repeat="item in data.areaList" value="{{::item.id}}">{{::item.name}}</option>
+            </select>
+
+        </div>
+
+
+    </div>

@@ -1,0 +1,97 @@
+<div class="hw-dt-pub-store">
+
+    <div class="list hw-input-list">
+        <label class="item item-input hw-require">
+            <span class="input-label">店铺花名</span>
+            <input type="text" ng-model="store.name">
+        </label>
+        <label class="item item-input hw-require">
+            <span class="input-label">营业电话</span>
+            <input type="text" ng-model="store.phone">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">微信号</span>
+            <input type="text" ng-model="store.wechat">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">店铺网址</span>
+            <input type="text" ng-model="store.website">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">街道地址</span>
+            <input type="text" ng-model="store.address">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">城市</span>
+            <input type="text" ng-model="store.city">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">州/省</span>
+            <input type="text" ng-model="store.state">
+        </label>
+        <label class="item item-input hw-require">
+            <span class="input-label">邮编</span>
+            <input type="text" ng-model="store.zipcode">
+        </label>
+        <!--<hw-address-select-->
+                <!--hw-region-tree="store.region_tree"-->
+                <!--hw-region="store.region"></hw-address-select>-->
+
+    </div>
+    <div class="hw-tag">
+        <label>
+            <span class="left">营业特色（可多选）</span>
+        </label>
+        <div class="hw-tag-info">
+            <b ng-repeat="item in store.taglist" ng-class="{'active':item.active}" on-tap="clickTagInfo(item, $event)">{{::item.name}}</b>
+        </div>
+    </div>
+
+
+    <hw-input-time-picker
+            time-info="store.timeInfo"
+            start-time="01:00AM"
+            end-time="12:00PM"></hw-input-time-picker>
+
+    <div class="list hw-input-list">
+        <label class="item item-input">
+            <span class="input-label hw-title">店铺描述</span>
+        </label>
+        <label class="item item-input hw-desc">
+            <textarea class="" ng-model="store.description" style="height:100px;" placeholder="请输入店铺描述">
+
+            </textarea>
+        </label>
+    </div>
+
+    <div class="hw-upload-icon" style="position: relative;">
+        <strong>LOGO</strong>
+        <input id="hw-file-icon" style="opacity: 0;position: absolute;height: 50px; width:100px; z-index: 2;" type="file" />
+        <i class="icon ion-plus-round"></i>
+        <img ng-show="store.logo" style="position: absolute;width: 50px;height: 50px;top: 18px;left: 82px;"
+             ng-src="{{store.logo}}" />
+    </div>
+
+    <div class="list hw-input-list">
+        <label class="item item-input">
+            <span class="input-label hw-title">添加相册</span>
+        </label>
+
+        <div class="hw-upload-image" style="position: relative;">
+            <i class="icon ion-plus-round"></i>
+            <em>有图有人气，请多多上图</em>
+            <input id="hw-file-image"
+                   style="opacity: 0;position: absolute; z-index: 2;display: block;top: 20px;height: 80px;"
+                   multiple="5" type="file" />
+        </div>
+        <div class="hw-upload-box" id="js_image_box">
+            <img ng-click="deleteImage(item)" ng-repeat="item in store.imgList track by item.id"
+                 ng-src="{{::item.url}}" />
+
+        </div>
+    </div>
+
+
+
+    <a ng-click="publish()" class="button hw-btn hw-blue-button">提交并预览</a>
+</div>

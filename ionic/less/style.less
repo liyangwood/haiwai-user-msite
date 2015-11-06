@@ -1,0 +1,50 @@
+/* define some css var */
+@color_blue : #39b8eb;
+@text_color_gray : #504b4b;
+@main_bg_color : #f5f6f1;
+@color_999 : #989fa9;
+@color_222 : #262626;
+
+.flex{
+    display: flex;
+    display: -webkit-flex;
+}
+.flex-center{
+    .flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+}
+
+.slide-in-right {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+}
+
+.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
+    -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+    transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+}
+
+.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
+    -webkit-transition: all ease-in-out 250ms;
+    transition: all ease-in-out 250ms;
+}
+
+@import "common";
+@import "directive";
+@import "home";
+@import "publish";
+@import "user";
+@import "modal";
+
+@import "manage";
+@import "article";
+
+

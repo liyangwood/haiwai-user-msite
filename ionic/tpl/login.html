@@ -1,0 +1,44 @@
+<div class="hw-login-page">
+    <!--<div ng-if="::isWeixinInstall" class="wx-btn">-->
+        <!--<button class="button button-clear wx-btn" ng-click="weixinLogin()">微信一键登录</button>-->
+        <!--<p>或</p>-->
+    <!--</div>-->
+
+    <div class="hw-ctb row">
+        <div class="col col-50 c1" ng-click="showRegBox()" ng-class="{'hover':isRegBox}">注册海外账号</div>
+        <div class="col col-50 c2" ng-click="showLoginBox()" ng-class="{'hover':!isRegBox}">已有账号登录</div>
+    </div>
+    <div class="list hw-input-list" ng-show="isRegBox">
+
+        <label class="item item-input">
+            <span class="input-label">邮箱地址</span>
+            <input type="email" ng-model="username">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">密码</span>
+            <input type="password" ng-model="password">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">确认密码</span>
+            <input type="password" ng-model="password2">
+        </label>
+
+    </div>
+    <a ng-show="isRegBox" ng-click="reg()" class="button hw-blue-button btn">注册并登录</a>
+
+    <div class="list hw-input-list" ng-show="!isRegBox">
+
+        <label class="item item-input">
+            <span class="input-label">邮箱地址</span>
+            <input type="email" ng-model="username">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">密码</span>
+            <input type="password" ng-model="password">
+        </label>
+
+    </div>
+    <a ng-show="!isRegBox" ng-click="login()" class="button hw-blue-button btn">登录</a>
+
+
+</div>

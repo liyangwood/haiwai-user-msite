@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <meta name="format-detection" content="telephone=no" />
+
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <script src="lib/ionic/js/ionic.bundle.min.js"></script>
+    <script src="lib/underscore.js"></script>
+    <script src="lib/md5.min.js"></script>
+
+
+    <script src="lib/ng-cordova.min.js"></script>
+
+
+    <script src="js/core.js"></script>
+    <script src="js/util.js"></script>
+
+    <script src="js/request.js"></script>
+    <script src="js/helper.js"></script>
+
+    <script src="js/directive/common.js"></script>
+
+    <script src="js/controller/RootCtrl.js"></script>
+
+    <script src="js/service/UserFactory.js"></script>
+
+    <!--<script src="js/service/SomeCommonFactories.js"></script>-->
+    <!--<script src="js/service/StoreDetailFactory.js"></script>-->
+
+    <!--<script src="js/controller/HomeCtrl.js"></script>-->
+    <!--<script src="js/controller/PublishCtrl.js"></script>-->
+    <!--<script src="js/controller/UserCtrl.js"></script>-->
+    <!--<script src="js/controller/ManageCtrl.js"></script>-->
+    <!--<script src="js/controller/ArticleDetailCtrl.js"></script>-->
+    <script src="js/controller/ActionDetailCtrl.js"></script>
+    <!--<script src="js/controller/MessageCtrl.js"></script>-->
+
+    <!--<script src="js/app.start.js"></script>-->
+
+</head>
+<body ng-app="HaiWaiApp">
+
+
+<ion-content ng-controller="ActionDetailCtrl" class="hw-content hw-article-detail">
+
+    <div class="c1" style="padding-bottom: 5px;">
+        <h2>{{::action.subject}}</h2>
+        <p style="text-align:right;margin-bottom:0;">
+            <!--<img ng-src="{{::global.URLROOT}}{{::action.userinfo.avatar_url}}" />-->
+            <!--<b class="hw-name">{{::action.userinfo.nick}}</b>-->
+
+
+
+            <label style="position: relative;top: 5px;left:-12px">
+                <i class="icon ion-ios-eye"></i>
+                {{::action.count}}
+            </label>
+            <!--<label>-->
+            <!--<i class="icon ion-thumbsup"></i>-->
+            <!--22-->
+            <!--</label>-->
+            <!--<label>-->
+            <!--<i class="icon ion-share"></i>-->
+            <!--33-->
+            <!--</label>-->
+            <label style="float: right;position: relative;top: 15px;">{{fn.formatDate('yy-mm-dd', action.updated_time)}}</label>
+        </p>
+    </div>
+    <div style="background: #ffffff;" class="list hw-store-card">
+        <a style="margin:0 15px;border-bottom: none;" class="item item-thumbnail-left item-icon-right"
+           ng-href="store.html?id={{::store.entityID}}">
+            <img ng-src="{{::store.logo}}">
+            <h2>{{::store.name_cn||store.name_en}}</h2>
+            <p class="address">{{::store.address}}</p>
+            <i class="icon ion-ios-arrow-right"></i>
+        </a>
+    </div>
+
+    <div class="list top-list">
+        <a ng-href="tel:{{::action.contact_phone}}" ng-if="::action.contact_phone" class="item item-thumbnail-left item-icon-right">
+            <img src="img/icon/dianhua.png" />
+            {{::action.contact_phone}}
+            <i class="icon ion-ios-arrow-right"></i>
+        </a>
+        <!--<div class="item item-thumbnail-left item-icon-right">-->
+        <!--<img src="img/icon/dizhi.png" />-->
+        <!--{{::store.address}}-->
+        <!--<i class="icon ion-ios-arrow-right"></i>-->
+        <!--</div>-->
+        <!--<div class="item item-thumbnail-left item-icon-right">-->
+        <!--<img src="img/icon/liuyan.png" />-->
+        <!--给商家留言-->
+        <!--<i class="icon ion-ios-arrow-right"></i>-->
+        <!--</div>-->
+        <div class="item item-thumbnail-left no-border">
+            <img src="img/icon/shijian.png" />
+            {{::action.dynamic_field[0].value}} 到 {{::action.dynamic_field[1].value}}
+            <!--<span class="item-note">-->
+            <!--营业中-->
+            <!--</span>-->
+        </div>
+    </div>
+
+    <div class="c1">
+        <p ng-bind-html="::action.description" class="hw-article">
+        </p>
+    </div>
+
+    <!--<div style="margin-top: 20px;" class="hw-common-reply-box list hw-input-list">-->
+    <!--<label class="item item-input hw-item-title">-->
+    <!--<span style="font-size:16px;" class="input-label hw-title">评论</span>-->
+    <!--</label>-->
+
+    <!--<div ng-repeat="item in action.comment"-->
+    <!--class="item item-thumbnail-left one">-->
+    <!--<img ng-src="{{::global.URLROOT}}{{::item.userinfo.avatar_url}}" />-->
+    <!--<div>-->
+    <!--<b>{{::item.userinfo.nick}}</b>-->
+    <!--<hw-star-num-->
+    <!--star-num="{{::item.star}}"></hw-star-num>-->
+    <!--<em>{{::fn.getRecentDate(item.datetime)}}</em>-->
+    <!--</div>-->
+    <!--<p>-->
+    <!--{{::item.msg}}-->
+    <!--</p>-->
+    <!--</div>-->
+
+    <!--<div class="hw-rpbox">-->
+    <!--<div class="item item-input no-border">-->
+    <!--<textarea ng-model="reply.value" placeholder="请输入评论"></textarea>-->
+    <!--</div>-->
+    <!--<button ng-click="sendComment()" style="line-height: 28px;" class="button hw-blue-button rp-btn">回复</button>-->
+    <!--</div>-->
+
+    <!--</div>-->
+
+
+    <div class="hw-banner">
+        <img src="img/logo/home-logo.png"/>
+    </div>
+
+
+</ion-content>
+
+
+
+
+
+
+</body>
+</html>

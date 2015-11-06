@@ -1,0 +1,21 @@
+<ion-modal-view class="hw-tpl-login-modal">
+
+    <ion-header-bar class="hw-bar">
+
+        <h1 class="title">请先登录</h1>
+        <div class="buttons">
+            <button ng-show="!showBack" ng-click="closeModal()" class="button button-clear hw-btn">
+                <i class="icon ion-ios-close-empty" style="font-size: 24px;"></i>
+            </button>
+        </div>
+    </ion-header-bar>
+
+
+    <ion-content class="hw-content">
+        <hw-login-box
+                login-success-callback="loginSuccessCallback"
+                ></hw-login-box>
+    </ion-content>
+
+
+</ion-modal-view>

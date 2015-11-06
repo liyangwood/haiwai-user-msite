@@ -1,0 +1,24 @@
+<ion-tabs ng-class="{'tabs-item-hide': $root.hideTabs}" class="tabs-light tabs-bottom tabs-icon-top hw-tabs">
+    <!-- 全局的tab -->
+    <!--ng-href="{{global.user.isLogin?'/home/store-list':'/home'}}"-->
+    <ion-tab title="首页"
+
+             ng-click="fn.clickHome(this)"
+             icon-on="ion-ios-home" icon-off="ion-ios-home-outline">
+        <ion-nav-view name="tab-home"></ion-nav-view>
+    </ion-tab>
+
+    <!--<ion-tab title="发布" href="/publish" icon-on="ion-ios-compose" icon-off="ion-ios-compose-outline">-->
+        <!--<ion-nav-view name="tab-pub"></ion-nav-view>-->
+    <!--</ion-tab>-->
+
+    <ion-tab title="我的发布" href="/manage" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline">
+        <ion-nav-view name="tab-manage"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="用户" href="/user"
+             icon-on="ion-ios-person" icon-off="ion-ios-person-outline">
+        <ion-nav-view name="tab-user"></ion-nav-view>
+    </ion-tab>
+
+</ion-tabs>
