@@ -82,4 +82,15 @@ a:hover {
   .kg-header-nav-comp .nav.active, .kg-header-nav-comp .nav:hover {
     background: #27b4cb; }
 
+.hw-mybiz-index {
+  margin-top: 24px; }
+
+/* biz comp */
+.hw-MybizLeftUserNav {
+  width: 210px;
+  height: 295px;
+  position: fixed;
+  left: 0;
+  top: 0; }
+
 /*# sourceMappingURL=style.css.map */

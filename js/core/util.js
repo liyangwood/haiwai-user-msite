@@ -13,5 +13,5 @@
     });
 
 
-    KG.util = util;
+    window.util = KG.util = util;
 })();
