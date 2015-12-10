@@ -116,8 +116,51 @@
 
 .hw-footer-comp{
     background: $blue-color;
+	margin-top: 80px;
 
     .container{
         height: 220px;
+
+		.logo{
+			background: url('../image/haiwai1.png');
+			width: 88px;
+			height: 88px;
+			margin: 24px auto 0;
+			background-size:100%;
+		}
+
+		.smap, .cr{
+			color:#fff;
+			margin: 35px auto 0;
+			text-align: center;
+			
+			a{
+				color: #ffffff;
+				margin: 0 4px;
+			}
+		}
+
+		.cr{
+			margin-top: 15px;
+			font-size: 12px;
+		}
+
     }
+}
+
+.hw-comp-BackPageLink{
+	margin-top: 24px;
+	text-align: left;
+
+	a{
+		font-size: 18px;
+		color: $color-4a;
+	}
+	.icon{
+		color: $color-4a;
+		font-size: 24px;
+		margin-right: 10px;
+		position: relative;
+		top: 2px;
+	}
 }

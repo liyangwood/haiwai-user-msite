@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    @@include('../../inc/meta.html')
+
+    <title></title>
+</head>
+<body>
+
+@@include('../../inc/head_nav.html')
+
+<div class="container hw-mybiz-coupon">
+
+    <div role="MybizLeftUserNav"></div>
+
+    <div class="hw-box" data-type="coupon" role="MybizCreateNewStore"></div>
+
+    <div class="hw-panel panel hw-box" style="margin-top: 25px;">
+        <div class="panel-heading">
+            <b>正在优惠</b>
+        </div>
+        <div class="panel-body" role="MybizRunningCouponList">
+
+        </div>
+    </div>
+
+    <div class="hw-panel panel hw-box" style="margin-top: 25px;">
+        <div class="panel-heading">
+            <b>过期优惠</b>
+        </div>
+        <div class="panel-body" role="MybizStopCouponList">
+
+        </div>
+    </div>
+
+</div>
+
+@@include('../../inc/footer.html')
+
+</body>
+</html>
+<script type="text/javascript">
+    KG.data.add({
+        page : 'mybiz-coupon'
+    });
+</script>

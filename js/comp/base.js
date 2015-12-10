@@ -61,18 +61,27 @@
                     '<a class="hw-img" href=""><img src="{{user.image}}" /></a>',
                     '<span class="hw-email">{{user.email}}</span>',
 
-                    '<a href="" class="hw-a active" style="margin-top: 24px;">我的店铺</a>',
-                    '<a href="" class="hw-a">店铺优惠</a>',
-                    '<a href="" class="hw-a">店铺文章</a>',
+                    '<a href="index.html" class="hw-a js_index" style="margin-top: 24px;">我的店铺</a>',
+                    '<a href="coupon.html" class="hw-a js_coupon">店铺优惠</a>',
+                    '<a href="article.html" class="hw-a js_article">店铺文章</a>',
                 '</div>'
             ].join('');
         },
         getData : function(box, data, callback){
             var user = KG.user.get();
 
+            var page = KG.data.get('page').split('-');
+            page = page[1] || '';
+
             callback({
-                user : user
+                user : user,
+                page : page
             });
+        },
+
+        initEnd : function(){
+            var page = this.data.page;
+            this.elem.find('.js_'+page).addClass('active');
         }
     });
 
@@ -167,17 +176,143 @@
         }
     });
 
-    KG.Class.define('MybizCreateNewStore', {
+    KG.Class.define('MybizRunningCouponList', {
         ParentClass : 'BaseComponent',
         getTemplate : function(){
             return [
-                '<div class="hw-MybizCreateNewStore">',
-                    '<img src="../../image/user_default.png" />',
+                '<div class="hw-comp-store-list">',
+                '{{each list as item}}',
+                '<div class="hw-each">',
+                '<img class="hw-img" src="{{item.logo | absImage}}" />',
+                '<h4 style="margin-top: 20px;">{{item.title}}</h4>',
+                '<p style="color: #9b9b9b;font-size: 14px;margin-top:15px;">{{item.count}}人已经领取</p>',
 
-                    '<i class="glyphicon glyphicon-plus"></i>',
-                    '<b>添加新店铺</b>',
+                '<div class="r">',
+                '<a class="hw-a" href="">管理优惠</a>',
+                '<a class="hw-a" href="">分享</a>',
+                '</div>',
+                '</div>',
+                '{{/each}}',
                 '</div>'
             ].join('');
+        },
+        getData : function(box, data, callback){
+            KG.request.getBizCouponList({}, function(flag, rs){
+                if(flag){
+                    callback({
+                        list : rs
+                    });
+                }
+            });
+        }
+    });
+
+    KG.Class.define('MybizStopCouponList', {
+        ParentClass : 'BaseComponent',
+        getTemplate : function(){
+            return [
+                '<div class="hw-comp-store-list">',
+                '{{each list as item}}',
+                '<div class="hw-each">',
+                '<img class="hw-img" src="{{item.logo | absImage}}" />',
+                '<h4 style="margin-top: 10px;">{{item.title}}</h4>',
+                '<p style="color: #9b9b9b;font-size: 14px;margin-top:10px;">{{item.count}}人已经领取</p>',
+                '<p style="color: #9b9b9b;font-size: 14px;margin-top:5px;">{{item.startTime | formatDate}} 至 {{item.endTime | formatDate}}</p>',
+
+                '<div class="r">',
+                '<a class="hw-a" style="margin-top: 30px;" href="">删除</a>',
+                '</div>',
+                '</div>',
+                '{{/each}}',
+                '</div>'
+            ].join('');
+        },
+        getData : function(box, data, callback){
+            KG.request.getBizCouponList({}, function(flag, rs){
+                if(flag){
+                    callback({
+                        list : rs
+                    });
+                }
+            });
+        }
+    });
+
+    KG.Class.define('MybizCreateNewStore', {
+        ParentClass : 'BaseComponent',
+        getTemplate : function(){
+            var info = {
+                'store' : ['添加新店铺', 'store_default.png', ''],
+                'coupon' : ['添加新优惠', 'coupon_default.png', ''],
+                'article' : ['添加新文章', 'article_default.png' ,'createArticle.html']
+            };
+
+            var type = this.box.data('type');
+
+            return [
+                '<a class="hw-MybizCreateNewStore" href="'+info[type][2]+'">',
+                    '<div class="hw-img '+type+'"><img src="../../image/'+info[type][1]+'" /></div>',
+
+                    '<i class="icon">＋</i>',
+                    '<b>',info[type][0],'</b>',
+                '</a>'
+            ].join('');
+        },
+        initEvent : function(){
+
+        }
+    });
+
+    KG.Class.define('MybizArticleList', {
+        ParentClass : 'BaseComponent',
+        getTemplate : function(){
+            return [
+                '<div>',
+                    '<div class="panel-heading">',
+                    '<b>文章 ({{list.length}})</b>',
+                    '</div>',
+                    '<div class="hw-comp-store-list panel-body">',
+                    '{{each list as item}}',
+                    '<div class="hw-each">',
+                    '<img class="hw-img" src="{{item.logo | absImage}}" />',
+                    '<h4 style="margin-top:20px;">{{item.title}}</h4>',
+                    '<p style="color: #9b9b9b;font-size: 14px;margin-top:20px;">发表于{{item.startTime | formatDate}}</p>',
+
+                    '<div class="r">',
+                        '<a class="hw-a" href="editArticle.html?id={{item.id}}">编辑</a>',
+                        '<a class="hw-a" href="">分享</a>',
+                    '</div>',
+                    '</div>',
+                    '{{/each}}',
+                    '</div>',
+                '</div>'
+            ].join('');
+        },
+        getData : function(box, data, callback){
+            KG.request.getBizCouponList({}, function(flag, rs){
+                if(flag){
+                    callback({
+                        list : rs
+                    });
+                }
+            });
+        }
+    });
+
+    KG.Class.define('BackPageLink', {
+        ParentClass : 'BaseComponent',
+        getTemplate : function(){
+            return [
+                '<div class="container hw-comp-BackPageLink">',
+                    '<a href="{{href}}"><i class="icon fa fa-angle-left"></i>{{title}}</a>',
+                '</div>'
+            ].join('');
+        },
+        getData : function(box, data, next){
+            next({
+                title : box.data('title'),
+                href : box.data('href')
+            });
         }
     });
 

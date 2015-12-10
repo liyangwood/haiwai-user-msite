@@ -39,6 +39,19 @@
         }
     };
 
+    var data = {};
+    KG.data = {
+        get : function(key){
+            if(key){
+                return data[key];
+            }
+            return data;
+        },
+        add : function(param){
+            util.extend(data, param||{});
+        }
+    };
+
 
     template.helper('absImage', function(url){
         if(/^http/.test(url)){

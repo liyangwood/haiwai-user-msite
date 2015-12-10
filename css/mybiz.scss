@@ -1,4 +1,4 @@
-.hw-mybiz-index{
+.hw-mybiz-index, .hw-mybiz-coupon{
 	margin-top: 24px;
     min-height: 800px;
 
@@ -178,21 +178,48 @@
     height: 96px;
     border: 1px dashed $border-color;
     position: relative;
-    padding-left: 100px;
+	display: block;
 
-    img{
-        position: absolute;
-        width: 96px;
-        height: 96px;
-        left: 0;
-    }
+	.hw-img{
+		position: absolute;
+		width: 96px;
+		height: 96px;
+		left: 0;
+		background: #c5c5c5;
+
+		img{
+			width: 60%;
+			height: 60%;
+			margin: 20%;
+		}
+	}
+	.hw-img.coupon{
+		width: 158px;
+		text-align: center;
+
+		img{
+			width: 46px;
+			height: 46px;
+			margin: 25px auto;
+		}
+	}
+	.hw-img.article{
+		img{
+			width: 50%;
+			height: 50%;
+			margin: 25%;
+		}
+	}
 
     i{
-        font-size: 42px;
+        font-size: 80px;
         color: $color-7d;
         position: absolute;
-        left: 240px;
-        top: 26px;
+        left: 220px;
+        top: 6px;
+		font-style: normal;
+		display: inline-block;
+		line-height: 80px;
     }
     b{
         position: absolute;
@@ -201,4 +228,83 @@
         left: 290px;
         font-weight: 400;
     }
+}
+
+.hw-comp-bform{
+	margin-top: 24px;
+	background: #f5f5f5;
+	min-height: 200px;
+	padding: 40px 180px 50px;
+
+	h3{
+		font-size: 24px;
+		text-align: center;
+		margin-top: 6px;
+		color: $color-4a;
+	}
+
+	.require:after{
+		content : '*';
+		color: #ff0000;
+		position: relative;
+		left: 4px;
+		top: 5px;
+		font-size: 16px;
+	}
+
+	.form-group{
+		text-align: left;
+		margin-top: 25px;
+
+		input, textarea{
+			background: #ffffff;
+			height: 40px;
+			border-radius: 0;
+			margin-top: 2px;
+		}
+
+
+		.hw-drop{
+			background: transparent;
+			border: none;
+			padding: 0;
+			position: relative;
+			width: 100%;
+			&:focus{
+				outline: none;
+			}
+
+			.icon{
+				position: absolute;
+				top: 12px;
+				right: 15px;
+				font-size: 24px;
+			}
+		}
+
+		.dropdown-menu{
+			width: 100%;
+			text-align: right;
+			border-radius: 0;
+			border: 1px solid $border-color;
+			margin-top: -5px;
+			padding: 0;
+
+			li{
+				line-height: 36px;
+				cursor:pointer;
+				font-size: 14px;
+				padding-right: 15px;
+
+				&:hover{
+					background: #f5f5f5;
+				}
+			}
+		}
+	}
+
+	.hw-btn{
+		float: right;
+		margin-top: 25px;
+	}
 }
