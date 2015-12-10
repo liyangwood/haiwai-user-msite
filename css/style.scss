@@ -1,0 +1,16 @@
+*{
+	font-family:Microsoft YaHei,Apple LiGothic Medium,sans-serif;
+}
+
+a:hover{
+	text-decoration: none;
+}
+
+.container{
+	width: 1080px;
+	padding-left: 0;
+	padding-right: 0;
+	position: relative;
+}
+
+@import "component";
