@@ -1,5 +1,21 @@
 .hw-mybiz-index{
 	margin-top: 24px;
+    min-height: 800px;
+
+    .hw-box{
+        position: relative;
+        left: -16px;
+        margin: 0 auto;
+        width: 580px;
+    }
+
+    .hw-info{
+        text-align: center;
+        color: $color-4a;
+        padding-top: 15px;
+        font-weight: 700;
+        height: 80px;
+    }
 }
 
 
@@ -10,7 +26,179 @@
 .hw-MybizLeftUserNav{
 	width: 210px;
 	height: 295px;
-	position: fixed;
-	left: 0;
-	top: 0;
+	position: absolute;
+	background: #f7f7f7;
+    text-align: center;
+
+    .hw-img{
+        margin: 27px auto 0;
+
+        img{
+            width: 68px;
+            height: 68px;
+            border-radius: 34px;
+        }
+
+    }
+    .hw-email{
+        display: block;
+        line-height: 16px;
+        font-size: 12px;
+        margin: 10px auto;
+    }
+
+    .hw-a{
+        display: block;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        font-size: 18px;
+        color: #777;
+        border-left: 4px solid #f7f7f7;
+
+        &:hover, &.active{
+            border-left: 4px solid $blue-color;
+            color: $blue-color;
+        }
+    }
+}
+
+
+.hw-MybizRightStoreRank{
+    width: 240px;
+    height: 350px;
+    border: 1px solid #c5c5c5;
+    position: absolute;
+    right: 0;
+    padding: 16px 15px 24px 15px;
+    text-align: center;
+
+    span{
+        color: $color-4a;
+        display: block;
+        font-size: 18px;
+        font-weight: 700;
+    }
+    b{
+        font-size: 48px;
+        display: block;
+        color: $color-4a;
+        margin-top: 8px;
+    }
+
+    .range{
+        width: 210px;
+        margin-top: 5px;
+        height: 15px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #d8d8d8;
+
+        em{
+            height: 100%;
+            display: block;
+            background: $blue-color;
+        }
+    }
+
+    p{
+        color: $color-4a;
+        font-size: 14px;
+        text-align: left;
+        margin-top: 35px;
+    }
+    a{
+        display: block;
+        color: $blue-color;
+        text-align: left;
+        margin-top: 12px;
+
+        &:after{
+            content:'>';
+            float:right;
+        }
+    }
+}
+
+.hw-comp-store-list{
+
+    .hw-each{
+        border-top: 1px solid $border-color;
+        height: 96px;
+        padding-left: 106px;
+        padding-right: 100px;
+        position: relative;
+
+        .hw-img{
+            width: 96px;
+            height: 96px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        h4{
+            font-size: 18px;
+            color: #000;
+            margin-top: 14px;
+        }
+        p{
+            color: $color-4a;
+            font-size: 12px;
+            margin: 0;
+        }
+        em{
+            color: $blue-color;
+            font-size: 12px;
+            font-style: normal;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .r{
+            width: 100px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            padding-right: 16px;
+            text-align: right;
+
+            .hw-a{
+                display: block;
+                color: $blue-color;
+                font-size: 14px;
+                margin-top: 16px;
+            }
+        }
+    }
+}
+
+.hw-MybizCreateNewStore{
+    height: 96px;
+    border: 1px dashed $border-color;
+    position: relative;
+    padding-left: 100px;
+
+    img{
+        position: absolute;
+        width: 96px;
+        height: 96px;
+        left: 0;
+    }
+
+    i{
+        font-size: 42px;
+        color: $color-7d;
+        position: absolute;
+        left: 240px;
+        top: 26px;
+    }
+    b{
+        position: absolute;
+        color: $color-7d;
+        top: 40px;
+        left: 290px;
+        font-weight: 400;
+    }
 }

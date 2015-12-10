@@ -1,5 +1,10 @@
 * {
-  font-family: Microsoft YaHei,Apple LiGothic Medium,sans-serif; }
+  font-family: Microsoft YaHei, Apple LiGothic Medium, sans-serif;
+  font-size: 14px;
+  color: #4a4a4a; }
+
+a {
+  display: inline-block; }
 
 a:hover {
   text-decoration: none; }
@@ -82,15 +87,171 @@ a:hover {
   .kg-header-nav-comp .nav.active, .kg-header-nav-comp .nav:hover {
     background: #27b4cb; }
 
+.hw-footer-comp {
+  background: #37bccd; }
+  .hw-footer-comp .container {
+    height: 220px; }
+
 .hw-mybiz-index {
-  margin-top: 24px; }
+  margin-top: 24px;
+  min-height: 800px; }
+  .hw-mybiz-index .hw-box {
+    position: relative;
+    left: -16px;
+    margin: 0 auto;
+    width: 580px; }
+  .hw-mybiz-index .hw-info {
+    text-align: center;
+    color: #4a4a4a;
+    padding-top: 15px;
+    font-weight: 700;
+    height: 80px; }
 
 /* biz comp */
 .hw-MybizLeftUserNav {
   width: 210px;
   height: 295px;
-  position: fixed;
-  left: 0;
-  top: 0; }
+  position: absolute;
+  background: #f7f7f7;
+  text-align: center; }
+  .hw-MybizLeftUserNav .hw-img {
+    margin: 27px auto 0; }
+    .hw-MybizLeftUserNav .hw-img img {
+      width: 68px;
+      height: 68px;
+      border-radius: 34px; }
+  .hw-MybizLeftUserNav .hw-email {
+    display: block;
+    line-height: 16px;
+    font-size: 12px;
+    margin: 10px auto; }
+  .hw-MybizLeftUserNav .hw-a {
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+    border-left: 4px solid #f7f7f7; }
+    .hw-MybizLeftUserNav .hw-a:hover, .hw-MybizLeftUserNav .hw-a.active {
+      border-left: 4px solid #37bccd;
+      color: #37bccd; }
+
+.hw-MybizRightStoreRank {
+  width: 240px;
+  height: 350px;
+  border: 1px solid #c5c5c5;
+  position: absolute;
+  right: 0;
+  padding: 16px 15px 24px 15px;
+  text-align: center; }
+  .hw-MybizRightStoreRank span {
+    color: #4a4a4a;
+    display: block;
+    font-size: 18px;
+    font-weight: 700; }
+  .hw-MybizRightStoreRank b {
+    font-size: 48px;
+    display: block;
+    color: #4a4a4a;
+    margin-top: 8px; }
+  .hw-MybizRightStoreRank .range {
+    width: 210px;
+    margin-top: 5px;
+    height: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #d8d8d8; }
+    .hw-MybizRightStoreRank .range em {
+      height: 100%;
+      display: block;
+      background: #37bccd; }
+  .hw-MybizRightStoreRank p {
+    color: #4a4a4a;
+    font-size: 14px;
+    text-align: left;
+    margin-top: 35px; }
+  .hw-MybizRightStoreRank a {
+    display: block;
+    color: #37bccd;
+    text-align: left;
+    margin-top: 12px; }
+    .hw-MybizRightStoreRank a:after {
+      content: '>';
+      float: right; }
+
+.hw-comp-store-list .hw-each {
+  border-top: 1px solid #c5c5c5;
+  height: 96px;
+  padding-left: 106px;
+  padding-right: 100px;
+  position: relative; }
+  .hw-comp-store-list .hw-each .hw-img {
+    width: 96px;
+    height: 96px;
+    position: absolute;
+    top: 0;
+    left: 0; }
+  .hw-comp-store-list .hw-each h4 {
+    font-size: 18px;
+    color: #000;
+    margin-top: 14px; }
+  .hw-comp-store-list .hw-each p {
+    color: #4a4a4a;
+    font-size: 12px;
+    margin: 0; }
+  .hw-comp-store-list .hw-each em {
+    color: #37bccd;
+    font-size: 12px;
+    font-style: normal;
+    display: inline-block;
+    margin-top: 8px; }
+  .hw-comp-store-list .hw-each .r {
+    width: 100px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    padding-right: 16px;
+    text-align: right; }
+    .hw-comp-store-list .hw-each .r .hw-a {
+      display: block;
+      color: #37bccd;
+      font-size: 14px;
+      margin-top: 16px; }
+
+.hw-MybizCreateNewStore {
+  height: 96px;
+  border: 1px dashed #c5c5c5;
+  position: relative;
+  padding-left: 100px; }
+  .hw-MybizCreateNewStore img {
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    left: 0; }
+  .hw-MybizCreateNewStore i {
+    font-size: 42px;
+    color: #7d7d7d;
+    position: absolute;
+    left: 240px;
+    top: 26px; }
+  .hw-MybizCreateNewStore b {
+    position: absolute;
+    color: #7d7d7d;
+    top: 40px;
+    left: 290px;
+    font-weight: 400; }
+
+.hw-panel {
+  border-radius: 0;
+  border: 1px solid #c5c5c5; }
+  .hw-panel .panel-heading {
+    background: #f7f7f7; }
+    .hw-panel .panel-heading .r {
+      color: #37bccd;
+      float: right; }
+  .hw-panel .panel-body {
+    padding: 0; }
 
 /*# sourceMappingURL=style.css.map */

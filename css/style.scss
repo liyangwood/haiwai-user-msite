@@ -1,7 +1,17 @@
+$blue-color:#37bccd;
+$color-4a:#4a4a4a;
+$border-color:#c5c5c5;
+$color-7d:#7d7d7d;
+
 *{
-	font-family:Microsoft YaHei,Apple LiGothic Medium,sans-serif;
+	font-family:Microsoft YaHei, Apple LiGothic Medium, sans-serif;
+    font-size: 14px;
+    color: $color-4a;
 }
 
+a{
+    display: inline-block;
+}
 a:hover{
 	text-decoration: none;
 }
@@ -13,5 +23,26 @@ a:hover{
 	position: relative;
 }
 
+
+
+
 @import "component";
 @import "mybiz";
+
+
+
+.hw-panel{
+    border-radius: 0;
+    border: 1px solid $border-color;
+    .panel-heading{
+        background: #f7f7f7;
+
+        .r{
+            color: $blue-color;
+            float: right;
+        }
+    }
+    .panel-body{
+        padding: 0;
+    }
+}
