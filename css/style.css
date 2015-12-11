@@ -1,5 +1,5 @@
 * {
-  font-family: Microsoft YaHei, Apple LiGothic Medium, sans-serif;
+  font-family: Microsoft YaHei, STHeiti, sans-serif;
   font-size: 14px;
   color: #4a4a4a; }
 
@@ -14,6 +14,14 @@ a:hover, a:link {
   padding-left: 0;
   padding-right: 0;
   position: relative; }
+
+.icon {
+  display: inline-block; }
+
+.icon-coupon {
+  width: 29px;
+  height: 30px;
+  background: url("../image/store_coupon.png"); }
 
 .kg-header-comp .container {
   height: 88px;
@@ -122,6 +130,51 @@ a:hover, a:link {
     position: relative;
     top: 2px; }
 
+.hw-comp-RightPanelList-1 .hw-drop button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative; }
+  .hw-comp-RightPanelList-1 .hw-drop button:focus {
+    outline: none; }
+  .hw-comp-RightPanelList-1 .hw-drop button input {
+    background: #ffffff;
+    height: 40px;
+    border-radius: 0;
+    margin-top: 2px;
+    padding-right: 30px;
+    color: #4a4a4a;
+    font-size: 14px;
+    cursor: pointer; }
+.hw-comp-RightPanelList-1 .hw-drop .icon {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  font-size: 24px;
+  color: #929292; }
+.hw-comp-RightPanelList-1 .dropdown-menu {
+  width: auto;
+  text-align: left;
+  border-radius: 0;
+  border: 1px solid #c5c5c5;
+  margin-top: -1px;
+  padding: 0; }
+  .hw-comp-RightPanelList-1 .dropdown-menu li {
+    line-height: 36px;
+    cursor: pointer;
+    font-size: 14px;
+    padding-left: 10px; }
+    .hw-comp-RightPanelList-1 .dropdown-menu li:hover {
+      background: #f5f5f5; }
+
+.hw-comp-star {
+  display: inline-block; }
+  .hw-comp-star .icon {
+    font-size: 20px;
+    color: #f4a62a;
+    margin-right: 4px; }
+
 .hw-mybiz-index, .hw-mybiz-coupon {
   margin-top: 24px;
   min-height: 800px; }
@@ -162,7 +215,8 @@ a:hover, a:link {
     text-align: center;
     font-size: 18px;
     color: #777;
-    border-left: 4px solid #f7f7f7; }
+    border-left: 4px solid #f7f7f7;
+    font-weight: 700; }
     .hw-MybizLeftUserNav .hw-a:hover, .hw-MybizLeftUserNav .hw-a.active {
       border-left: 4px solid #37bccd;
       color: #37bccd; }
@@ -248,7 +302,9 @@ a:hover, a:link {
       display: block;
       color: #37bccd;
       font-size: 14px;
-      margin-top: 16px; }
+      margin-top: 16px;
+      font-weight: 700;
+      cursor: pointer; }
 
 .hw-MybizCreateNewStore {
   height: 96px;
@@ -347,6 +403,114 @@ a:hover, a:link {
   .hw-comp-bform .hw-btn {
     float: right;
     margin-top: 25px; }
+
+.hw-myfav-list {
+  margin-top: 24px;
+  min-height: 800px; }
+  .hw-myfav-list .hw-right-panel-list .hw-each {
+    padding: 12px 15px;
+    padding-left: 115px;
+    height: 114px; }
+    .hw-myfav-list .hw-right-panel-list .hw-each .hw-img {
+      width: 90px;
+      height: 90px;
+      left: 15px;
+      top: 12px; }
+    .hw-myfav-list .hw-right-panel-list .hw-each .h4 {
+      margin-top: 0;
+      line-height: 24px;
+      height: 24px; }
+      .hw-myfav-list .hw-right-panel-list .hw-each .h4 b {
+        font-size: 18px;
+        color: #000; }
+      .hw-myfav-list .hw-right-panel-list .hw-each .h4 .icon {
+        vertical-align: top;
+        position: relative; }
+      .hw-myfav-list .hw-right-panel-list .hw-each .h4 .icon-v {
+        font-size: 48px;
+        font-family: STSongti-SC-Bold;
+        color: #f4a62a;
+        line-height: 48px;
+        top: -18px;
+        left: 2px; }
+      .hw-myfav-list .hw-right-panel-list .hw-each .h4 .icon-coupon {
+        top: -2px;
+        margin-left: 30px; }
+      .hw-myfav-list .hw-right-panel-list .hw-each .h4 .cpt {
+        color: #f4a62a;
+        font-size: 14px;
+        line-height: 18px;
+        position: relative;
+        top: -2px;
+        left: 10px; }
+    .hw-myfav-list .hw-right-panel-list .hw-each .hw-a {
+      margin-top: 8px; }
+  .hw-myfav-list .hw-right-panel-list .mask {
+    background: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    line-height: 90px;
+    width: 90px;
+    position: absolute;
+    left: 15px;
+    top: 12px;
+    color: #4a4a4a;
+    font-weight: 700; }
+
+.hw-mycoupon-list {
+  margin-top: 24px;
+  min-height: 800px; }
+  .hw-mycoupon-list .hw-right-panel-list .hw-each {
+    padding: 12px 15px;
+    padding-left: 184px;
+    height: 120px;
+    padding-right: 120px; }
+    .hw-mycoupon-list .hw-right-panel-list .hw-each .hw-img {
+      width: 158px;
+      height: 98px;
+      left: 15px;
+      top: 12px; }
+    .hw-mycoupon-list .hw-right-panel-list .hw-each .h4 {
+      margin-top: 0;
+      line-height: 24px;
+      height: 24px; }
+      .hw-mycoupon-list .hw-right-panel-list .hw-each .h4 b {
+        font-size: 21px;
+        color: #f4a62a; }
+      .hw-mycoupon-list .hw-right-panel-list .hw-each .h4 .icon {
+        vertical-align: top;
+        position: relative; }
+      .hw-mycoupon-list .hw-right-panel-list .hw-each .h4 .icon-v {
+        font-size: 48px;
+        font-family: STSongti-SC-Bold;
+        color: #f4a62a;
+        line-height: 48px;
+        top: -18px;
+        left: 2px; }
+      .hw-mycoupon-list .hw-right-panel-list .hw-each .h4 .icon-coupon {
+        top: -2px;
+        margin-left: 30px; }
+      .hw-mycoupon-list .hw-right-panel-list .hw-each .h4 .cpt {
+        color: #f4a62a;
+        font-size: 14px;
+        line-height: 18px;
+        position: relative;
+        top: -2px;
+        left: 10px; }
+    .hw-mycoupon-list .hw-right-panel-list .hw-each .hw-a {
+      margin-top: 8px; }
+    .hw-mycoupon-list .hw-right-panel-list .hw-each .r {
+      width: 120px; }
+  .hw-mycoupon-list .hw-right-panel-list .mask {
+    background: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    line-height: 98px;
+    width: 158px;
+    position: absolute;
+    left: 15px;
+    top: 12px;
+    font-size: 20px;
+    color: #4a4a4a;
+    font-weight: 700; }
 
 .hw-panel {
   border-radius: 0;

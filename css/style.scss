@@ -4,7 +4,7 @@ $border-color:#c5c5c5;
 $color-7d:#7d7d7d;
 
 *{
-	font-family:Microsoft YaHei, Apple LiGothic Medium, sans-serif;
+	font-family:Microsoft YaHei, STHeiti, sans-serif;
     font-size: 14px;
     color: $color-4a;
 }
@@ -25,9 +25,13 @@ a:hover, a:link{
 
 
 
-
+@import "icon";
 @import "component";
+
+
 @import "mybiz";
+@import "myfav";
+@import "mycoupon";
 
 
 

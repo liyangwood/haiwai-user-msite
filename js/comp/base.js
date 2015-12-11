@@ -8,6 +8,8 @@
             this.box = box;
             this.config = config || {};
 
+            box.html('loading');
+
             this.getData(box, data, function(rs){
                 self.data = rs;
 
@@ -48,6 +50,37 @@
 
         initView : util.noop,
         initEnd : util.noop
+    });
+
+    KG.Class.define('HeadingNav', {
+        ParentClass : 'BaseComponent',
+        getTemplate : function(){
+            return [
+                '<nav class="kg-header-nav-comp">',
+                    '<div class="container">',
+
+                        '<a href="../mybiz/index.html" class="nav js_mybiz">我的店铺</a>',
+                        '<a href="../myfav/list.html" class="nav js_myfav">我的收藏</a>',
+                        '<a href="../mycoupon/list.html" class="nav js_mycoupon">我的优惠</a>',
+                        '<a href="../mysys/index.html" class="nav js_mysys">系统消息</a>',
+                        '<a href="../mycount/index.html" class="nav js_mycount">账户</a>',
+
+                    '</div>',
+                '</nav>'
+            ].join('');
+        },
+        getData : function(box, data, next){
+            var page = KG.data.get('page').split('-');
+            page = page[0] || '';
+
+            next({
+                page : page
+            });
+        },
+        initEnd : function(){
+            var page = this.data.page;
+            this.elem.find('.js_'+page).addClass('active');
+        }
     });
 
 
@@ -329,14 +362,15 @@ KG.component = {
         new (KG.Class.getByName(className))(box, data);
     },
 
-    init : function(){
-        var elem = $('[role]');
+    init : function(box){
+        box = box || $('body')
+        var elem = box.find('[role]');
 
         elem.each(function(){
             var one = $(this);
 
             //表示已经初始化过
-            if(one.attr('init')) return;
+            if(one.attr('init-end')) return;
 
             //表示需要自己初始化
             if(one.attr('init-self')) return;

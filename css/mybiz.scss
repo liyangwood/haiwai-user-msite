@@ -55,6 +55,7 @@
         font-size: 18px;
         color: #777;
         border-left: 4px solid #f7f7f7;
+		font-weight: 700;
 
         &:hover, &.active{
             border-left: 4px solid $blue-color;
@@ -169,6 +170,8 @@
                 color: $blue-color;
                 font-size: 14px;
                 margin-top: 16px;
+				font-weight: 700;
+				cursor: pointer;
             }
         }
     }

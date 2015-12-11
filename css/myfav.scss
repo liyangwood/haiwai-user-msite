@@ -1,0 +1,75 @@
+.hw-myfav-list{
+	margin-top: 24px;
+	min-height: 800px;
+
+	.hw-right-panel-list{
+		.hw-each{
+			padding: 12px 15px;
+			padding-left: 115px;
+			height: 114px;
+
+			.hw-img{
+				width: 90px;
+				height: 90px;
+				left: 15px;
+				top: 12px;
+			}
+
+			.h4{
+				margin-top: 0;
+				line-height: 24px;
+				height: 24px;
+
+				b{
+					font-size: 18px;
+					color: #000;
+				}
+
+				.icon{
+					vertical-align: top;
+					position: relative;
+				}
+
+				.icon-v{
+					font-size: 48px;
+					font-family: STSongti-SC-Bold;
+					color: #f4a62a;
+					line-height: 48px;
+					top: -18px;
+					left: 2px;
+				}
+				.icon-coupon{
+					top: -2px;
+					margin-left: 30px;
+				}
+
+				.cpt{
+					color: #f4a62a;
+					font-size: 14px;
+					line-height: 18px;
+					position: relative;
+					top: -2px;
+					left: 10px;
+				}
+			}
+
+			.hw-a{
+				margin-top: 8px;
+			}
+		}
+
+		.mask{
+			background: rgba(255, 2555, 255, 0.7);
+			text-align: center;
+			line-height: 90px;
+			width: 90px;
+			position: absolute;
+			left: 15px;
+			top: 12px;
+			color: $color-4a;
+			font-weight: 700;
+		}
+
+
+	}
+}
