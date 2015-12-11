@@ -156,7 +156,7 @@
                 '<em>{{item.commentnum}}条新评论</em>',
 
                 '<div class="r">',
-                '<a class="hw-a" href="">重新营业</a>',
+                '<a class="hw-a js_restart" href="javascript:void(0)">重新营业</a>',
                 '<a class="hw-a" href="">删除</a>',
                 '</div>',
                 '</div>',
@@ -172,6 +172,11 @@
                         list : rs
                     });
                 }
+            });
+        },
+        initEvent : function(){
+            this.elem.find('.js_restart').click(function(){
+                util.dialog.show();
             });
         }
     });

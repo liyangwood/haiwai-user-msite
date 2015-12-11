@@ -54,10 +54,17 @@ a:hover, a:link{
 	min-width: 96px;
 	font-size: 16px;
 	font-weight: 700;
+	padding: 0;
+	border-radius: 2px;
+
+	&:focus{
+		outline: none;
+	}
 }
 .hw-blue-btn{
 	color: #fff;
 	background: $blue-color;
+	border: 1px solid $blue-color;
 
 	&:hover, &:link{
 		color: #fff;
@@ -73,5 +80,62 @@ a:hover, a:link{
 
 	&:hover, &:link{
 		color: $blue-color;
+	}
+}
+
+#kg_modal_dialog{
+
+	.modal-dialog{
+		margin-top: 200px;
+	}
+
+	.modal-header{
+		height: 50px;
+		border-bottom: none;
+
+		.close{
+			opacity: 1;
+
+			&:hover{
+				opacity: 0.8;
+			}
+
+			i{
+				font-size: 24px;
+				color: $color-4a;
+			}
+		}
+	}
+
+	.modal-content{
+		border-radius: 0;
+		min-width: 430px;
+
+		.modal-body{
+			padding-top: 0;
+		}
+
+		.hw-title{
+			font-size: 18px;
+			font-weight: 700;
+			text-align: center;
+			margin: 0;
+		}
+
+		.hw-body{
+			font-size: 14px;
+			color: #9b9b9b;
+			padding: 20px 30px;
+		}
+	}
+
+	.modal-footer{
+		background: #f7f7f7;
+		padding: 20px;
+		text-align: center;
+
+		.hw-light-btn{
+			margin-right: 40px;
+		}
 	}
 }

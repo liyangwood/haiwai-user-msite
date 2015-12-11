@@ -365,11 +365,16 @@ a:hover, a:link {
   text-align: center;
   min-width: 96px;
   font-size: 16px;
-  font-weight: 700; }
+  font-weight: 700;
+  padding: 0;
+  border-radius: 2px; }
+  .hw-btn:focus {
+    outline: none; }
 
 .hw-blue-btn {
   color: #fff;
-  background: #37bccd; }
+  background: #37bccd;
+  border: 1px solid #37bccd; }
   .hw-blue-btn:hover, .hw-blue-btn:link {
     color: #fff; }
   .hw-blue-btn:hover {
@@ -381,5 +386,38 @@ a:hover, a:link {
   border: 1px solid #37bccd; }
   .hw-light-btn:hover, .hw-light-btn:link {
     color: #37bccd; }
+
+#kg_modal_dialog .modal-dialog {
+  margin-top: 200px; }
+#kg_modal_dialog .modal-header {
+  height: 50px;
+  border-bottom: none; }
+  #kg_modal_dialog .modal-header .close {
+    opacity: 1; }
+    #kg_modal_dialog .modal-header .close:hover {
+      opacity: 0.8; }
+    #kg_modal_dialog .modal-header .close i {
+      font-size: 24px;
+      color: #4a4a4a; }
+#kg_modal_dialog .modal-content {
+  border-radius: 0;
+  min-width: 430px; }
+  #kg_modal_dialog .modal-content .modal-body {
+    padding-top: 0; }
+  #kg_modal_dialog .modal-content .hw-title {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    margin: 0; }
+  #kg_modal_dialog .modal-content .hw-body {
+    font-size: 14px;
+    color: #9b9b9b;
+    padding: 20px 30px; }
+#kg_modal_dialog .modal-footer {
+  background: #f7f7f7;
+  padding: 20px;
+  text-align: center; }
+  #kg_modal_dialog .modal-footer .hw-light-btn {
+    margin-right: 40px; }
 
 /*# sourceMappingURL=style.css.map */
