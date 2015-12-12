@@ -58,7 +58,7 @@
                 '<a class="hw-img" href=""><img src="{{user.image}}" /></a>',
                 '<span class="hw-email">{{user.email}}</span>',
 
-                '<a href="javascript:void(0)" class="hw-a js_list" style="margin-top: 24px;">{{dir}}</a>',
+                '<a href="javascript:void(0)" class="hw-a js_{{page}}" style="margin-top: 24px;">{{dir}}</a>',
                 '</div>'
             ].join('');
         },
@@ -72,7 +72,8 @@
 
             p1 = {
                 myfav : '收藏店铺',
-                mycoupon : '我的优惠'
+                mycoupon : '我的优惠',
+                mysys : '系统消息'
             }[p1];
             callback({
                 user : user,

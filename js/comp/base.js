@@ -8,7 +8,7 @@
             this.box = box;
             this.config = config || {};
 
-            box.html('loading');
+            //box.html('loading');
 
             this.getData(box, data, function(rs){
                 self.data = rs;
