@@ -31,6 +31,15 @@
         }
     });
 
+    util.message = {
+        register : function(name, fn){
+            $('body').unbind(name).bind(name, fn);
+        },
+        publish : function(name, data){
+            $('body').trigger(name, data);
+        }
+    };
+
     util.dialog = {
         init : function(){
             var html = [

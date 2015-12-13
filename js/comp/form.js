@@ -13,6 +13,10 @@
         getInsideTemplate : function(){}
     });
 
+    KG.Class.define('BaseInput', {
+        ParentClass : 'BaseComponent'
+    });
+
 
 
     KG.Class.define('MybizArticleForm', {
@@ -47,9 +51,20 @@
             ].join('');
         },
 
+        defineProperty : function(){
+            return {
+                title : {
+                    defaultValue : ''
+                },
+                type : {
+                    defaultValue : 'create'
+                }
+            };
+        },
+
         getData : function(box, data, callback){
-            var title = box.data('title') || '',
-                type = box.data('type') || 'create';
+            var title = this.prop.title,
+                type = this.prop.type;
 
 
             var getBizList = function(){

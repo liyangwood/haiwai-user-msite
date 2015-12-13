@@ -10,12 +10,13 @@
 
             //box.html('loading');
 
+            this._initProp();
             this.getData(box, data, function(rs){
                 self.data = rs;
 
                 self.initVar();
                 self._initView();
-                self.initEvent();
+                self._initEvent();
                 self._initEnd();
             });
 
@@ -29,8 +30,11 @@
             this.html = template.compile(this.getTemplate())(this.data);
             this.elem = $(this.html);
         },
-        initEvent : function(){
+        _initEvent : function(){
+            this.initEvent();
 
+            //listen publish message
+            util.message.register(this.__name, this.registerMessage);
         },
         _initEnd : function(){
             var style = this.box.attr('style'),
@@ -47,9 +51,40 @@
             callback.call(this, {});
         },
 
+        _initProp : function(){
+            var prop = util.extend(this.defineProperty(), this.callParent('defineProperty'));
+
+            var rs = {},
+                box = this.box;
+            util.each(prop, function(item, key){
+                item = item || {};
+
+                var val = box.data(key);
+                rs[key] = util.isUndefined(val)
+                    ? (item.defaultValue)
+                    : (util.isFunction(item.getter) ? item.getter(val) : val);
+            });
+
+            this.prop = rs;
+        },
+
+
+        /*
+        * 定义所有的属性 自动收集 data-key 格式的属性到 this.prop中
+        * @return {key : {  }
+        *   defaultValue 默认value
+        *   getter 可以格式化返回值
+        *
+        * */
+        defineProperty : function(){
+            return {};
+        },
+
 
         initView : util.noop,
-        initEnd : util.noop
+        initEnd : util.noop,
+        initEvent : util.noop,
+        registerMessage : util.noop
     });
 
     KG.Class.define('HeadingNav', {
@@ -135,11 +170,18 @@
             ].join('');
         },
         getData : function(box, data, callback){
-            var range = box.data('range');
+            var range = this.prop.range;
 
             callback({
                 range : range
             });
+        },
+        defineProperty : function(){
+            return {
+                range : {
+                    defaultValue : 0
+                }
+            };
         }
     });
 
@@ -167,7 +209,6 @@
         getData : function(box, data, callback){
             KG.request.getBizList({}, function(flag, rs){
                 if(flag){
-                    console.log(rs);
                     callback({
                         list : rs
                     });
@@ -200,7 +241,6 @@
         getData : function(box, data, callback){
             KG.request.getBizList({}, function(flag, rs){
                 if(flag){
-                    console.log(rs);
                     callback({
                         list : rs
                     });
