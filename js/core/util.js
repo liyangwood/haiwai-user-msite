@@ -3,6 +3,9 @@
 'use strict';
 
 (function(){
+    var _uuid = 1;
+
+
     var util = {};
 
     //merge underscore
@@ -28,6 +31,10 @@
             }
 
             return format.replace('yy', year).replace('mm', month).replace('dd', day).replace('h', hour).replace('m', min).replace('s', sec);
+        },
+
+        getUuid : function(){
+            return 'uuid_'+_uuid++;
         }
     });
 
@@ -102,7 +109,7 @@
                 '{{if foot}}',
                 '<div class="modal-footer">',
                     '<button type="button" class="hw-btn hw-light-btn" data-dismiss="modal">{{NoText}}</button>',
-                    '<button type="button" class="hw-btn hw-blue-btn js_yes">{{YesText}}</button>',
+                    '{{if YesText}}<button type="button" class="hw-btn hw-blue-btn js_yes">{{YesText}}</button>{{/if}}',
                 '</div>',
                 '{{/if}}'
             ].join('');
@@ -124,6 +131,14 @@
             var obj = util.dialog.get();
             obj.modal('hide');
         }
+    };
+
+    util.alert = function(msg){
+        util.dialog.show({
+            body : msg,
+            NoText : '确定',
+            YesText : false
+        });
     };
 
 

@@ -16,6 +16,7 @@
 
                 self.initVar();
                 self._initView();
+
                 self._initEvent();
                 self._initEnd();
             });
@@ -37,6 +38,8 @@
             util.message.register(this.__name, this.registerMessage);
         },
         _initEnd : function(){
+            this.elem.data('kg-obj', this);
+
             var style = this.box.attr('style'),
                 cls = this.box.attr('class');
 
@@ -98,7 +101,7 @@
                         '<a href="../myfav/list.html" class="nav js_myfav">我的收藏</a>',
                         '<a href="../mycoupon/list.html" class="nav js_mycoupon">我的优惠</a>',
                         '<a href="../mysys/index.html" class="nav js_mysys">系统消息</a>',
-                        '<a href="../mycount/index.html" class="nav js_mycount">账户</a>',
+                        '<a href="../mycount/info.html" class="nav js_mycount">账户</a>',
 
                     '</div>',
                 '</nav>'
@@ -418,6 +421,11 @@ KG.component = {
             var clsName = one.attr('role');
             KG.component.initEach(clsName, one, {});
         });
+    },
+
+    getObj : function(elem){
+        var obj = elem.data('kg-obj');
+        return obj || null;
     }
 };
 

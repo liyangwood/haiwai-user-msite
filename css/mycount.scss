@@ -1,0 +1,36 @@
+.hw-mycount-page{
+    margin-top: 24px;
+    min-height : 600px;
+}
+
+.hw-mycount-info, .hw-mycount-password{
+    width: 870px;
+    min-height: 300px;
+    background: #f7f7f7;
+    float: right;
+    padding: 50px 182px;
+
+    .form-group{
+        margin-bottom: 25px;
+    }
+}
+
+
+.hw-comp-MycountLeftNav{
+    width: 210px;
+    text-align: center;
+    float: left;
+
+    .hw-a{
+        display: block;
+        line-height: 50px;
+        font-size: 18px;
+        color: #777777;
+
+        &.active{
+            background: #f7f7f7;
+            color: $color-4a;
+            cursor: default;
+        }
+    }
+}

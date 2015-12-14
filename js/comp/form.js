@@ -14,7 +14,57 @@
     });
 
     KG.Class.define('BaseInput', {
-        ParentClass : 'BaseComponent'
+        ParentClass : 'BaseComponent',
+        defineProperty : function(){
+            return {
+                value : {
+                    defaultValue : ''
+                },
+                label : {},
+                require : {},
+                type : {
+                    defaultValue : 'text'
+                }
+            };
+        },
+        getTemplate : function(){
+            return [
+                '<div class="form-group hw-comp-BaseInput">',
+                '<label class="lab {{if require}}require{{/if}}" for="{{uuid}}">{{label}}</label>',
+                '<label class="control-label hw-err"></label>',
+                '<input type="{{type}}" class="form-control" id="{{uuid}}" placeholder="{{placeholder}}">',
+                '</div>'
+            ].join('');
+        },
+        getData : function(box, data, next){
+            var prop = this.prop;
+            next({
+                value : prop.value,
+                label : prop.label,
+                require : prop.require,
+                type : prop.type,
+                placeholder : box.attr('placeholder') || '',
+                uuid : 'lb_'+util.getUuid()
+            });
+        },
+
+        getValue : function(){
+            return this.elem.find('input').val()
+        },
+        showError : function(msg){
+            if(msg){
+                this.elem.addClass('has-error');
+                this.elem.find('.hw-err').html(msg);
+            }
+            else{
+                this.elem.removeClass('has-error');
+                this.elem.find('.hw-err').html('');
+            }
+        },
+        reset : function(){
+            this.elem.find('input').val('');
+            this.showError(false);
+        }
     });
 
 
