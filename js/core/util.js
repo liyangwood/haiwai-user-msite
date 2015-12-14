@@ -142,6 +142,19 @@
     };
 
 
+
+    util.url = {
+        param : function(key, url){
+            url = url || location.search;
+
+            key = key.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + key + "=([^&#]*)"),
+                results = regex.exec(url);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    };
+
+
     window.util = KG.util = util;
 })();
 

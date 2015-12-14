@@ -36,8 +36,8 @@
                 '<div class="h4">',
                     '<input type="checkbox" value="">',
 
-                    '<span class="hw-u">{{item.fromUser}}</span>',
-                    '<b>{{item.title}}</b>',
+                    '<a target="_blank" href="messageDetail.html?id={{item.id}}" class="hw-u">{{item.fromUser}}</a>',
+                    '<a target="_blank" href="messageDetail.html?id={{item.id}}" class="hw-p">{{item.title}}</a>',
                 '</div>',
 
                 '<div class="r">',
@@ -73,6 +73,44 @@
         },
         initEnd : function(){
             this.elem.find('.js_a').eq(0).trigger('click');
+
+        }
+    });
+
+
+    KG.Class.define('MycountMessageDetail', {
+        ParentClass : 'BaseComponent',
+        getTemplate : function(){
+            return [
+                '<div class="hw-comp-MycountMessageDetail">',
+                    '<h4>{{data.title}}</h4>',
+                    '<small>{{data.createTime | formatDate}}</small>',
+                    '<p>{{data.msgbody}}</p>',
+                    '<div class="hw-ft">',
+                        '<button style="margin-left: 25px;" class="hw-btn hw-blue-btn">返回</button>',
+                        '<button class="hw-btn hw-light-btn">删除</button>',
+                    '</div>',
+                '</div>'
+            ].join('');
+        },
+        defineProperty : function(){
+            return {
+                msgId : {
+                    defaultValue : ''
+                }
+            };
+        },
+        getData : function(box, data, next){
+            var id = this.prop.msgId || KG.data.get('msgId');
+            KG.request.getSystemMessageDetail({
+                id : id
+            }, function(flag, rs){
+                if(flag){
+                    next({
+                        data : rs
+                    });
+                }
+            });
 
         }
     });

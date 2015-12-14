@@ -1,50 +1,83 @@
-.hw-mysys-index{
-	margin-top: 24px;
-	min-height: 800px;
+.hw-right-panel-list {
+	border-top: 1px solid $border-color;
 
-	.hw-right-panel-list {
+	.hw-each {
+		padding: 12px 0;
+		height: 44px;
+		margin: 0 15px;
 		border-top: 1px solid $border-color;
+		border-bottom: none;
+		margin-top: -1px;
+		padding-right: 100px;
 
-		.hw-each {
-			padding: 12px 0;
-			height: 44px;
-			margin: 0 15px;
-			border-top: 1px solid $border-color;
-			border-bottom: none;
-			margin-top: -1px;
-			padding-right: 100px;
+		.h4 {
+			margin: 0;
 
-			.h4 {
-				margin: 0;
-
-				input[type=checkbox]{
-					font-size: 24px;
-				}
-
-				.hw-u{
-					color: #777;
-					margin-left: 10px;
-					position: relative;
-					top: 0;
-				}
-
-				b{
-					display: inline-block;
-					margin-left: 15px;
-					position: relative;
-					top: 0;
-				}
+			input[type=checkbox]{
+				font-size: 24px;
 			}
 
-			.hw-a {
-				margin-top: 12px;
+			.hw-u{
+				color: #777;
+				margin-left: 10px;
+				position: relative;
+				top: 0;
+				display: inline-block;
+			}
+			.hw-p{
+				color: $color-4a;
+				font-weight: 700;
+				display: inline-block;
+				margin-left: 15px;
 			}
 
-			.r{
-				width: 100px;
-				padding-right: 0;
-			}
 		}
 
+		.hw-a {
+			margin-top: 12px;
+		}
+
+		.r{
+			width: 100px;
+			padding-right: 0;
+		}
+	}
+
+}
+
+.hw-comp-MycountMessageDetail{
+	width: 844px;
+	float: right;
+	min-height: 250px;
+	border: 1px solid $border-color;
+
+	h4{
+		text-align: center;
+		font-size: 18px;
+		color: $color-4a;
+		margin-top: 25px;
+	}
+	small{
+		color: #c5c5c5;
+		display: block;
+		text-align: center;
+	}
+	p{
+		margin: 12px 50px 0;
+		text-align: left;
+		font-size: 14px;
+		color: #777;
+		line-height: 18px;
+	}
+
+	.hw-ft{
+		margin-top: 35px;
+		height: 108px;
+		background: #f5f5f5;
+		padding: 34px 51px;
+
+		.hw-btn{
+			float: right;
+		}
 	}
 }

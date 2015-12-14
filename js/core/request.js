@@ -113,5 +113,16 @@ KG.request = {
         ];
 
         return this.mockData(mockData, success, error);
+    },
+    getSystemMessageDetail : function(opts, success, error){
+        var mockData = {
+            id : opts.id,
+            title : '欢迎加入海外同城',
+            msgbody : '欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城',
+            createTime : Date.now(),
+            fromUser : '海外管理员'
+        };
+
+        return this.mockData(mockData, success, error);
     }
 };

@@ -181,7 +181,9 @@ a:hover, a:link {
     color: #4a4a4a;
     font-size: 14px; }
   .hw-comp-BaseInput .hw-err {
-    float: right; }
+    float: right;
+    position: relative;
+    top: 4px; }
   .hw-comp-BaseInput input {
     background: #ffffff;
     height: 40px;
@@ -532,38 +534,64 @@ a:hover, a:link {
     color: #4a4a4a;
     font-weight: 700; }
 
-.hw-mysys-index {
-  margin-top: 24px;
-  min-height: 800px; }
-  .hw-mysys-index .hw-right-panel-list {
-    border-top: 1px solid #c5c5c5; }
-    .hw-mysys-index .hw-right-panel-list .hw-each {
-      padding: 12px 0;
-      height: 44px;
-      margin: 0 15px;
-      border-top: 1px solid #c5c5c5;
-      border-bottom: none;
-      margin-top: -1px;
-      padding-right: 100px; }
-      .hw-mysys-index .hw-right-panel-list .hw-each .h4 {
-        margin: 0; }
-        .hw-mysys-index .hw-right-panel-list .hw-each .h4 input[type=checkbox] {
-          font-size: 24px; }
-        .hw-mysys-index .hw-right-panel-list .hw-each .h4 .hw-u {
-          color: #777;
-          margin-left: 10px;
-          position: relative;
-          top: 0; }
-        .hw-mysys-index .hw-right-panel-list .hw-each .h4 b {
-          display: inline-block;
-          margin-left: 15px;
-          position: relative;
-          top: 0; }
-      .hw-mysys-index .hw-right-panel-list .hw-each .hw-a {
-        margin-top: 12px; }
-      .hw-mysys-index .hw-right-panel-list .hw-each .r {
-        width: 100px;
-        padding-right: 0; }
+.hw-right-panel-list {
+  border-top: 1px solid #c5c5c5; }
+  .hw-right-panel-list .hw-each {
+    padding: 12px 0;
+    height: 44px;
+    margin: 0 15px;
+    border-top: 1px solid #c5c5c5;
+    border-bottom: none;
+    margin-top: -1px;
+    padding-right: 100px; }
+    .hw-right-panel-list .hw-each .h4 {
+      margin: 0; }
+      .hw-right-panel-list .hw-each .h4 input[type=checkbox] {
+        font-size: 24px; }
+      .hw-right-panel-list .hw-each .h4 .hw-u {
+        color: #777;
+        margin-left: 10px;
+        position: relative;
+        top: 0;
+        display: inline-block; }
+      .hw-right-panel-list .hw-each .h4 .hw-p {
+        color: #4a4a4a;
+        font-weight: 700;
+        display: inline-block;
+        margin-left: 15px; }
+    .hw-right-panel-list .hw-each .hw-a {
+      margin-top: 12px; }
+    .hw-right-panel-list .hw-each .r {
+      width: 100px;
+      padding-right: 0; }
+
+.hw-comp-MycountMessageDetail {
+  width: 844px;
+  float: right;
+  min-height: 250px;
+  border: 1px solid #c5c5c5; }
+  .hw-comp-MycountMessageDetail h4 {
+    text-align: center;
+    font-size: 18px;
+    color: #4a4a4a;
+    margin-top: 25px; }
+  .hw-comp-MycountMessageDetail small {
+    color: #c5c5c5;
+    display: block;
+    text-align: center; }
+  .hw-comp-MycountMessageDetail p {
+    margin: 12px 50px 0;
+    text-align: left;
+    font-size: 14px;
+    color: #777;
+    line-height: 18px; }
+  .hw-comp-MycountMessageDetail .hw-ft {
+    margin-top: 35px;
+    height: 108px;
+    background: #f5f5f5;
+    padding: 34px 51px; }
+    .hw-comp-MycountMessageDetail .hw-ft .hw-btn {
+      float: right; }
 
 .hw-mycount-page {
   margin-top: 24px;
@@ -591,6 +619,10 @@ a:hover, a:link {
       background: #f7f7f7;
       color: #4a4a4a;
       cursor: default; }
+
+.hw-mypage {
+  margin-top: 24px;
+  min-height: 800px; }
 
 .hw-panel {
   border-radius: 0;
