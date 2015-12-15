@@ -101,8 +101,8 @@
         if(parent && typeof(parent) === 'string'){
             parent = getClass(parent);
             if(!parent){
-                throw parent + ' is not exist';
-                return;
+                console.log(option, name);
+                throw option.ParentClass + ' is not exist';
             }
         }
 

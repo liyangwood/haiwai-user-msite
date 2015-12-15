@@ -13,7 +13,12 @@ var JS = {
         'js/core/class.js',
         'js/core/util.js',
         'js/core/request.js',
-        'js/comp/*.js'
+        'js/comp/base.js',
+        'js/comp/form.js',
+        'js/comp/myfav.js',
+        'js/comp/mycoupon.js',
+        'js/comp/mysys.js',
+        'js/comp/mycount.js'
     ],
     core_min : 'core.min.js'
     //'class' : ['js/class/BasePage.js'],
@@ -21,16 +26,17 @@ var JS = {
 
 };
 
-var HtmlReplace = htmlreplace({
+var HtmlReplace = {
     js_core : '../../js/dist/'+JS.core_min
-});
+};
 
 var F = {
     each : function(list, callback){
         for(var i= 0,len=list.length; i<len; i++){
-            if(callback(list[i], i, len) === false){
-                break;
-            }
+            (function(i){
+                callback(list[i], i, len);
+            })(i);
+
         }
     },
     devHtmlByDir : function(dir){
@@ -57,13 +63,14 @@ var F = {
             .pipe(fileinclude({
                 prefix: '@@'
             }))
-            //.pipe(HtmlReplace)
+            .pipe(htmlreplace(HtmlReplace))
             .pipe(gulp.dest('./page/'+dir));
     }
 };
 
 gulp.task('core', function(){
-    return gulp.src(JS.core).pipe(uglify())
+    return gulp.src(JS.core)
+        .pipe(uglify())
         .pipe(concat(JS.core_min))
         .pipe(gulp.dest('./js/dist'));
 });
