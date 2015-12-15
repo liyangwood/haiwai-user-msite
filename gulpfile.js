@@ -6,6 +6,7 @@ var less = require('gulp-less');
 var fileinclude = require('gulp-file-include');
 var htmlreplace = require('gulp-html-replace');
 var watch = require('gulp-watch');
+var minifyCss = require('gulp-minify-css');
 
 var JS = {
     core : [
@@ -20,14 +21,14 @@ var JS = {
         'js/comp/mysys.js',
         'js/comp/mycount.js'
     ],
-    core_min : 'core.min.js'
-    //'class' : ['js/class/BasePage.js'],
-    //'class_min' : 'class.min.js'
+    core_min : 'core.min.js',
+    css_min : 'style.min.css'
 
 };
 
 var HtmlReplace = {
-    js_core : '../../js/dist/'+JS.core_min
+    js_core : '../../js/dist/'+JS.core_min,
+    css : '../../css/'+JS.css_min
 };
 
 var F = {
@@ -74,6 +75,12 @@ gulp.task('core', function(){
         .pipe(concat(JS.core_min))
         .pipe(gulp.dest('./js/dist'));
 });
+gulp.task('css', function(){
+    return gulp.src(['css/style.css'])
+        .pipe(minifyCss({compatibility: 'ie8'}))
+        .pipe(concat(JS.css_min))
+        .pipe(gulp.dest('css/'));
+});
 
 var dirList = ['mybiz', 'mycount', 'myfav', 'mysys', 'mycoupon'];
 
@@ -98,4 +105,4 @@ gulp.task('watch_dev', function(){
 
 gulp.task('dev', ['html_dev', 'watch_dev']);
 
-gulp.task('pub', ['core', 'htmltest']);
+gulp.task('pub', ['core', 'css', 'htmltest']);
