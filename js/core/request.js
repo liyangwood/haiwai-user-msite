@@ -161,5 +161,23 @@ KG.request = {
         return this.ajax(data, function(flag, rs){
             success(true, rs['15623']);
         }, error);
+    },
+
+    getAllStoreCategoryList : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'tags'
+        };
+
+        return this.ajax(data, success, error);
+    },
+
+    getAllStoreTagByCategory : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'taglist',
+            biztagid : opts.catId
+        };
+        return this.ajax(data, success, error);
     }
 };

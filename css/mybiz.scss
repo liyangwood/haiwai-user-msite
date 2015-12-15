@@ -311,3 +311,163 @@
 		margin-top: 25px;
 	}
 }
+
+/* 建店三步 */
+.hw-createStore-page{
+	width: 100%;
+	min-height: 800px;
+	background: #f7f7f7;
+	padding-top: 20px;
+
+	.hw-stepinfo{
+		position: relative;
+		height: 70px;
+		margin-top: 40px;
+		left: 10px;
+
+		div{
+			display: inline-block;
+		}
+
+		.c{
+			width: 36px;
+			height: 36px;
+			border-radius: 18px;
+			border: 4px solid #9b9b9b;
+			position: relative;
+			top: 2px;
+			vertical-align: middle;
+
+			.fa{
+				font-size: 24px;
+				position: relative;
+				top: 2px;
+				left: 2px;
+				color: #ffffff;
+				display: none;
+			}
+		}
+		.d{
+			width: 238px;
+			height: 4px;
+			background: #9b9b9b;
+		}
+
+		.p{
+			display: inline-block;
+			font-size: 14px;
+			color: #777;
+			position: absolute;
+			top: 46px;
+			font-weight: 700;
+		}
+		.p1{
+			left: -10px;
+
+		}
+		.p2{
+			left: 265px;
+		}
+		.p3{
+			right: 6px;
+		}
+	}
+	.hw-stepinfo.step1{
+		.c1{
+			border-color: $blue-color;
+		}
+		.p1{
+			color: $blue-color;
+		}
+	}
+	.hw-stepinfo.step2{
+		.c1{
+			border-color: $blue-color;
+			background: $blue-color;
+
+			.fa{
+				display: block;
+			}
+		}
+		.p1{
+			color: $blue-color;
+		}
+		.d1{
+			background: $blue-color;
+		}
+		.c2{
+			border-color: $blue-color;
+		}
+		.p2{
+			color: $blue-color;
+		}
+	}
+	.hw-stepinfo.step3{
+		.c1, .c2{
+			border-color: $blue-color;
+			background: $blue-color;
+
+			.fa{
+				display: block;
+			}
+		}
+		.p1, .p2{
+			color: $blue-color;
+		}
+		.d1, .d2{
+			background: $blue-color;
+		}
+		.c3{
+			border-color: $blue-color;
+		}
+		.p3{
+			color: $blue-color;
+		}
+	}
+}
+.hw-createStore{
+	width: 600px;
+	margin: 0 auto;
+
+	.hw-title{
+		text-align: center;
+		color: $color-4a;
+		font-size: 24px;
+	}
+}
+
+.hw-comp-MybizStoreInfoFormStep1{
+	margin-top: 40px;
+	padding-bottom: 150px;
+
+	.form-group{
+		margin-bottom: 30px;
+	}
+
+	.hw-inline{
+		width: 185px;
+		display: inline-block;
+		margin-left: 22px;
+	}
+
+	.hw-tagbox{
+		label{
+			width: 120px;
+			font-size: 14px;
+			color: $color-4a;
+			height: 30px;
+			margin: 0;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+
+			input{
+				font-size: 24px;
+				vertical-align: middle;
+				margin-right: 5px;
+				position: relative;
+				top: -2px;
+			}
+		}
+	}
+}

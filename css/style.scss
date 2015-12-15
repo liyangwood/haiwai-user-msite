@@ -23,8 +23,43 @@ a:hover, a:link{
 	position: relative;
 }
 
+
+
+@import "icon";
+@import "component";
+
+
+@import "mybiz";
+@import "myfav";
+@import "mycoupon";
+@import "mysys";
+@import "mycount";
+
+.hw-mypage{
+	margin-top: 24px;
+	min-height: 800px;
+	margin-bottom: 40px;
+}
+
+.hw-panel{
+    border-radius: 0;
+    border: 1px solid $border-color;
+    .panel-heading{
+        background: #f7f7f7;
+
+        .r{
+            color: $blue-color;
+            float: right;
+        }
+    }
+    .panel-body{
+        padding: 0;
+    }
+}
+
 .form-group{
 	text-align: left;
+	position: relative;
 
 	.lab{
 		color: $color-4a;
@@ -52,39 +87,18 @@ a:hover, a:link{
 		font-size: 16px;
 	}
 
+	.del{
+		position: absolute;
+		z-index: 2;
+		font-size: 20px;
+		top: 40px;
+		right: 8px;
+		cursor: pointer;
+		color: $color-4a;
+	}
+
 }
 
-
-@import "icon";
-@import "component";
-
-
-@import "mybiz";
-@import "myfav";
-@import "mycoupon";
-@import "mysys";
-@import "mycount";
-
-.hw-mypage{
-	margin-top: 24px;
-	min-height: 800px;
-}
-
-.hw-panel{
-    border-radius: 0;
-    border: 1px solid $border-color;
-    .panel-heading{
-        background: #f7f7f7;
-
-        .r{
-            color: $blue-color;
-            float: right;
-        }
-    }
-    .panel-body{
-        padding: 0;
-    }
-}
 
 .hw-btn{
 	display: inline-block;

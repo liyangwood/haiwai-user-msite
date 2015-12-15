@@ -19,7 +19,8 @@ var JS = {
         'js/comp/myfav.js',
         'js/comp/mycoupon.js',
         'js/comp/mysys.js',
-        'js/comp/mycount.js'
+        'js/comp/mycount.js',
+        'js/comp/createStore.js'
     ],
     core_min : 'core.min.js',
     css_min : 'style.min.css'

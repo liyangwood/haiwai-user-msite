@@ -439,6 +439,14 @@ KG.component = {
         });
     },
 
+    initWithElement : function(elem, data, config){
+        var clsName = elem.attr('role');
+        if(!clsName){
+            return;
+        }
+        return new (KG.Class.getByName(clsName))(elem, data, config);
+    },
+
     getObj : function(elem){
         var obj = elem.data('kg-obj');
         return obj || null;
