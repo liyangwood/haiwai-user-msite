@@ -1,6 +1,7 @@
 bower_components
 node_modules
-js/dist
 build
 .idea
+page
+js/dist
 css/.sass-cache

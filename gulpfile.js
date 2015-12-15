@@ -8,15 +8,21 @@ var htmlreplace = require('gulp-html-replace');
 var watch = require('gulp-watch');
 
 var JS = {
-    core : ['js/core/core.js', 'js/core/class.js', 'js/core/util.js'],
-    core_min : 'core.min.js',
-    'class' : ['js/class/BasePage.js'],
-    'class_min' : 'class.min.js'
+    core : [
+        'js/core/core.js',
+        'js/core/class.js',
+        'js/core/util.js',
+        'js/core/request.js',
+        'js/comp/*.js'
+    ],
+    core_min : 'core.min.js'
+    //'class' : ['js/class/BasePage.js'],
+    //'class_min' : 'class.min.js'
+
 };
 
 var HtmlReplace = htmlreplace({
-    js_core : '../js/dist/'+JS.core_min,
-    js_class : '../js/dist/'+JS.class_min
+    js_core : '../../js/dist/'+JS.core_min
 });
 
 var F = {
@@ -45,6 +51,14 @@ var F = {
                     prefix: '@@'
                 })).pipe(gulp.dest('./build/'+dir));
         });
+    },
+    pubHtmlByDir : function(dir){
+        gulp.src(['./dev/'+dir+'/*.html'])
+            .pipe(fileinclude({
+                prefix: '@@'
+            }))
+            //.pipe(HtmlReplace)
+            .pipe(gulp.dest('./page/'+dir));
     }
 };
 
@@ -61,13 +75,10 @@ gulp.task('html_dev', function(){
     F.each(dirList, F.devHtmlByDir);
 });
 
-//gulp.task('htmltest', function(){
-//    return gulp.src(['dev/empty.html'])
-//        .pipe(fileinclude({
-//            prefix: '@@'
-//        })).pipe(HtmlReplace)
-//        .pipe(gulp.dest('./page'));
-//});
+gulp.task('htmltest', function(){
+    F.each(dirList, F.pubHtmlByDir);
+
+});
 
 gulp.task('watch_dev', function(){
     F.each(dirList, F.devWatchHtmlByDir);
@@ -80,3 +91,4 @@ gulp.task('watch_dev', function(){
 
 gulp.task('dev', ['html_dev', 'watch_dev']);
 
+gulp.task('pub', ['core', 'htmltest']);
