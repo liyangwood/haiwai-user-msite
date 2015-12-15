@@ -30,7 +30,21 @@
             this.initView();
             this.html = template.compile(this.getTemplate())(this.data);
             this.elem = $(this.html);
+
+            //TODO 以后需要关注这里的体验和性能
+            //如果内部包含comp，就开始初始化
+            KG.component.init(this.elem);
+
+            this.jq = util.extend(this.setJqVar(), this.callParent('setJqVar'));
         },
+
+        /*
+        * 用于定义一些jq的变量到 this.jq 中，方便后续方法全局使用
+        * */
+        setJqVar : function(){
+            return {};
+        },
+
         _initEvent : function(){
             this.initEvent();
 
@@ -46,6 +60,8 @@
             this.elem.attr('style', style);
             this.elem.addClass(cls);
             this.box.replaceWith(this.elem);
+
+
 
             this.initEnd();
         },

@@ -232,33 +232,3 @@
 	}
 }
 
-.hw-comp-BaseInput{
-    text-align: left;
-
-    .lab{
-        color: $color-4a;
-        font-size: 14px;
-    }
-    .hw-err{
-        float: right;
-		position: relative;
-		top: 4px;
-    }
-
-    input{
-        background: #ffffff;
-        height: 40px;
-        border-radius: 0;
-        margin-top: 2px;
-    }
-
-    .require:after{
-        content : '*';
-        color: #ff0000;
-        position: relative;
-        left: 4px;
-        top: 5px;
-        font-size: 16px;
-    }
-
-}

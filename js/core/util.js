@@ -35,7 +35,27 @@
 
         getUuid : function(){
             return 'uuid_'+_uuid++;
-        }
+        },
+
+        uploadImage : function(file, callback){
+
+            if(!file) return;
+
+            var fr = new FileReader();
+            fr.onload = function(e){
+                var binary = e.target.result;
+
+                KG.request.uploadImage({
+                    image : binary
+                }, function(flag, rs){
+                    if(flag){
+                        callback(rs.files[0]);
+                    }
+                });
+            };
+
+            fr.readAsDataURL(file);
+        },
     });
 
     util.message = {
@@ -170,5 +190,11 @@
 
     template.helper('storeFullAddress', function(item){
         return item.address+', '+item.city+', '+item.state+' '+item.zip;
+    });
+    template.helper('defaultUserImage', function(image){
+        if(!image){
+            return KG.user.get('defaultImage');
+        }
+        return image;
     });
 })();

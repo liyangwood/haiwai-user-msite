@@ -15,6 +15,28 @@ a:hover, a:link {
   padding-right: 0;
   position: relative; }
 
+.form-group {
+  text-align: left; }
+  .form-group .lab {
+    color: #4a4a4a;
+    font-size: 14px; }
+  .form-group .hw-err {
+    float: right;
+    position: relative;
+    top: 4px; }
+  .form-group input {
+    background: #ffffff;
+    height: 40px;
+    border-radius: 0;
+    margin-top: 2px; }
+  .form-group .require:after {
+    content: '*';
+    color: #ff0000;
+    position: relative;
+    left: 4px;
+    top: 5px;
+    font-size: 16px; }
+
 .icon {
   display: inline-block; }
 
@@ -174,28 +196,6 @@ a:hover, a:link {
     font-size: 20px;
     color: #f4a62a;
     margin-right: 4px; }
-
-.hw-comp-BaseInput {
-  text-align: left; }
-  .hw-comp-BaseInput .lab {
-    color: #4a4a4a;
-    font-size: 14px; }
-  .hw-comp-BaseInput .hw-err {
-    float: right;
-    position: relative;
-    top: 4px; }
-  .hw-comp-BaseInput input {
-    background: #ffffff;
-    height: 40px;
-    border-radius: 0;
-    margin-top: 2px; }
-  .hw-comp-BaseInput .require:after {
-    content: '*';
-    color: #ff0000;
-    position: relative;
-    left: 4px;
-    top: 5px;
-    font-size: 16px; }
 
 .hw-mybiz-index, .hw-mybiz-coupon {
   margin-top: 24px;
@@ -534,9 +534,9 @@ a:hover, a:link {
     color: #4a4a4a;
     font-weight: 700; }
 
-.hw-right-panel-list {
+.hw-mysys-list .hw-right-panel-list {
   border-top: 1px solid #c5c5c5; }
-  .hw-right-panel-list .hw-each {
+  .hw-mysys-list .hw-right-panel-list .hw-each {
     padding: 12px 0;
     height: 44px;
     margin: 0 15px;
@@ -544,24 +544,24 @@ a:hover, a:link {
     border-bottom: none;
     margin-top: -1px;
     padding-right: 100px; }
-    .hw-right-panel-list .hw-each .h4 {
+    .hw-mysys-list .hw-right-panel-list .hw-each .h4 {
       margin: 0; }
-      .hw-right-panel-list .hw-each .h4 input[type=checkbox] {
+      .hw-mysys-list .hw-right-panel-list .hw-each .h4 input[type=checkbox] {
         font-size: 24px; }
-      .hw-right-panel-list .hw-each .h4 .hw-u {
+      .hw-mysys-list .hw-right-panel-list .hw-each .h4 .hw-u {
         color: #777;
         margin-left: 10px;
         position: relative;
         top: 0;
         display: inline-block; }
-      .hw-right-panel-list .hw-each .h4 .hw-p {
+      .hw-mysys-list .hw-right-panel-list .hw-each .h4 .hw-p {
         color: #4a4a4a;
         font-weight: 700;
         display: inline-block;
         margin-left: 15px; }
-    .hw-right-panel-list .hw-each .hw-a {
+    .hw-mysys-list .hw-right-panel-list .hw-each .hw-a {
       margin-top: 12px; }
-    .hw-right-panel-list .hw-each .r {
+    .hw-mysys-list .hw-right-panel-list .hw-each .r {
       width: 100px;
       padding-right: 0; }
 
@@ -606,6 +606,59 @@ a:hover, a:link {
   .hw-mycount-info .form-group, .hw-mycount-password .form-group {
     margin-bottom: 25px; }
 
+.hw-mycount-info {
+  padding: 45px 135px 50px; }
+  .hw-mycount-info .form-group {
+    margin-bottom: 20px; }
+  .hw-mycount-info .hw-upload {
+    min-height: 160px;
+    position: relative; }
+    .hw-mycount-info .hw-upload .hw-img-box {
+      height: 160px;
+      width: 160px;
+      float: left;
+      background: #eeeeee;
+      position: relative; }
+      .hw-mycount-info .hw-upload .hw-img-box img {
+        width: 100%;
+        height: 100%; }
+      .hw-mycount-info .hw-upload .hw-img-box b {
+        display: none;
+        text-align: center;
+        line-height: 24px;
+        background: rgba(0, 0, 0, 0.4);
+        color: #ffffff;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        cursor: pointer;
+        height: 24px;
+        overflow: hidden; }
+    .hw-mycount-info .hw-upload input, .hw-mycount-info .hw-upload .hw-btn {
+      width: 140px;
+      height: 36px;
+      position: absolute;
+      left: 180px;
+      top: 124px; }
+    .hw-mycount-info .hw-upload input {
+      opacity: 0;
+      z-index: 1;
+      cursor: pointer; }
+    .hw-mycount-info .hw-upload .hw-btn {
+      color: #4a4a4a;
+      border: 1px solid #4a4a4a;
+      line-height: 36px;
+      font-size: 14px;
+      background: transparent; }
+  .hw-mycount-info .hw-line {
+    height: 0;
+    border-top: 1px solid #c5c5c5;
+    margin-bottom: 25px; }
+  .hw-mycount-info .hw-area {
+    height: 150px;
+    border-radius: 0; }
+
 .hw-comp-MycountLeftNav {
   width: 210px;
   text-align: center;
@@ -619,6 +672,16 @@ a:hover, a:link {
       background: #f7f7f7;
       color: #4a4a4a;
       cursor: default; }
+
+.hw-comp-SelectLocationRange select {
+  height: 40px;
+  border: 1px solid #c5c5c5;
+  border-radius: 0;
+  background: url(../image/arrow_down.png) no-repeat right #fff;
+  -webkit-appearance: none;
+  padding: 0 25px 0 10px;
+  margin-right: 20px;
+  margin-bottom: 10px; }
 
 .hw-mypage {
   margin-top: 24px;

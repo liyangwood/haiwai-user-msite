@@ -1,49 +1,52 @@
-.hw-right-panel-list {
-	border-top: 1px solid $border-color;
-
-	.hw-each {
-		padding: 12px 0;
-		height: 44px;
-		margin: 0 15px;
+.hw-mysys-list{
+	.hw-right-panel-list {
 		border-top: 1px solid $border-color;
-		border-bottom: none;
-		margin-top: -1px;
-		padding-right: 100px;
 
-		.h4 {
-			margin: 0;
+		.hw-each {
+			padding: 12px 0;
+			height: 44px;
+			margin: 0 15px;
+			border-top: 1px solid $border-color;
+			border-bottom: none;
+			margin-top: -1px;
+			padding-right: 100px;
 
-			input[type=checkbox]{
-				font-size: 24px;
+			.h4 {
+				margin: 0;
+
+				input[type=checkbox]{
+					font-size: 24px;
+				}
+
+				.hw-u{
+					color: #777;
+					margin-left: 10px;
+					position: relative;
+					top: 0;
+					display: inline-block;
+				}
+				.hw-p{
+					color: $color-4a;
+					font-weight: 700;
+					display: inline-block;
+					margin-left: 15px;
+				}
+
 			}
 
-			.hw-u{
-				color: #777;
-				margin-left: 10px;
-				position: relative;
-				top: 0;
-				display: inline-block;
-			}
-			.hw-p{
-				color: $color-4a;
-				font-weight: 700;
-				display: inline-block;
-				margin-left: 15px;
+			.hw-a {
+				margin-top: 12px;
 			}
 
+			.r{
+				width: 100px;
+				padding-right: 0;
+			}
 		}
 
-		.hw-a {
-			margin-top: 12px;
-		}
-
-		.r{
-			width: 100px;
-			padding-right: 0;
-		}
 	}
-
 }
+
 
 .hw-comp-MycountMessageDetail{
 	width: 844px;

@@ -159,6 +159,41 @@
 
 
 
+    KG.Class.define('BaseUploadImage', {
+        ParentClass : 'BaseComponent',
+
+        setJqVar : function(){
+            return {
+                img : this.elem.find('.js_img'),
+                btn : this.elem.find('.js_btn'),
+                fileInput : this.elem.find('input[type="file"]')
+            }
+        },
+        defineProperty : function(){
+            return {
+                image : {}
+            }
+        },
+
+        initEvent : function(){
+            var btn = this.jq.btn,
+                img = this.jq.img;
+            this.jq.fileInput.bind('change', function(e){
+                var file = this.files[0];
+
+                btn.button('loading');
+
+                util.uploadImage(file, function(url){
+                    var url = KG.config.SiteRoot+url;
+
+                    img.attr('src', url);
+                    btn.button('reset');
+                });
+            });
+
+        }
+    });
+
 
 
 

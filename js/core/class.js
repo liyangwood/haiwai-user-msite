@@ -68,7 +68,7 @@
     };
 
     var inherit = function(obj, prop){
-        $.extend(obj.fn || obj.prototype, prop.prototype || prop);
+        return $.extend(obj, prop);
     };
 
     var ClassManager = {};
@@ -118,7 +118,7 @@
 
         if(parent){
             obj.prototype = Object.create(parent.prototype || parent);
-            obj.prototype.__base = parent.prototype || parent;
+            obj.prototype.__base = parent;
             obj.prototype.constructor = obj;
             obj.prototype.__static = obj._static;
         }
@@ -130,7 +130,9 @@
 
         $.extend(obj.fn, Base);
 
-        option && inherit(obj, option);
+        if(option){
+            inherit(obj.fn, option);
+        }
 
         obj.fn.__type = 'IObject';
         obj.fn.__name = name;

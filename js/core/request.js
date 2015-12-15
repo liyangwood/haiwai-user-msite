@@ -1,11 +1,16 @@
 KG.request = {
     ajax : function(opts, success, error){
-        var url = KG.config.ApiRoot;
+        var url = KG.config.ApiRoot+'?format=json';
 
         var type = opts.method || 'get';
         delete opts.method;
 
         var dtd = $.Deferred();
+
+        if(opts.url){
+            url += '&'+opts.url;
+            delete opts.url;
+        }
 
         $.ajax({
             type : type,
@@ -124,5 +129,37 @@ KG.request = {
         };
 
         return this.mockData(mockData, success, error);
+    },
+
+    uploadImage : function(opts, success, error){
+        var data = {
+            url : 'func=article&act=upload',
+            method : 'post',
+            type : 'image',
+            'uploadfield[]' : opts.image
+        };
+
+        return this.ajax(data, success, error);
+    },
+
+    getAllAddressAreaInfo : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'get_allregion'
+        };
+        return this.ajax(data, success, error);
+    },
+
+    getUserDetailInfo : function(opts, success, error){
+        var data = {
+            act : 'getuser',
+            check : '0aedbf673e0c9bd37540b75a46af5a12',
+            func : 'passport',
+            userid : 15623
+        };
+
+        return this.ajax(data, function(flag, rs){
+            success(true, rs['15623']);
+        }, error);
     }
 };
