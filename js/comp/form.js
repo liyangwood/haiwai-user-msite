@@ -266,19 +266,28 @@
         initEvent : function(){
             var btn = this.jq.btn,
                 img = this.jq.img;
+
+            var self = this;
             this.jq.fileInput.bind('change', function(e){
                 var file = this.files[0];
 
                 btn.button('loading');
 
-                util.uploadImage(file, function(url){
-                    var url = KG.config.SiteRoot+url;
-
-                    img.attr('src', url);
+                self.uploadImageFn(file, function(){
                     btn.button('reset');
                 });
             });
 
+        },
+        uploadImageFn : function(file, callback){
+            var self = this;
+            util.uploadImage(file, function(url){
+                var url = KG.config.SiteRoot+url;
+
+                self.jq.img.attr('src', url);
+
+                callback();
+            });
         }
     });
 

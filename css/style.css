@@ -553,6 +553,148 @@ a:hover, a:link {
       position: relative;
       top: -2px; }
 
+.hw-comp-MybizStoreInfoFormStep2 {
+  margin-top: 40px;
+  padding-bottom: 150px; }
+  .hw-comp-MybizStoreInfoFormStep2 .form-group {
+    margin-bottom: 30px; }
+  .hw-comp-MybizStoreInfoFormStep2 .hw-dym {
+    margin-bottom: 15px; }
+    .hw-comp-MybizStoreInfoFormStep2 .hw-dym span {
+      font-size: 14px;
+      color: #4a4a4a;
+      display: inline-block;
+      font-weight: 700;
+      width: 100px; }
+    .hw-comp-MybizStoreInfoFormStep2 .hw-dym label {
+      display: inline-block;
+      margin-left: 30px;
+      width: 60px;
+      font-size: 14px;
+      color: #4a4a4a;
+      position: relative;
+      top: 1px; }
+      .hw-comp-MybizStoreInfoFormStep2 .hw-dym label input {
+        vertical-align: top;
+        position: relative;
+        top: -1px;
+        margin-right: 10px; }
+
+.hw-comp-MybizStoreInfoFormStep3 {
+  margin-top: 40px;
+  padding-bottom: 150px; }
+  .hw-comp-MybizStoreInfoFormStep3 .form-group {
+    margin-bottom: 30px; }
+    .hw-comp-MybizStoreInfoFormStep3 .form-group .hw-img-p {
+      position: absolute;
+      font-size: 14px;
+      color: #9b9b9b;
+      top: 22px;
+      left: 178px; }
+  .hw-comp-MybizStoreInfoFormStep3 .hw-upload {
+    min-height: 160px;
+    position: relative; }
+    .hw-comp-MybizStoreInfoFormStep3 .hw-upload .hw-img-box {
+      height: 160px;
+      width: 160px;
+      float: left;
+      background: #eeeeee;
+      position: relative; }
+      .hw-comp-MybizStoreInfoFormStep3 .hw-upload .hw-img-box img {
+        width: 100%;
+        height: 100%; }
+      .hw-comp-MybizStoreInfoFormStep3 .hw-upload .hw-img-box b {
+        display: none;
+        text-align: center;
+        line-height: 24px;
+        background: rgba(0, 0, 0, 0.4);
+        color: #ffffff;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        cursor: pointer;
+        height: 24px;
+        overflow: hidden; }
+    .hw-comp-MybizStoreInfoFormStep3 .hw-upload input, .hw-comp-MybizStoreInfoFormStep3 .hw-upload .hw-btn {
+      width: 140px;
+      height: 36px;
+      position: absolute;
+      left: 180px;
+      top: 124px; }
+    .hw-comp-MybizStoreInfoFormStep3 .hw-upload input {
+      opacity: 0;
+      z-index: 1;
+      cursor: pointer; }
+    .hw-comp-MybizStoreInfoFormStep3 .hw-upload .hw-btn {
+      color: #4a4a4a;
+      border: 1px solid #4a4a4a;
+      line-height: 36px;
+      font-size: 14px;
+      background: transparent; }
+  .hw-comp-MybizStoreInfoFormStep3 .hw-line {
+    height: 0;
+    border-top: 1px solid #c5c5c5;
+    margin-bottom: 25px; }
+
+.hw-comp-MybizUploadStoreImage {
+  width: 700px;
+  margin-left: -8px; }
+  .hw-comp-MybizUploadStoreImage .hw-add, .hw-comp-MybizUploadStoreImage .hw-one {
+    height: 158px;
+    width: 158px;
+    background: #ffffff;
+    display: inline-block;
+    margin: 0 8px 20px;
+    position: relative;
+    vertical-align: top; }
+  .hw-comp-MybizUploadStoreImage .hw-add {
+    border: 1px dashed #c5c5c5;
+    text-align: center; }
+    .hw-comp-MybizUploadStoreImage .hw-add .icon {
+      font-size: 100px;
+      text-align: center;
+      margin: 20px auto;
+      color: #d8d8d8; }
+    .hw-comp-MybizUploadStoreImage .hw-add p {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      margin: 0;
+      top: 124px;
+      color: #9b9b9b;
+      font-size: 14px; }
+    .hw-comp-MybizUploadStoreImage .hw-add input {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      z-index: 2;
+      margin: 0;
+      cursor: pointer; }
+  .hw-comp-MybizUploadStoreImage .hw-one img {
+    width: 100%;
+    max-height: 100%; }
+  .hw-comp-MybizUploadStoreImage .hw-one b {
+    position: absolute;
+    height: 0;
+    line-height: 20px;
+    display: block;
+    color: #ffffff;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer; }
+  .hw-comp-MybizUploadStoreImage .hw-one:hover b {
+    height: 20px;
+    -webkit-transition: height 0.2s;
+    transition: height 0.2s; }
+
 .hw-myfav-list {
   margin-top: 24px;
   min-height: 800px; }
@@ -917,5 +1059,28 @@ a:hover, a:link {
   text-align: center; }
   #kg_modal_dialog .modal-footer .hw-light-btn {
     margin-right: 40px; }
+
+.hw-carousel .modal-dialog {
+  width: 742px; }
+  .hw-carousel .modal-dialog .modal-header {
+    border-bottom: 1px solid #ebebeb !important; }
+.hw-carousel .carousel .carousel-indicators {
+  display: none; }
+.hw-carousel .carousel .carousel-inner .item {
+  text-align: center; }
+  .hw-carousel .carousel .carousel-inner .item img {
+    height: 300px;
+    max-width: 100%;
+    margin: 0 auto; }
+
+.hw-confirm .modal-dialog {
+  width: 432px; }
+  .hw-confirm .modal-dialog .modal-header {
+    border-bottom: 1px solid #ebebeb !important; }
+  .hw-confirm .modal-dialog .modal-body {
+    padding-top: 20px !important; }
+  .hw-confirm .modal-dialog .modal-footer {
+    background: #ffffff !important;
+    border-top: none !important; }
 
 /*# sourceMappingURL=style.css.map */

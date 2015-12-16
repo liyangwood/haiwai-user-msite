@@ -471,3 +471,200 @@
 		}
 	}
 }
+.hw-comp-MybizStoreInfoFormStep2{
+	margin-top: 40px;
+	padding-bottom: 150px;
+
+	.form-group{
+		margin-bottom: 30px;
+	}
+
+	.hw-dym{
+		margin-bottom: 15px;
+
+		span{
+			font-size: 14px;
+			color: $color-4a;
+			display: inline-block;
+			font-weight: 700;
+			width: 100px;
+		}
+		label{
+			display: inline-block;
+			margin-left: 30px;
+			width: 60px;
+			font-size: 14px;
+			color: $color-4a;
+			position: relative;
+			top: 1px;
+
+			input{
+				vertical-align: top;
+				position: relative;
+				top: -1px;
+				margin-right: 10px;
+			}
+		}
+	}
+}
+
+.hw-comp-MybizStoreInfoFormStep3{
+	margin-top: 40px;
+	padding-bottom: 150px;
+
+	.form-group{
+		margin-bottom: 30px;
+
+		.hw-img-p{
+			position: absolute;
+			font-size: 14px;
+			color: #9b9b9b;
+			top: 22px;
+			left: 178px;
+		}
+	}
+
+	.hw-upload{
+		min-height: 160px;
+		position: relative;
+
+		.hw-img-box{
+			height: 160px;
+			width: 160px;
+			float: left;
+			background: #eeeeee;
+			position: relative;
+
+			img{
+				width: 100%;
+				height: 100%;
+			}
+
+			b{
+				display: none;
+				text-align: center;
+				line-height: 24px;
+				background: rgba(0,0,0,0.4);
+				color: #ffffff;
+				position: absolute;
+				width: 100%;
+				left: 0;
+				bottom: 0;
+				cursor: pointer;
+				height: 24px;
+				overflow: hidden;
+			}
+		}
+
+		input, .hw-btn{
+			width: 140px;
+			height: 36px;
+			position: absolute;
+			left: 180px;
+			top: 124px;
+		}
+		input{
+			opacity: 0;
+			z-index: 1;
+			cursor: pointer;
+		}
+		.hw-btn{
+			color: $color-4a;
+			border: 1px solid $color-4a;
+			line-height: 36px;
+			font-size: 14px;
+			background: transparent;
+
+			&:hover{
+
+			}
+		}
+	}
+
+	.hw-line{
+		height: 0;
+		border-top: 1px solid $border-color;
+		margin-bottom: 25px;
+	}
+
+}
+
+.hw-comp-MybizUploadStoreImage{
+	width: 700px;
+	margin-left: -8px;
+
+	.hw-add, .hw-one{
+		height: 158px;
+		width: 158px;
+		background: #ffffff;
+		display: inline-block;
+		margin: 0 8px 20px;
+		position: relative;
+		vertical-align: top;
+	}
+
+	.hw-add{
+		border: 1px dashed $border-color;
+		text-align: center;
+
+		.icon{
+			font-size: 100px;
+			text-align: center;
+			margin: 20px auto;
+			color: #d8d8d8;
+		}
+		p{
+			position: absolute;
+			width: 100%;
+			text-align: center;
+			margin: 0;
+			top: 124px;
+			color: #9b9b9b;
+			font-size: 14px;
+		}
+		input{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			opacity: 0;
+			z-index: 2;
+			margin: 0;
+			cursor: pointer;
+		}
+	}
+
+	.hw-one{
+
+
+		img{
+			width: 100%;
+			max-height: 100%;
+		}
+
+		b{
+			position: absolute;
+			height: 0;
+			line-height: 20px;
+			display: block;
+			color: #ffffff;
+			font-size: 14px;
+			text-align: center;
+			width: 100%;
+			left: 0;
+			bottom: 0;
+			background: rgba(0, 0, 0, 0.5);
+			cursor: pointer;
+		}
+
+		&:hover{
+			b{
+				height: 20px;
+				-webkit-transition: height 0.2s;
+				transition: height 0.2s;
+			}
+		}
+	}
+
+}

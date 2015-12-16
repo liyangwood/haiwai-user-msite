@@ -97,6 +97,10 @@
             }
             var obj = $('#kg_modal_dialog');
 
+            if(!opts){
+                return obj;
+            }
+
             var p = util.extend({
                 title : '信息提示',
                 body : '点击确认，我们将为您删除这个店铺的所有信息，包括基本信息，图片，店铺评级和评论等，并且不能再找回这些信息，请谨慎操作。',
@@ -122,7 +126,7 @@
                         '<h4 class="hw-title">{{title}}</h4>',
                     '{{/if}}',
 
-                    '<div class="hw-body">{{#body}}</div>',
+                    '{{if body}}<div class="hw-body">{{#body}}</div>{{/if}}',
 
                 '</div>',
 
@@ -140,6 +144,13 @@
 
             obj.find('.js_yes').click(p.YesFn);
 
+
+            //class
+            obj.attr('class', 'modal fade');
+            if(opts.class){
+                obj.addClass(opts.class);
+            }
+
             return obj;
         },
 
@@ -149,7 +160,63 @@
         },
         hide : function(){
             var obj = util.dialog.get();
-            obj.modal('hide');
+            obj.modal('toggle');
+        },
+
+
+        showFocusImage : function(index, list){
+            var h = [
+                '<div id="cb_cccc" class="carousel slide" data-ride="carousel">',
+                    <!-- Indicators -->
+                    '<ol class="carousel-indicators">',
+                    '{{each list}}',
+                    '<li data-target="#cb_cccc" data-slide-to="{{$index}}" class="{{if index==$index}}active{{/if}}"></li>',
+                    '{{/each}}',
+                    '</ol>',
+
+                    '<div class="carousel-inner" role="listbox">',
+                        '{{each list as url}}',
+                        '<div class="item {{if index==$index}}active{{/if}}">',
+                            '<img src="{{url}}">',
+                            //'<div class="carousel-caption">',
+                            //'</div>',
+                        '</div>',
+                        '{{/each}}',
+
+                    '</div>',
+
+                    '<a class="left carousel-control" href="#cb_cccc" role="button" data-slide="prev">',
+                        '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>',
+                        '<span class="sr-only">Previous</span>',
+                    '</a>',
+                    '<a class="right carousel-control" href="#cb_cccc" role="button" data-slide="next">',
+                        '<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>',
+                        '<span class="sr-only">Next</span>',
+                    '</a>',
+                '</div>'
+            ].join('');
+            h = template.compile(h)({
+                list : list,
+                index : index
+            });
+
+            util.dialog.show({
+                body : h,
+                foot : false,
+                'class' : 'hw-carousel',
+                title : ''
+            });
+        },
+
+        confirm : function(opts){
+            util.dialog.show({
+                title : opts.msg,
+                body : false,
+                NoText : '取消',
+                YesText : opts.YesText,
+                'class' : 'hw-confirm',
+                YesFn : opts.YesFn
+            });
         }
     };
 
@@ -160,6 +227,8 @@
             YesText : false
         });
     };
+
+
 
 
 
