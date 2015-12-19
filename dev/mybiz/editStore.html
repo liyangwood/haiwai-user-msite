@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    @@include('../../inc/meta.html')
+
+    <title></title>
+</head>
+<body>
+
+@@include('../../inc/head_nav.html')
+
+<div role="BackPageLink" data-title="返回我的店铺" data-href="index.html"></div>
+
+<div class="container hw-mypage">
+    <div role="MybizEditStoreLeftNav"></div>
+
+    <div class="hw-mybiz-editstore-page">
+        <div role="MybizStoreInfoFormStep1"></div>
+    </div>
+
+
+
+
+
+</div>
+
+@@include('../../inc/footer.html')
+
+</body>
+</html>
+
+<script type="text/javascript">
+    KG.data.add({
+        page : 'mybiz-editStore',
+        id : util.url.param('id')
+    });
+</script>

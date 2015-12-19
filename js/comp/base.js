@@ -217,8 +217,8 @@
                 '<em>{{item.commentnum}}条新评论</em>',
 
                 '<div class="r">',
-                '<a class="hw-a" href="">管理店铺</a>',
-                '<a class="hw-a" href="">分享</a>',
+                '<a class="hw-a" href="editStore.html?id={{item.entityID}}">管理店铺</a>',
+                '<b class="hw-a js_share">分享</b>',
                 '</div>',
                 '</div>',
                 '{{/each}}',
@@ -232,6 +232,14 @@
                         list : rs
                     });
                 }
+            });
+        },
+        initEvent : function(){
+            this.elem.find('.js_share').click(function(){
+                var url = 'http://www.haiwai.com';
+                util.dialog.showQrCode(url);
+
+                return false;
             });
         }
     });
@@ -249,8 +257,8 @@
                 '<em>{{item.commentnum}}条新评论</em>',
 
                 '<div class="r">',
-                '<a class="hw-a js_restart" href="javascript:void(0)">重新营业</a>',
-                '<a class="hw-a" href="">删除</a>',
+                '<a class="hw-a js_restart" href="">重新营业</a>',
+                '<a class="hw-a js_del" href="">删除</a>',
                 '</div>',
                 '</div>',
                 '{{/each}}',
@@ -267,9 +275,32 @@
             });
         },
         initEvent : function(){
+            var self = this;
             this.elem.find('.js_restart').click(function(){
                 util.dialog.show();
             });
+
+            this.elem.find('.js_del').click(function(){
+                util.dialog.confirm({
+                    title : '确认要删除这个店铺吗？',
+                    msg : '点击确认，我们将为您删除这个店铺的所有信息，包括基本信息，图片，店铺评级和评论等，并且不能再找回这些信息，请谨慎操作。',
+                    YesFn : self.deleteStore
+                });
+
+                return false;
+            });
+
+            this.elem.find('.js_restart').click(function(e){
+                //TODO restart store
+            });
+
+
+        },
+        deleteStore : function(callback){
+            //TODO delete store
+
+            callback();
+
         }
     });
 
@@ -286,7 +317,7 @@
 
                 '<div class="r">',
                 '<a class="hw-a" href="">管理优惠</a>',
-                '<a class="hw-a" href="">分享</a>',
+                '<a class="hw-a js_share" href="">分享</a>',
                 '</div>',
                 '</div>',
                 '{{/each}}',
@@ -339,7 +370,7 @@
         ParentClass : 'BaseComponent',
         getTemplate : function(){
             var info = {
-                'store' : ['添加新店铺', 'store_default.png', ''],
+                'store' : ['添加新店铺', 'store_default.png', 'createStore.html'],
                 'coupon' : ['添加新优惠', 'coupon_default.png', ''],
                 'article' : ['添加新文章', 'article_default.png' ,'createArticle.html']
             };
@@ -409,6 +440,35 @@
             next({
                 title : box.data('title'),
                 href : box.data('href')
+            });
+        }
+    });
+
+    KG.Class.define('MybizEditStoreLeftNav', {
+        ParentClass : 'BaseComponent',
+        getTemplate : function(){
+            return [
+                '<div class="hw-comp-MycountLeftNav">',
+                '<a class="hw-a js_editStore" href="editStore.html?id={{bizId}}">基本信息</a>',
+                '<a class="hw-a js_editStore_2" href="editStore_2.html?id={{bizId}}">更多描述</a>',
+                '<a class="hw-a js_editStore_3" href="editStore_3.html?id={{bizId}}">上传图片</a>',
+                '</div>'
+            ].join('');
+        },
+        getData : function(box, data, next){
+            var page = KG.data.get('page').split('-')[1];
+
+            var bizId = KG.data.get('id');
+
+            next({
+                page : page,
+                bizId : bizId
+            });
+        },
+
+        initEnd : function(){
+            this.elem.find('.js_'+this.data.page).addClass('active').click(function(){
+                return false;
             });
         }
     });

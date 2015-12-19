@@ -68,6 +68,12 @@
             }
         },
 
+        initEnd : function(){
+            if(this.prop.value){
+                this.elem.find('input').val(this.prop.value);
+            }
+        },
+
         checkDeleteIcon : function(){
             var val = this.elem.find('input').val();
             if(val){
@@ -155,7 +161,9 @@
             });
         },
         initEnd : function(){
-
+            if(this.prop.value){
+                //init value
+            }
         },
         getValue : function(){
             return this.data.list[this.index];

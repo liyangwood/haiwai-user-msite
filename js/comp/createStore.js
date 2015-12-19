@@ -40,8 +40,8 @@
         getTemplate : function(){
             return [
                 '<div class="hw-comp-MybizStoreInfoFormStep1">',
-                    '<div class="js_name" role="BaseInput" data-label="店铺名称" data-require="true" placeholder="e.g. 小肥羊Fremont店 （请尽量用中文名，分店请尽量添加城市名）"></div>',
-                    '<div class="js_tel" role="BaseInput" data-label="营业电话" data-require="true" placeholder="e.g. 5107687776"></div>',
+                    '<div {{if biz}}data-value={{biz.name_cn}}{{/if}} class="js_name" role="BaseInput" data-label="店铺名称" data-require="true" placeholder="e.g. 小肥羊Fremont店 （请尽量用中文名，分店请尽量添加城市名）"></div>',
+                    '<div {{if biz}}data-value={{biz.tel}}{{/if}} class="js_tel" role="BaseInput" data-label="营业电话" data-require="true" placeholder="e.g. 5107687776"></div>',
 
                     '<div class="js_cat" data-label="服务类别" data-require="true" role="BaseSelectInput" init-self="true" placeholder="请选择一种类别"></div>',
 
@@ -71,10 +71,20 @@
                 return KG.request.getAllStoreCategoryList({});
             }];
 
-            KG.request.defer(list, function(catList){
-                next({
-                    catList : catList
+            if(KG.data.get('id')){
+                list.push(function(){
+                    return KG.request.getBizDetailById({
+                        bizId : KG.data.get('id')
+                    });
                 });
+            }
+
+            KG.request.defer(list, function(catList, bizInfo){
+                next({
+                    catList : catList,
+                    biz : bizInfo || false
+                });
+                console.log(bizInfo)
             });
 
         },

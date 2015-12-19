@@ -56,6 +56,11 @@
 
             fr.readAsDataURL(file);
         },
+
+        getQrCode : function(url, size){
+            size = size || 240;
+            return 'https://api.qrserver.com/v1/create-qr-code/?size='+size+'x'+size+'&data='+encodeURIComponent(url);
+        }
     });
 
     util.message = {
@@ -142,7 +147,11 @@
 
             obj.find('.box').html(html);
 
-            obj.find('.js_yes').click(p.YesFn);
+            obj.find('.js_yes').click(function(e){
+                p.YesFn(function(){
+                    util.dialog.hide();
+                }, e);
+            });
 
 
             //class
@@ -160,7 +169,7 @@
         },
         hide : function(){
             var obj = util.dialog.get();
-            obj.modal('toggle');
+            obj.modal('hide');
         },
 
 
@@ -209,13 +218,42 @@
         },
 
         confirm : function(opts){
-            util.dialog.show({
+            var param = {
                 title : opts.msg,
                 body : false,
                 NoText : '取消',
-                YesText : opts.YesText,
+                YesText : opts.YesText || '确认',
                 'class' : 'hw-confirm',
                 YesFn : opts.YesFn
+            };
+
+            if(opts.title){
+                param.title = opts.title;
+                param.body = opts.msg;
+            }
+
+            util.dialog.show(param);
+        },
+        confirm1 : function(opts){
+            var param = {
+                title : opts.msg,
+                body : false,
+                NoText : '取消',
+                YesText : opts.YesText || '确认',
+                'class' : 'hw-confirm1',
+                YesFn : opts.YesFn
+            };
+            util.dialog.show(param);
+        },
+
+        showQrCode : function(codeUrl){
+            var h = '<div class="hw-qr"><img src="'+util.getQrCode(codeUrl, 200)+'" /></div>';
+
+            util.dialog.show({
+                body : h,
+                title : '打开微信扫一扫以下二维码即可打开本店页面，点击屏幕右上角分享按钮',
+                foot : false,
+                'class' : 'hw-dialog-qrcode'
             });
         }
     };

@@ -77,6 +77,18 @@ KG.request = {
         return this.ajax(data, success, error);
     },
 
+    getBizDetailById : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'view',
+            bizid : opts.bizId,
+            userid : KG.user.get('userid'),
+            token : KG.user.get('token')
+        };
+
+        return this.ajax(data, success, error);
+    },
+
 
     getBizCouponList : function(opts, success, error){
         var mockData = [{

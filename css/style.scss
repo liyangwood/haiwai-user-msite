@@ -4,7 +4,7 @@ $border-color:#c5c5c5;
 $color-7d:#7d7d7d;
 
 *{
-	font-family:Microsoft YaHei, STHeiti, sans-serif;
+	font-family:MicrosoftYaHei, STHeiti, sans-serif;
     font-size: 14px;
     color: $color-4a;
 }
@@ -27,7 +27,7 @@ a:hover, a:link{
 
 @import "icon";
 @import "component";
-
+@import "dialog";
 
 @import "mybiz";
 @import "myfav";
@@ -136,109 +136,3 @@ a:hover, a:link{
 	}
 }
 
-#kg_modal_dialog{
-
-	.modal-dialog{
-		margin-top: 200px;
-	}
-
-	.modal-header{
-		height: 50px;
-		border-bottom: none;
-
-		.close{
-			opacity: 1;
-
-			&:hover{
-				opacity: 0.8;
-			}
-
-			i{
-				font-size: 24px;
-				color: $color-4a;
-			}
-		}
-	}
-
-	.modal-content{
-		border-radius: 0;
-		min-width: 430px;
-
-		.modal-body{
-			padding-top: 0;
-		}
-
-		.hw-title{
-			font-size: 18px;
-			font-weight: 700;
-			text-align: center;
-			margin: 0;
-		}
-
-		.hw-body{
-			font-size: 14px;
-			color: #9b9b9b;
-			padding: 20px 30px;
-		}
-	}
-
-	.modal-footer{
-		background: #f7f7f7;
-		padding: 20px;
-		text-align: center;
-
-		.hw-light-btn{
-			margin-right: 40px;
-		}
-	}
-}
-
-.hw-carousel{
-	.modal-dialog{
-		width: 742px;
-
-		.modal-header{
-			border-bottom: 1px solid #ebebeb !important;
-		}
-	}
-
-
-	.carousel{
-
-		.carousel-indicators{
-			display: none;
-		}
-
-		.carousel-inner{
-			.item{
-				text-align: center;
-				img{
-					height: 300px;
-					max-width: 100%;
-					margin: 0 auto;
-				}
-			}
-
-
-		}
-	}
-}
-
-.hw-confirm{
-	.modal-dialog{
-		width: 432px;
-
-		.modal-header{
-			border-bottom: 1px solid #ebebeb !important;
-		}
-
-		.modal-body{
-			padding-top: 20px !important;
-		}
-
-		.modal-footer{
-			background: #ffffff !important;
-			border-top: none !important;
-		}
-	}
-}

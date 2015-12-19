@@ -1,0 +1,149 @@
+#kg_modal_dialog{
+
+    .modal-dialog{
+        margin-top: 200px;
+    }
+
+    .modal-header{
+        height: 50px;
+        border-bottom: none;
+
+        .close{
+            opacity: 1;
+
+            &:hover{
+                opacity: 0.8;
+            }
+
+            i{
+                font-size: 24px;
+                color: $color-4a;
+            }
+        }
+    }
+
+    .modal-content{
+        border-radius: 0;
+        min-width: 430px;
+
+        .modal-body{
+            padding-top: 0;
+        }
+
+        .hw-title{
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            margin: 0;
+        }
+
+        .hw-body{
+            font-size: 14px;
+            color: #9b9b9b;
+            padding: 20px 30px;
+        }
+    }
+
+    .modal-footer{
+        background: #f7f7f7;
+        padding: 20px;
+        text-align: center;
+
+        .hw-light-btn{
+            margin-right: 40px;
+        }
+    }
+}
+
+.hw-carousel{
+    .modal-dialog{
+        width: 742px;
+
+        .modal-header{
+            border-bottom: 1px solid #ebebeb !important;
+        }
+    }
+
+
+    .carousel{
+
+        .carousel-indicators{
+            display: none;
+        }
+
+        .carousel-inner{
+            .item{
+                text-align: center;
+                img{
+                    height: 300px;
+                    max-width: 100%;
+                    margin: 0 auto;
+                }
+            }
+
+
+        }
+    }
+}
+
+.hw-confirm1{
+    .modal-dialog{
+        width: 432px;
+
+        .modal-header{
+            border-bottom: 1px solid #ebebeb !important;
+        }
+
+        .modal-body{
+            padding-top: 20px !important;
+        }
+
+        .modal-footer{
+            background: #ffffff !important;
+            border-top: none !important;
+        }
+    }
+}
+
+.hw-confirm{
+    .modal-dialog{
+        width: 496px;
+
+
+        .modal-body{
+            padding-top: 20px !important;
+        }
+
+        .modal-footer{
+            border-top: none !important;
+        }
+    }
+}
+
+.hw-dialog-qrcode{
+    .modal-dialog{
+        width: 610px;
+
+        .modal-header{
+            border-bottom: 1px solid #ebebeb !important;
+        }
+
+        .modal-body{
+            padding: 20px 40px !important;
+
+            .hw-title{
+                font-size: 16px !important;
+            }
+        }
+    }
+
+    .hw-qr{
+        text-align: center;
+
+        img{
+            margin: 20px auto;
+            width: 200px;
+            height: 200px;
+        }
+    }
+}
