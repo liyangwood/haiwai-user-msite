@@ -20,6 +20,7 @@ var JS = {
         'js/comp/mycoupon.js',
         'js/comp/mysys.js',
         'js/comp/mycount.js',
+        'js/comp/mybiz.js',
         'js/comp/createStore.js'
     ],
     core_min : 'core.min.js',
