@@ -773,6 +773,49 @@ a:hover, a:link {
     -webkit-transition: height 0.2s;
     transition: height 0.2s; }
 
+.hw-comp-MybizEditStoreLeftDropdown {
+  position: absolute;
+  width: 165px;
+  top: 190px;
+  left: 22px; }
+  .hw-comp-MybizEditStoreLeftDropdown button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    width: 100%; }
+    .hw-comp-MybizEditStoreLeftDropdown button:focus {
+      outline: none; }
+    .hw-comp-MybizEditStoreLeftDropdown button input {
+      background: #ffffff !important;
+      height: 40px;
+      border-radius: 0;
+      margin-top: 2px;
+      padding-right: 30px;
+      color: #4a4a4a;
+      font-size: 14px;
+      cursor: pointer; }
+    .hw-comp-MybizEditStoreLeftDropdown button .icon {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      font-size: 24px;
+      color: #929292; }
+  .hw-comp-MybizEditStoreLeftDropdown .dropdown-menu {
+    width: 100%;
+    border-radius: 0;
+    border: 1px solid #c5c5c5;
+    margin-top: -5px;
+    padding: 0; }
+    .hw-comp-MybizEditStoreLeftDropdown .dropdown-menu li {
+      line-height: 36px;
+      cursor: pointer;
+      font-size: 14px;
+      padding-left: 15px; }
+      .hw-comp-MybizEditStoreLeftDropdown .dropdown-menu li:hover {
+        background: #f5f5f5; }
+
 .hw-mybiz-editstore-page {
   width: 870px;
   float: right;

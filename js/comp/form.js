@@ -161,12 +161,16 @@
             });
         },
         initEnd : function(){
-            if(this.prop.value){
-                //init value
-            }
+
         },
         getValue : function(){
             return this.data.list[this.index];
+        },
+        setValue : function(index){
+            this.elem.find('.js_drop').filter('[index="'+index+'"]').trigger('click');
+        },
+        setOnlyValue : function(val){
+            this.elem.find('.js_input').val(val);
         }
     });
 

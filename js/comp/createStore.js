@@ -40,16 +40,16 @@
         getTemplate : function(){
             return [
                 '<div class="hw-comp-MybizStoreInfoFormStep1">',
-                    '<div {{if biz}}data-value={{biz.name_cn}}{{/if}} class="js_name" role="BaseInput" data-label="店铺名称" data-require="true" placeholder="e.g. 小肥羊Fremont店 （请尽量用中文名，分店请尽量添加城市名）"></div>',
-                    '<div {{if biz}}data-value={{biz.tel}}{{/if}} class="js_tel" role="BaseInput" data-label="营业电话" data-require="true" placeholder="e.g. 5107687776"></div>',
+                    '<div {{if biz}}data-value="{{biz.name_cn}}"{{/if}} class="js_name" role="BaseInput" data-label="店铺名称" data-require="true" placeholder="e.g. 小肥羊Fremont店 （请尽量用中文名，分店请尽量添加城市名）"></div>',
+                    '<div {{if biz}}data-value="{{biz.tel}}"{{/if}} class="js_tel" role="BaseInput" data-label="营业电话" data-require="true" placeholder="e.g. 5107687776"></div>',
 
                     '<div class="js_cat" data-label="服务类别" data-require="true" role="BaseSelectInput" init-self="true" placeholder="请选择一种类别"></div>',
 
-                    '<div class="js_address" role="BaseInput" data-label="店铺地址" placeholder="街道地址"></div>',
+                    '<div {{if biz}}data-value="{{biz.address}}"{{/if}} class="js_address" role="BaseInput" data-label="店铺地址" placeholder="街道地址"></div>',
 
-                    '<div style="margin-left: 0;" class="js_zip hw-inline" role="BaseInput" data-require="true" data-label="邮编" placeholder="e.g. 94536"></div>',
-                    '<div class="js_zip hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="城市"></div>',
-                    '<div class="js_zip hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="州/省"></div>',
+                    '<div {{if biz}}data-value="{{biz.zip}}"{{/if}} style="margin-left: 0;" class="js_zip hw-inline" role="BaseInput" data-require="true" data-label="邮编" placeholder="e.g. 94536"></div>',
+                    '<div {{if biz}}data-value="{{biz.city}}"{{/if}} class="js_zip hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="城市"></div>',
+                    '<div {{if biz}}data-value="{{biz.state}}"{{/if}} class="js_zip hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="州/省"></div>',
 
                     '<div class="form-group js_tag">',
                         '<label>营业特色</label>',
@@ -84,7 +84,6 @@
                     catList : catList,
                     biz : bizInfo || false
                 });
-                console.log(bizInfo)
             });
 
         },
@@ -113,8 +112,24 @@
                     self.switchCategory.call(self, item);
                 }
             });
+
+            if(this.data.biz){
+                var index = util.map(this.data.catList, function(item){return item.pk_id;});
+                index = util.indexOf(index, this.data.biz.fk_main_tag_id);
+                var tmpData = this.data.catList[index];
+                this.jq.cat.setOnlyValue(tmpData.name);
+
+                this.switchCategory(tmpData, function(){
+                    util.each(self.data.biz.tags, function(one){
+                        self.jq.tagBox.find('[uid="'+one.pk_id+'"]').attr('checked', true);
+                    });
+                });
+            }
+
         },
-        switchCategory : function(item){
+        switchCategory : function(item, callback){
+            callback = callback || util.noop;
+
             var catId = item.pk_id;
 
             var self = this;
@@ -125,6 +140,8 @@
                 if(!flag) return;
 
                 self.setTagHtml(rs);
+
+                callback();
             });
         },
 
@@ -298,7 +315,7 @@
                 var x = o.closest('.js_del');
                 if(x.length > 0){
                     // click delete
-                    util.dialog.confirm({
+                    util.dialog.confirm1({
                         YesText : '删除',
                         msg : '您确定要删除这张照片吗？',
                         YesFn : function(){
