@@ -425,7 +425,7 @@
                     '<div class="js_image" role="MybizUploadCouponImage" init-self="true"></div>',
                 '</div>',
 
-                '<a href="javascript:void(0)" class="hw-btn hw-blue-btn">创建</a>'
+                '<a href="javascript:void(0)" class="hw-btn hw-blue-btn">{{btnText}}</a>'
             ].join('');
         },
 
@@ -469,7 +469,8 @@
             KG.request.defer(list, function(bizList){
                 callback({
                     pageTitle : title,
-                    bizList : bizList
+                    bizList : bizList,
+                    btnText : type==='edit'?'保存':'创建'
                 });
             });
 

@@ -49,7 +49,7 @@
             this.initEvent();
 
             //listen publish message
-            util.message.register(this.__name, this.registerMessage);
+            util.message.register(this.__name, this.registerMessage.bind(this));
         },
         _initEnd : function(){
             this.elem.data('kg-obj', this);
@@ -178,7 +178,7 @@
             return [
                 '<div class="hw-MybizRightStoreRank">',
                     '<span>您的店铺吸引力</span>',
-                    '<b>{{range}}%</b>',
+                    '<b class="js_rg">{{range}}%</b>',
                     '<div class="range"><em style="width:{{range}}%;"></em></div>',
                     '<p>如何创建有影响力的店铺？</p>',
                     '<a style="margin-top: 20px;" href="">完善店铺信息增加认知度</a>',
@@ -188,12 +188,30 @@
                 '</div>'
             ].join('');
         },
+        setJqVar : function(){
+            return {
+                wr : this.elem.find('.range').find('em'),
+                txt : this.elem.find('.js_rg')
+            };
+
+        },
         getData : function(box, data, callback){
             var range = this.prop.range;
 
             callback({
                 range : range
             });
+        },
+
+        setValue : function(x){
+            this.data.range = x;
+            this.jq.wr.css('width', x+'%');
+            this.jq.txt.text(x+'%');
+        },
+
+        registerMessage : function(e, data){
+            console.log(data);
+            this.setValue(data);
         },
         defineProperty : function(){
             return {
@@ -241,6 +259,11 @@
 
                 return false;
             });
+        },
+        initEnd : function(){
+            util.delay(function(){
+                util.message.publish('MybizRightStoreRank', 80);
+            }, 1000);
         }
     });
 
@@ -316,7 +339,7 @@
                 '<p style="color: #9b9b9b;font-size: 14px;margin-top:15px;">{{item.count}}人已经领取</p>',
 
                 '<div class="r">',
-                '<a class="hw-a" href="">管理优惠</a>',
+                '<a class="hw-a" href="editCoupon.html?id={{item.id}}">管理优惠</a>',
                 '<a class="hw-a js_share" href="">分享</a>',
                 '</div>',
                 '</div>',

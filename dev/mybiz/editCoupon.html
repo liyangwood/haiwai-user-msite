@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    @@include('../../inc/meta.html')
+
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+
+@@include('../../inc/head_nav.html')
+
+<div role="BackPageLink" data-title="返回我的店铺" data-href="coupon.html"></div>
+<div style="padding-left: 240px;padding-right: 240px;" role="MybizCouponForm" data-type="edit" data-type="create"></div>
+
+@@include('../../inc/footer.html')
+
+</body>
+</html>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript">
+    KG.data.add({
+        page : 'mybiz-editCoupon',
+        id : util.url.param('id')
+    });
+</script>

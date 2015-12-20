@@ -367,7 +367,9 @@ a:hover, a:link {
     .hw-MybizRightStoreRank .range em {
       height: 100%;
       display: block;
-      background: #37bccd; }
+      background: #37bccd;
+      transition: width 0.4s;
+      -webkit-transition: width 0.4s; }
   .hw-MybizRightStoreRank p {
     color: #4a4a4a;
     font-size: 14px;
