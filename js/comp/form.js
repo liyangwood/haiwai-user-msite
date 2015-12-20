@@ -179,7 +179,7 @@
         getInsideTemplate : function(){
             return [
                 '{{if pageTitle}}<h3>{{pageTitle}}<h3>{{/if}}',
-                '<div class="js_biz" data-label="将文章发布到" data-require="true" role="BaseSelectInput" init-self="true"></div>',
+                '<div placeholder="请选择店铺" class="js_biz" data-label="将文章发布到" data-require="true" role="BaseSelectInput" init-self="true"></div>',
                 '<div class="form-group">',
                     '<label class="require" for="lb_bbb">文章标题</label>',
                     '<input type="email" class="form-control" id="lb_bbb" placeholder="e.g. 海底捞成功的秘密">',
@@ -252,7 +252,260 @@
     });
 
 
+    KG.Class.define('MybizUploadCouponImage', {
+        ParentClass : 'BaseComponent',
+        getTemplate : function(){
+            return [
+                '<div class="hw-comp-MybizUploadStoreImage hw-coupon-uploadimage">',
+                '<div class="hw-add js_add">',
+                '<i class="icon fa fa-plus-square-o"></i>',
+                '<p>添加新图片</p>',
+                '<input class="js_input" type="file" />',
+                '</div>',
 
+
+                '</div>'
+            ].join('');
+        },
+
+        setJqVar : function(){
+            return {
+                add : this.elem.find('.js_add'),
+                fileInput : this.elem.find('.js_input')
+            };
+        },
+
+        getData : function(box, data, next){
+            var tmp = KG.user.get('image');
+            var list = data.list;
+            next({
+                list : list
+            });
+        },
+
+        initEvent : function(){
+            var self = this;
+            this.jq.fileInput.change(function(){
+                var file = this.files[0];
+
+                self.uploadImageFn(file, function(url){
+                    self.addNewImage(url);
+                });
+
+                $(this).val('');
+            });
+
+            this.elem.click(function(e){
+                var o = $(e.target);
+
+                var x = o.closest('.js_del');
+                if(x.length > 0){
+                    // click delete
+                    util.dialog.confirm1({
+                        YesText : '删除',
+                        msg : '您确定要删除这张照片吗？',
+                        YesFn : function(){
+                            self.deleteImage(x);
+                            util.dialog.hide();
+                        }
+                    });
+
+
+                    return false;
+                }
+
+                x = o.closest('.js_img');
+                if(x.length > 0){
+                    // show big image
+                    self.showBigImage(x.find('img').attr('src'));
+                    return false;
+                }
+            });
+
+
+        },
+
+        showBigImage : function(url){
+            var list = this.getImageList();
+            var index = util.indexOf(list, url);
+            util.dialog.showFocusImage(index, list);
+        },
+
+        getImageList : function(){
+            var list = this.elem.find('.js_img');
+            return util.map(list, function(one){
+                var o = $(one);
+                return o.find('img').attr('src');
+            });
+        },
+
+        getValue : function(){
+            return this.getImageList();
+        },
+
+        deleteImage : function(o){
+            var img = o.closest('.js_img');
+            img.remove();
+
+            var len = this.getImageList().length;
+            if(len < 3){
+                this.jq.add.show();
+            }
+        },
+
+        getEachHtml : function(url){
+            var h = [
+                '<div class="hw-one js_img">',
+                '<img src="{{url}}" />',
+                '<b class="js_del">删除</b>',
+                '</div>'
+            ].join('');
+            return template.compile(h)({url : url});
+        },
+
+        uploadImageFn : function(file, callback){
+            util.uploadImage(file, function(url){
+                var url = KG.config.SiteRoot+url;
+
+                callback(url);
+            });
+        },
+
+        addNewImage : function(src){
+            var len = this.getImageList().length;
+            if(len === 2){
+                this.jq.add.hide();
+            }
+
+            var h = this.getEachHtml(src);
+            this.jq.add.after(h);
+        },
+
+        initEnd : function(){
+            var self = this;
+            var list = this.data.list;
+            util.each(list, function(url){
+                self.addNewImage(url);
+            });
+        }
+
+    });
+
+
+    KG.Class.define('MybizCouponForm', {
+        ParentClass : 'BaseForm',
+        getInsideTemplate : function(){
+            return [
+                '{{if pageTitle}}<h3>{{pageTitle}}<h3>{{/if}}',
+                '<div placeholder="请选择店铺" class="js_biz" data-label="将优惠发布到" data-require="true" role="BaseSelectInput" init-self="true"></div>',
+                '<div class="form-group">',
+
+                '<div class="js_title" role="BaseInput" data-label="优惠标题" data-require="true" placeholder="e.g. 美食府金秋品尝会，邀您免费试吃"></div>',
+
+                '<div class="form-group">',
+                    '<label style="display: block;">优惠开始时间</label>',
+                    '<input style="width: 410px;display: inline-block" type="text" class="form-control js_startDate" readonly="true" placeholder="2015-10-10">',
+                    '<input style="width: 140px;display: inline-block;margin-left: 50px;" type="text" class="form-control js_startTime" placeholder="8:30AM">',
+                '</div>',
+
+                '<div class="form-group">',
+                    '<label style="display: block;">优惠结束时间</label>',
+                    '<input style="width: 410px;display: inline-block" type="text" class="form-control js_endDate" readonly="true" placeholder="2015-10-10">',
+                    '<input style="width: 140px;display: inline-block;margin-left: 50px;" type="text" class="form-control js_endTime" placeholder="8:30AM">',
+                '</div>',
+
+
+                '<div class="form-group">',
+                    '<label class="require" for="lb_ccc">优惠描述</label>',
+                    '<textarea style="height: 170px;" placeholder="优惠宣传、细节、方式、如何报名等信息提升参与度" class="form-control" id="lb_ccc"></textarea>',
+                '</div>',
+
+                '<div class="form-group">',
+                    '<label class="lab">优惠图片</label>',
+                    '<div class="js_image" role="MybizUploadCouponImage" init-self="true"></div>',
+                '</div>',
+
+                '<a href="javascript:void(0)" class="hw-btn hw-blue-btn">创建</a>'
+            ].join('');
+        },
+
+        setJqVar : function(){
+            return {
+                startDate : this.elem.find('.js_startDate'),
+                startTime : this.elem.find('.js_startTime'),
+                endDate : this.elem.find('.js_endDate'),
+                endTime : this.elem.find('.js_endTime')
+            };
+        },
+
+        defineProperty : function(){
+            return {
+                title : {
+                    defaultValue : ''
+                },
+                type : {
+                    defaultValue : 'create'
+                }
+            };
+        },
+
+        getData : function(box, data, callback){
+            var title = this.prop.title,
+                type = this.prop.type;
+
+
+            var getBizList = function(){
+                return KG.request.getBizList({});
+            };
+
+            var list = [getBizList];
+
+            if(type === 'edit'){
+                list.push(function(){
+                    return KG.request.getBizCouponList({});
+                });
+            }
+
+            KG.request.defer(list, function(bizList){
+                callback({
+                    pageTitle : title,
+                    bizList : bizList
+                });
+            });
+
+
+        },
+
+        initEvent : function(){
+            this.jq.startDate.datepicker({
+                format: "yyyy-mm-dd",
+                autoclose: true
+            });
+
+            this.jq.endDate.datepicker({
+                format: "yyyy-mm-dd",
+                autoclose: true
+            });
+        },
+
+        initEnd : function(){
+
+            var biz = this.elem.find('.js_biz');
+            KG.component.initWithElement(biz, {
+                list : this.data.bizList,
+                clickCallback : function(rs){
+                    console.log(rs);
+                },
+                getEachHtml : function(){
+                    return '{{item.name_cn}}, {{item | storeFullAddress}}';
+                }
+            });
+
+            this.image = KG.component.initWithElement(this.elem.find('.js_image'), {
+                list : this.data.imageList || [KG.user.get('image'), KG.user.get('image')]
+            });
+        }
+    });
 
 
 

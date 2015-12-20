@@ -371,7 +371,7 @@
         getTemplate : function(){
             var info = {
                 'store' : ['添加新店铺', 'store_default.png', 'createStore.html'],
-                'coupon' : ['添加新优惠', 'coupon_default.png', ''],
+                'coupon' : ['添加新优惠', 'coupon_default.png', 'createCoupon.html'],
                 'article' : ['添加新文章', 'article_default.png' ,'createArticle.html']
             };
 

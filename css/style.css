@@ -470,7 +470,8 @@ a:hover, a:link {
   margin-top: 24px;
   background: #f5f5f5;
   min-height: 200px;
-  padding: 40px 180px 50px; }
+  padding: 40px 180px 50px;
+  margin-bottom: 50px; }
   .hw-comp-bform h3 {
     font-size: 24px;
     text-align: center;
@@ -506,7 +507,7 @@ a:hover, a:link {
         font-size: 24px; }
     .hw-comp-bform .form-group .dropdown-menu {
       width: 100%;
-      text-align: right;
+      text-align: left;
       border-radius: 0;
       border: 1px solid #c5c5c5;
       margin-top: -5px;
@@ -515,7 +516,8 @@ a:hover, a:link {
         line-height: 36px;
         cursor: pointer;
         font-size: 14px;
-        padding-right: 15px; }
+        padding-right: 15px;
+        padding-left: 15px; }
         .hw-comp-bform .form-group .dropdown-menu li:hover {
           background: #f5f5f5; }
   .hw-comp-bform .hw-btn {
@@ -772,6 +774,22 @@ a:hover, a:link {
     height: 20px;
     -webkit-transition: height 0.2s;
     transition: height 0.2s; }
+
+.hw-coupon-uploadimage {
+  margin-left: -6px; }
+  .hw-coupon-uploadimage .hw-add, .hw-coupon-uploadimage .hw-one {
+    height: 192px;
+    width: 192px;
+    background: #ffffff;
+    display: inline-block;
+    margin: 0 6px 20px;
+    position: relative;
+    vertical-align: top; }
+  .hw-coupon-uploadimage .hw-add .icon {
+    font-size: 120px; }
+  .hw-coupon-uploadimage .hw-add p {
+    top: 150px;
+    font-size: 16px; }
 
 .hw-comp-MybizEditStoreLeftDropdown {
   position: absolute;
