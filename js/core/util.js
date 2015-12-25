@@ -12,6 +12,14 @@
     _.extend(util, _);
 
     util.extend(util, {
+        addUserIdToRequestData : function(data){
+            data = data || {};
+            data.userid = KG.user.get('userid');
+            data.token = KG.user.get('token');
+
+            return data;
+        },
+
         formatDate : function(date, format){
             if(date.toString().length === 10){
                 date = parseInt(date)*1000;
@@ -294,6 +302,7 @@
     template.helper('formatDate', function(date, format){
         return util.formatDate(date, format||'yy年mm月dd日 h:m:s');
     });
+
 
     template.helper('storeFullAddress', function(item){
         return item.address+', '+item.city+', '+item.state+' '+item.zip;

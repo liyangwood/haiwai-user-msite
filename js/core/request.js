@@ -113,36 +113,50 @@ KG.request = {
     },
 
 
+    /*
+    * func=sysmsg&userid=10051
+    * 首页系统消息
+    * */
     getSystemMessageList : function(opts, success, error){
-        var mockData = [
-            {
-                id : 1,
-                title : '欢迎加入海外同城',
-                msgbody : '欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城',
-                createTime : Date.now(),
-                fromUser : '海外管理员'
-            },
-            {
-                id : 2,
-                title : '欢迎加入海外同城11111',
-                msgbody : '欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城',
-                createTime : Date.now(),
-                fromUser : '海外管理员22'
-            }
-        ];
+        var data = {
+            func : 'sysmsg'
+        };
+        util.addUserIdToRequestData(data);
+        console.log(data);
 
-        return this.mockData(mockData, success, error);
+        return this.ajax(data, success, error);
     },
+
+    /*
+    * func=sysmsg&act=view&id=12&userid=10051
+    *
+    * */
     getSystemMessageDetail : function(opts, success, error){
-        var mockData = {
-            id : opts.id,
-            title : '欢迎加入海外同城',
-            msgbody : '欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城欢迎加入海外同城',
-            createTime : Date.now(),
-            fromUser : '海外管理员'
+        var data = {
+            func : 'sysmsg',
+            act : 'view',
+            id : opts.id
         };
 
-        return this.mockData(mockData, success, error);
+        util.addUserIdToRequestData(data);
+
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=sysmsg&act=delete&id=1&userid=10051
+    *
+    * */
+    deleteSystemMessageById : function(opts, success, error){
+        var data = {
+            func : 'sysmsg',
+            act : 'delete',
+            id : opts.id
+        };
+
+        util.addUserIdToRequestData(data);
+
+        return this.ajax(data, success, error);
     },
 
     uploadImage : function(opts, success, error){

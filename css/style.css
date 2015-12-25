@@ -959,7 +959,7 @@ a:hover, a:link {
     border-top: 1px solid #c5c5c5;
     border-bottom: none;
     margin-top: -1px;
-    padding-right: 100px; }
+    padding-right: 110px; }
     .hw-mysys-list .hw-right-panel-list .hw-each .h4 {
       margin: 0; }
       .hw-mysys-list .hw-right-panel-list .hw-each .h4 input[type=checkbox] {
@@ -980,6 +980,11 @@ a:hover, a:link {
     .hw-mysys-list .hw-right-panel-list .hw-each .r {
       width: 100px;
       padding-right: 0; }
+      .hw-mysys-list .hw-right-panel-list .hw-each .r span {
+        position: absolute;
+        width: 100px;
+        left: -40px;
+        top: 12px; }
 
 .hw-comp-MycountMessageDetail {
   width: 844px;

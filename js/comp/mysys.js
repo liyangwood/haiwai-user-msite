@@ -23,10 +23,10 @@
                 '<div class="hw-each">',
                 '<div class="h4">',
                 //'<input type="checkbox" id="ck_aaa" value="">',
-                '<label style="margin-left: 0;" class="hw-u" for="ck_aaa">全选</label>',
+                '<label style="margin-left: 0;cursor: pointer;" class="hw-u js_sel_all" for="ck_aaa">全选</label>',
                 '</div>',
                 '<div class="r">',
-                '<b class="hw-a">删除</b>',
+                '<b class="hw-a js_del_all">删除</b>',
                 '</div>',
                 '</div>',
 
@@ -34,14 +34,15 @@
                 '{{each list as item}}',
                 '<div class="hw-each">',
                 '<div class="h4">',
-                    '<input type="checkbox" value="">',
+                    '<input param="{{item.id}}" type="checkbox" class="js_check" value="">',
 
-                    '<a target="_blank" href="messageDetail.html?id={{item.id}}" class="hw-u">{{item.fromUser}}</a>',
-                    '<a target="_blank" href="messageDetail.html?id={{item.id}}" class="hw-p">{{item.title}}</a>',
+                    '<a href="messageDetail.html?id={{item.id}}" class="hw-u">海外管理员</a>',
+                    '<a {{if item.view>0}}style="font-weight:400;"{{/if}} href="messageDetail.html?id={{item.id}}" class="hw-p">{{item.title}}</a>',
                 '</div>',
 
                 '<div class="r">',
-                    '<b class="hw-a">删除</b>',
+                    '<span>{{item.dateline | formatDate:"mm月dd日"}}</span>',
+                    '<b param="{{item.id}}" class="js_del hw-a">删除</b>',
                 '</div>',
                 '</div>',
                 '{{/each}}',
@@ -49,10 +50,10 @@
                 '<div class="hw-each">',
                 '<div class="h4">',
                 //'<input type="checkbox" id="ck_bbb" value="">',
-                '<label style="margin-left: 0;" class="hw-u" for="ck_bbb">全选</label>',
+                '<label style="margin-left: 0;cursor: pointer;" class="hw-u js_sel_all" for="ck_bbb">全选</label>',
                 '</div>',
                 '<div class="r">',
-                '<b class="hw-a">删除</b>',
+                '<b class="hw-a js_del_all">删除</b>',
                 '</div>',
                 '</div>'
             ].join('');
@@ -60,20 +61,69 @@
         getData : function(box, data, next){
             KG.request.getSystemMessageList({}, function(flag, rs){
                 next({
-                    list : rs
+                    list : rs.rs
                 });
             });
         },
         initEvent : function(){
+            var self = this;
             var txt = this.elem.find('.js_type');
             this.elem.find('.js_a').click(function(){
                 var o = $(this);
                 txt.val(o.text());
             });
+
+            this.elem.on('click', '.js_del', function(e){
+                var id = $(this).attr('param');
+                var o = $(this).closest('.hw-each');
+                self.deleteOneMessage(id, function(){
+                    o.fadeOut(200, function(){
+                        o.remove();
+                    });
+                });
+            });
+
+            this.elem.find('.js_sel_all').click(function(){
+                var check = self.elem.find('.js_check');
+                check.prop('checked', true);
+            });
+
+            this.elem.find('.js_del_all').click(function(){
+                var check = self.elem.find('.js_check');
+                var list = [];
+                util.each(check, function(one){
+                    var elem = $(one);
+                    if(elem.prop('checked')){
+                        list.push(elem.attr('param'));
+                    }
+                });
+
+                self.deleteSelectMessage(list, function(){
+                    //TODO ?
+                });
+            });
         },
         initEnd : function(){
             this.elem.find('.js_a').eq(0).trigger('click');
 
+        },
+        deleteOneMessage : function(id, callback){
+            util.dialog.confirm({
+                msg : '确认要删除此系统消息么？',
+                YesFn : function(close){
+                    close();
+                    KG.request.deleteSystemMessageById({
+                        id : id
+                    }, function(flag, rs){
+                        if(flag){
+                            callback();
+                        }
+                    });
+                }
+            });
+        },
+        deleteSelectMessage : function(list, callback){
+            //TODO
         }
     });
 
@@ -84,11 +134,11 @@
             return [
                 '<div class="hw-comp-MycountMessageDetail">',
                     '<h4>{{data.title}}</h4>',
-                    '<small>{{data.createTime | formatDate}}</small>',
-                    '<p>{{data.msgbody}}</p>',
+                    '<small>{{data.dateline | formatDate}}</small>',
+                    '<p>{{#data.msgbody}}</p>',
                     '<div class="hw-ft">',
-                        '<button style="margin-left: 25px;" class="hw-btn hw-blue-btn">返回</button>',
-                        '<button class="hw-btn hw-light-btn">删除</button>',
+                        '<a href="index.html" style="margin-left: 25px;" class="hw-btn hw-blue-btn">返回</a>',
+                        '<button class="js_del hw-btn hw-light-btn">删除</button>',
                     '</div>',
                 '</div>'
             ].join('');
@@ -107,11 +157,29 @@
             }, function(flag, rs){
                 if(flag){
                     next({
+                        id : id,
                         data : rs
                     });
                 }
             });
 
+        },
+        initEvent : function(){
+            var msgId = this.data.id;
+            this.elem.find('.js_del').click(function(){
+                util.dialog.confirm({
+                    msg : '确认要删除此系统消息么？',
+                    YesFn : function(){
+                        KG.request.deleteSystemMessageById({
+                            id : msgId
+                        }, function(flag, rs){
+                            if(flag){
+                                location.href = 'index.html';
+                            }
+                        });
+                    }
+                });
+            });
         }
     });
 
