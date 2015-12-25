@@ -155,7 +155,8 @@
             ].join('');
         },
         getData : function(box, data, next){
-            KG.request.getBizList({}, function(flag, rs){
+            KG.request.getMyfavStoreList({}, function(flag, rs){
+                console.log(rs);
                 next({
                     list : rs
                 });

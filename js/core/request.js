@@ -207,5 +207,19 @@ KG.request = {
             biztagid : opts.catId
         };
         return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=bookmark&userid=10051
+    *
+    * */
+    getMyfavStoreList : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'bookmark'
+        };
+        util.addUserIdToRequestData(data);
+
+        return this.ajax(data, success, error);
     }
 };
