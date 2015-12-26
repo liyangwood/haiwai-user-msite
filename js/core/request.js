@@ -221,5 +221,19 @@ KG.request = {
         util.addUserIdToRequestData(data);
 
         return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=event&act=bookmark&userid=10051
+    * 我的优惠
+    * */
+    getMycouponList : function(opts, success, error){
+        var data = {
+            func : 'event',
+            act : 'bookmark'
+        };
+        util.addUserIdToRequestData(data);
+
+        return this.ajax(data, success, error);
     }
 };

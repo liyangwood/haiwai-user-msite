@@ -313,4 +313,7 @@
         }
         return image;
     });
+    template.helper('decode', function(str){
+        return decodeURIComponent(str);
+    });
 })();

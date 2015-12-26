@@ -102,6 +102,12 @@
                 '</div>'
             ].join('');
         },
+        setJqVar : function(){
+            return {
+                panelTitle : this.elem.find('.panel-heading'),
+                panelBody : this.elem.find('.panel-body')
+            };
+        },
         getHeadingTemplate : function(){},
         getBodyTemplate : function(){}
     });
