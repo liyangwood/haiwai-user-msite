@@ -335,8 +335,10 @@ a:hover, a:link {
     color: #777;
     border-left: 4px solid #f7f7f7;
     font-weight: 700; }
-    .hw-MybizLeftUserNav .hw-a:hover, .hw-MybizLeftUserNav .hw-a.active {
+    .hw-MybizLeftUserNav .hw-a.active {
       border-left: 4px solid #37bccd;
+      color: #37bccd; }
+    .hw-MybizLeftUserNav .hw-a:hover {
       color: #37bccd; }
 
 .hw-MybizRightStoreRank {
@@ -550,8 +552,8 @@ a:hover, a:link {
       .hw-createStore-page .hw-stepinfo .c .fa {
         font-size: 24px;
         position: relative;
-        top: 2px;
-        left: 2px;
+        top: 3px;
+        left: 1px;
         color: #ffffff;
         display: none; }
     .hw-createStore-page .hw-stepinfo .d {
@@ -718,6 +720,42 @@ a:hover, a:link {
     height: 0;
     border-top: 1px solid #c5c5c5;
     margin-bottom: 25px; }
+  .hw-comp-MybizStoreInfoFormStep3 .hw-bigimage {
+    display: inline-block;
+    position: relative;
+    height: 160px;
+    margin: 0 7px; }
+    .hw-comp-MybizStoreInfoFormStep3 .hw-bigimage .c-box {
+      width: 217px;
+      height: 120px;
+      position: relative; }
+      .hw-comp-MybizStoreInfoFormStep3 .hw-bigimage .c-box img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0; }
+      .hw-comp-MybizStoreInfoFormStep3 .hw-bigimage .c-box .fa {
+        color: #37bccd;
+        display: none;
+        position: absolute;
+        z-index: 2;
+        font-size: 78px;
+        top: 20px;
+        left: 76px; }
+      .hw-comp-MybizStoreInfoFormStep3 .hw-bigimage .c-box.active {
+        outline: 3px solid #37bccd; }
+        .hw-comp-MybizStoreInfoFormStep3 .hw-bigimage .c-box.active .fa {
+          display: block; }
+    .hw-comp-MybizStoreInfoFormStep3 .hw-bigimage a {
+      position: absolute;
+      width: 100%;
+      top: 130px;
+      left: 0;
+      text-align: center;
+      color: #4a4a4a;
+      font-size: 16px;
+      font-weight: 700; }
 
 .hw-comp-MybizUploadStoreImage {
   width: 700px;

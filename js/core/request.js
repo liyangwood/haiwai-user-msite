@@ -112,6 +112,22 @@ KG.request = {
 
     },
 
+    getStoreBigBgImageList : function(opts, success, error){
+        var mockData = [
+            {
+                url : 'http://www.sinomedianet.com/haiwai2015.3.19/images/city-pic/sf.jpg'
+            },
+            {
+                url : 'http://www.sinomedianet.com/haiwai2015.3.19/images/city-pic/sf.jpg',
+            },
+            {
+                url : 'http://www.sinomedianet.com/haiwai2015.3.19/images/city-pic/sf.jpg'
+            }
+        ];
+
+        return this.mockData(mockData, success, error);
+    },
+
 
     /*
     * func=sysmsg&userid=10051

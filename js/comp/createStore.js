@@ -403,6 +403,22 @@
                 '<div class="hw-comp-MybizStoreInfoFormStep3">',
 
                     '<div class="form-group">',
+                        '<label class="lab">选择店铺背景图片</label>',
+                        '<div style="width: 700px;margin-left: -7px;">',
+                        '{{each bigBgImageList as item}}',
+                            '<div class="hw-bigimage">',
+                                '<div class="js_bigimage c-box">',
+                                    '<img class="js_bigimage" src={{item.url}} />',
+                                    '<i class="fa fa-check"></i>',
+                                '</div>',
+
+                                '<a href="{{item.url}}" target="_blank">查看大图</a>',
+                            '</div>',
+                        '{{/each}}',
+                        '</div>',
+                '</div>',
+
+                    '<div class="form-group">',
                         '<label class="lab">店铺Logo</label>',
                         '<p class="hw-img-p">店铺／专属页Logo图片是重要的品牌识别标识，建议您上传店铺Logo或职业头像，以增加专业性。该Logo也将用于您的店铺／专属页与用户互动的头像，如回复评论、发布文章、活动。 </p>',
                         '<div class="hw-upload" role="UploadStoreImage"></div>',
@@ -426,13 +442,37 @@
             ].join('');
         },
         getData : function(box, data, next){
-            next({});
+            KG.request.getStoreBigBgImageList({}, function(flag, rs){
+                next({
+                    bigBgImageList : rs
+                });
+            });
+
+        },
+
+        setJqVar : function(){
+            return {
+                bigImage : this.elem.find('.js_bigimage')
+            };
+        },
+
+        initEvent : function(){
+            var self = this;
+            this.jq.bigImage.click(function(e){
+                var o = $(this);
+
+                if(o.hasClass('active')) return false;
+                self.jq.bigImage.removeClass('active');
+                o.addClass('active');
+            });
         },
 
         initEnd : function(){
             this.image = KG.component.initWithElement(this.elem.find('.js_image'), {
                 list : this.data.imageList || [KG.user.get('image')]
             });
+
+            this.elem.find('.js_bigimage').eq(0).trigger('click');
         }
     });
 
