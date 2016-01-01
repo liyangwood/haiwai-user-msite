@@ -54,13 +54,7 @@
     };
 
 
-    template.helper('absImage', function(url){
-        if(/^http/.test(url)){
-            return url;
-        }
 
-        return KG.config.SiteRoot+url;
-    });
 
 })();
 

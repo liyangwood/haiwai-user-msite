@@ -96,6 +96,10 @@ KG.request = {
             logo : '/images/165/118/upload/classifiedinfo/19/f9/05/19f905692cf998e30745e31e9f3d28e9.jpg',
             title : '全场满100元送午餐券',
             count : 100,
+            bizInfo : {
+                name : '小肥羊Fremont店',
+                address : 'Fremont, CA 98765'
+            },
             stop : true,
             startTime : 1449772731230,
             endTime : 1449772831230
@@ -104,6 +108,10 @@ KG.request = {
             logo : '/images/165/118/upload/classifiedinfo/19/f9/05/19f905692cf998e30745e31e9f3d28e9.jpg',
             title : '全场满100元送午餐券',
             count : 100,
+            bizInfo : {
+                name : '小肥羊Fremont店',
+                address : 'Fremont, CA 98765'
+            },
             startTime : 1449772731230,
             endTime : 1449772831230
         }];

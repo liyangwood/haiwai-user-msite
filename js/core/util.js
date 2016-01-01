@@ -299,6 +299,15 @@
 
 
 (function(){
+    template.helper('absImage', function(url){
+        if(/^http/.test(url)){
+            return url;
+        }
+
+        return KG.config.SiteRoot+url;
+    });
+
+
     template.helper('formatDate', function(date, format){
         return util.formatDate(date, format||'yy年mm月dd日 h:m:s');
     });

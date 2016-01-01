@@ -72,7 +72,7 @@ var F = {
 };
 
 gulp.task('core', function(){
-    return gulp.src(JS.core)
+    gulp.src(JS.core)
         .pipe(uglify())
         .pipe(concat(JS.core_min))
         .pipe(gulp.dest('./js/dist'));
@@ -84,7 +84,7 @@ gulp.task('css', function(){
         .pipe(gulp.dest('css/'));
 });
 
-var dirList = ['mybiz', 'mycount', 'myfav', 'mysys', 'mycoupon'];
+var dirList = ['mybiz', 'mycount', 'myfav', 'mysys', 'mycoupon', 'site'];
 
 gulp.task('html_dev', function(){
 

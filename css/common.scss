@@ -1,0 +1,128 @@
+$blue-color:#37bccd;
+$color-4a:#4a4a4a;
+$border-color:#c5c5c5;
+$color-7d:#7d7d7d;
+
+*{
+    font-family:MicrosoftYaHei, STHeiti, sans-serif;
+    font-size: 14px;
+    color: $color-4a;
+}
+
+a{
+    display: inline-block;
+}
+a:hover, a:link{
+    text-decoration: none;
+}
+
+.container{
+    width: 1080px;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+}
+
+
+
+.hw-mypage{
+    margin-top: 24px;
+    min-height: 800px;
+    margin-bottom: 40px;
+}
+
+.hw-panel{
+    border-radius: 0;
+    border: 1px solid $border-color;
+    .panel-heading{
+        background: #f7f7f7;
+
+        .r{
+            color: $blue-color;
+            float: right;
+        }
+    }
+    .panel-body{
+        padding: 0;
+    }
+}
+
+.form-group{
+    text-align: left;
+    position: relative;
+
+    .lab{
+        color: $color-4a;
+        font-size: 14px;
+    }
+    .hw-err{
+        float: right;
+        position: relative;
+        top: 4px;
+    }
+
+    input{
+        background: #ffffff;
+        height: 40px;
+        border-radius: 0;
+        margin-top: 2px;
+    }
+
+    .require:after{
+        content : '*';
+        color: #ff0000;
+        position: relative;
+        left: 4px;
+        top: 5px;
+        font-size: 16px;
+    }
+
+    .del{
+        position: absolute;
+        z-index: 2;
+        font-size: 20px;
+        top: 40px;
+        right: 8px;
+        cursor: pointer;
+        color: $color-4a;
+    }
+
+}
+
+
+.hw-btn{
+    display: inline-block;
+    line-height: 40px;
+    text-align: center;
+    min-width: 96px;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 0;
+    border-radius: 2px;
+
+    &:focus{
+        outline: none;
+    }
+}
+.hw-blue-btn{
+    color: #fff;
+    background: $blue-color;
+    border: 1px solid $blue-color;
+
+    &:hover, &:link{
+        color: #fff;
+    }
+    &:hover{
+        background: #00a7bc;
+    }
+}
+.hw-light-btn{
+    color: $blue-color;
+    background: transparent;
+    border: 1px solid $blue-color;
+
+    &:hover, &:link{
+        color: $blue-color;
+    }
+}
+
