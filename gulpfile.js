@@ -24,13 +24,28 @@ var JS = {
         'js/comp/createStore.js'
     ],
     core_min : 'core.min.js',
-    css_min : 'style.min.css'
+    css_min : 'style.min.css',
 
+    site_core : [
+        'js/core/core.js',
+        'js/core/class.js',
+        'js/core/util.js',
+        'js/core/request.js',
+        'js/comp/base.js',
+        'js/site/couponlist.js',
+        'js/site/articlelist.js',
+        'js/site/articleDetail.js'
+    ],
+    site_min : 'site.min.js',
+    site_css_min : 'site.min.css'
 };
 
 var HtmlReplace = {
     js_core : '../../js/dist/'+JS.core_min,
-    css : '../../css/'+JS.css_min
+    css : '../../css/'+JS.css_min,
+
+    site_core : '../../js/dist/'+JS.site_min,
+    site_css : '../../style/'+JS.site_css_min
 };
 
 var F = {
@@ -76,12 +91,22 @@ gulp.task('core', function(){
         .pipe(uglify())
         .pipe(concat(JS.core_min))
         .pipe(gulp.dest('./js/dist'));
+
+    gulp.src(JS.site_core)
+        .pipe(uglify())
+        .pipe(concat(JS.site_min))
+        .pipe(gulp.dest('./js/dist'));
 });
 gulp.task('css', function(){
-    return gulp.src(['css/style.css'])
+    gulp.src(['css/style.css'])
         .pipe(minifyCss({compatibility: 'ie8'}))
         .pipe(concat(JS.css_min))
         .pipe(gulp.dest('css/'));
+
+    gulp.src(['style/site.css'])
+        .pipe(minifyCss({compatibility: 'ie8'}))
+        .pipe(concat(JS.site_css_min))
+        .pipe(gulp.dest('style/'));
 });
 
 var dirList = ['mybiz', 'mycount', 'myfav', 'mysys', 'mycoupon', 'site'];

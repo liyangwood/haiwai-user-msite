@@ -3,4 +3,5 @@ node_modules
 build
 .idea
 
-css/.sass-cache
+*/.sass-cache
+.sass-cache
