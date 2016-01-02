@@ -273,6 +273,11 @@ KG.request = {
                 image : 'http://www.haiwai.com/images/750/438/upload/classifiedinfo/e3/53/03/e35303ef3c6a5477ef7dcd6f6698554c.jpg',
                 description : '盘点旧金山里那些文艺范儿的店正文盘点旧金山里那些文艺范儿的店正文盘点旧金山里那些文艺范儿的店正文盘点旧金山里那些文艺范儿的店正文',
                 dateline : Date.now(),
+                bizInfo : {
+                    name : '沸腾渔乡',
+                    address : '290 Barber Ct, Milpitas, CA 95035',
+                    logo : 'http://www.haiwai.com/upload/biz/9d/10/5f/9d105fef7bb81eb57103915d800b7bf7.jpg'
+                },
                 view : 3002212
             },
             {
@@ -281,6 +286,11 @@ KG.request = {
                 image : 'http://www.haiwai.com/images/750/438/upload/classifiedinfo/e3/53/03/e35303ef3c6a5477ef7dcd6f6698554c.jpg',
                 description : '盘点旧金山里那些文艺范儿的店正文盘点旧金山里那些文艺范儿的店正文盘点旧金山里那些文艺范儿的店正文盘点旧金山里那些文艺范儿的店正文',
                 dateline : Date.now(),
+                bizInfo : {
+                    name : '沸腾渔乡',
+                    address : '290 Barber Ct, Milpitas, CA 95035',
+                    logo : 'http://www.haiwai.com/upload/biz/9d/10/5f/9d105fef7bb81eb57103915d800b7bf7.jpg'
+                },
                 view : 3002212
             },
             {
@@ -288,11 +298,33 @@ KG.request = {
                 title : '盘点旧金山里那些文艺范儿的店盘点旧金山里那些文艺范盘点旧金山里那些文艺范盘点旧金山里那些文艺范盘点旧金山里那些文艺范',
                 image : 'http://www.haiwai.com/images/750/438/upload/classifiedinfo/e3/53/03/e35303ef3c6a5477ef7dcd6f6698554c.jpg',
                 description : '盘点旧金山里那些文艺范',
+                bizInfo : {
+                    name : '沸腾渔乡',
+                    address : '290 Barber Ct, Milpitas, CA 95035',
+                    logo : 'http://www.haiwai.com/upload/biz/9d/10/5f/9d105fef7bb81eb57103915d800b7bf7.jpg'
+                },
                 dateline : Date.now(),
                 view : 3002212
             }
         ];
 
+        return this.mockData(mockData, success, error);
+    },
+
+    getSiteArticleDetail : function(opts, success, error){
+        var mockData = {
+            id : 1,
+            title : '盘点旧金山里那些文艺范儿的店盘点旧金山里那些文艺范盘点旧金山里那些文艺范盘点旧金山里那些文艺范盘点旧金山里那些文艺范',
+            bizInfo : {
+                name : '沸腾渔乡',
+                address : '290 Barber Ct, Milpitas, CA 95035',
+                logo : 'http://www.haiwai.com/upload/biz/9d/10/5f/9d105fef7bb81eb57103915d800b7bf7.jpg'
+            },
+            msgbody : '<p>田肥美，国殷富，战车万乘，奋击百万，沃野千里，蓄积饶多，地势形便，此所谓天府，天下之雄国也。川菜讲究色、香、味、形，在“味”字上下功夫，以味的多、广、厚著称。</p><img src="http://www.haiwai.com/upload/biz/9d/10/5f/9d105fef7bb81eb57103915d800b7bf7.jpg"/><p>川菜口味的组成，主要有“麻、辣、咸、甜酸、苦、香”7种味道，巧妙搭配，灵活多变，创制出麻辣、酸辣、红油、白油等几十种各具特色的符合味，味别之多，调制之妙，堪称中外菜肴之首，从而赢得了“一菜一格，百菜百味”的称誉。</p><img src="http://www.haiwai.com/upload/biz/4d/4e/2b/4d4e2b5204381465f411cfa32ea6666c.jpg"/>"/><p>川菜作为中国八大菜系之一，在烹饪史上占有极其重要的地位。它取材广泛，调味多变，菜式多样，口味清鲜醇浓并重，以善用麻辣著称，并以其别具一格的烹调方法和浓郁的地方味享誉中外，成为中华民族饮食文化中一颗璀璨的明珠。</p>',
+            dateline : Date.now(),
+            view : '1,211,311',
+            tag : '精选内容 | 美食Tips'
+        };
         return this.mockData(mockData, success, error);
     }
 };

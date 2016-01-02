@@ -1,0 +1,268 @@
+
+.hw-SiteArticleDetailPage{
+    width: 776px;
+    background: #ffffff;
+    border: 1px solid #ebebeb;
+    min-height: 200px;
+    padding: 16px 24px;
+    
+    p{
+        margin: 0;
+    }
+
+    .hw-tag{
+        font-size: 12px;
+        color: $color-7d;
+    }
+    h3{
+        margin: 0;
+        margin-top: 16px;
+        font-size: 26px;
+        line-height: 34px;
+        color: $color-4a;
+        font-weight: 700;
+    }
+
+    .hw-st{
+        height: 24px;
+        margin-top: 10px;
+        vertical-align: bottom;
+    }
+
+    .hw-time{
+        font-size: 12px;
+        color: $color-7d;
+        float: left;
+        position: relative;
+        top: 6px;
+    }
+    .hw-view{
+        font-size: 12px;
+        color: $color-7d;
+        float: right;
+
+        .fa{
+            color: $color-7d;
+            font-size: 20px;
+            margin-right: 5px;
+            position: relative;
+            top: 2px;
+        }
+    }
+    .hw-wx{
+        font-size: 12px;
+        color: $blue-color;
+        float: right;
+        margin-left: 15px;
+        cursor: pointer;
+
+        .fa{
+            color: $blue-color;
+            font-size: 20px;
+            margin-right: 5px;
+            position: relative;
+            top: 2px;
+        }
+    }
+
+    .hw-biz{
+        margin-top: 10px;
+        border-top: 1px dashed $border-color;
+        border-bottom: 1px dashed $border-color;
+        height: 66px;
+
+        position: relative;
+        padding-left: 55px;
+
+        img{
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 46px;
+            height: 46px;
+            border-radius: 23px;
+        }
+        h6{
+            font-size: 14px;
+            color: $color-4a;
+            margin-top: 15px;
+        }
+        .hw-p{
+            color: $color-4a;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+    }
+
+    .hw-article{
+        padding: 36px 0 60px;
+
+        p{
+            font-size: 14px;
+            line-height: 22px;
+            color: $color-4a;
+            margin-top: 8px;
+        }
+
+        img{
+            max-width:100%;
+            margin-top: 10px;
+        }
+
+    }
+
+    .hw-share{
+        border-top: 1px dashed $border-color;
+        height: 36px;
+        text-align: center;
+        
+        b{
+            color: $blue-color;
+            font-size: 12px;
+            padding: 5px 15px;
+            display: inline-block;
+            position: relative;
+            top: -20px;
+            z-index: 2;
+            background: #ffffff;
+            cursor: pointer;
+
+            .fa{
+                color: $blue-color;
+                font-size: 24px;
+                position: relative;
+                top: 6px;
+                margin-right: 8px;
+            }
+        }
+    }
+}
+
+.hw-HWSiteArticleDetailMoreComp{
+    width: 776px;
+    display: inline-block;
+    background: #ffffff;
+    border: 1px solid #ebebeb;
+    margin-top: 24px;
+
+    .hw-head{
+        border-bottom: 1px solid $border-color;
+        padding-left: 15px;
+
+        label{
+            line-height: 40px;
+            color: $color-7d;
+            font-size: 14px;
+            margin: 0;
+        }
+    }
+
+    .hw-one{
+        height: 134px;
+        position: relative;
+        margin: 0 15px;
+        border-top: 1px dashed $border-color;
+        padding-left: 164px;
+        margin-top: -1px;
+
+        img{
+            position: absolute;
+            width: 148px;
+            height: 108px;
+            left: 0;
+            top: 12px;
+        }
+        h4{
+            margin: 0;
+            font-size: 18px;
+            color: $color-4a;
+            margin-top: 15px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        .hw-time{
+            color: $color-7d;
+            font-size: 12px;
+            float: left;
+        }
+
+        .hw-view{
+            color: $color-7d;
+            font-size: 12px;
+            float: right;
+
+            .fa{
+                font-size: 16px;
+                color: $color-7d;
+                margin-right: 5px;
+            }
+        }
+    }
+
+    .hw-biz{
+        margin-top: 8px;
+        height: 50px;
+
+        position: relative;
+        padding-left: 40px;
+
+        img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 16px;
+        }
+        h6{
+            margin: 0;
+            font-size: 14px;
+            color: $color-4a;
+            margin-top: 15px;
+        }
+        .hw-p{
+            color: $color-4a;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+    }
+
+}
+
+.hw-HWSiteArticleDetailRightMoreCommentComp{
+    width: 280px;
+    background: #ffffff;
+    border: 1px solid #ebebeb;
+    display: inline-block;
+
+    .hw-head{
+        border-bottom: 1px solid #ebebeb;
+        padding-left: 15px;
+        position: relative;
+        z-index: 2;
+
+        label{
+            line-height: 40px;
+            color: $color-7d;
+            font-size: 14px;
+            margin: 0;
+        }
+    }
+    .hw-one{
+        padding: 15px 0;
+        position: relative;
+        margin: 0 12px;
+        border-top: 1px dashed $border-color;
+        margin-top: -1px;
+
+        h4{
+            margin: 0;
+            font-size: 14px;
+            line-height: 22px;
+            color: $color-4a;
+        }
+
+    }
+}
