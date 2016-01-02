@@ -259,5 +259,40 @@ KG.request = {
         util.addUserIdToRequestData(data);
 
         return this.ajax(data, success, error);
+    },
+
+    getSiteArticleList : function(opts, success, error){
+        var data = {
+
+        };
+
+        var mockData = [
+            {
+                id : 1,
+                title : '盘点旧金山里那些文艺范儿的店',
+                image : 'http://www.haiwai.com/images/750/438/upload/classifiedinfo/e3/53/03/e35303ef3c6a5477ef7dcd6f6698554c.jpg',
+                description : '盘点旧金山里那些文艺范儿的店正文盘点旧金山里那些文艺范儿的店正文盘点旧金山里那些文艺范儿的店正文盘点旧金山里那些文艺范儿的店正文',
+                dateline : Date.now(),
+                view : 3002212
+            },
+            {
+                id : 1,
+                title : '盘点旧金山里那些文艺范儿的店',
+                image : 'http://www.haiwai.com/images/750/438/upload/classifiedinfo/e3/53/03/e35303ef3c6a5477ef7dcd6f6698554c.jpg',
+                description : '盘点旧金山里那些文艺范儿的店正文盘点旧金山里那些文艺范儿的店正文盘点旧金山里那些文艺范儿的店正文盘点旧金山里那些文艺范儿的店正文',
+                dateline : Date.now(),
+                view : 3002212
+            },
+            {
+                id : 1,
+                title : '盘点旧金山里那些文艺范儿的店盘点旧金山里那些文艺范盘点旧金山里那些文艺范盘点旧金山里那些文艺范盘点旧金山里那些文艺范',
+                image : 'http://www.haiwai.com/images/750/438/upload/classifiedinfo/e3/53/03/e35303ef3c6a5477ef7dcd6f6698554c.jpg',
+                description : '盘点旧金山里那些文艺范',
+                dateline : Date.now(),
+                view : 3002212
+            }
+        ];
+
+        return this.mockData(mockData, success, error);
     }
 };

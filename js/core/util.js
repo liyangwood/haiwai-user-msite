@@ -71,11 +71,29 @@
         }
     });
 
+    //TODO 优化逻辑
+    var MessageParam = {};
     util.message = {
         register : function(name, fn){
-            $('body').unbind(name).bind(name, fn);
+            var callback = function(e, data){
+                data = MessageParam[name] ? MessageParam[name].data : data;
+                fn(e, data);
+            };
+
+            $('body').unbind(name).bind(name, callback);
+
+            if(MessageParam[name]){
+                var tmp = MessageParam[name];
+                fn(null, tmp.data);
+
+                //delete(MessageParam[name]);
+            }
         },
         publish : function(name, data){
+            MessageParam[name] = {
+                data : data
+            };
+
             $('body').trigger(name, data);
         }
     };
