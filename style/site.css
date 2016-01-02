@@ -98,64 +98,66 @@ a:hover, a:link {
   height: 30px;
   background: url("../image/store_coupon.png"); }
 
-.kg-header-comp .container {
-  height: 88px;
-  background: #ffffff; }
-.kg-header-comp .logo {
-  display: block;
-  width: 120px;
-  height: 44px;
-  position: absolute;
-  left: 0;
-  top: 22px;
-  background: url("../image/haiwai.png") 0 0 no-repeat; }
-.kg-header-comp .search {
-  width: 520px;
-  height: 40px;
-  margin: 24px auto;
-  border-color: #9b9b9b; }
-  .kg-header-comp .search span {
+.kg-header-comp {
+  background: #fff; }
+  .kg-header-comp .container {
+    height: 88px;
     background: #ffffff; }
-    .kg-header-comp .search span .icon {
-      background: url("../image/search.png");
-      display: block;
-      width: 23px;
-      height: 22px; }
-  .kg-header-comp .search input {
+  .kg-header-comp .logo {
+    display: block;
+    width: 120px;
+    height: 44px;
+    position: absolute;
+    left: 0;
+    top: 22px;
+    background: url("../image/haiwai.png") 0 0 no-repeat; }
+  .kg-header-comp .search {
+    width: 520px;
     height: 40px;
-    border-left: 0; }
-.kg-header-comp .right {
-  position: absolute;
-  top: 26px;
-  right: 0; }
-  .kg-header-comp .right .dropdown {
-    float: left; }
-    .kg-header-comp .right .dropdown button {
-      background: transparent;
-      border: none; }
-      .kg-header-comp .right .dropdown button:focus {
-        outline: none; }
-      .kg-header-comp .right .dropdown button img {
-        width: 36px;
-        height: 28px; }
-    .kg-header-comp .right .dropdown .c2 img {
-      width: 30px;
-      height: 30px;
-      border-radius: 15px; }
-  .kg-header-comp .right .dropdown-menu {
-    padding: 0;
-    border-radius: 0;
-    border-color: #c5c5c5;
-    width: 190px; }
-    .kg-header-comp .right .dropdown-menu a {
-      line-height: 42px;
-      color: #4a4a4a;
-      font-size: 14px;
-      text-indent: 10px;
-      display: inline-block;
-      width: 100%; }
-      .kg-header-comp .right .dropdown-menu a:hover {
-        background: #f5f5f5; }
+    margin: 24px auto;
+    border-color: #9b9b9b; }
+    .kg-header-comp .search span {
+      background: #ffffff; }
+      .kg-header-comp .search span .icon {
+        background: url("../image/search.png");
+        display: block;
+        width: 23px;
+        height: 22px; }
+    .kg-header-comp .search input {
+      height: 40px;
+      border-left: 0; }
+  .kg-header-comp .right {
+    position: absolute;
+    top: 26px;
+    right: 0; }
+    .kg-header-comp .right .dropdown {
+      float: left; }
+      .kg-header-comp .right .dropdown button {
+        background: transparent;
+        border: none; }
+        .kg-header-comp .right .dropdown button:focus {
+          outline: none; }
+        .kg-header-comp .right .dropdown button img {
+          width: 36px;
+          height: 28px; }
+      .kg-header-comp .right .dropdown .c2 img {
+        width: 30px;
+        height: 30px;
+        border-radius: 15px; }
+    .kg-header-comp .right .dropdown-menu {
+      padding: 0;
+      border-radius: 0;
+      border-color: #c5c5c5;
+      width: 190px; }
+      .kg-header-comp .right .dropdown-menu a {
+        line-height: 42px;
+        color: #4a4a4a;
+        font-size: 14px;
+        text-indent: 10px;
+        display: inline-block;
+        width: 100%; }
+        .kg-header-comp .right .dropdown-menu a:hover {
+          background: #f5f5f5; }
 
 .kg-header-nav-comp {
   background: #00a7bc;
