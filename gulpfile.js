@@ -8,12 +8,15 @@ var htmlreplace = require('gulp-html-replace');
 var watch = require('gulp-watch');
 var minifyCss = require('gulp-minify-css');
 
+var baseCore = [
+    'js/core/core.js',
+    'js/core/class.js',
+    'js/core/util.js',
+    'js/core/request.js'
+];
+
 var JS = {
-    core : [
-        'js/core/core.js',
-        'js/core/class.js',
-        'js/core/util.js',
-        'js/core/request.js',
+    core : baseCore.concat([
         'js/comp/base.js',
         'js/comp/form.js',
         'js/comp/myfav.js',
@@ -22,20 +25,16 @@ var JS = {
         'js/comp/mycount.js',
         'js/comp/mybiz.js',
         'js/comp/createStore.js'
-    ],
+    ]),
     core_min : 'core.min.js',
     css_min : 'style.min.css',
 
-    site_core : [
-        'js/core/core.js',
-        'js/core/class.js',
-        'js/core/util.js',
-        'js/core/request.js',
+    site_core : baseCore.concat([
         'js/comp/base.js',
         'js/site/couponlist.js',
         'js/site/articlelist.js',
         'js/site/articleDetail.js'
-    ],
+    ]),
     site_min : 'site.min.js',
     site_css_min : 'site.min.css'
 };

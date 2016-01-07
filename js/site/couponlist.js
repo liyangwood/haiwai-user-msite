@@ -184,6 +184,15 @@
                     self.setBoxHtml(list);
                 });
             });
+
+
+            this.jq.pageBox.on('click', '.js_prev', function(e){
+                //TODO prev btn
+            });
+
+            this.jq.pageBox.on('click', '.js_next', function(){
+                //TODO next btn
+            });
         },
 
         getListData : function(callback){
