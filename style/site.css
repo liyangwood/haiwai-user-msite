@@ -100,7 +100,8 @@ a:hover, a:link {
   position: relative;
   border: 1px solid #c5c5c5;
   border-radius: 4px;
-  overflow: hidden; }
+  overflow: hidden;
+  text-align: center; }
   .hw-loginRegBoxComp .c-tlt {
     position: relative;
     margin-bottom: 45px;
@@ -385,6 +386,106 @@ a:hover, a:link {
     font-size: 20px;
     color: #f4a62a;
     margin-right: 4px; }
+
+#kg_modal_dialog .modal-dialog {
+  margin-top: 200px; }
+#kg_modal_dialog .modal-header {
+  height: 50px;
+  border-bottom: none; }
+  #kg_modal_dialog .modal-header .close {
+    opacity: 1; }
+    #kg_modal_dialog .modal-header .close:hover {
+      opacity: 0.8; }
+    #kg_modal_dialog .modal-header .close i {
+      font-size: 24px;
+      color: #4a4a4a; }
+#kg_modal_dialog .modal-content {
+  border-radius: 0;
+  min-width: 430px; }
+  #kg_modal_dialog .modal-content .modal-body {
+    padding-top: 0; }
+  #kg_modal_dialog .modal-content .hw-title {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    margin: 0; }
+  #kg_modal_dialog .modal-content .hw-body {
+    font-size: 14px;
+    color: #9b9b9b;
+    padding: 20px 30px; }
+#kg_modal_dialog .modal-footer {
+  background: #f7f7f7;
+  padding: 20px;
+  text-align: center; }
+  #kg_modal_dialog .modal-footer .hw-light-btn {
+    margin-right: 40px; }
+
+.hw-carousel .modal-dialog {
+  width: 742px; }
+  .hw-carousel .modal-dialog .modal-header {
+    border-bottom: 1px solid #ebebeb !important; }
+.hw-carousel .carousel .carousel-indicators {
+  display: none; }
+.hw-carousel .carousel .carousel-inner .item {
+  text-align: center; }
+  .hw-carousel .carousel .carousel-inner .item img {
+    height: 300px;
+    max-width: 100%;
+    margin: 0 auto; }
+
+.hw-confirm1 .modal-dialog {
+  width: 432px; }
+  .hw-confirm1 .modal-dialog .modal-header {
+    border-bottom: 1px solid #ebebeb !important; }
+  .hw-confirm1 .modal-dialog .modal-body {
+    padding-top: 20px !important; }
+  .hw-confirm1 .modal-dialog .modal-footer {
+    background: #ffffff !important;
+    border-top: none !important; }
+
+.hw-confirm .modal-dialog {
+  width: 496px; }
+  .hw-confirm .modal-dialog .modal-body {
+    padding-top: 20px !important; }
+  .hw-confirm .modal-dialog .modal-footer {
+    border-top: none !important; }
+
+.hw-dialog-qrcode .modal-dialog {
+  width: 610px; }
+  .hw-dialog-qrcode .modal-dialog .modal-header {
+    border-bottom: 1px solid #ebebeb !important; }
+  .hw-dialog-qrcode .modal-dialog .modal-body {
+    padding: 20px 40px !important; }
+    .hw-dialog-qrcode .modal-dialog .modal-body .hw-title {
+      font-size: 16px !important; }
+.hw-dialog-qrcode .hw-qr {
+  text-align: center; }
+  .hw-dialog-qrcode .hw-qr img {
+    margin: 20px auto;
+    width: 200px;
+    height: 200px; }
+
+.hw-dialog-login .modal-dialog {
+  width: 713px !important;
+  border-radius: 4px;
+  min-height: 400px; }
+  .hw-dialog-login .modal-dialog .modal-header {
+    border-bottom: none !important; }
+    .hw-dialog-login .modal-dialog .modal-header .close {
+      position: relative;
+      z-index: 2; }
+  .hw-dialog-login .modal-dialog .modal-body {
+    padding: 0 !important;
+    text-align: center; }
+    .hw-dialog-login .modal-dialog .modal-body .hw-title {
+      display: none; }
+    .hw-dialog-login .modal-dialog .modal-body .hw-body {
+      padding: 0 !important; }
+    .hw-dialog-login .modal-dialog .modal-body .hw-loginRegBoxComp {
+      border: none;
+      position: absolute;
+      top: -50px;
+      left: 0; }
 
 body {
   background: #f7f7f7; }

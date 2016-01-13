@@ -539,7 +539,7 @@
                 '<h4>登陆海外同城</h4>',
                 '<input type="text" placeholder="邮箱" />',
                 '<input type="password" placeholder="密码" />',
-                '<button class="hw-btn hw-blue-btn">登陆</button>',
+                '<button class="hw-btn hw-blue-btn js_loginBtn">登陆</button>',
                 '<p>忘记账号或密码？<a href="#">在这里找回</a></p>'
             ].join('');
             this.jq.left.html(h);
@@ -556,7 +556,7 @@
                 '<input type="text" placeholder="邮箱" />',
                 '<input type="password" placeholder="密码" />',
                 '<input type="password" placeholder="确认密码" />',
-                '<button class="hw-btn hw-blue-btn">注册</button>',
+                '<button class="hw-btn hw-blue-btn js_regBtn">注册</button>',
                 '<p>点击注册表示您同意海外同城的<a href="#">使用协议</a>和<a href="#">隐私保护协议</a></p>'
             ].join('');
 
@@ -581,6 +581,15 @@
         initEvent : function(){
             this.elem.on('click', '.js_toReg', this.setRegBox.bind(this));
             this.elem.on('click', '.js_toLogin', this.setLoginBox.bind(this));
+
+            this.elem.on('click', '.js_regBtn', function(){
+                //click reg button
+                util.dialog.showRegBox({});
+            });
+            this.elem.on('click', '.js_loginBtn', function(){
+                //click login button
+                util.dialog.showLoginBox({});
+            });
         },
 
         initEnd : function(){

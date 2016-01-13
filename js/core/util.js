@@ -191,6 +191,10 @@
 
         show : function(opts){
             var obj = util.dialog.get(opts);
+
+            if(opts.beforeShowFn){
+                opts.beforeShowFn.call(obj);
+            }
             obj.modal();
         },
         hide : function(){
@@ -284,7 +288,31 @@
         },
 
         showLoginBox : function(opts){
-            
+            var param = {
+                foot : false,
+                'class' : 'hw-dialog-login',
+                body : '<div class="js_role" role="HWLoginRegBoxComp" data-type="login"></div>',
+
+                beforeShowFn : function(){
+                    var o = this;
+                    KG.component.initWithElement(o.find('.js_role'));
+                }
+            };
+            util.dialog.show(param);
+        },
+
+        showRegBox : function(opts){
+            var param = {
+                foot : false,
+                'class' : 'hw-dialog-login',
+                body : '<div class="js_role" role="HWLoginRegBoxComp" data-type="reg"></div>',
+
+                beforeShowFn : function(){
+                    var o = this;
+                    KG.component.initWithElement(o.find('.js_role'));
+                }
+            };
+            util.dialog.show(param);
         }
     };
 
