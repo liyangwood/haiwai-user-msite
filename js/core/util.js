@@ -281,6 +281,10 @@
                 foot : false,
                 'class' : 'hw-dialog-qrcode'
             });
+        },
+
+        showLoginBox : function(opts){
+            
         }
     };
 

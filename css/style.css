@@ -91,6 +91,101 @@ a:hover, a:link {
   .hw-light-btn:hover, .hw-light-btn:link {
     color: #37bccd; }
 
+/* login and reg box */
+.hw-loginRegBoxComp {
+  width: 711px;
+  min-height: 300px;
+  background: #ffffff;
+  padding: 45px 0 0 0;
+  margin: 0 auto;
+  position: relative;
+  border: 1px solid #c5c5c5;
+  border-radius: 4px;
+  overflow: hidden; }
+  .hw-loginRegBoxComp .c-tlt {
+    position: relative;
+    margin-bottom: 45px;
+    height: 28px; }
+    .hw-loginRegBoxComp .c-tlt h4 b {
+      font-size: 18px;
+      color: #4a4a4a; }
+    .hw-loginRegBoxComp .c-tlt img {
+      position: absolute;
+      width: 68px;
+      height: 68px;
+      top: -24px;
+      margin-left: -34px; }
+  .hw-loginRegBoxComp .c-left {
+    height: 265px;
+    width: 52%;
+    border-right: 1px solid #c5c5c5; }
+    .hw-loginRegBoxComp .c-left h4 {
+      font-size: 18px;
+      color: #4a4a4a;
+      margin-bottom: 20px; }
+    .hw-loginRegBoxComp .c-left input {
+      width: 288px;
+      height: 42px;
+      line-height: 42px;
+      font-size: 16px;
+      color: #7d7d7d;
+      margin-bottom: 20px;
+      border: 1px solid #c5c5c5;
+      border-radius: 3px;
+      padding-left: 10px; }
+    .hw-loginRegBoxComp .c-left .hw-btn {
+      width: 288px;
+      font-size: 16px; }
+    .hw-loginRegBoxComp .c-left p {
+      font-size: 12px;
+      color: #9b9b9b;
+      margin-top: 20px; }
+      .hw-loginRegBoxComp .c-left p a {
+        color: #37bccd;
+        font-size: 12px; }
+  .hw-loginRegBoxComp .c-right {
+    position: absolute;
+    right: 0;
+    width: 48%;
+    height: 265px;
+    top: 118px; }
+    .hw-loginRegBoxComp .c-right h4 {
+      font-size: 14px;
+      margin-top: 24px;
+      color: #7d7d7d; }
+    .hw-loginRegBoxComp .c-right .hw-btn {
+      width: 244px;
+      line-height: 42px;
+      height: 42px;
+      margin-top: 24px;
+      border-radius: 3px; }
+    .hw-loginRegBoxComp .c-right .hw-weixin {
+      background: #12b116; }
+    .hw-loginRegBoxComp .c-right .hw-fb {
+      background: #3b5998; }
+  .hw-loginRegBoxComp .c-btm {
+    height: 56px;
+    background: #f5f5f5;
+    margin-top: 20px;
+    padding-top: 12px; }
+    .hw-loginRegBoxComp .c-btm p {
+      font-size: 12px;
+      color: #9b9b9b; }
+      .hw-loginRegBoxComp .c-btm p .hw-btn {
+        line-height: 30px;
+        border: 1px solid #9b9b9b;
+        color: #9b9b9b;
+        min-width: 74px;
+        margin-left: 10px;
+        cursor: pointer; }
+    .hw-loginRegBoxComp .c-btm h6 {
+      font-size: 14px;
+      color: #9b9b9b; }
+      .hw-loginRegBoxComp .c-btm h6 a {
+        font-size: 14px;
+        color: #37bccd;
+        cursor: pointer; }
+
 .icon {
   display: inline-block; }
 

@@ -497,6 +497,104 @@
     });
 
 
+    KG.Class.define('HWLoginRegBoxComp', {
+        ParentClass : 'BaseComponent',
+        getTemplate : function(){
+            return [
+                '<div class="hw-loginRegBoxComp">',
+                    '<div class="c-tlt">',
+                        '<h4><b>加入海外同城</b><b style="margin-left: 85px;">让生活更简单</b></h4>',
+                        '<img src="../../image/haiwai1.png" />',
+                    '</div>',
+
+                    '<div class="c-left js_left">',
+
+                    '</div>',
+
+                    '<div class="c-right">',
+                        '<h4>用以下账号直接登录</h4>',
+                        '<a class="hw-btn hw-weixin"></a>',
+                        '<a class="hw-btn hw-fb"></a>',
+                    '</div>',
+
+                    '<div class="c-btm">',
+
+                    '</div>',
+                '</div>'
+            ].join('');
+        },
+
+        setJqVar : function(){
+            return {
+                tlt : this.elem.find('.c-tlt h4 b'),
+                left : this.elem.find('.js_left'),
+                btm : this.elem.find('.c-btm')
+            };
+        },
+
+        setLoginBox : function(){
+            this.jq.tlt.hide();
+
+            var h = [
+                '<h4>登陆海外同城</h4>',
+                '<input type="text" placeholder="邮箱" />',
+                '<input type="password" placeholder="密码" />',
+                '<button class="hw-btn hw-blue-btn">登陆</button>',
+                '<p>忘记账号或密码？<a href="#">在这里找回</a></p>'
+            ].join('');
+            this.jq.left.html(h);
+
+            var h1 = [
+                '<p>还没有海外帐户？<a class="hw-btn js_toReg">注册</a></p>'
+            ].join('');
+
+            this.jq.btm.html(h1);
+        },
+
+        setRegBox : function(){
+            var h = [
+                '<input type="text" placeholder="邮箱" />',
+                '<input type="password" placeholder="密码" />',
+                '<input type="password" placeholder="确认密码" />',
+                '<button class="hw-btn hw-blue-btn">注册</button>',
+                '<p>点击注册表示您同意海外同城的<a href="#">使用协议</a>和<a href="#">隐私保护协议</a></p>'
+            ].join('');
+
+            this.jq.left.html(h);
+
+            this.jq.tlt.show();
+
+            var h1 = [
+                '<h6>已有海外帐户？<a href="javascript:void(0)" class="js_toLogin">直接登录</a></h6>'
+            ].join('');
+            this.jq.btm.html(h1);
+        },
+
+        defineProperty : function(){
+            return {
+                type : {
+                    defaultValue : 'reg'
+                }
+            };
+        },
+
+        initEvent : function(){
+            this.elem.on('click', '.js_toReg', this.setRegBox.bind(this));
+            this.elem.on('click', '.js_toLogin', this.setLoginBox.bind(this));
+        },
+
+        initEnd : function(){
+            if(this.prop.type === 'login'){
+                this.setLoginBox();
+            }
+            else if(this.prop.type === 'reg'){
+                this.setRegBox();
+            }
+        }
+
+    });
+
+
 
 })();
 

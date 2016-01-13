@@ -126,3 +126,139 @@ a:hover, a:link{
     }
 }
 
+/* login and reg box */
+.hw-loginRegBoxComp{
+    width: 711px;
+    min-height: 300px;
+    background: #ffffff;
+    padding: 45px 0 0 0;
+    margin: 0 auto;
+    position: relative;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    overflow: hidden;
+
+
+    .c-tlt{
+        position: relative;
+        margin-bottom: 45px;
+        height: 28px;
+
+        h4{
+            b{
+                font-size: 18px;
+                color: $color-4a;
+            }
+        }
+
+        img{
+            position: absolute;
+            width: 68px;
+            height: 68px;
+            top: -24px;
+            margin-left: -34px;
+        }
+    }
+
+    .c-left{
+        height: 265px;
+        width: 52%;
+        border-right: 1px solid $border-color;
+
+        h4{
+            font-size: 18px;
+            color: $color-4a;
+            margin-bottom: 20px;
+        }
+
+        input{
+            width: 288px;
+            height: 42px;
+            line-height: 42px;
+            font-size: 16px;
+            color: $color-7d;
+            margin-bottom: 20px;
+            border: 1px solid $border-color;
+            border-radius: 3px;
+            padding-left: 10px;
+        }
+
+        .hw-btn{
+            width: 288px;
+            font-size: 16px;
+        }
+
+        p{
+            font-size: 12px;
+            color: #9b9b9b;
+            margin-top: 20px;
+            
+            a{
+                color: $blue-color;
+                font-size: 12px;
+            }
+        }
+    }
+
+    .c-right{
+        position: absolute;
+        right: 0;
+        width: 48%;
+        height: 265px;
+        top: 118px;
+
+        h4{
+            font-size: 14px;
+            margin-top: 24px;
+            color: $color-7d;
+        }
+
+        .hw-btn{
+            width: 244px;
+            line-height: 42px;
+            height: 42px;
+            margin-top: 24px;
+            border-radius: 3px;
+        }
+
+        .hw-weixin{
+            background: #12b116;
+        }
+        
+        .hw-fb{
+            background: #3b5998;
+        }
+    }
+
+    .c-btm{
+        height: 56px;
+        background: #f5f5f5;
+        margin-top: 20px;
+        padding-top: 12px;
+
+        p{
+            font-size: 12px;
+            color: #9b9b9b;
+
+            .hw-btn{
+                line-height: 30px;
+                border: 1px solid #9b9b9b;
+                color: #9b9b9b;
+                min-width: 74px;
+                margin-left: 10px;
+                cursor: pointer;
+            }
+        }
+
+        h6{
+            font-size: 14px;
+            color: #9b9b9b;
+
+            a{
+                font-size: 14px;
+                color: $blue-color;
+                cursor: pointer;
+            }
+        }
+    }
+}
