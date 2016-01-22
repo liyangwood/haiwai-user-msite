@@ -33,7 +33,8 @@ var JS = {
         'js/comp/base.js',
         'js/site/couponlist.js',
         'js/site/articlelist.js',
-        'js/site/articleDetail.js'
+        'js/site/articleDetail.js',
+        'js/site/landing.js'
     ]),
     site_min : 'site.min.js',
     site_css_min : 'site.min.css'
