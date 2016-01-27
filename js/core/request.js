@@ -168,15 +168,23 @@ KG.request = {
     },
 
     /*
-    * func=sysmsg&act=delete&id=1&userid=10051
+    * func=sysmsg&act=delete&id[1]=1&id[2]=2&userid=10051
     *
     * */
     deleteSystemMessageById : function(opts, success, error){
         var data = {
             func : 'sysmsg',
-            act : 'delete',
-            id : opts.id
+            act : 'delete'
         };
+
+        if(opts.id){
+            data['id[1]'] = opts.id;
+        }
+        else if(opts.ids){
+            util.each(opts.ids, function(d, i){
+                data['id['+(i+1)+']'] = d;
+            });
+        }
 
         util.addUserIdToRequestData(data);
 
@@ -241,6 +249,22 @@ KG.request = {
         var data = {
             func : 'biz',
             act : 'bookmark'
+        };
+        util.addUserIdToRequestData(data);
+
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=delete_bookmark&userid=10051&type=biz&id=1
+    *
+    * */
+    deleteMyFavStore : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'delete_bookmark',
+            type : 'biz',
+            id : opts.id
         };
         util.addUserIdToRequestData(data);
 

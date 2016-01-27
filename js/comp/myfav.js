@@ -152,9 +152,9 @@
                     '<p style="font-size: 14px;margin-top:8px;">地址 : {{item | storeFullAddress}} &nbsp;&nbsp; 电话 : {{item.tel}}</p>',
 
                     '<div class="r">',
-                        '<b class="hw-a" style="margin-top: 18px;">分享</b>',
-                        '<b class="hw-a">评论</b>',
-                        '<b class="hw-a">取消收藏</b>',
+                        '<b class="hw-a js_share" style="margin-top: 18px;">分享</b>',
+                        '<b class="hw-a js_toReply">评论</b>',
+                        '<b param="{{item.entityID}}" class="hw-a js_del">取消收藏</b>',
                     '</div>',
                 '</div>',
                 '{{/each}}'
@@ -173,6 +173,40 @@
             this.elem.find('.js_a').click(function(){
                 var o = $(this);
                 txt.val(o.text());
+            });
+
+            this.elem.on('click', '.js_del', function(e){
+                var id = $(e.target).attr('param');
+
+                util.dialog.confirm({
+                    msg : '确认取消收藏此店铺么？',
+                    YesFn : function(callback){
+                        KG.request.deleteMyFavStore({
+                            id : id
+                        }, function(flag, rs){
+                            callback();
+                            if(flag){
+                                $(e.target).closest('.hw-each').fadeOut(400, function(){
+                                    $(this).remove();
+                                });
+                            }
+                            else{
+                                alert(rs);
+                            }
+                        });
+                    }
+                });
+
+            });
+
+            this.elem.on('click', '.js_toReply', function(){
+                alert('To Reply Page');
+            });
+
+            this.elem.on('click', '.js_share', function(e){
+                var url = 'http:www.wenxuecity.com';
+                alert('share biz url '+url);
+                util.dialog.showQrCode(url);
             });
         },
         initEnd : function(){

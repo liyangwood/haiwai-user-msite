@@ -99,7 +99,7 @@
                 });
 
                 self.deleteSelectMessage(list, function(){
-                    //TODO ?
+                    location.reload();
                 });
             });
         },
@@ -123,7 +123,23 @@
             });
         },
         deleteSelectMessage : function(list, callback){
-            //TODO
+
+            util.dialog.confirm({
+                msg : '确认要删除这些系统消息么？',
+                YesFn : function(close){
+                    close();
+                    KG.request.deleteSystemMessageById({
+                        ids : list
+                    }, function(flag, rs){
+                        if(flag){
+                            callback();
+                        }
+                        else{
+                            alert(rs);
+                        }
+                    });
+                }
+            });
         }
     });
 
