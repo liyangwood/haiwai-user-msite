@@ -490,7 +490,8 @@ a:hover, a:link {
 
 .hw-mybiz-index, .hw-mybiz-coupon {
   margin-top: 24px;
-  min-height: 800px; }
+  min-height: 800px;
+  padding-bottom: 50px; }
   .hw-mybiz-index .hw-box, .hw-mybiz-coupon .hw-box {
     position: relative;
     left: -16px;

@@ -250,6 +250,8 @@ KG.request = {
             func : 'biz',
             act : 'bookmark'
         };
+
+
         util.addUserIdToRequestData(data);
 
         return this.ajax(data, success, error);

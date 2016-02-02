@@ -3,6 +3,13 @@
 'use strict';
 
 (function(){
+    var debug = true;
+    if(!debug){
+        console.log = function(){};
+    }
+})();
+
+(function(){
     var _uuid = 1;
 
 
@@ -349,6 +356,10 @@
 
 
 (function(){
+    template.helper('equal', function(x, y){
+        return x===y;
+    });
+
     template.helper('absImage', function(url){
         if(/^http/.test(url)){
             return url;

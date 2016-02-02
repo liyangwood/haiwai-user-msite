@@ -123,29 +123,33 @@
                         '<i class="icon fa fa-caret-down"></i>',
                     '</button>',
                     '<ul class="dropdown-menu" aria-labelledby="dp_aaa">',
-                        '<li class="js_a">全部收藏店铺</li>',
-                        '<li class="js_a">正在优惠店铺</li>',
-                        '<li class="js_a">暂停营业店铺</li>',
+                        '<li data-type="all" class="js_a">全部收藏店铺({{list.length}})</li>',
+                        '<li data-type="deal" class="js_a">正在优惠店铺({{dealList.length}})</li>',
+                        '<li data-type="pause" class="js_a">暂停营业店铺({{pauseList.length}})</li>',
                     '</ul>',
                 '</div>'
             ].join('');
         },
         getBodyTemplate : function(){
-            return [
+            return '';
+        },
+
+        setListHtml : function(data, type){
+            var h = [
                 '{{each list as item}}',
                 '<div class="hw-each">',
                     '<img class="hw-img" src="{{item.logo | absImage}}" />',
 
-                    //'{{if item.stop}}',
+                    '{{if item.bizType==="pause"}}',
                     '<div class="mask">暂停营业</div>',
-                    //'{{/if}}',
+                    '{{/if}}',
 
                     '<div class="h4">',
                         '<b>{{item.name_cn}}</b>',
                         '<i class="icon icon-v">v</i>',
 
-                        '<i class="icon icon-coupon"></i>',
-                        '<span class="cpt">全场满100送代金券</span>',
+                        //'<i class="icon icon-coupon"></i>',
+                        //'<span class="cpt">全场满100送代金券</span>',
                     '</div>',
                     '<div style="margin-top: 0;" role="StarRank" data-rank="3.5"></div>',
                     '<span style="margin-left: 10px;font-size: 14px;">{{item.commentnum}}条评论</span>',
@@ -154,25 +158,77 @@
                     '<div class="r">',
                         '<b class="hw-a js_share" style="margin-top: 18px;">分享</b>',
                         '<b class="hw-a js_toReply">评论</b>',
-                        '<b param="{{item.entityID}}" class="hw-a js_del">取消收藏</b>',
+                        '<b param="{{item.bookmarkid}}" class="hw-a js_del">取消收藏</b>',
                     '</div>',
                 '</div>',
                 '{{/each}}'
             ].join('');
+
+            h = template.compile(h)({
+                list : data,
+                type : {
+                    pause : type==='pause'?true:false,
+                    deal : type==='deal'?true:false
+                }
+            });
+
+            this.jq.panelBody.html(h);
         },
         getData : function(box, data, next){
+
+            var list = [],
+                pauseList = [],
+                dealList = [];
+
             KG.request.getMyfavStoreList({}, function(flag, rs){
-                console.log(rs);
+                if(!flag){
+                    next({});
+                }
+
+                list = rs;
+
+                util.each(rs, function(item){
+                    if(item.visible.toString() === '-1'){
+                        item.bizType = 'pause';
+                        pauseList.push(item);
+                    }
+                    else if(item.is_promote.toString() === '1'){
+                        item.bizType = 'deal';
+                        dealList.push(item);
+                    }
+                });
+
                 next({
-                    list : rs
+                    list : list,
+                    pauseList : pauseList,
+                    dealList : dealList
                 });
             });
+
+
         },
         initEvent : function(){
+            var self = this;
+
             var txt = this.elem.find('.js_type');
             this.elem.find('.js_a').click(function(){
                 var o = $(this);
                 txt.val(o.text());
+
+                var type = o.data('type');
+                var list;
+                if(type === 'all'){
+                    list = self.data.list;
+                }
+                else if(type === 'deal'){
+                    list = self.data.dealList;
+                }
+                else if(type === 'pause'){
+                    list = self.data.pauseList;
+                }
+
+
+                self.setListHtml(list);
             });
 
             this.elem.on('click', '.js_del', function(e){
