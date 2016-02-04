@@ -28,6 +28,7 @@
         defaultImage : KG.config.root+'/image/user_default.png',
         email : 'haiwai@chinagate.com',
         userid : 10051,
+        tel : '5735769567',
         token : '7e68db968c5e8e36872770b0bdcf342f',
         isLogin : true
     };

@@ -352,5 +352,23 @@ KG.request = {
             tag : '精选内容 | 美食Tips'
         };
         return this.mockData(mockData, success, error);
+    },
+
+    /*
+    * func=sms&act=send_event&userid=10051&number=5735769567&biz_name=apptest&event_title=测试店铺活动
+    *
+    * */
+    sendSmsToUserPhone : function(opts, success, error){
+        var data = {
+            func : 'sms',
+            act : 'send_event',
+            number : opts.number,
+            biz_name : opts.biz_name,
+            event_title : opts.event_title
+        };
+
+        util.addUserIdToRequestData(data);
+
+        return this.ajax(data, success, error);
     }
 };
