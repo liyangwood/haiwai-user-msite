@@ -320,6 +320,13 @@
                 }
             };
             util.dialog.show(param);
+        },
+        alert : function(msg){
+            util.dialog.show({
+                body : msg,
+                NoText : '确定',
+                YesText : false
+            });
         }
     };
 

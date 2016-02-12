@@ -19,7 +19,7 @@ KG.request = {
             dataType : 'json',
             success : function(json){
                 if(success){
-                    success.call(null, !!json.status, json.return);
+                    success.call(null, json.status>0, json.return);
                 }
 
                 dtd.resolve(json.return);
@@ -368,6 +368,31 @@ KG.request = {
         };
 
         util.addUserIdToRequestData(data);
+
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=passport&
+    * act=update&userid=10051&nick=test&
+    * region=929&contact_email=test@gmail.com&email=test@gmail.com&
+    * tel=1234567890&wechat=123456&signature=signature%20test&token=
+    *
+    * */
+    modifyUserInfo : function(opts, success, error){
+        var data = {
+            func : 'passport',
+            act : 'update',
+            nick : opts.nickname,
+            region : opts.region,
+            contact_email : opts.contact_email||'',
+            email : opts.email,
+            tel : opts.tel,
+            wechat : opts.wechat,
+            signature : opts.description
+
+        };
+        data = util.addUserIdToRequestData(data);
 
         return this.ajax(data, success, error);
     }

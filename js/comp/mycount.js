@@ -246,7 +246,6 @@
 
             this.setListHtml(list, this.jq.area, v);
 
-
         },
 
         getListData : function(data){
@@ -293,6 +292,10 @@
             });
             return rs;
         },
+        setValue : function(region){
+            var a = this.data.all[region];
+            console.log(a);
+        },
         initEnd : function(){
             var region = this.data.region;
 
@@ -314,12 +317,12 @@
         getTemplate : function(){
             return [
                 '<div>',
-                '<div class="js_username" data-label="用户名" data-require="true" role="BaseInput"></div>',
-                '<div class="js_regemial" data-label="注册邮箱" data-require="true" data-type="email" role="BaseInput"></div>',
+                '<div class="js_username" data-value="{{user.nick}}" data-label="用户名" data-require="true" role="BaseInput"></div>',
+                '<div class="js_regemail" data-value="{{user.contact_email}}" data-label="注册邮箱" data-require="true" data-type="email" role="BaseInput"></div>',
                 //'<div class="js_pwd2" data-label="确认新密码" data-require="true" data-type="password" role="BaseInput"></div>',
                 '<div class="form-group">',
                     '<label class="lab">头像</label>',
-                    '<div data-image="{{user.image | defaultUserImage}}" class="hw-upload" role="UploadUserImage"></div>',
+                    '<div data-image="{{user.avatar_url | absImage}}" class="hw-upload" role="UploadUserImage"></div>',
                 '</div>',
 
                 '<div class="hw-line"></div>',
@@ -329,27 +332,41 @@
                     '<div class="js_loc" data-region="{{region}}" role="SelectLocationRange"></div>',
                 '</div>',
 
-                '<div class="js_phone" data-label="联络电话" role="BaseInput"></div>',
-                '<div class="js_wx" data-label="微信号" role="BaseInput"></div>',
+                '<div class="js_phone" data-value="{{user.tel}}" data-label="联络电话" role="BaseInput"></div>',
+                '<div class="js_wx" data-value="{{user.wechat}}" data-label="微信号" role="BaseInput"></div>',
 
                 '<div class="hw-line"></div>',
 
                 '<div class="form-group">',
                     '<label class="lab">个人介绍</label>',
-                    '<textarea class="form-control hw-area js_desc"></textarea>',
+                    '<textarea value="{{user.signature}}}" class="form-control hw-area js_desc"></textarea>',
                 '</div>',
 
                 '<a style="margin-top: 20px;float: right;" href="javascript:void(0)" class="js_btn hw-btn hw-blue-btn">保存</a>',
                 '</div>'
             ].join('');
         },
+
         setJqVar : function(){
             return {
                 btn : this.elem.find('.js_btn')
             };
         },
+
+        getElemObj : function(){
+            return {
+
+                nick : KG.component.getObj(this.elem.find('.js_username')),
+                email : KG.component.getObj(this.elem.find('.js_regemail')),
+                tel : KG.component.getObj(this.elem.find('.js_phone')),
+                wechat : KG.component.getObj(this.elem.find('.js_wx')),
+                region : KG.component.getObj(this.elem.find('.js_loc')),
+                desc : this.elem.find('.js_desc')
+            };
+        },
         getData : function(box, data, next){
             KG.request.getUserDetailInfo({}, function(flag, rs){
+                console.log(rs);
                 var region = [],
                     tmp = rs.region_tree;
                 for(var i=3; i>-1; i--){
@@ -357,7 +374,7 @@
                 }
                 next({
                     region : region.join(','),
-                    user : KG.user.get()
+                    user : rs
                 });
             });
 
@@ -367,8 +384,34 @@
             this.jq.btn.click(this.submit.bind(this));
         },
         submit : function(){
-            var loc = KG.component.getObj(this.elem.find('.js_loc'));
-            alert(loc.getValue())
+
+            var jq = this.getElemObj();
+
+            var data = {
+                nickname : jq.nick.getValue(),
+                contact_email : jq.email.getValue(),
+                tel : jq.tel.getValue(),
+                wechat : jq.wechat.getValue(),
+                region : jq.region.getValue(),
+                signature : jq.desc.val()
+            };
+
+            console.log(data);
+
+            //TODO validate
+
+            KG.request.modifyUserInfo(data, function(flag, rs){
+                if(!flag){
+                    util.dialog.alert(rs);
+                }
+
+
+            });
+
+        },
+
+        initEnd : function(){
+
         }
 
     });

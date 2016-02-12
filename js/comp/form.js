@@ -86,7 +86,10 @@
         },
 
         getValue : function(){
-            return this.elem.find('input').val()
+            return this.elem.find('input').val();
+        },
+        setValue : function(v){
+            this.elem.find('input').val(v);
         },
         showError : function(msg){
             if(msg){
