@@ -12,6 +12,12 @@ KG.request = {
             delete opts.url;
         }
 
+        if(type === 'post'){
+            url += '&func='+opts.func;
+            url += '&act='+opts.act;
+        }
+        console.log(url);
+
         $.ajax({
             type : type,
             url : url,
@@ -202,6 +208,21 @@ KG.request = {
         return this.ajax(data, success, error);
     },
 
+    /*
+    * func=passport&act=upload&userid=10051&uploadfield[]=data:image/png;base64,iVBORw0KGgoAAAAN&token=
+    * */
+    uploadUserImage : function(opts, success, error){
+        var data = {
+            func : 'passport',
+            //method : 'post',
+            act : 'upload',
+            'uploadfield[]' : opts.image
+        };
+
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
     getAllAddressAreaInfo : function(opts, success, error){
         var data = {
             func : 'biz',
@@ -213,13 +234,13 @@ KG.request = {
     getUserDetailInfo : function(opts, success, error){
         var data = {
             act : 'getuser',
-            check : '0aedbf673e0c9bd37540b75a46af5a12',
+            check : KG.user.get('token'),
             func : 'passport',
-            userid : 15623
+            userid : KG.user.get('userid')
         };
 
         return this.ajax(data, function(flag, rs){
-            success(true, rs['15623']);
+            success(true, rs[data.userid]);
         }, error);
     },
 

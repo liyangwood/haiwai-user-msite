@@ -29,7 +29,7 @@
         email : 'haiwai@chinagate.com',
         userid : 10051,
         tel : '5735769567',
-        token : '7e68db968c5e8e36872770b0bdcf342f',
+        token : 'f6fa860fbb037584c6fae08875cfa163',
         isLogin : true
     };
     KG.user = {

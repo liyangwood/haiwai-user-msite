@@ -131,6 +131,30 @@
             jq.delBtn.click(function(){
                 jq.img.attr('src', KG.user.get('defaultImage'));
             });
+        },
+
+        uploadImageFn : function(file, callback){
+            var self = this;
+            if(!file) return;
+
+            var fr = new FileReader();
+            fr.onload = function(e){
+                var binary = e.target.result;
+
+                KG.request.uploadUserImage({
+                    image : binary
+                }, function(flag, rs){
+                    if(flag){
+                        var url = KG.config.SiteRoot+rs;
+                        self.jq.img.attr('src', url);
+
+                    }
+                    callback();
+                });
+            };
+
+            fr.readAsDataURL(file);
+
         }
     });
 
@@ -333,13 +357,13 @@
                 '</div>',
 
                 '<div class="js_phone" data-value="{{user.tel}}" data-label="联络电话" role="BaseInput"></div>',
-                '<div class="js_wx" data-value="{{user.wechat}}" data-label="微信号" role="BaseInput"></div>',
+                '<div class="js_wx" data-value="{{user.ims_value}}" data-label="微信号" role="BaseInput"></div>',
 
                 '<div class="hw-line"></div>',
 
                 '<div class="form-group">',
                     '<label class="lab">个人介绍</label>',
-                    '<textarea value="{{user.signature}}}" class="form-control hw-area js_desc"></textarea>',
+                    '<textarea class="form-control hw-area js_desc">{{user.signature}}</textarea>',
                 '</div>',
 
                 '<a style="margin-top: 20px;float: right;" href="javascript:void(0)" class="js_btn hw-btn hw-blue-btn">保存</a>',
@@ -404,7 +428,7 @@
                 if(!flag){
                     util.dialog.alert(rs);
                 }
-
+                util.alert('修改成功');
 
             });
 
