@@ -263,14 +263,7 @@
         initEnd : function(){
             this.renderDynamicBox();
 
-            var list = ['100-200', '200-300', '300-400', '大于400'];
 
-            this.jq.money = KG.component.initWithElement(this.elem.find('.js_money'), {
-                list : list,
-                clickCallback : function(item){
-                    console.log(item)
-                }
-            });
         },
 
         getFormValue : function(){
@@ -365,6 +358,11 @@
             var rs = '';
             switch (item.field_type){
                 case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '8':
+                case '9':
                     rs = '<div class="js_role" role_type="'+item.field_type+'" role="BaseInput" data-label="'+item.field_name+'" ></div>';
                     box.append(rs);
                     this.dynamicObj[item.field_name] = {
