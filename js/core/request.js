@@ -126,21 +126,6 @@ KG.request = {
 
     },
 
-    getStoreBigBgImageList : function(opts, success, error){
-        var mockData = [
-            {
-                url : 'http://www.sinomedianet.com/haiwai2015.3.19/images/city-pic/sf.jpg'
-            },
-            {
-                url : 'http://www.sinomedianet.com/haiwai2015.3.19/images/city-pic/sf.jpg',
-            },
-            {
-                url : 'http://www.sinomedianet.com/haiwai2015.3.19/images/city-pic/sf.jpg'
-            }
-        ];
-
-        return this.mockData(mockData, success, error);
-    },
 
 
     /*
@@ -200,7 +185,6 @@ KG.request = {
     uploadImage : function(opts, success, error){
         var data = {
             url : 'func=article&act=upload',
-            method : 'post',
             type : 'image',
             'uploadfield[]' : opts.image
         };
@@ -414,6 +398,131 @@ KG.request = {
 
         };
         data = util.addUserIdToRequestData(data);
+
+        return this.ajax(data, success, error);
+    },
+
+
+    /*
+    * func=biz&act=pc_add&step=1&bizname=app_test&biztel=123456789&biztagid=67&sec_tags=71,72&address=3442%20Mackenzie%20Dr&city=fremont&state=CA&zip=95035&timeinfo[1][daytime]=10:00AM,05:00PM&timeinfo[1][weektime]=1,0,1,1,1,1,1&timeinfo[2][daytime]=10:00AM,05:00PM&timeinfo[2][weektime]=1,0,1,1,1,1,1
+    *
+    * */
+    createStoreByStep1 : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'pc_add',
+            step : 1,
+            bizname : opts.bizName,
+            biztel : opts.bizTel,
+            biztagid : opts.bizTagId,
+            sec_tags : opts.tags,
+            address : opts.address,
+            city : opts.city,
+            state : opts.state,
+            zip : opts.zip
+
+        };
+
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+
+    /*
+    * func=biz&act=pc_add&step=2&biz_tmpid=272&wechat=123456&description=%E6%B5%8B%E8%AF%95%E5%BA%97%E9%93%BA%E6%8F%8F%E8%BF%B0&dynamic_fields[415][value]=$3000&dynamic_fields[415][type]=6&&dynamic_fields[416][value]=www.xaofeiyang.com&dynamic_fields[416][type]=1&dynamic_fields[417][value]=%E6%98%AF&dynamic_fields[417][type]=5&dynamic_fields[418][value]=%E5%90%A6&dynamic_fields[418][type]=5&dynamic_fields[419][value]=%E8%BD%BF%E8%BD%A6,%E5%8D%A1%E8%BD%A6&dynamic_fields[419][type]=7
+    *
+    * */
+    createStoreByStep2 : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'pc_add',
+            step : 2,
+            biz_tmpid : opts.bizTmpId,
+            wechat : opts.wechat,
+            description : opts.description
+        };
+
+        util.extend(data, opts.dynamic || {});
+
+        data = util.addUserIdToRequestData(data);
+        console.log(data);
+
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=get_dynamic_fields&main_tagid=69
+    *
+    * */
+    getTmpStoreDynamicField : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'get_dynamic_fields',
+            main_tagid : opts.mainTagId
+        };
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=get_biz_dynamic_fields&bizid=2025591
+    * */
+    getStoreDynamicField : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'get_biz_dynamic_fields',
+            bizid : opts.bizId
+        };
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=pc_add&step=3&biz_tmpid=272&background_pic=http://www.sinomedianet.com/haiwai2015.3.19/images/biz_cover/auto03.png&uploadfield[]=http://www.sinomedianet.com/haiwai2015.3.19/images/biz_cover/auto03.png&uploadfield[]=http://www.sinomedianet.com/haiwai2015.3.19/images/biz_cover/auto03.png&logo=http://www.sinomedianet.com/haiwai2015.3.19/images/biz_cover/auto03.png
+    *
+    * */
+    createStoreByStep3 : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'pc_add',
+            step : 3,
+            biz_tmpid : opts.bizTmpId,
+            background_pic : opts.bgPic
+        };
+
+        util.each(opts.imageList||[], function(one, i){
+            data['uploadfield['+i+']'] = one;
+        });
+
+        data = util.addUserIdToRequestData(data);
+        console.log(data);
+
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=get_background_pic&main_tagid=69
+    * */
+    getStoreBigBackgroundPic : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'get_background_pic',
+            main_tagid : opts.mainTagId
+        };
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=upload&uploadfield[]=data:image/png;base64,iVBORw0KGgoAAAAN&biz_tmpid=1&tmp=1&logo=1
+    * */
+    uploadTmpBizLogo : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'upload',
+            tmp : 1,
+            logo : 1,
+            biz_tmpid : opts.bizTmpId,
+            'uploadfield[]' : opts.image
+        };
+        console.log(data);
 
         return this.ajax(data, success, error);
     }

@@ -45,11 +45,11 @@
 
                     '<div class="js_cat" data-label="服务类别" data-require="true" role="BaseSelectInput" init-self="true" placeholder="请选择一种类别"></div>',
 
-                    '<div {{if biz}}data-value="{{biz.address}}"{{/if}} class="js_address" role="BaseInput" data-label="店铺地址" placeholder="街道地址"></div>',
+                    '<div {{if biz}}data-value="{{biz.address}}"{{/if}} class="js_address" role="BaseInput" data-label="店铺地址" placeholder="街道地址，如3442 Mackenzie Dr (可选)"></div>',
 
                     '<div {{if biz}}data-value="{{biz.zip}}"{{/if}} style="margin-left: 0;" class="js_zip hw-inline" role="BaseInput" data-require="true" data-label="邮编" placeholder="e.g. 94536"></div>',
-                    '<div {{if biz}}data-value="{{biz.city}}"{{/if}} class="js_zip hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="城市"></div>',
-                    '<div {{if biz}}data-value="{{biz.state}}"{{/if}} class="js_zip hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="州/省"></div>',
+                    '<div {{if biz}}data-value="{{biz.city}}"{{/if}} class="js_city hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="城市"></div>',
+                    '<div {{if biz}}data-value="{{biz.state}}"{{/if}} class="js_state hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="州/省"></div>',
 
                     '<div class="form-group js_tag">',
                         '<label>营业特色</label>',
@@ -94,9 +94,53 @@
             };
         },
 
+        getElemObj : function(){
+            return {
+                name : KG.component.getObj(this.elem.find('.js_name')),
+                tel : KG.component.getObj(this.elem.find('.js_tel')),
+                address : KG.component.getObj(this.elem.find('.js_address')),
+                zip : KG.component.getObj(this.elem.find('.js_zip')),
+                city : KG.component.getObj(this.elem.find('.js_city')),
+                state : KG.component.getObj(this.elem.find('.js_state'))
+            };
+        },
+
+        getFormValue : function(){
+            var jq = this.getElemObj();
+            var data = {
+                bizName : jq.name.getValue(),
+                bizTel : jq.tel.getValue(),
+                bizTagId : this.jq.cat.getValue()['pk_id'],
+                zip : jq.zip.getValue(),
+                address : jq.address.getValue(),
+                city : jq.city.getValue(),
+                state : jq.state.getValue(),
+                tags : this.getTagBoxValue()
+            };
+
+            return data;
+        },
+
+        validate : function(){
+            return true;
+        },
+
         initEvent : function(){
+            var self = this;
             this.jq.btn.click(function(){
-                location.href = 'createStore_2.html';
+                var data = self.getFormValue();
+                console.log(data);
+                if(self.validate(data)){
+                    KG.request.createStoreByStep1(data, function(flag, rs){
+                         if(flag){
+                             console.log(rs);
+                             location.href = 'createStore_2.html?tmp_biz_id='+rs.entityID+'&main_tag_id='+rs.main_tag_id;
+                         }
+                    });
+                }
+
+
+                //location.href = 'createStore_2.html';
             });
         },
 
@@ -150,6 +194,17 @@
 
             h = template.compile(h)({list:tagList});
             this.jq.tagBox.html(h);
+        },
+
+        getTagBoxValue : function(){
+            var arr = [];
+            this.jq.tagBox.find('input[type="checkbox"]').each(function(){
+                var o = $(this);
+                if(o.prop('checked')){
+                    arr.push(o.attr('uid'));
+                }
+            });
+            return arr.join(',');
         }
     });
 
@@ -159,26 +214,22 @@
         getTemplate : function(){
             return [
                 '<div class="hw-comp-MybizStoreInfoFormStep2">',
+                    '<div class="js_dybox"></div>',
 
-                    '<div class="hw-dym">',
-                        '<span>是否接受预定</span>',
-                        '<label><input type="radio" class="radio-inline" name="ra_aaa" />是</label>',
-                        '<label><input type="radio" class="radio-inline" name="ra_aaa" />否</label>',
-                    '</div>',
+                    //
+                    //'<div class="hw-dym">',
+                    //    '<span>是否有停车位</span>',
+                    //    '<label><input type="radio" class="radio-inline" name="ra_bbb" />是</label>',
+                    //    '<label><input type="radio" class="radio-inline" name="ra_bbb" />否</label>',
+                    //'</div>',
+                    //
+                    //'<div class="hw-dym">',
+                    //    '<span>是否提供Wi-Fi</span>',
+                    //    '<label><input type="radio" class="radio-inline" name="ra_ccc" />是</label>',
+                    //    '<label><input type="radio" class="radio-inline" name="ra_ccc" />否</label>',
+                    //'</div>',
 
-                    '<div class="hw-dym">',
-                        '<span>是否有停车位</span>',
-                        '<label><input type="radio" class="radio-inline" name="ra_bbb" />是</label>',
-                        '<label><input type="radio" class="radio-inline" name="ra_bbb" />否</label>',
-                    '</div>',
 
-                    '<div class="hw-dym">',
-                        '<span>是否提供Wi-Fi</span>',
-                        '<label><input type="radio" class="radio-inline" name="ra_ccc" />是</label>',
-                        '<label><input type="radio" class="radio-inline" name="ra_ccc" />否</label>',
-                    '</div>',
-
-                    '<div class="js_money" data-label="价位" role="BaseSelectInput" init-self="true" placeholder="请选择一种价位"></div>',
 
                     '<div class="js_link" role="BaseInput" data-label="店铺网址" placeholder="e.g. www.xiaofeiyang.com"></div>',
                     '<div class="js_wx" role="BaseInput" data-label="微信号" placeholder="e.g. xiaofeiyang"></div>',
@@ -201,7 +252,17 @@
             };
         },
 
+        getElemObj : function(){
+            return {
+                net : KG.component.getObj(this.elem.find('.js_link')),
+                wechat : KG.component.getObj(this.elem.find('.js_wx')),
+                desc : this.elem.find('.js_desc')
+            };
+        },
+
         initEnd : function(){
+            this.renderDynamicBox();
+
             var list = ['100-200', '200-300', '300-400', '大于400'];
 
             this.jq.money = KG.component.initWithElement(this.elem.find('.js_money'), {
@@ -212,10 +273,158 @@
             });
         },
 
+        getFormValue : function(){
+            var jq = this.getElemObj();
+            return {
+                bizTmpId : this.data.tmpBizId,
+                wechat : jq.wechat.getValue(),
+                description : jq.desc.val()
+            };
+        },
+
         initEvent : function(){
+            var self = this;
             this.jq.btn.click(function(){
-                location.href = 'createStore_3.html'
+                var data = self.getFormValue();
+                data.dynamic = self.getDynamicData();
+
+                KG.request.createStoreByStep2(data, function(flag, rs){
+                    if(flag){
+                        console.log(rs);
+                        location.href = 'createStore_3.html?tmp_biz_id='+rs+'&main_tag_id='+KG.data.get('mainTagId');
+                    }
+                });
+
             });
+        },
+
+        getData : function(box, data, next){
+            var tmpId = KG.data.get('tmpBizId'),
+                tagId = KG.data.get('mainTagId');
+
+            KG.request.getTmpStoreDynamicField({
+                mainTagId : tagId
+            }, function(flag, rs){
+                if(flag){
+                    console.log(rs);
+                    next({
+                        tmpBizId : tmpId,
+                        dynamic : rs
+                    });
+                }
+                else{
+                    next({
+                        tmpBizId : tmpId,
+                        dynamic : []
+                    });
+                }
+            });
+        },
+
+        initVar : function(){
+            this.dynamicObj = {};
+        },
+
+        /*
+        * 1=>"单行文字",
+         2=>"数字",
+         3=>"文本框",
+         4=>"电话号码",
+         5=>"单选项（按钮）",
+         6=>"单选项（下拉）",
+         7=>"多选项（勾选）",
+         8=>"URL",
+         9=>"EMAIL"
+
+         * */
+        renderDynamicBox : function(){
+            var self = this;
+            var list = this.data.dynamic;
+
+            var rs = '';
+            util.each(list, function(item){
+                self.renderEachDynamic(item);
+            });
+        },
+
+        getDynamicData : function(){
+            var rs = {};
+            _.each(this.dynamicObj, function(item, key){
+                rs['dynamic_fields['+item.id+'][type]'] = item.type;
+                rs['dynamic_fields['+item.id+'][value]'] = util.isFunction(item.val)?item.val.call(item.obj):item.val;
+            });
+
+            return rs;
+        },
+
+        renderEachDynamic : function(item){
+            var self = this;
+            var box = this.elem.find('.js_dybox');
+
+
+            var rs = '';
+            switch (item.field_type){
+                case '1':
+                    rs = '<div class="js_role" role_type="'+item.field_type+'" role="BaseInput" data-label="'+item.field_name+'" ></div>';
+                    box.append(rs);
+                    this.dynamicObj[item.field_name] = {
+                        obj : KG.component.initWithElement(box.find('[role_type]')),
+                        type : item.field_type,
+                        val : function(){
+                            return this.getValue();
+                        }
+                    };
+                    break;
+                case '6':
+                    rs = '<div class="js_role" role_type="'+item.field_type+'" data-label="'+item.field_name+'" role="BaseSelectInput" init-self="true"></div>';
+                    box.append(rs);
+                    var tmpO = KG.component.initWithElement(box.find('[role_type]'), {
+                        list : _.map(item.default_option, function(one){
+                            return one.m_value;
+                        }),
+                        clickCallback : function(x){
+                            console.log(x)
+                        }
+                    });
+                    this.dynamicObj[item.field_name] = {
+                        obj : tmpO,
+                        type : item.field_type,
+                        val : function(){
+                            return this.getValue();
+                        }
+                    };
+                    break;
+                case '5':
+                    rs = '<div class="hw-dym" param="'+item.field_id+'"><span>'+item.field_name+'</span>';
+                    _.each(item.default_option, function(one){
+                        rs += '<label><input type="radio" value="'+one.m_value+'" class="radio-inline" name="'+item.field_id+'" />'+one.m_value+'</label>';
+                    });
+                    rs += '</div>';
+
+                    box.append(rs);
+
+                    this.dynamicObj[item.field_name] = {
+                        obj : null,
+                        type : item.field_type,
+                        val : function(){
+                            var r = '';
+                            box.find('[param="'+item.field_id+'"]').find('input').each(function(){
+                                var o = $(this);
+                                if(o.prop('checked')){
+                                    r = o.val();
+                                }
+                            });
+                            return r;
+                        }
+                    };
+
+                    break;
+
+                default :
+                    break;
+            }
+
+            this.dynamicObj[item.field_name].id =item.field_id;
         }
 
     });
@@ -236,6 +445,14 @@
                 '<input type="file" />',
                 '</div>'
             ].join('');
+        },
+        defineProperty : function(){
+            return {
+                biztype : {
+                    defaultValue : 'tmp'
+                },
+                bizid : {}
+            };
         },
         getData : function(box, data, next){
             next({
@@ -260,8 +477,33 @@
 
             var jq = this.jq;
             jq.delBtn.click(function(){
-                jq.img.attr('src', KG.user.get('defaultImage'));
+                jq.img.attr('src', '');
             });
+        },
+        uploadImageFn : function(file, callback){
+            var self = this;
+            var data = {};
+            if(this.prop.biztype === 'tmp'){
+                data.bizTmpId = this.prop.bizid;
+            }
+
+            var fr = new FileReader();
+            fr.onload = function(e){
+                data.image = e.target.result;
+
+                KG.request.uploadTmpBizLogo(data, function(flag, rs){
+                    if(flag){
+                        console.log(rs);
+                        self.jq.img.attr('src', KG.config.SiteRoot+rs.files[0]);
+                    }
+
+                    callback();
+                });
+            };
+
+            fr.readAsDataURL(file);
+
+
         }
     });
 
@@ -402,6 +644,7 @@
             return [
                 '<div class="hw-comp-MybizStoreInfoFormStep3">',
 
+                    '{{if bigBgImageList}}',
                     '<div class="form-group">',
                         '<label class="lab">选择店铺背景图片</label>',
                         '<div style="width: 700px;margin-left: -7px;">',
@@ -416,12 +659,14 @@
                             '</div>',
                         '{{/each}}',
                         '</div>',
-                '</div>',
+                    '</div>',
+                    '{{/if}}',
 
                     '<div class="form-group">',
                         '<label class="lab">店铺Logo</label>',
                         '<p class="hw-img-p">店铺／专属页Logo图片是重要的品牌识别标识，建议您上传店铺Logo或职业头像，以增加专业性。该Logo也将用于您的店铺／专属页与用户互动的头像，如回复评论、发布文章、活动。 </p>',
-                        '<div class="hw-upload" role="UploadStoreImage"></div>',
+                        '<div class="hw-upload" data-biztype="tmp" data-bizid="{{tmpId}}"' +
+                        ' role="UploadStoreImage"></div>',
                     '</div>',
 
 
@@ -442,9 +687,23 @@
             ].join('');
         },
         getData : function(box, data, next){
-            KG.request.getStoreBigBgImageList({}, function(flag, rs){
+            var tmpId = KG.data.get('tmpBizId'),
+                tagId = KG.data.get('mainTagId');
+            KG.request.getStoreBigBackgroundPic({
+                mainTagId : tagId
+            }, function(flag, rs){
+                var bigBgImageList;
+                if(flag){
+                    bigBgImageList = rs;
+                }
+                else{
+                    bigBgImageList = null;
+                }
+
                 next({
-                    bigBgImageList : rs
+                    bigBgImageList : bigBgImageList,
+                    tmpId : tmpId,
+                    tagId : tagId
                 });
             });
 
@@ -452,7 +711,8 @@
 
         setJqVar : function(){
             return {
-                bigImage : this.elem.find('.js_bigimage')
+                bigImage : this.elem.find('.js_bigimage'),
+                btn : this.elem.find('.js_btn')
             };
         },
 
@@ -465,14 +725,31 @@
                 self.jq.bigImage.removeClass('active');
                 o.addClass('active');
             });
+
+            this.jq.btn.click(function(e){
+                var data = self.getFormValue();
+                KG.request.createStoreByStep3(data, function(flag, rs){
+                    if(flag){
+                        location.href = 'http://beta.haiwai.com/biz/view.php?id='+rs;
+                    }
+                });
+            });
         },
 
         initEnd : function(){
             this.image = KG.component.initWithElement(this.elem.find('.js_image'), {
-                list : this.data.imageList || [KG.user.get('image')]
+                list : this.data.imageList || []
             });
 
             this.elem.find('.js_bigimage').eq(0).trigger('click');
+        },
+
+        getFormValue : function(){
+            return {
+                bizTmpId : this.data.tmpId,
+                bgPic : this.jq.bigImage.filter('.active').find('img').attr('src'),
+                imageList : this.image.getValue()
+            };
         }
     });
 
