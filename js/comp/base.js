@@ -11,6 +11,7 @@
             //box.html('loading');
 
             this._initProp();
+            this.initStart();
             this.getData(box, data, function(rs){
                 self.data = rs;
 
@@ -103,7 +104,8 @@
         initView : util.noop,
         initEnd : util.noop,
         initEvent : util.noop,
-        registerMessage : util.noop
+        registerMessage : util.noop,
+        initStart : util.noop
     });
 
     KG.Class.define('HeadingNav', {
@@ -419,7 +421,7 @@
                 var o = $(this);
                 var id = o.attr('param');
                 util.dialog.confirm({
-                    msg : '确认删除此店铺么？',
+                    msg : '确认删除此优惠么？',
                     YesFn : function(callback){
                         KG.request.deleteCouponById({
                             id : id

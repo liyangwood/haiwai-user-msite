@@ -442,6 +442,28 @@ KG.request = {
         return this.ajax(data, success, error);
     },
 
+    /*
+    * func=biz&act=update&userid=10051&bizid=2025591&biztagid=67&name_cn=apptest&zip=95036&city=sanjose&state=ca&address=123%20No%20Way,%20Fremont,%20CA&tel=510-666-6666&sec_tags=71,72&timeinfo[1][daytime]=10:00AM,05:00PM&timeinfo[1][weektime]=1,0,1,1,1,1,1&timeinfo[2][daytime]=10:00AM,05:00PM&timeinfo[2][weektime]=1,0,1,1,1,1,1&token=
+    * */
+    saveStoreByStep1 : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'update',
+            bizid : opts.bizId,
+            biztagid : opts.bizTagId,
+            name_cn : opts.bizName,
+            city : opts.city,
+            state : opts.state,
+            zip : opts.zip,
+            address : opts.address,
+            tel : opts.bizTel,
+            sec_tags : opts.tags
+        };
+
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
 
     /*
     * func=biz&act=pc_add&step=2&biz_tmpid=272&wechat=123456&description=%E6%B5%8B%E8%AF%95%E5%BA%97%E9%93%BA%E6%8F%8F%E8%BF%B0&dynamic_fields[415][value]=$3000&dynamic_fields[415][type]=6&&dynamic_fields[416][value]=www.xaofeiyang.com&dynamic_fields[416][type]=1&dynamic_fields[417][value]=%E6%98%AF&dynamic_fields[417][type]=5&dynamic_fields[418][value]=%E5%90%A6&dynamic_fields[418][type]=5&dynamic_fields[419][value]=%E8%BD%BF%E8%BD%A6,%E5%8D%A1%E8%BD%A6&dynamic_fields[419][type]=7
@@ -466,6 +488,28 @@ KG.request = {
     },
 
     /*
+    * func=biz&act=update_field&bizid=2025591&website=www.haiwai.com&wechat=123456&briefintro=%E6%B5%8B%E8%AF%95%E5%BA%97%E9%93%BA%E6%8F%8F%E8%BF%B0&dynamic_fields[415][value]=$3000&dynamic_fields[415][type]=6&&dynamic_fields[416][value]=www.xaofeiyang.com&dynamic_fields[416][type]=1&dynamic_fields[417][value]=%E6%98%AF&dynamic_fields[417][type]=5&dynamic_fields[418][value]=%E5%90%A6&dynamic_fields[418][type]=5&dynamic_fields[419][value]=%E8%BD%BF%E8%BD%A6,%E5%8D%A1%E8%BD%A6&dynamic_fields[419][type]=7
+    *
+    * */
+    saveStoreByStep2 : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'update_field',
+            //method : 'post',
+            bizid : opts.bizId,
+            website : opts.website,
+            briefintro : opts.description,
+            wechat : opts.wechat
+        };
+        util.extend(data, opts.dynamic || {});
+
+        data = util.addUserIdToRequestData(data);
+        console.log(data);
+
+        return this.ajax(data, success, error);
+    },
+
+    /*
     * func=biz&act=get_dynamic_fields&main_tagid=69
     *
     * */
@@ -480,6 +524,7 @@ KG.request = {
 
     /*
     * func=biz&act=get_biz_dynamic_fields&bizid=2025591
+    *
     * */
     getStoreDynamicField : function(opts, success, error){
         var data = {
@@ -489,6 +534,7 @@ KG.request = {
         };
         return this.ajax(data, success, error);
     },
+
 
     /*
     * func=biz&act=pc_add&step=3&biz_tmpid=272&background_pic=http://www.sinomedianet.com/haiwai2015.3.19/images/biz_cover/auto03.png&uploadfield[]=http://www.sinomedianet.com/haiwai2015.3.19/images/biz_cover/auto03.png&uploadfield[]=http://www.sinomedianet.com/haiwai2015.3.19/images/biz_cover/auto03.png&logo=http://www.sinomedianet.com/haiwai2015.3.19/images/biz_cover/auto03.png

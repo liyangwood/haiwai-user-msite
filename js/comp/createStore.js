@@ -130,17 +130,29 @@
             this.jq.btn.click(function(){
                 var data = self.getFormValue();
                 console.log(data);
-                if(self.validate(data)){
+                if(!self.validate(data)){
+                    return false;
+                }
+                if(KG.data.get('id')){
+                    data.bizId = KG.data.get('id');
+                    KG.request.saveStoreByStep1(data, function(flag, rs){
+                        if(flag){
+                            console.log(rs);
+                            location.href = 'editStore_2.html?id='+rs;
+                        }
+                    });
+
+                }
+                else{
                     KG.request.createStoreByStep1(data, function(flag, rs){
-                         if(flag){
-                             console.log(rs);
-                             location.href = 'createStore_2.html?tmp_biz_id='+rs.entityID+'&main_tag_id='+rs.main_tag_id;
-                         }
+                        if(flag){
+                            console.log(rs);
+                            location.href = 'editStore_2.html?tmp_biz_id='+rs.entityID+'&main_tag_id='+rs.main_tag_id;
+                        }
                     });
                 }
 
 
-                //location.href = 'createStore_2.html';
             });
         },
 
@@ -161,7 +173,7 @@
                 var index = util.map(this.data.catList, function(item){return item.pk_id;});
                 index = util.indexOf(index, this.data.biz.fk_main_tag_id);
                 var tmpData = this.data.catList[index];
-                this.jq.cat.setOnlyValue(tmpData.name);
+                this.jq.cat.setValue(index);
 
                 this.switchCategory(tmpData, function(){
                     util.each(self.data.biz.tags, function(one){
@@ -216,20 +228,6 @@
                 '<div class="hw-comp-MybizStoreInfoFormStep2">',
                     '<div class="js_dybox"></div>',
 
-                    //
-                    //'<div class="hw-dym">',
-                    //    '<span>是否有停车位</span>',
-                    //    '<label><input type="radio" class="radio-inline" name="ra_bbb" />是</label>',
-                    //    '<label><input type="radio" class="radio-inline" name="ra_bbb" />否</label>',
-                    //'</div>',
-                    //
-                    //'<div class="hw-dym">',
-                    //    '<span>是否提供Wi-Fi</span>',
-                    //    '<label><input type="radio" class="radio-inline" name="ra_ccc" />是</label>',
-                    //    '<label><input type="radio" class="radio-inline" name="ra_ccc" />否</label>',
-                    //'</div>',
-
-
 
                     '<div class="js_link" role="BaseInput" data-label="店铺网址" placeholder="e.g. www.xiaofeiyang.com"></div>',
                     '<div class="js_wx" role="BaseInput" data-label="微信号" placeholder="e.g. xiaofeiyang"></div>',
@@ -240,7 +238,7 @@
                         '<textarea style="height: 150px;" class="form-control hw-area js_desc"></textarea>',
                     '</div>',
 
-                    '<a class="hw-btn hw-light-btn" style="border: none;font-weight: 400;" href="createStore.html">返回上一步</a>',
+                    '<a class="hw-btn hw-light-btn" style="border: none;font-weight: 400;" href="{{backLink}}">返回上一步</a>',
                     '<button style="float: right;" class="js_btn hw-btn hw-blue-btn">下一步</button>',
 
                 '<div>'
@@ -263,7 +261,12 @@
         initEnd : function(){
             this.renderDynamicBox();
 
-
+            if(this.type === 'edit'){
+                var c = this.getElemObj();
+                c.net.setValue(this.data.biz.website);
+                c.wechat.setValue(this.data.biz.wechat);
+                c.desc.val(this.data.biz.briefintro);
+            }
         },
 
         getFormValue : function(){
@@ -271,6 +274,7 @@
             return {
                 bizTmpId : this.data.tmpBizId,
                 wechat : jq.wechat.getValue(),
+                website : jq.net.getValue(),
                 description : jq.desc.val()
             };
         },
@@ -281,37 +285,90 @@
                 var data = self.getFormValue();
                 data.dynamic = self.getDynamicData();
 
-                KG.request.createStoreByStep2(data, function(flag, rs){
-                    if(flag){
-                        console.log(rs);
-                        location.href = 'createStore_3.html?tmp_biz_id='+rs+'&main_tag_id='+KG.data.get('mainTagId');
-                    }
-                });
+                if(self.type === 'create'){
+                    KG.request.createStoreByStep2(data, function(flag, rs){
+                        if(flag){
+                            console.log(rs);
+                            location.href = 'createStore_3.html?tmp_biz_id='+rs+'&main_tag_id='+KG.data.get('mainTagId');
+                        }
+                    });
+                }
+                else if(self.type === 'edit'){
+                    data.bizId = self.id;
+                    delete data.bizTmpId;
+                    KG.request.saveStoreByStep2(data, function(flag, rs){
+                        if(flag){
+                            console.log(rs);
+                        }
+                    });
+                }
+
+
 
             });
         },
 
-        getData : function(box, data, next){
-            var tmpId = KG.data.get('tmpBizId'),
-                tagId = KG.data.get('mainTagId');
+        initStart : function(){
+            this.type = 'create';
+            if(KG.data.get('id')){
+                this.id = KG.data.get('id');
+                this.type = 'edit';
+            }
+        },
 
-            KG.request.getTmpStoreDynamicField({
-                mainTagId : tagId
-            }, function(flag, rs){
-                if(flag){
-                    console.log(rs);
-                    next({
-                        tmpBizId : tmpId,
-                        dynamic : rs
+        getData : function(box, data, next){
+            var self = this;
+
+            var backLink = '';
+            if(this.type === 'create'){
+                var tmpId = KG.data.get('tmpBizId'),
+                    tagId = KG.data.get('mainTagId');
+
+                backLink = 'createStore.html?tmp_biz_id='+tmpId+'&main_tag_id='+tagId;
+                KG.request.getTmpStoreDynamicField({
+                    mainTagId : tagId
+                }, function(flag, rs){
+                    if(flag){
+                        console.log(rs);
+                        next({
+                            tmpBizId : tmpId,
+                            backLink : backLink,
+                            dynamic : rs
+                        });
+                    }
+                    else{
+                        next({
+                            tmpBizId : tmpId,
+                            backLink : backLink,
+                            dynamic : []
+                        });
+                    }
+                });
+            }
+            else if(this.type === 'edit'){
+                backLink = 'editStore.html?id='+self.id;
+                var fn1 = function(){
+                    return KG.request.getBizDetailById({
+                        bizId : self.id
                     });
-                }
-                else{
-                    next({
-                        tmpBizId : tmpId,
-                        dynamic : []
+                };
+                var fn2 = function(){
+                    return KG.request.getStoreDynamicField({
+                        bizId : self.id
                     });
-                }
-            });
+                };
+
+                KG.request.defer([fn1, fn2], function(bizInfo, dy){
+                    console.log(bizInfo, dy);
+
+                    next({
+                        dynamic : dy,
+                        backLink : backLink,
+                        biz : bizInfo
+                    });
+                });
+            }
+
         },
 
         initVar : function(){
@@ -372,14 +429,20 @@
                             return this.getValue();
                         }
                     };
+
+                    if(item.value){
+                        this.dynamicObj[item.field_name].obj.setValue(item.value);
+                    }
                     break;
                 case '6':
                     rs = '<div class="js_role" role_type="'+item.field_type+'" data-label="'+item.field_name+'" role="BaseSelectInput" init-self="true"></div>';
                     box.append(rs);
+
+                    var list = _.map(item.default_option, function(one){
+                        return one.m_value;
+                    });
                     var tmpO = KG.component.initWithElement(box.find('[role_type]'), {
-                        list : _.map(item.default_option, function(one){
-                            return one.m_value;
-                        }),
+                        list : list,
                         clickCallback : function(x){
                             console.log(x)
                         }
@@ -391,6 +454,14 @@
                             return this.getValue();
                         }
                     };
+
+                    if(item.value){
+                        var index = _.findIndex(list, function(one){
+                            return item.value === one;
+                        });
+                        this.dynamicObj[item.field_name].obj.setValue(index);
+                    }
+
                     break;
                 case '5':
                     rs = '<div class="hw-dym" param="'+item.field_id+'"><span>'+item.field_name+'</span>';
