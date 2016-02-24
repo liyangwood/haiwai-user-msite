@@ -196,7 +196,7 @@
                     '<label class="require" for="lb_ccc">文章正文</label>',
                     '<textarea class="form-control" id="lb_ccc"></textarea>',
                 '</div>',
-                '<a href="javascript:void(0)" class="js_btn hw-btn hw-blue-btn">发表</a>'
+                '<a href="javascript:void(0)" class="js_btn hw-btn hw-blue-btn">{{btnText}}</a>'
             ].join('');
         },
 
@@ -215,6 +215,8 @@
             var title = this.prop.title,
                 type = this.prop.type;
 
+            var id = KG.data.get('id');
+
 
             var getBizList = function(){
                 return KG.request.getBizList({});
@@ -227,15 +229,21 @@
 
             if(type === 'edit'){
                 list.push(function(){
-                    return KG.request.getBizCouponList({});
+                    return KG.request.getStoreArticleDetail({
+                        id : id
+                    });
                 });
             }
 
-            KG.request.defer(list, function(bizList, catList){
+            KG.request.defer(list, function(bizList, catList, articleData){
                 callback({
+                    id : id,
                     pageTitle : title,
                     bizList : bizList,
-                    catList : catList
+                    catList : catList,
+                    articleData : articleData,
+
+                    btnText : type==='edit'?'保存':'发表'
                 });
             });
 
@@ -257,11 +265,24 @@
                 var data = self.getFormValue();
                 if(!self.validate(data)) return false;
 
-                KG.request.createStoreArticle(data, function(flag, rs){
-                    if(flag){
-                        console.log(rs);
-                    }
-                });
+                if(self.prop.type === 'edit'){
+                    data.id = self.data.id;
+                    KG.request.createStoreArticle(data, function(flag, rs){
+                        if(flag){
+                            console.log(rs);
+                            util.dialog.alert('保存成功');
+                        }
+                    });
+                }
+                else{
+                    KG.request.createStoreArticle(data, function(flag, rs){
+                        if(flag){
+                            console.log(rs);
+                            location.href = 'article.html'
+                        }
+                    });
+                }
+
             });
 
 
@@ -309,6 +330,25 @@
                     return '{{item.name}}';
                 }
             });
+
+            if(this.prop.type === 'edit'){
+                this.setFormValue(this.data.articleData);
+            }
+        },
+        setFormValue : function(data){
+            console.log(data);
+            var biz = KG.component.getObj(this.elem.find('.js_biz')),
+                cat = KG.component.getObj(this.elem.find('.js_cat'));
+            biz.setValue(_.findIndex(this.data.bizList, function(one){
+                return one.fk_entityID === data.entityID;
+            }));
+
+            cat.setValue(_.findIndex(this.data.catList, function(one){
+                return one.category_id === data.category_id;
+            }));
+
+            this.elem.find('.js_title').val(data.title);
+            this.ck.setData(data.msgbody);
         }
     });
 

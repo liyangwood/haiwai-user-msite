@@ -65,7 +65,15 @@
             }
         },
         stopStore : function(){
-            alert(this.data.bizId);
+            //alert(this.data.bizId);
+            KG.request.changeStoreOpenStatus({
+                bizId : this.data.bizId,
+                status : false
+            }, function(flag, rs){
+                if(flag){
+                    console.log(rs);
+                }
+            });
         },
         deleteStore : function(){
             alert(this.data.bizId);

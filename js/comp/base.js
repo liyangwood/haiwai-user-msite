@@ -243,13 +243,28 @@
                 '</div>'
             ].join('');
         },
-        getData : function(box, data, callback){
+        getData : function(box, data, next){
             KG.request.getBizList({}, function(flag, rs){
+                var list = []
                 if(flag){
-                    callback({
-                        list : rs
-                    });
+                    list = rs;
                 }
+
+                var runningList = [],
+                    stopList = [];
+                util.each(list, function(item){
+                    if(item.visible === '1'){
+                        runningList.push(item);
+                    }
+                    else{
+                        stopList.push(item);
+                    }
+                });
+                next({
+                    list : runningList
+                });
+
+                util.message.publish('kg-mybiz-stop-list', stopList);
             });
         },
         initEvent : function(){
@@ -288,13 +303,9 @@
                 '</div>'
             ].join('');
         },
-        getData : function(box, data, callback){
-            KG.request.getBizList({}, function(flag, rs){
-                if(flag){
-                    callback({
-                        list : rs
-                    });
-                }
+        getData : function(box, data, next){
+            util.message.register('kg-mybiz-stop-list', function(e, list){
+                next(list || []);
             });
         },
         initEvent : function(){
@@ -466,13 +477,18 @@
                     '<div class="hw-comp-store-list panel-body">',
                     '{{each list as item}}',
                     '<div class="hw-each">',
+                    '{{if item.logo}}',
                     '<img class="hw-img" src="{{item.logo | absImage}}" />',
-                    '<h4 style="margin-top:20px;">{{item.title}}</h4>',
-                    '<p style="color: #9b9b9b;font-size: 14px;margin-top:20px;">发表于{{item.startTime | formatDate}}</p>',
+                    '{{else}}',
+                    '<img class="hw-img" src="',KG.user.get().defaultImage,'" />',
+                    '{{/if}}',
+                    '<a class="hw-link" target="_blank" style="margin-top:20px;"' +
+                    ' href="{{item.link}}">{{item.title}}</a>',
+                    '<p style="color: #9b9b9b;font-size: 14px;margin-top:20px;">发表于{{item.dateline | formatDate}}</p>',
 
                     '<div class="r">',
                         '<a class="hw-a" href="editArticle.html?id={{item.id}}">编辑</a>',
-                        '<a class="hw-a" href="">分享</a>',
+                        '<a class="hw-a js_share" param="{{item.link}}" href="javascript:void(0)">分享</a>',
                     '</div>',
                     '</div>',
                     '{{/each}}',
@@ -485,9 +501,20 @@
                 console.log(rs);
                 if(flag){
                     callback({
-                        list : rs.article
+                        list : _.map(rs.article, function(one){
+                            one.link = util.link.article(one.id);
+                            return one;
+                        })
                     });
                 }
+            });
+        },
+
+        initEvent : function(){
+            this.elem.on('click', '.js_share', function(e){
+                var o = $(this),
+                    link = o.attr('param');
+                util.dialog.showQrCode(link);
             });
         }
     });

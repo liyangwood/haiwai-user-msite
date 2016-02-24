@@ -198,7 +198,7 @@ KG.request = {
     uploadUserImage : function(opts, success, error){
         var data = {
             func : 'passport',
-            //method : 'post',
+            method : 'post',
             act : 'upload',
             'uploadfield[]' : opts.image
         };
@@ -616,6 +616,10 @@ KG.request = {
             fk_entityID : opts.bizId
         };
 
+        if(opts.id){
+            data.id = opts.id;
+        }
+
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
     },
@@ -627,6 +631,33 @@ KG.request = {
         var data = {
             func : 'event',
             act : 'del',
+            id : opts.id
+        };
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=closed&bizid=2025591&visible=-1
+    * */
+    changeStoreOpenStatus : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'closed',
+            bizid : opts.bizId,
+            visible : opts.status ? 1 : -1
+        };
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=article&act=view&userid=10051&id=1370&token=
+    * */
+    getStoreArticleDetail : function(opts, success, error){
+        var data = {
+            func : 'article',
+            act : 'view',
             id : opts.id
         };
         data = util.addUserIdToRequestData(data);

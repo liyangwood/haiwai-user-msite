@@ -323,19 +323,16 @@
         },
         alert : function(msg){
             util.dialog.show({
-                body : msg,
-                NoText : '确定',
-                YesText : false
+                foot : false,
+                title : msg,
+                body : '<p></p>',
+                'class' : 'hw-dialog-alert'
             });
         }
     };
 
     util.alert = function(msg){
-        util.dialog.show({
-            body : msg,
-            NoText : '确定',
-            YesText : false
-        });
+        util.dialog.alert(msg);
     };
 
 
@@ -350,6 +347,12 @@
             var regex = new RegExp("[\\?&]" + key + "=([^&#]*)"),
                 results = regex.exec(url);
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    };
+
+    util.link = {
+        article : function(id){
+            return KG.config.SiteRoot+'/lifetools/?act=view&id='+id;
         }
     };
 

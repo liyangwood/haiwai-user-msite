@@ -594,7 +594,7 @@ a:hover, a:link {
     position: absolute;
     top: 0;
     left: 0; }
-  .hw-comp-store-list .hw-each h4 {
+  .hw-comp-store-list .hw-each .hw-link {
     font-size: 18px;
     color: #000;
     margin-top: 14px; }
