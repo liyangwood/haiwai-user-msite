@@ -257,7 +257,7 @@ KG.request = {
         };
 
 
-        util.addUserIdToRequestData(data);
+        data = util.addUserIdToRequestData(data);
 
         return this.ajax(data, success, error);
     },
@@ -273,7 +273,22 @@ KG.request = {
             type : 'biz',
             id : opts.id
         };
-        util.addUserIdToRequestData(data);
+        data = util.addUserIdToRequestData(data);
+
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=delete_bookmark&userid=10051&type=classifiedinfo&id=1
+    * */
+    deleteMyFavCoupon : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'delete_bookmark',
+            type : 'classifiedinfo',
+            id : opts.id
+        };
+        data = util.addUserIdToRequestData(data);
 
         return this.ajax(data, success, error);
     },
@@ -524,6 +539,97 @@ KG.request = {
         };
         console.log(data);
 
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=event&act=post&userid=10051&subject=%E6%B5%8B%E8%AF%95%E5%BA%97%E9%93%BA%E6%B4%BB%E5%8A%A8&description=%E6%B5%8B%E8%AF%95%E5%BA%97%E9%93%BA%E6%B4%BB%E5%8A%A8%E6%8F%8F%E8%BF%B0&fk_entityID=2025265,2024981&start_date=2015/10/30&end_date=2015/12/30&id=129400&uploadfield[]=data:image/png;base64,iVBORw0KGgoAAAAN&uploadfield[]=data:image/png;base64,iVBORw0KGgoAAAAN&token=
+    *
+    * */
+    createStoreCouponEvent : function(opts, success, error){
+        var data = {
+            func : 'event',
+            act : 'post',
+            method : 'post',
+            subject : opts.subject,
+            description : opts.description,
+            fk_entityID : opts.biz,
+            start_date : opts.startDate,
+            end_date : opts.endDate
+        };
+
+        util.each(opts.imageList||[], function(one, i){
+            data['uploadfield['+i+']'] = one;
+        });
+
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=get_article_event&userid=10051&bizid=2025249&token=&lastid_event=&lastid_article=
+    * */
+    getStoreArticleAndCouponList : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'get_article_event',
+            bizid : opts.bizId
+        };
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=passport&act=get_article_event&userid=10051&token=&lastid_event=&lastid_article=
+    * */
+    getUserArticleAndCouponList : function(opts, success, error){
+        var data = {
+            func : 'passport',
+            act : 'get_article_event'
+        };
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=article&act=tags
+    * */
+    getArticleCategoryList : function(opts, success, error){
+        var data = {
+            func : 'article',
+            act : 'tags'
+        };
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=article&act=post&userid=10051&category_id=6&title=%E6%B5%8B%E8%AF%95%E5%8F%91%E8%A1%A8%E6%96%87%E7%AB%A0%E6%A0%87%E9%A2%98&msgbody=%E6%B5%8B%E8%AF%95%E5%8F%91%E8%A1%A8%E6%96%87%E7%AB%A0%E5%86%85%E5%AE%B9&fk_entityID=2025249&uploadfield[]=data:image/png;base64,iVBORw0KGgoAAAAN&uploadfield[]=data:image/png;base64,iVBORw0KGgoAAAAN&token=
+    * */
+    createStoreArticle : function(opts, success, error){
+        var data = {
+            func : 'article',
+            act : 'post',
+            method : 'post',
+            category_id : opts.category,
+            title : opts.title,
+            msgbody : (opts.msgbody),
+            fk_entityID : opts.bizId
+        };
+
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=event&act=del&userid=10051&id=129400&token=
+    * */
+    deleteCouponById : function(opts, success, error){
+        var data = {
+            func : 'event',
+            act : 'del',
+            id : opts.id
+        };
+        data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
     }
 };

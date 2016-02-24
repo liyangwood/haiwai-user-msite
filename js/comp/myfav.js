@@ -181,13 +181,14 @@
                 dealList = [];
 
             KG.request.getMyfavStoreList({}, function(flag, rs){
-                if(!flag){
-                    next({});
+                console.log(flag, rs);
+                if(flag){
+                    list = rs;
                 }
 
-                list = rs;
 
-                util.each(rs, function(item){
+
+                util.each(list, function(item){
                     if(item.visible.toString() === '-1'){
                         item.bizType = 'pause';
                         pauseList.push(item);

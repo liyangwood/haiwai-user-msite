@@ -131,7 +131,7 @@
             ].join('');
         },
         initVar : function(){
-            this.index = 0;
+            this.index = -1;
         },
         getData : function(box, data, next){
             //点击drop的回调
@@ -167,6 +167,9 @@
 
         },
         getValue : function(){
+            if(this.index < 0){
+                return {};
+            }
             return this.data.list[this.index];
         },
         setValue : function(index){
@@ -183,16 +186,17 @@
             return [
                 '{{if pageTitle}}<h3>{{pageTitle}}<h3>{{/if}}',
                 '<div placeholder="请选择店铺" class="js_biz" data-label="将文章发布到" data-require="true" role="BaseSelectInput" init-self="true"></div>',
+                '<div placeholder="请选择分类" class="js_cat" data-label="文章类别" data-require="true" role="BaseSelectInput" init-self="true"></div>',
                 '<div class="form-group">',
                     '<label class="require" for="lb_bbb">文章标题</label>',
-                    '<input type="email" class="form-control" id="lb_bbb" placeholder="e.g. 海底捞成功的秘密">',
+                    '<input type="text" class="form-control js_title" id="lb_bbb" placeholder="e.g. 海底捞成功的秘密">',
                 '</div>',
 
                 '<div class="form-group">',
                     '<label class="require" for="lb_ccc">文章正文</label>',
                     '<textarea class="form-control" id="lb_ccc"></textarea>',
                 '</div>',
-                '<a href="javascript:void(0)" class="hw-btn hw-blue-btn">发表</a>'
+                '<a href="javascript:void(0)" class="js_btn hw-btn hw-blue-btn">发表</a>'
             ].join('');
         },
 
@@ -215,8 +219,11 @@
             var getBizList = function(){
                 return KG.request.getBizList({});
             };
+            var getCateList = function(){
+                return KG.request.getArticleCategoryList({});
+            };
 
-            var list = [getBizList];
+            var list = [getBizList, getCateList];
 
             if(type === 'edit'){
                 list.push(function(){
@@ -224,31 +231,82 @@
                 });
             }
 
-            KG.request.defer(list, function(bizList){
+            KG.request.defer(list, function(bizList, catList){
                 callback({
                     pageTitle : title,
-                    bizList : bizList
+                    bizList : bizList,
+                    catList : catList
                 });
             });
 
 
         },
 
+        initVar : function(){
+            this.biz = null;
+            this.cat = null;
+        },
+
+        validate : function(data){
+            return true;
+        },
+
         initEvent : function(){
+            var self = this;
+            this.elem.find('.js_btn').click(function(){
+                var data = self.getFormValue();
+                if(!self.validate(data)) return false;
+
+                KG.request.createStoreArticle(data, function(flag, rs){
+                    if(flag){
+                        console.log(rs);
+                    }
+                });
+            });
+
 
         },
 
+        getElemObj : function(){
+            return {
+
+            };
+        },
+
+        getFormValue : function(){
+            return {
+                category : this.cat,
+                bizId : this.biz,
+                title : this.elem.find('.js_title').val(),
+                msgbody : this.ck.getData()
+            };
+        },
+
         initEnd : function(){
-            CKEDITOR.replace('lb_ccc');
+            var self = this;
+            this.ck = CKEDITOR.replace('lb_ccc');
+            console.log(this.ck);
 
             var biz = this.elem.find('.js_biz');
             KG.component.initWithElement(biz, {
                 list : this.data.bizList,
                 clickCallback : function(rs){
                     console.log(rs);
+                    self.biz = rs.entityID;
                 },
                 getEachHtml : function(){
                     return '{{item.name_cn}}, {{item | storeFullAddress}}';
+                }
+            });
+
+            KG.component.initWithElement(this.elem.find('.js_cat'), {
+                list : this.data.catList,
+                clickCallback : function(rs){
+                    console.log(rs);
+                    self.cat = rs.category_id;
+                },
+                getEachHtml : function(){
+                    return '{{item.name}}';
                 }
             });
         }
@@ -407,20 +465,20 @@
 
                 '<div class="form-group">',
                     '<label style="display: block;">优惠开始时间</label>',
-                    '<input style="width: 410px;display: inline-block" type="text" class="form-control js_startDate" readonly="true" placeholder="2015-10-10">',
-                    '<input style="width: 140px;display: inline-block;margin-left: 50px;" type="text" class="form-control js_startTime" placeholder="8:30AM">',
+                    '<input style="width: 410px;display: inline-block" type="text" class="form-control js_startDate" readonly="true" placeholder="10/20/2015">',
+                    //'<input style="width: 140px;display: inline-block;margin-left: 50px;" type="text" class="form-control js_startTime" placeholder="8:30AM">',
                 '</div>',
 
                 '<div class="form-group">',
                     '<label style="display: block;">优惠结束时间</label>',
-                    '<input style="width: 410px;display: inline-block" type="text" class="form-control js_endDate" readonly="true" placeholder="2015-10-10">',
-                    '<input style="width: 140px;display: inline-block;margin-left: 50px;" type="text" class="form-control js_endTime" placeholder="8:30AM">',
+                    '<input style="width: 410px;display: inline-block" type="text" class="form-control js_endDate" readonly="true" placeholder="10/20/2016">',
+                    //'<input style="width: 140px;display: inline-block;margin-left: 50px;" type="text" class="form-control js_endTime" placeholder="8:30AM">',
                 '</div>',
 
 
                 '<div class="form-group">',
                     '<label class="require" for="lb_ccc">优惠描述</label>',
-                    '<textarea style="height: 170px;" placeholder="优惠宣传、细节、方式、如何报名等信息提升参与度" class="form-control" id="lb_ccc"></textarea>',
+                    '<textarea style="height: 170px;" placeholder="优惠宣传、细节、方式、如何报名等信息提升参与度" class="js_desc form-control" id="lb_ccc"></textarea>',
                 '</div>',
 
                 '<div class="form-group">',
@@ -428,7 +486,7 @@
                     '<div class="js_image" role="MybizUploadCouponImage" init-self="true"></div>',
                 '</div>',
 
-                '<a href="javascript:void(0)" class="hw-btn hw-blue-btn">{{btnText}}</a>'
+                '<a href="javascript:void(0)" class="hw-btn hw-blue-btn js_btn">{{btnText}}</a>'
             ].join('');
         },
 
@@ -437,7 +495,10 @@
                 startDate : this.elem.find('.js_startDate'),
                 startTime : this.elem.find('.js_startTime'),
                 endDate : this.elem.find('.js_endDate'),
-                endTime : this.elem.find('.js_endTime')
+                endTime : this.elem.find('.js_endTime'),
+                desc : this.elem.find('.js_desc'),
+
+                btn : this.elem.find('.js_btn')
             };
         },
 
@@ -450,6 +511,32 @@
                     defaultValue : 'create'
                 }
             };
+        },
+
+        getElemObj : function(){
+            return {
+                title : KG.component.getObj(this.elem.find('.js_title')),
+                image : KG.component.getObj(this.elem.find('.js_image'))
+            };
+        },
+
+        getFormValue : function(){
+            var c = this.getElemObj();
+            return {
+                biz : this.jq.biz.getValue().entityID,
+                subject : c.title.getValue(),
+                description : this.jq.desc.val(),
+                startDate : this.jq.startDate.val(),
+                endDate : this.jq.endDate.val(),
+                imageList : c.image.getValue()
+            };
+        },
+
+        validate : function(data){
+            data = data || this.getFormValue();
+
+            //TODO validate
+            return true;
         },
 
         getData : function(box, data, callback){
@@ -481,21 +568,41 @@
         },
 
         initEvent : function(){
+            var self = this;
             this.jq.startDate.datepicker({
-                format: "yyyy-mm-dd",
+                format: "mm/dd/yyyy",
                 autoclose: true
             });
 
             this.jq.endDate.datepicker({
-                format: "yyyy-mm-dd",
+                format: "mm/dd/yyyy",
                 autoclose: true
+            });
+
+
+            this.jq.btn.click(function(){
+                var data = self.getFormValue();
+                console.log(data);
+                if(!self.validate(data)){
+                    return false;
+                }
+
+                if(self.prop.type === 'create'){
+                    //create btn
+                    KG.request.createStoreCouponEvent(data, function(flag, rs){
+                        if(flag){
+                            console.log(rs);
+                            location.href = 'http://www.haiwai.com/classifiedinfo/view.php?id='+rs;
+                        }
+                    });
+                }
             });
         },
 
         initEnd : function(){
 
             var biz = this.elem.find('.js_biz');
-            KG.component.initWithElement(biz, {
+            this.jq.biz = KG.component.initWithElement(biz, {
                 list : this.data.bizList,
                 clickCallback : function(rs){
                     console.log(rs);
@@ -506,7 +613,7 @@
             });
 
             this.image = KG.component.initWithElement(this.elem.find('.js_image'), {
-                list : this.data.imageList || [KG.user.get('image'), KG.user.get('image')]
+                list : this.data.imageList || []
             });
         }
     });

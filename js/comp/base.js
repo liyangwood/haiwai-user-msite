@@ -335,11 +335,11 @@
                 '{{each list as item}}',
                 '<div class="hw-each">',
                 '<img class="hw-img" src="{{item.logo | absImage}}" />',
-                '<h4 style="margin-top: 20px;">{{item.title}}</h4>',
+                '<h4 style="margin-top: 20px;">{{item.subject}}</h4>',
                 '<p style="color: #9b9b9b;font-size: 14px;margin-top:15px;">{{item.count}}人已经领取</p>',
 
                 '<div class="r">',
-                '<a class="hw-a" href="editCoupon.html?id={{item.id}}">管理优惠</a>',
+                '<a class="hw-a" href="editCoupon.html?id={{item.fk_entityID}}">管理优惠</a>',
                 '<a class="hw-a js_share" href="">分享</a>',
                 '</div>',
                 '</div>',
@@ -347,11 +347,17 @@
                 '</div>'
             ].join('');
         },
-        getData : function(box, data, callback){
-            KG.request.getBizCouponList({}, function(flag, rs){
+        getData : function(box, data, next){
+            KG.request.getUserArticleAndCouponList({}, function(flag, rs){
                 if(flag){
-                    callback({
-                        list : rs
+                    var list = [];
+                    util.each(rs.event, function(item){
+                        if(item.active_status != '0'){
+                            list.push(item);
+                        }
+                    });
+                    next({
+                        list : list
                     });
                 }
             });
@@ -366,25 +372,60 @@
                 '{{each list as item}}',
                 '<div class="hw-each">',
                 '<img class="hw-img" src="{{item.logo | absImage}}" />',
-                '<h4 style="margin-top: 10px;">{{item.title}}</h4>',
+                '<h4 style="margin-top: 10px;height:20px;">{{item.subject}}</h4>',
                 '<p style="color: #9b9b9b;font-size: 14px;margin-top:10px;">{{item.count}}人已经领取</p>',
-                '<p style="color: #9b9b9b;font-size: 14px;margin-top:5px;">{{item.startTime | formatDate}} 至 {{item.endTime | formatDate}}</p>',
+                '<p style="color: #9b9b9b;font-size: 14px;margin-top:5px;">{{item.startTime}} 至 {{item.endTime}}</p>',
 
                 '<div class="r">',
-                '<a class="hw-a" style="margin-top: 30px;" href="">删除</a>',
+                '<a class="hw-a js_del" param="{{item.pk_id}}" style="margin-top: 30px;"' +
+                ' href="javascript:void(0)">删除</a>',
                 '</div>',
                 '</div>',
                 '{{/each}}',
                 '</div>'
             ].join('');
         },
-        getData : function(box, data, callback){
-            KG.request.getBizCouponList({}, function(flag, rs){
+        getData : function(box, data, next){
+            KG.request.getUserArticleAndCouponList({}, function(flag, rs){
                 if(flag){
-                    callback({
-                        list : rs
+                    var list = [];
+                    util.each(rs.event, function(item){
+                        if(item.active_status == '0'){
+                            item.startTime = item.top_start_time>10?moment(item.top_start_time*1000).format('YYYY-MM-DD'):'';
+                            item.endTime = item.top_end_time>10?moment(item.top_end_time*1000).format('YYYY-MM-DD'):'';
+
+                            list.push(item);
+                        }
+                    });
+                    next({
+                        list : list
                     });
                 }
+            });
+        },
+        initEvent : function(){
+            this.elem.on('click', '.js_del', function(e){
+                var o = $(this);
+                var id = o.attr('param');
+                util.dialog.confirm({
+                    msg : '确认删除此店铺么？',
+                    YesFn : function(callback){
+                        KG.request.deleteCouponById({
+                            id : id
+                        }, function(flag, rs){
+                            callback();
+
+                            if(flag){
+                                o.closest('.hw-each').fadeOut(400, function(){
+                                    $(this).remove();
+                                });
+                            }
+                            else{
+                                alert(rs);
+                            }
+                        });
+                    }
+                });
             });
         }
     });
@@ -440,10 +481,11 @@
             ].join('');
         },
         getData : function(box, data, callback){
-            KG.request.getBizCouponList({}, function(flag, rs){
+            KG.request.getUserArticleAndCouponList({}, function(flag, rs){
+                console.log(rs);
                 if(flag){
                     callback({
-                        list : rs
+                        list : rs.article
                     });
                 }
             });

@@ -119,7 +119,12 @@
                     YesFn : function(close){
                         close();
 
-                        alert(id);
+                        KG.request.deleteMyFavCoupon({id : id}, function(flag, rs){
+                            console.log(flag, rs);
+                            if(flag){
+                                location.reload(true);
+                            }
+                        });
                     }
                 });
             });

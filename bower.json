@@ -16,6 +16,7 @@
   "dependencies": {
     "underscore": "~1.8.3",
     "bootstrap": "~3.3.5",
-    "components-font-awesome": "~4.5.0"
+    "components-font-awesome": "~4.5.0",
+    "moment": "~2.11.2"
   }
 }
