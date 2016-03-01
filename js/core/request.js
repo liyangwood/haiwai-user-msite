@@ -509,6 +509,7 @@ KG.request = {
         return this.ajax(data, success, error);
     },
 
+
     /*
     * func=biz&act=get_dynamic_fields&main_tagid=69
     *

@@ -756,26 +756,65 @@
             ].join('');
         },
         getData : function(box, data, next){
-            var tmpId = KG.data.get('tmpBizId'),
-                tagId = KG.data.get('mainTagId');
-            KG.request.getStoreBigBackgroundPic({
-                mainTagId : tagId
-            }, function(flag, rs){
-                var bigBgImageList;
-                if(flag){
-                    bigBgImageList = rs;
-                }
-                else{
-                    bigBgImageList = null;
-                }
 
-                next({
-                    bigBgImageList : bigBgImageList,
-                    tmpId : tmpId,
-                    tagId : tagId
+            if(this.type === 'create'){
+                var tmpId = KG.data.get('tmpBizId'),
+                    tagId = KG.data.get('mainTagId');
+                KG.request.getStoreBigBackgroundPic({
+                    mainTagId : tagId
+                }, function(flag, rs){
+                    var bigBgImageList;
+                    if(flag){
+                        bigBgImageList = rs;
+                    }
+                    else{
+                        bigBgImageList = null;
+                    }
+
+                    next({
+                        bigBgImageList : bigBgImageList,
+                        tmpId : tmpId,
+                        tagId : tagId
+                    });
                 });
-            });
+            }
+            else{
+                var fn = [];
+                KG.request.getBizDetailById({
+                    bizId : KG.data.get('id')
+                }, function(flag, json){
 
+                    KG.request.getStoreBigBackgroundPic({
+                        mainTagId : json.fk_main_tag_id
+                    }, function(flag, rs){
+                        var bigBgImageList;
+                        if(flag){
+                            bigBgImageList = rs;
+                        }
+                        else{
+                            bigBgImageList = null;
+                        }
+
+                        next({
+                            bigBgImageList : bigBgImageList,
+                            bizId : KG.data.get('id'),
+                            tagId : tagId,
+                            biz : json
+                        });
+                    });
+                });
+
+            }
+
+
+        },
+
+        initStart : function(){
+            this.type = 'create';
+            if(KG.data.get('id')){
+                this.id = KG.data.get('id');
+                this.type = 'edit';
+            }
         },
 
         setJqVar : function(){
