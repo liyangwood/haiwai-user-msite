@@ -77,6 +77,17 @@
             this.elem.on('click', '.js_toReg', this.setRegBox.bind(this));
             this.elem.on('click', '.js_toLogin', this.setLoginBox.bind(this));
 
+            this.elem.on('click', '.js_login', function(e){
+                var data = {
+                    username  : self.jq.box.find('.js_email').val(),
+                    password : self.jq.box.find('.js_pwd').val()
+                };
+
+                KG.user.login(data, function(flag, rs){
+
+                });
+            });
+
         },
 
         initEnd : function(){

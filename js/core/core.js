@@ -15,8 +15,8 @@
     KG.config = {
         root : '/haiwai-user-msite',
         SiteRoot : site,
-        ApiRoot : site+'/service/api/'
-
+        ApiRoot : site+'/service/api/',
+        MD5_KEY : 'm.y^w8oP01K#gs'
     };
 
     KG.Const = {
@@ -38,6 +38,22 @@
                 return user[key];
             }
             return user;
+        },
+
+        login : function(opts, success, error){
+            var successFN = function(flag, rs){
+                if(rs.pk_id){
+                    user.userid = rs.pk_id;
+                    user.token = rs.token;
+                    user.email = rs.email;
+
+                    KG.request.getUserDetailInfo({}, function(f, json){
+                        console.log(json);
+                    });
+                }
+            };
+
+            KG.request.login(opts, successFN, error);
         }
     };
 

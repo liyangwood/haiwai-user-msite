@@ -726,5 +726,20 @@ KG.request = {
         };
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=passport&act=login&format=jsonp
+    * */
+    login : function(opts, success, error){
+        var data = {
+            func : 'passport',
+            act : 'login',
+            method : 'post',
+            email : opts.username,
+            loginCode : md5(opts.username+opts.password+KG.config.MD5_KEY)
+        };
+
+        return this.ajax(data, success, error);
     }
 };
