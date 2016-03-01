@@ -608,6 +608,10 @@ KG.request = {
             data['uploadfield['+i+']'] = one;
         });
 
+        if(opts.id){
+            data.id = opts.id;
+        }
+
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
     },
@@ -703,6 +707,19 @@ KG.request = {
     getStoreArticleDetail : function(opts, success, error){
         var data = {
             func : 'article',
+            act : 'view',
+            id : opts.id
+        };
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=event&act=view&userid=10051&id=129400&token=
+    * */
+    getCouponDetail : function(opts, success, error){
+        var data = {
+            func : 'event',
             act : 'view',
             id : opts.id
         };

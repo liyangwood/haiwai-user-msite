@@ -592,15 +592,16 @@
 
             if(type === 'edit'){
                 list.push(function(){
-                    return KG.request.getBizCouponList({});
+                    return KG.request.getCouponDetail({id : KG.data.get('id')});
                 });
             }
 
-            KG.request.defer(list, function(bizList){
+            KG.request.defer(list, function(bizList, couponData){
                 callback({
                     pageTitle : title,
                     bizList : bizList,
-                    btnText : type==='edit'?'保存':'创建'
+                    btnText : type==='edit'?'保存':'创建',
+                    couponData : couponData || null
                 });
             });
 
@@ -627,7 +628,11 @@
                     return false;
                 }
 
-                if(self.prop.type === 'create'){
+                if(self.prop.type === 'edit'){
+                    data.id = KG.data.get('id');
+                }
+
+                if(true){
                     //create btn
                     KG.request.createStoreCouponEvent(data, function(flag, rs){
                         if(flag){
@@ -655,6 +660,29 @@
             this.image = KG.component.initWithElement(this.elem.find('.js_image'), {
                 list : this.data.imageList || []
             });
+
+            if(this.data.couponData){
+                this.setFormValue(this.data.couponData);
+            }
+        },
+        setFormValue : function(data){
+            var self = this;
+            console.log(data);
+            var c = this.getElemObj();
+            this.jq.biz.setValue(_.findIndex(this.data.bizList, function(one){
+                return one.fk_entityID === data.entityID;
+            }));
+            c.title.setValue(data.subject);
+            this.jq.desc.val(data.description);
+            this.jq.startDate.val(moment(data.top_start_time*1000).format('MM/DD/YYYY'));
+            this.jq.endDate.val(moment(data.top_end_time*1000).format('MM/DD/YYYY'));
+
+            if(data.files.length > 0){
+                _.each(data.files, function(item){
+                    self.image.addNewImage(KG.config.SiteRoot+item.path);
+                });
+            }
+
         }
     });
 

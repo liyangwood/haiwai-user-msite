@@ -238,7 +238,7 @@
 
                 '<div class="r">',
                 '<a class="hw-a" href="editStore.html?id={{item.entityID}}">管理店铺</a>',
-                '<b class="hw-a js_share">分享</b>',
+                '<b class="hw-a js_share" param="{{item.entityID}}">分享</b>',
                 '</div>',
                 '</div>',
                 '{{/each}}',
@@ -270,8 +270,8 @@
             });
         },
         initEvent : function(){
-            this.elem.find('.js_share').click(function(){
-                var url = 'http://www.haiwai.com';
+            this.elem.on('click', '.js_share', function(e){
+                var url = KG.config.SiteRoot+'/biz/view.php?id='+$(e.target).attr('param');
                 util.dialog.showQrCode(url);
 
                 return false;
@@ -352,8 +352,8 @@
                 '<p style="color: #9b9b9b;font-size: 14px;margin-top:15px;">{{item.count}}人已经领取</p>',
 
                 '<div class="r">',
-                '<a class="hw-a" href="editCoupon.html?id={{item.fk_entityID}}">管理优惠</a>',
-                '<a class="hw-a js_share" href="">分享</a>',
+                '<a class="hw-a" href="editCoupon.html?id={{item.pk_id}}">管理优惠</a>',
+                '<a class="hw-a js_share" param="{{item.pk_id}}" href="javascript:void(0)">分享</a>',
                 '</div>',
                 '</div>',
                 '{{/each}}',
@@ -365,7 +365,7 @@
                 if(flag){
                     var list = [];
                     util.each(rs.event, function(item){
-                        if(item.active_status != '0'){
+                        if(item.active_time == '1'){
                             list.push(item);
                         }
                     });
@@ -373,6 +373,12 @@
                         list : list
                     });
                 }
+            });
+        },
+        initEvent : function(){
+            this.elem.on('click', '.js_share', function(e){
+                var url = KG.config.SiteRoot+'/classifiedinfo/view.php?id='+$(e.target).attr('param');
+                util.dialog.showQrCode(url);
             });
         }
     });
@@ -403,7 +409,7 @@
                 if(flag){
                     var list = [];
                     util.each(rs.event, function(item){
-                        if(item.active_status == '0'){
+                        if(item.active_time == '0'){
                             item.startTime = item.top_start_time>10?moment(item.top_start_time*1000).format('YYYY-MM-DD'):'';
                             item.endTime = item.top_end_time>10?moment(item.top_end_time*1000).format('YYYY-MM-DD'):'';
 
