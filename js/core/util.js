@@ -356,6 +356,29 @@
         }
     };
 
+    util.storage = {
+        set : function(key, value, opts){
+            opts = util.extend({
+                expires : 'max'
+            }, opts||{});
+
+            //if(util.isObject(value) || util.isArray(value)){
+            //    value = JSON.stringify(value);
+            //}
+            var json = JSON.stringify({
+                data : value
+            });
+            //TODO 处理数据存储过期时限
+
+            window.localStorage.setItem(key, json);
+        },
+        get : function(key){
+            var data = window.localStorage.getItem(key);
+            if(!data) return null;
+            return JSON.parse(data).data;
+        }
+    };
+
 
     window.util = KG.util = util;
 })();

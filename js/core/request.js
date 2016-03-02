@@ -16,7 +16,7 @@ KG.request = {
             url += '&func='+opts.func;
             url += '&act='+opts.act;
         }
-        console.log(url);
+        //console.log(url);
 
         $.ajax({
             type : type,
@@ -218,7 +218,7 @@ KG.request = {
     getUserDetailInfo : function(opts, success, error){
         var data = {
             act : 'getuser',
-            check : KG.user.get('token'),
+            check : md5(KG.config.MD5_KEY+KG.user.get('userid')),
             func : 'passport',
             userid : KG.user.get('userid')
         };
@@ -740,6 +740,18 @@ KG.request = {
             loginCode : md5(opts.username+opts.password+KG.config.MD5_KEY)
         };
 
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=passport&act=checkToken&token=
+    * */
+    checkLogin : function(opts, success, error){
+        var data = {
+            func : 'passport',
+            act : 'checkToken',
+            token : KG.user.get('token')
+        };
         return this.ajax(data, success, error);
     }
 };

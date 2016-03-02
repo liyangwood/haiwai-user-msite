@@ -212,7 +212,7 @@
         },
 
         registerMessage : function(e, data){
-            console.log(data);
+            //console.log(data);
             this.setValue(data);
         },
         defineProperty : function(){
@@ -725,5 +725,23 @@ KG.component = {
 
 $(function(){
     //dom ready
-    KG.component.init();
+
+    //check login
+    KG.user.checkLogin(function(){
+        var user = KG.user.get();
+        if(KG.data.get('needLogin')){
+            if(user.isLogin){
+                KG.component.init();
+            }
+            else{
+
+                location.href = '../site/landing.html?redirect_url='+location.href;
+            }
+        }
+        else{
+            KG.component.init();
+        }
+    });
+
+
 });

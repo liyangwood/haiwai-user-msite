@@ -83,7 +83,13 @@
                     password : self.jq.box.find('.js_pwd').val()
                 };
 
-                KG.user.login(data, function(flag, rs){
+                KG.user.login(data, function(user){
+                    if(util.url.param('redirect_url')){
+                        location.href = util.url.param('redirect_url');
+                    }
+                    else{
+                        location.href = '../mybiz/index.html';
+                    }
 
                 });
             });

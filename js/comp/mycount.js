@@ -417,7 +417,7 @@
                 tel : jq.tel.getValue(),
                 wechat : jq.wechat.getValue(),
                 region : jq.region.getValue(),
-                signature : jq.desc.val()
+                description : jq.desc.val()
             };
 
             console.log(data);
@@ -429,6 +429,7 @@
                     util.dialog.alert(rs);
                 }
                 util.alert('修改成功');
+                KG.user.update();
 
             });
 

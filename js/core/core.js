@@ -40,6 +40,16 @@
             return user;
         },
 
+        reset : function(){
+            user = _.extend(user, {
+                image : '',
+                email : '',
+                userid : '',
+                token : '',
+                isLogin : false
+            });
+        },
+
         login : function(opts, success, error){
             var successFN = function(flag, rs){
                 if(rs.pk_id){
@@ -48,12 +58,56 @@
                     user.email = rs.email;
 
                     KG.request.getUserDetailInfo({}, function(f, json){
-                        console.log(json);
+                        if(f){
+                            user.image = KG.config.SiteRoot+json.avatar_url;
+                            user.isLogin = true;
+                            _.extend(user, json);
+
+                            util.storage.set('current-login-user', user);
+
+                            success(user);
+                        }
                     });
                 }
             };
 
             KG.request.login(opts, successFN, error);
+        },
+
+        update : function(){
+            KG.request.getUserDetailInfo({}, function(f, json){
+                if(f){
+                    user.image = KG.config.SiteRoot+json.avatar_url;
+                    user.isLogin = true;
+                    _.extend(user, json);
+
+                    util.storage.set('current-login-user', user);
+
+                }
+            });
+        },
+
+        checkLogin : function(next){
+            next = next || function(){};
+            var u = util.storage.get('current-login-user');
+            if(u && u.token){
+                _.extend(user, u);
+                KG.request.checkLogin({}, function(flag, rs){
+                    if(flag){
+                        user.userid = rs;
+                        user.isLogin = true;
+                        next();
+                    }
+                    else{
+                        KG.user.reset();
+                        next();
+                    }
+                });
+            }
+            else{
+                KG.user.reset();
+                next();
+            }
         }
     };
 
@@ -69,7 +123,6 @@
             util.extend(data, param||{});
         }
     };
-
 
 
 
