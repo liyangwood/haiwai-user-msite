@@ -26,10 +26,10 @@
     var user = {
         image : KG.config.root+'/image/user_default.png',
         defaultImage : KG.config.root+'/image/user_default.png',
-        email : 'haiwai@chinagate.com',
-        userid : 10051,
+        email : 'liyang@chinagate.com',
+        userid : 14678,
         tel : '5735769567',
-        token : 'a536fb5480db8bdbb84daffe345c675b',
+        token : '5847ac0c8efb8552d1b7c42a4c3f2418',
         isLogin : true
     };
     KG.user = {
