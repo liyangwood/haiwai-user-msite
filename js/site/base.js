@@ -383,7 +383,7 @@ KG.Class.define('SiteHeadingNav', {
 
 		_.each(list, function(one){
 			h += '<dl>';
-			var ha = hb = '';
+			var ha = '', hb = '';
 
 			_.each(one, function(n){
 

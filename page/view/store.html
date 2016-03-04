@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-    
+	
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <meta name="format-detection" content="telephone=no" />
@@ -28,7 +28,10 @@
 
 
 
-    <title></title>
+	<style>
+
+	</style>
+	<title></title>
 </head>
 <body>
 
@@ -37,12 +40,15 @@
 
 
 
+<div role="SiteHeadingNav"></div>
+
+<div role="HWSiteStoreBigBackgroundImage"></div>
 <div class="container hw-site-page">
 
-    <div role="HWSiteCouponListPage"></div>
-
+	<div role="HWSiteStoreDetailPage"></div>
 
 </div>
+
 
 <div class="hw-footer-comp">
     <div class="container">
@@ -60,7 +66,9 @@
 </body>
 </html>
 <script type="text/javascript">
-    KG.data.add({
-        page : 'site-couponlist'
-    });
+	KG.data.add({
+		needLogin : false,
+		page : 'view-store',
+		id : util.url.param('id')
+	});
 </script>

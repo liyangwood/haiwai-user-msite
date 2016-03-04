@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-    
+	
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <meta name="format-detection" content="telephone=no" />
@@ -28,7 +28,7 @@
 
 
 
-    <title></title>
+	<title></title>
 </head>
 <body>
 
@@ -36,10 +36,15 @@
 <div role="Header"></div>
 
 
+<div role="SiteHeadingNav"></div>
 
 <div class="container hw-site-page">
+	<div role="HWSiteArticleDetailPage"></div>
 
-    <div role="HWSiteCouponListPage"></div>
+	<div style="position: absolute;right:0;top:0;" role="HWSiteArticleDetailRightMoreCommentComp"></div>
+
+	<div role="HWSiteArticleDetailMoreComp"></div>
+
 
 
 </div>
@@ -60,7 +65,8 @@
 </body>
 </html>
 <script type="text/javascript">
-    KG.data.add({
-        page : 'site-couponlist'
-    });
+	KG.data.add({
+		page : 'site-articleDetail',
+		id : util.url.param('id')
+	});
 </script>
