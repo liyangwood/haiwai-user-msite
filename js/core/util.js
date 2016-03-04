@@ -75,6 +75,31 @@
         getQrCode : function(url, size){
             size = size || 240;
             return 'https://api.qrserver.com/v1/create-qr-code/?size='+size+'x'+size+'&data='+encodeURIComponent(url);
+        },
+
+        showPageLoading : function(f){
+            f = f || false;
+            if(f){
+                $('#fakeLoader').fakeLoader({
+                    timeToHide : 20000,
+                    zIndex : 999,
+                    spinner : 'spinner1',
+                    bgColor : 'rgba(0,0,0,0.4)'
+                });
+            }
+            else{
+                $('#fakeLoader').hide();
+            }
+
+        },
+
+        replaceHtmlImgSrcToAbsolute : function(html){
+            var reg = new RegExp('<img\.*src=(\"|\')([^\"\']+)(\"|\')\\s*([\\w]+=(\"|\')([^\"\']*)(\"|\')\\s*)*/>', 'g');
+            return html.replace(reg, function(match){
+                console.log(match);
+                var src = arguments[2];
+                return match.replace(src, KG.config.SiteRoot+src);
+            });
         }
     });
 
@@ -283,12 +308,12 @@
             util.dialog.show(param);
         },
 
-        showQrCode : function(codeUrl){
+        showQrCode : function(codeUrl, title){
             var h = '<div class="hw-qr"><img src="'+util.getQrCode(codeUrl, 200)+'" /></div>';
 
             util.dialog.show({
                 body : h,
-                title : '打开微信扫一扫以下二维码即可打开本店页面，点击屏幕右上角分享按钮',
+                title : title || '打开微信扫一扫以下二维码即可打开本店页面，点击屏幕右上角分享按钮',
                 foot : false,
                 'class' : 'hw-dialog-qrcode'
             });

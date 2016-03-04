@@ -9,6 +9,7 @@
 <body>
 
 @@include('../../inc/head_nav.html')
+<div role="SiteHeadingNav"></div>
 
 <div class="container hw-site-page">
     <div role="SiteAticleListLeftNav"></div>
@@ -24,6 +25,8 @@
 </html>
 <script type="text/javascript">
     KG.data.add({
-        page : 'site-articleList'
+        needLogin : false,
+        page : 'site-articleList',
+        categoryID : util.url.param('category')
     });
 </script>

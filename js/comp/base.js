@@ -829,6 +829,7 @@ $(function(){
     //dom ready
 
     //check login
+    util.showPageLoading(true);
     KG.user.checkLogin(function(){
         var user = KG.user.get();
         if(KG.data.get('needLogin')){
@@ -843,6 +844,11 @@ $(function(){
         else{
             KG.component.init();
         }
+
+        util.delay(function(){
+            util.showPageLoading(false);
+        }, 500);
+
     });
 
 

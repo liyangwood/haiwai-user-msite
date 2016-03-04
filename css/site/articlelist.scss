@@ -5,29 +5,34 @@
     padding: 5px 0 15px 36px;
     border: 1px solid #ebebeb;
     display: inline-block;
-    position: absolute;
-    left: 0;
-    top: 0;
+    position: relative;
+    float: left;
     
-    h4{
+    .h4{
         font-size: 16px;
         color: $color-4a;
         margin: 0;
         margin-top: 15px;
         cursor: pointer;
+        display: block;
         
         &.active{
             color: $blue-color;
         }
     }
+
+    &.affix{
+        position: fixed !important;
+        top: 20px;
+    }
 }
 
 .hw-HWSiteArticleListPage{
     width: 776px;
-    margin-left: 304px;
     display: inline-block;
     background: #ffffff;
     border: 1px solid #ebebeb;
+    float: right;
 
     .hw-head{
         border-bottom: 1px solid $border-color;
@@ -48,6 +53,8 @@
         border-top: 1px dashed $border-color;
         padding-left: 164px;
         margin-top: -1px;
+        cursor: pointer;
+        display: block;
 
         img{
             position: absolute;
@@ -90,12 +97,18 @@
                 margin-right: 5px;
             }
         }
+
+        &:hover{
+            h4{
+                color: $blue-color;
+            }
+        }
     }
 
     .hw-cpage{
         margin-top: 24px;
         background: #ffffff;
-        border: 1px solid #ebebeb;
+        border-top: 1px solid #ebebeb;
         padding: 0 5px;
         text-align: right;
 
@@ -120,6 +133,23 @@
                     }
                 }
             }
+        }
+
+        .c-lb{
+            padding: 12px 0;
+            text-align: center;
+
+            b{
+                font-size: 14px;
+                cursor: pointer;
+            }
+        }
+
+        .loading{
+            background: url('../image/loading.gif');
+            display: inline-block;
+            width: 32px;
+            height: 32px;
         }
     }
 }

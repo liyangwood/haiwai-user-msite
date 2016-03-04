@@ -313,57 +313,33 @@ KG.request = {
         return this.ajax(data, success, error);
     },
 
+    /*
+    * func=view&act=article_list&category_id=12
+    * */
     getSiteArticleList : function(opts, success, error){
         var data = {
-
+            func : 'view',
+            act : 'article_list',
+            category_id : opts.category
         };
+        if(opts.lastid){
+            data.lastid = opts.lastid;
+        }
+        return this.ajax(data, success, error);
 
-        var mockData = [
-            {
-                id : 1,
-                title : '盘点旧金山里那些文艺范儿的店',
-                image : 'http://www.haiwai.com/images/750/438/upload/classifiedinfo/e3/53/03/e35303ef3c6a5477ef7dcd6f6698554c.jpg',
-                description : '盘点旧金山里那些文艺范儿的店正文盘点旧金山里那些文艺范儿的店正文盘点旧金山里那些文艺范儿的店正文盘点旧金山里那些文艺范儿的店正文',
-                dateline : Date.now(),
-                bizInfo : {
-                    name : '沸腾渔乡',
-                    address : '290 Barber Ct, Milpitas, CA 95035',
-                    logo : 'http://www.haiwai.com/upload/biz/9d/10/5f/9d105fef7bb81eb57103915d800b7bf7.jpg'
-                },
-                view : 3002212
-            },
-            {
-                id : 1,
-                title : '盘点旧金山里那些文艺范儿的店',
-                image : 'http://www.haiwai.com/images/750/438/upload/classifiedinfo/e3/53/03/e35303ef3c6a5477ef7dcd6f6698554c.jpg',
-                description : '盘点旧金山里那些文艺范儿的店正文盘点旧金山里那些文艺范儿的店正文盘点旧金山里那些文艺范儿的店正文盘点旧金山里那些文艺范儿的店正文',
-                dateline : Date.now(),
-                bizInfo : {
-                    name : '沸腾渔乡',
-                    address : '290 Barber Ct, Milpitas, CA 95035',
-                    logo : 'http://www.haiwai.com/upload/biz/9d/10/5f/9d105fef7bb81eb57103915d800b7bf7.jpg'
-                },
-                view : 3002212
-            },
-            {
-                id : 1,
-                title : '盘点旧金山里那些文艺范儿的店盘点旧金山里那些文艺范盘点旧金山里那些文艺范盘点旧金山里那些文艺范盘点旧金山里那些文艺范',
-                image : 'http://www.haiwai.com/images/750/438/upload/classifiedinfo/e3/53/03/e35303ef3c6a5477ef7dcd6f6698554c.jpg',
-                description : '盘点旧金山里那些文艺范',
-                bizInfo : {
-                    name : '沸腾渔乡',
-                    address : '290 Barber Ct, Milpitas, CA 95035',
-                    logo : 'http://www.haiwai.com/upload/biz/9d/10/5f/9d105fef7bb81eb57103915d800b7bf7.jpg'
-                },
-                dateline : Date.now(),
-                view : 3002212
-            }
-        ];
-
-        return this.mockData(mockData, success, error);
     },
 
+    /*
+    * func=view&act=article_view&id=1857
+    * */
     getSiteArticleDetail : function(opts, success, error){
+        var data = {
+            func : 'view',
+            act : 'article_view',
+            id : opts.id
+        };
+
+        return this.ajax(data, success, error);
         var mockData = {
             id : 1,
             title : '盘点旧金山里那些文艺范儿的店盘点旧金山里那些文艺范盘点旧金山里那些文艺范盘点旧金山里那些文艺范盘点旧金山里那些文艺范',

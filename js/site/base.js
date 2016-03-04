@@ -9,6 +9,7 @@ KG.Class.define('SiteHeadingNav', {
 					'<a href="javascript:void(0)" class="nav js_tab">本地商家<i class="icon glyphicon glyphicon-chevron-down"></i></a>',
 					'<a href="#" class="nav js_coupon">本地优惠</a>',
 					'<a href="#" class="nav js_live">生活指南</a>',
+					//'<a href="../site/articlelist.html?category=11" class="nav js_cat">分类信息</a>',
 					'<a href="#" class="nav js_cat">分类信息</a>',
 
 				'</div>',

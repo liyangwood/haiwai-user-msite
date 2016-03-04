@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	@@include('../../inc/meta_site.html')
+
+	<title></title>
+</head>
+<body>
+
+@@include('../../inc/head_nav.html')
+<div role="SiteHeadingNav"></div>
+
+<div class="container hw-site-page">
+	<div role="HWSiteArticleDetailPage"></div>
+
+	<div style="position: absolute;right:0;top:0;" role="HWSiteArticleDetailRightMoreCommentComp"></div>
+
+	<div role="HWSiteArticleDetailMoreComp"></div>
+
+
+
+</div>
+
+@@include('../../inc/footer.html')
+
+</body>
+</html>
+<script type="text/javascript">
+	KG.data.add({
+		page : 'site-articleDetail',
+		id : util.url.param('id')
+	});
+</script>

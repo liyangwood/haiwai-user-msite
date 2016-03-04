@@ -256,12 +256,19 @@
         margin: 0 12px;
         border-top: 1px dashed $border-color;
         margin-top: -1px;
+        display: block;
 
         h4{
             margin: 0;
             font-size: 14px;
             line-height: 22px;
             color: $color-4a;
+        }
+
+        &:hover{
+            h4{
+                color: $blue-color;
+            }
         }
 
     }
