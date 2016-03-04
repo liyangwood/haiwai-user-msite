@@ -26,7 +26,10 @@ KG.Class.define('SiteAticleListLeftNav', {
         var cat = util.url.param('category');
 
         KG.request.getArticleCategoryList({}, function(flag, rs){
-            list = list.concat(rs);
+            list = [{
+                category_id : 'hot',
+                name : '热门精选'
+            }].concat(rs).concat(list);
 
             next({
                 list : list,

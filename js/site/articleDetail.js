@@ -24,12 +24,12 @@
 
                     '</p>',
 
-                    '{{if data.bizInfo}}',
-                    //'<div class="hw-biz">',
-                    //    '<img src="{{data.bizInfo.logo}}" />',
-                    //    '<h6>{{data.bizInfo.name}}</h6>',
-                    //    '<p class="hw-p">{{data.bizInfo.address}}</p>',
-                    //'</div>',
+                    '{{if bizInfo}}',
+                    '<a class="hw-biz" style="display: block;">',
+                        '<img src="{{bizInfo.logo | absImage}}" />',
+                        '<h6>{{bizInfo.name_cn}}</h6>',
+                        '<p class="hw-p">{{bizInfo | storeFullAddress}}</p>',
+                    '</a>',
                     '{{/if}}',
 
                     '<div class="hw-article">{{#data.msgbody}}</div>',
@@ -53,12 +53,20 @@
                     next({
                         id : id,
                         data : rs.view,
-                        category : rs.category
+                        category : rs.category,
+                        bizInfo : rs.biz
                     });
 
                     util.message.publish('HWSiteArticleDetailRightMoreCommentComp', {
                         hotList : rs.hot
                     });
+
+                    if(rs.relative){
+                        util.message.publish('HWSiteArticleDetailMoreComp', {
+                            list : rs.relative,
+                            biz : rs.biz
+                        });
+                    }
                 }
             });
         },
@@ -79,37 +87,50 @@
                         '<label class="js_title">本店更多文章</label>',
                     '</div>',
                     '<div class="hw-box js_box">',
-                        '{{each list as item}}',
-                        '<div class="hw-one">',
-                            '<img src="{{item.image}}" />',
-                            '<h4>{{item.title}}</h4>',
 
-                            '<div class="hw-biz">',
-                                '<img src="{{item.bizInfo.logo}}" />',
-                                '<h6>{{item.bizInfo.name}}</h6>',
-                                '<p class="hw-p">{{item.bizInfo.address}}</p>',
-                            '</div>',
-
-                            '<p>',
-                            '<span class="hw-time">{{item.dateline | formatDate:"yy年mm月dd日"}}</span>',
-
-                            '<span class="hw-view">',
-                            '<i class="fa fa-eye"></i>',
-                            '{{item.view}}',
-                            '</span>',
-                            '</p>',
-                        '</div>',
-                        '{{/each}}',
                     '</div>',
 
                 '</div>'
             ].join('');
         },
         getData : function(box, data, next){
-            next({
-                list : []
+            next({});
+        },
+        registerMessage : function(e, data){
+            this.setListHtml(data.list, data.biz);
+        },
+        setListHtml : function(list, biz){
+            var h = [
+                '{{each list as item}}',
+                '<a class="hw-one" style="display: block" href="article.html?id={{item.id}}">',
+                '<img src="{{item.pic | absImage}}" />',
+                '<h4>{{item.title}}</h4>',
+
+                '<div class="hw-biz">',
+                '<img src="{{bizInfo.logo | absImage}}" />',
+                '<h6>{{bizInfo.name_cn}}</h6>',
+                '<p class="hw-p">{{bizInfo | storeFullAddress}}</p>',
+                '</div>',
+
+                '<p>',
+                '<span class="hw-time">{{item.msgbody}}</span>',
+
+                '<span class="hw-view">',
+                '<i class="fa fa-eye"></i>',
+                '{{item.reads}}',
+                '</span>',
+                '</p>',
+                '</a>',
+                '{{/each}}'
+            ].join('');
+
+            h = template.compile(h)({
+                list : list || [],
+                bizInfo : biz
             });
-        }
+
+            this.elem.find('.js_box').html(h);
+        },
     });
 
     KG.Class.define('HWSiteArticleDetailRightMoreCommentComp', {

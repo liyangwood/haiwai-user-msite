@@ -322,6 +322,9 @@ KG.request = {
             act : 'article_list',
             category_id : opts.category
         };
+        if(data.category_id === 'hot'){
+            delete data.category_id;
+        }
         if(opts.lastid){
             data.lastid = opts.lastid;
         }

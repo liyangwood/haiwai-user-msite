@@ -98,7 +98,13 @@
             return html.replace(reg, function(match){
                 console.log(match);
                 var src = arguments[2];
-                return match.replace(src, KG.config.SiteRoot+src);
+                if(/^http/.test(src)){
+                    return match;
+                }
+                else{
+                    return match.replace(src, KG.config.SiteRoot+src);
+                }
+
             });
         }
     });

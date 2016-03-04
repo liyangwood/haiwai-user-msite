@@ -35,6 +35,7 @@ var JS = {
         'js/site/couponlist.js',
         'js/site/articlelist.js',
         'js/site/articleDetail.js',
+        'js/site/storeDetail.js',
         'js/site/landing.js'
     ]),
     site_min : 'site.min.js',
