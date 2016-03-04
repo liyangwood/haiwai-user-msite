@@ -782,6 +782,51 @@
 
     });
 
+    KG.Class.define('StarRank', {
+        ParentClass : 'BaseComponent',
+        getTemplate : function(){
+            return [
+                '<div class="hw-comp-star">',
+                '{{each list as item}}',
+                '{{if item==="full"}}',
+                '<i class="icon fa fa-star"></i>',
+                '{{else if item==="half"}}',
+                '<i class="icon fa fa-star-half-o"></i>',
+                '{{else}}',
+                '<i class="icon fa fa-star-o"></i>',
+                '{{/if}}',
+                '{{/each}}',
+                '</div>'
+            ].join('');
+        },
+        getData : function(box, data, next){
+            var rank = parseFloat(box.data('rank'));
+
+            var list = [];
+            for(var i= 1; i<6; i++){
+                if(i<rank){
+                    list.push('full');
+                }
+                else if(i === rank){
+                    list.push('full');
+                }
+                else{
+                    if(i === rank+0.5){
+                        list.push('half');
+                    }
+                    else{
+                        list.push('empty');
+                    }
+
+                }
+            }
+
+            next({
+                list : list
+            });
+        }
+    });
+
 
 
 })();

@@ -450,4 +450,7 @@
     template.helper('decode', function(str){
         return decodeURIComponent(str);
     });
+    template.helper('htmlToText', function(html){
+        return html.replace(/<([^>]*)>/g, '');
+    });
 })();
