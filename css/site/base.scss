@@ -1,0 +1,133 @@
+.kg-site-header-nav-comp{
+
+    .js_tab{
+        width : 250px;
+    }
+
+    .nav{
+        .icon{
+            color: #ffffff;
+            font-size: 16px;
+            margin-left: 10px;
+            position: relative;
+            top: 4px;
+        }
+    }
+
+    .hw-box{
+
+        .left{
+            width: 250px;
+            position: relative;
+            background: #ffffff;
+            border-bottom: 1px solid $blue-color;
+            z-index: 3;
+            float: left;
+
+            .hw-item:first-child{
+                border-top: none !important;
+            }
+
+            .hw-item{
+                line-height: 42px;
+                height: 52px;
+                border-top: 1px solid $border-color;
+                border-left: 1px solid $blue-color;
+                border-right: 1px solid $blue-color;
+
+                .hw-one{
+                    position: relative;
+                }
+
+                img{
+                    position: absolute;
+                    top: 16px;
+                    left: 15px;
+                }
+                .cp{
+                    margin: 0;
+                    position: absolute;
+                    top: 5px;
+                    left: 55px;
+
+                    a{
+                        float: left;
+                        font-size: 17px;
+                        color: $color-4a;
+                        font-weight: 400;
+
+                        &:hover{
+                            color: $blue-color;
+                        }
+                    }
+                }
+            }
+            .hw-item.hover{
+                border-top: 1px solid $blue-color;
+                border-right: 1px solid transparent;
+            }
+            .hw-item.second{
+                border-top: 1px solid $blue-color;
+            }
+
+            .right{
+                background: #ffffff;
+                width: 620px;
+                height: 469px;
+                position: absolute;
+                left: 250px;
+                top: 0;
+                border: 1px solid $blue-color;
+                border-left: none;
+                border-top: none;
+                padding: 15px 0 12px;
+
+                dl{
+                    padding-left: 5px;
+                    margin: 0 10px 20px;
+                    position: relative;
+                    float: left;
+
+                    dt{
+                        width: 98px;
+                        line-height: 32px;
+                        float: left;
+                    }
+
+                    dd{
+                        line-height: 24px;
+                        float: left;
+                        display: inline;
+                    }
+
+                    a{
+                        font-size: 14px;
+                        color: $color-4a;
+                        display: inline-block;
+                        line-height: 28px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        width: 98px;
+                        margin: 5px 0 4px 15px;
+
+                        &:hover{
+                            color: $blue-color;
+                        }
+                    }
+
+                    .ca{
+                        font-size: 16px;
+                        font-weight: 400;
+                        color: #9c9c9c;
+                    }
+                    .cb{
+
+                    }
+                }
+            }
+        }
+
+
+    }
+}

@@ -108,6 +108,93 @@
         initStart : util.noop
     });
 
+    KG.Class.define('Header', {
+        ParentClass : 'BaseComponent',
+        getTemplate : function(){
+            return [
+                '<nav class="kg-header-comp">',
+                    '<div class="container" id="js_header_comp">',
+
+                    '<a class="logo" href=""></a>',
+
+
+                    '<div class="input-group search">',
+                        '<span class="input-group-addon"><i class="icon"></i></span>',
+                        '<input type="text" class="form-control" placeholder="">',
+                    '</div>',
+
+                '{{if user.isLogin}}',
+                '<div class="right">',
+
+                    '<div class="dropdown" style="margin-right: 40px;">',
+                    '<button id="js_right_dd_1" type="button" data-toggle="dropdown" aria-haspopup="true"' +
+                    ' aria-expanded="false">',
+                    '<img src="../../image/aa.png" />',
+                    '</button>',
+                    '<div class="dropdown-menu" aria-labelledby="js_right_dd_1">',
+                    '<a href="../mybiz/index.html">我的店铺</a>',
+                    '<a href="../mybiz/coupon.html">店铺优惠</a>',
+                    '<a href="../mybiz/article.html">店铺文章</a>',
+                    '</div>',
+                    '</div>',
+
+                    '<div class="dropdown">',
+                    '<button id="js_right_dd_2" class="c2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
+                    '<img src="../../image/user_default.png" />',
+                    '</button>',
+                    '<div class="dropdown-menu" aria-labelledby="js_right_dd_2">',
+                    '<a href="../myfav/list.html">我的收藏</a>',
+                    '<a href="../mycoupon/list.html">我的优惠</a>',
+                    '<a href="../mysys/index.html">系统消息</a>',
+                    '<a href="../mycount/info.html">账户设置</a>',
+                    '</div>',
+                '</div>',
+                '{{else}}',
+                '<div class="right">',
+                    '<a class="hw-light-btn hw-btn" href="#">我是商家</a>',
+                    '<a class="hw-a js_login">登录</a>',
+                    '<a class="hw-a js_reg">注册</a>',
+
+                '</div>',
+                '{{/if}}',
+
+                '</div>',
+
+                '</div>',
+                '</nav>'
+            ].join('');
+        },
+
+        getData : function(box, data, next){
+            var user = KG.user.get();
+            next({
+                user : user
+            });
+        },
+
+        initEvent : function(){
+            if(this.data.user.isLogin){
+                this.initEventByAfterLogin();
+            }
+            else{
+                this.initEventByBeforeLogin();
+            }
+        },
+
+        initEventByAfterLogin : function(){
+
+        },
+
+        initEventByBeforeLogin : function(){
+            this.elem.find('.js_login').click(function(){
+                util.dialog.showLoginBox();
+            });
+            this.elem.find('.js_reg').click(function(){
+                util.dialog.showRegBox();
+            });
+        }
+    });
+
     KG.Class.define('HeadingNav', {
         ParentClass : 'BaseComponent',
         getTemplate : function(){
@@ -614,8 +701,8 @@
 
             var h = [
                 '<h4>登陆海外同城</h4>',
-                '<input type="text" placeholder="邮箱" />',
-                '<input type="password" placeholder="密码" />',
+                '<input type="text" class="js_email" placeholder="邮箱" />',
+                '<input type="password" class="js_pwd" placeholder="密码" />',
                 '<button class="hw-btn hw-blue-btn js_loginBtn">登陆</button>',
                 '<p>忘记账号或密码？<a href="#">在这里找回</a></p>'
             ].join('');
@@ -656,17 +743,32 @@
         },
 
         initEvent : function(){
+            var self = this;
             this.elem.on('click', '.js_toReg', this.setRegBox.bind(this));
             this.elem.on('click', '.js_toLogin', this.setLoginBox.bind(this));
 
             this.elem.on('click', '.js_regBtn', function(){
                 //click reg button
-                util.dialog.showRegBox({});
+
             });
             this.elem.on('click', '.js_loginBtn', function(){
                 //click login button
-                util.dialog.showLoginBox({});
+                var data = self.getLoginValue();
+                KG.user.login(data, function(){
+                    location.reload();
+                }, function(err){
+
+                    alert(err);
+                });
             });
+        },
+
+        getLoginValue : function(){
+            var data = {
+                username : this.jq.left.find('.js_email').val(),
+                password : this.jq.left.find('.js_pwd').val()
+            };
+            return data;
         },
 
         initEnd : function(){

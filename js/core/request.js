@@ -18,11 +18,17 @@ KG.request = {
         }
         //console.log(url);
 
+        var dataType = 'json';
+        if(opts.jsonp){
+            dataType = 'jsonp';
+            delete opts.jsonp;
+        }
+
         $.ajax({
             type : type,
             url : url,
             data : opts,
-            dataType : 'json',
+            dataType : dataType,
             success : function(json){
                 if(success){
                     success.call(null, json.status>0, json.return);
@@ -546,7 +552,8 @@ KG.request = {
             func : 'biz',
             act : 'pc_add',
             step : 3,
-            biz_tmpid : opts.bizTmpId,
+            jsonp : true,
+            biz_tmpid : opts.bizTmpId||'',
             background_pic : opts.bgPic
         };
 
@@ -752,6 +759,36 @@ KG.request = {
             act : 'checkToken',
             token : KG.user.get('token')
         };
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=passport&act=password&userid=10051&password=test12345&old_password=test12345&token=&pc=1
+    * */
+    changePassword : function(opts, success, error){
+        var data = {
+            func : 'passport',
+            act : 'password',
+            userid : KG.user.get('userid'),
+            password : opts.password,
+            old_password : opts.old,
+            pc : 1
+        };
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=view&userid=10051&bizid=2025591&token=
+    *
+    * */
+    getStoreDetail : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'view',
+            bizid : opts.id
+        };
+        data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
     }
 };

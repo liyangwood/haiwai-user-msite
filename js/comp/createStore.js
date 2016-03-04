@@ -147,7 +147,7 @@
                     KG.request.createStoreByStep1(data, function(flag, rs){
                         if(flag){
                             console.log(rs);
-                            location.href = 'editStore_2.html?tmp_biz_id='+rs.entityID+'&main_tag_id='+rs.main_tag_id;
+                            location.href = 'createStore_2.html?tmp_biz_id='+rs.entityID+'&main_tag_id='+rs.main_tag_id;
                         }
                     });
                 }

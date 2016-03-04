@@ -31,6 +31,7 @@ var JS = {
 
     site_core : baseCore.concat([
         'js/comp/base.js',
+        'js/site/base.js',
         'js/site/couponlist.js',
         'js/site/articlelist.js',
         'js/site/articleDetail.js',
@@ -109,7 +110,7 @@ gulp.task('css', function(){
         .pipe(gulp.dest('style/'));
 });
 
-var dirList = ['mybiz', 'mycount', 'myfav', 'mysys', 'mycoupon', 'site'];
+var dirList = ['mybiz', 'mycount', 'myfav', 'mysys', 'mycoupon', 'site', 'view'];
 
 gulp.task('html_dev', function(){
 

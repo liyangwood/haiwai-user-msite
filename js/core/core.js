@@ -67,7 +67,11 @@
 
                             success(user);
                         }
+
                     });
+                }
+                else{
+                    error(rs.msg?rs.msg:rs);
                 }
             };
 

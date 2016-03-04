@@ -15,6 +15,9 @@ a:hover, a:link {
   padding-right: 0;
   position: relative; }
 
+.nodis {
+  display: none; }
+
 .hw-mypage {
   margin-top: 24px;
   min-height: 800px;
@@ -254,6 +257,17 @@ a:hover, a:link {
         width: 100%; }
         .kg-header-comp .right .dropdown-menu a:hover {
           background: #f5f5f5; }
+    .kg-header-comp .right .hw-a {
+      color: #37bccd;
+      margin-left: 15px; }
+    .kg-header-comp .right .hw-btn {
+      height: 36px;
+      line-height: 36px;
+      font-size: 14px;
+      border-width: 2px;
+      border-radius: 5px;
+      padding-left: 25px;
+      padding-right: 25px; }
 
 .kg-header-nav-comp {
   background: #00a7bc;
@@ -494,6 +508,93 @@ body {
   margin-top: 24px;
   min-height: 600px;
   margin-bottom: 50px; }
+
+.kg-site-header-nav-comp .js_tab {
+  width: 250px; }
+.kg-site-header-nav-comp .nav .icon {
+  color: #ffffff;
+  font-size: 16px;
+  margin-left: 10px;
+  position: relative;
+  top: 4px; }
+.kg-site-header-nav-comp .hw-box .left {
+  width: 250px;
+  position: relative;
+  background: #ffffff;
+  border-bottom: 1px solid #37bccd;
+  z-index: 3;
+  float: left; }
+  .kg-site-header-nav-comp .hw-box .left .hw-item:first-child {
+    border-top: none !important; }
+  .kg-site-header-nav-comp .hw-box .left .hw-item {
+    line-height: 42px;
+    height: 52px;
+    border-top: 1px solid #c5c5c5;
+    border-left: 1px solid #37bccd;
+    border-right: 1px solid #37bccd; }
+    .kg-site-header-nav-comp .hw-box .left .hw-item .hw-one {
+      position: relative; }
+    .kg-site-header-nav-comp .hw-box .left .hw-item img {
+      position: absolute;
+      top: 16px;
+      left: 15px; }
+    .kg-site-header-nav-comp .hw-box .left .hw-item .cp {
+      margin: 0;
+      position: absolute;
+      top: 5px;
+      left: 55px; }
+      .kg-site-header-nav-comp .hw-box .left .hw-item .cp a {
+        float: left;
+        font-size: 17px;
+        color: #4a4a4a;
+        font-weight: 400; }
+        .kg-site-header-nav-comp .hw-box .left .hw-item .cp a:hover {
+          color: #37bccd; }
+  .kg-site-header-nav-comp .hw-box .left .hw-item.hover {
+    border-top: 1px solid #37bccd;
+    border-right: 1px solid transparent; }
+  .kg-site-header-nav-comp .hw-box .left .hw-item.second {
+    border-top: 1px solid #37bccd; }
+  .kg-site-header-nav-comp .hw-box .left .right {
+    background: #ffffff;
+    width: 620px;
+    height: 469px;
+    position: absolute;
+    left: 250px;
+    top: 0;
+    border: 1px solid #37bccd;
+    border-left: none;
+    border-top: none;
+    padding: 15px 0 12px; }
+    .kg-site-header-nav-comp .hw-box .left .right dl {
+      padding-left: 5px;
+      margin: 0 10px 20px;
+      position: relative;
+      float: left; }
+      .kg-site-header-nav-comp .hw-box .left .right dl dt {
+        width: 98px;
+        line-height: 32px;
+        float: left; }
+      .kg-site-header-nav-comp .hw-box .left .right dl dd {
+        line-height: 24px;
+        float: left;
+        display: inline; }
+      .kg-site-header-nav-comp .hw-box .left .right dl a {
+        font-size: 14px;
+        color: #4a4a4a;
+        display: inline-block;
+        line-height: 28px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 98px;
+        margin: 5px 0 4px 15px; }
+        .kg-site-header-nav-comp .hw-box .left .right dl a:hover {
+          color: #37bccd; }
+      .kg-site-header-nav-comp .hw-box .left .right dl .ca {
+        font-size: 16px;
+        font-weight: 400;
+        color: #9c9c9c; }
 
 .hw-SiteCouponFilterComp {
   padding: 20px 20px 8px 20px;

@@ -93,6 +93,21 @@
 			}
 		}
 
+		.hw-a{
+			color: $blue-color;
+			margin-left: 15px;
+		}
+
+		.hw-btn{
+			height: 36px;
+			line-height: 36px;
+			font-size: 14px;
+			border-width: 2px;
+			border-radius: 5px;
+			padding-left: 25px;
+			padding-right: 25px;
+		}
+
 
 	}
 }

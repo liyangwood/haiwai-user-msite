@@ -69,15 +69,29 @@
                 pwdObj.showError('请输入新密码');
                 return;
             }
+            if(p1.length < 6){
+                pwdObj.showError('密码长度不能小于6位');
+                return;
+            }
             if(p1!==p2){
                 pwd2Obj.showError('二次输入的密码不一致');
                 return;
             }
 
-            util.alert(v+p1+p2);
+            KG.request.changePassword({
+                old : v,
+                password : p1
+            }, function(flag, rs){
+                if(flag){
+                    util.dialog.alert('修改成功');
+                    this.reset();
+                }
+                else{
+                    util.dialog.alert(rs);
+                }
+            });
 
 
-            this.reset();
         },
         reset : function(){
             var oldObj = this.jq.oldObj,
