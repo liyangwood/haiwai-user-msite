@@ -135,6 +135,21 @@
         padding-left: 106px;
         padding-right: 100px;
         position: relative;
+		display: block;
+
+		&:hover{
+			.h4{
+				color: $blue-color;
+			}
+			.hw-link{
+				color: $blue-color;
+			}
+		}
+
+		.h4{
+			font-size: 18px;
+			color: $color-4a;
+		}
 
         .hw-img{
             width: 96px;
@@ -146,8 +161,8 @@
 
         .hw-link{
             font-size: 18px;
-            color: #000;
-            margin-top: 14px;
+            color: $color-4a;
+            margin-top: 10px;
         }
         p{
             color: $color-4a;

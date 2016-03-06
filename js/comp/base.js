@@ -147,6 +147,7 @@
                     '<a href="../mycoupon/list.html">我的优惠</a>',
                     '<a href="../mysys/index.html">系统消息</a>',
                     '<a href="../mycount/info.html">账户设置</a>',
+                    '<a class="js_logout" href="javascript:void(0)">注销</a>',
                     '</div>',
                 '</div>',
                 '{{else}}',
@@ -182,7 +183,9 @@
         },
 
         initEventByAfterLogin : function(){
-
+            this.elem.find('.js_logout').click(function(){
+                KG.user.logout();
+            });
         },
 
         initEventByBeforeLogin : function(){
@@ -319,7 +322,7 @@
                 '{{each list as item}}',
                 '<div class="hw-each">',
                 '<img class="hw-img" src="{{item.logo | absImage}}" />',
-                '<h4>{{item.name_cn}}</h4>',
+                '<a class="h4" href="{{item.entityID | toStorePath}}">{{item.name_cn}}</a>',
                 '<p>{{item.address}}, {{item.city}}, {{item.state}}, {{item.zip}}</p>',
                 '<em>{{item.commentnum}}条新评论</em>',
 
@@ -358,6 +361,7 @@
         },
         initEvent : function(){
             this.elem.on('click', '.js_share', function(e){
+                //TODO
                 var url = KG.config.SiteRoot+'/biz/view.php?id='+$(e.target).attr('param');
                 util.dialog.showQrCode(url);
 
@@ -597,7 +601,7 @@
                 if(flag){
                     callback({
                         list : _.map(rs.article, function(one){
-                            one.link = util.link.article(one.id);
+                            one.link = util.path.article(one.id);
                             return one;
                         })
                     });

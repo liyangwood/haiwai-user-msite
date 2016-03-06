@@ -601,7 +601,15 @@ a:hover, a:link {
   height: 98px;
   padding-left: 106px;
   padding-right: 100px;
-  position: relative; }
+  position: relative;
+  display: block; }
+  .hw-comp-store-list .hw-each:hover .h4 {
+    color: #37bccd; }
+  .hw-comp-store-list .hw-each:hover .hw-link {
+    color: #37bccd; }
+  .hw-comp-store-list .hw-each .h4 {
+    font-size: 18px;
+    color: #4a4a4a; }
   .hw-comp-store-list .hw-each .hw-img {
     width: 96px;
     height: 96px;
@@ -610,8 +618,8 @@ a:hover, a:link {
     left: 0; }
   .hw-comp-store-list .hw-each .hw-link {
     font-size: 18px;
-    color: #000;
-    margin-top: 14px; }
+    color: #4a4a4a;
+    margin-top: 10px; }
   .hw-comp-store-list .hw-each p {
     color: #4a4a4a;
     font-size: 12px;

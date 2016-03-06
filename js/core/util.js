@@ -381,11 +381,6 @@
         }
     };
 
-    util.link = {
-        article : function(id){
-            return KG.config.SiteRoot+'/lifetools/?act=view&id='+id;
-        }
-    };
 
     util.storage = {
         set : function(key, value, opts){
@@ -407,6 +402,19 @@
             var data = window.localStorage.getItem(key);
             if(!data) return null;
             return JSON.parse(data).data;
+        }
+    };
+
+    util.path = {
+        go : function(url){
+            location.href = url;
+        },
+
+        article : function(id){
+            return '../view/article.html?id='+id;
+        },
+        store : function(id){
+            return '../view/store.html?id='+id;
         }
     };
 
@@ -452,5 +460,12 @@
     });
     template.helper('htmlToText', function(html){
         return html.replace(/<([^>]*)>/g, '');
+    });
+
+    template.helper('toArticlePath', function(id){
+        return util.path.article(id);
+    });
+    template.helper('toStorePath', function(id){
+        return util.path.store(id);
     });
 })();

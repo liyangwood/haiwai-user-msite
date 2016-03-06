@@ -23,6 +23,10 @@
 
     };
 
+    KG.default = {
+        BizBigBgPic : '../../image/default_bg_pic.png'
+    };
+
     var user = {
         image : KG.config.root+'/image/user_default.png',
         defaultImage : KG.config.root+'/image/user_default.png',
@@ -47,6 +51,20 @@
                 userid : '',
                 token : '',
                 isLogin : false
+            });
+        },
+
+        logout : function(){
+            var data = {
+                act : 'logout',
+                func : 'passport'
+            };
+            data = util.addUserIdToRequestData(data);
+            return KG.request.ajax(data, function(flag, rs){
+                if(flag){
+                    KG.user.reset();
+                    location.reload();
+                }
             });
         },
 

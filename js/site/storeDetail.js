@@ -174,7 +174,9 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		};
 
 		h = [];
+		console.log(rs.timeinfo)
 		_.each(rs.timeinfo.format, function(v, k){
+			if(!v || !v[0]) return true;
 			var l = v[0].replace(',', ' - ');
 			var t = k.split(' - '),
 				tk = xc[t[0]];
@@ -220,7 +222,8 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					biz : biz
 				});
 
-				util.message.publish('HWSiteStoreBigBackgroundImage', 'http://beta.haiwai.com/images_beta/viewb.png');
+				var bg_pic = biz.background_pic.length > 5 ? biz.background_pic : KG.default.BizBigBgPic;
+				util.message.publish('HWSiteStoreBigBackgroundImage', bg_pic);
 			}
 		});
 	},
