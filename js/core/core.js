@@ -24,7 +24,8 @@
     };
 
     KG.default = {
-        BizBigBgPic : '../../image/default_bg_pic.png'
+        BizBigBgPic : '../../image/default_bg_pic.png',
+        articleImage : 'http://beta.haiwai.com/images/lifetools_default_article.png'
     };
 
     var user = {
