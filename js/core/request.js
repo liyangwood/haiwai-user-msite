@@ -803,5 +803,18 @@ KG.request = {
         }
 
         return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=comment&act=list&bizid=2025249&token=
+    *
+    * */
+    getStoreCommentData : function(opts, success, error){
+        var data = {
+            func : 'comment',
+            act : 'list',
+            bizid : opts.bizId
+        };
+        return this.ajax(data, success, error);
     }
 };

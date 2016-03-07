@@ -226,6 +226,10 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				util.message.publish('HWSiteStoreBigBackgroundImage', bg_pic);
 			}
 		});
+
+		KG.request.getStoreCommentData({bizId : id}, function(flag, rs){
+			console.log(rs);
+		});
 	},
 	initEvent : function(){
 		var self = this;
