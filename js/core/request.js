@@ -769,5 +769,39 @@ KG.request = {
         };
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=add_bookmark&userid=10051&type=biz&entityID=2024946
+    * */
+    addFavForStore : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'add_bookmark',
+            type : 'biz',
+            entityID : opts.bizId
+        };
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=view&act=biz_list&tag=131&subtag=135&dyf_380_s=$
+    * */
+    getStoreListByTag : function(opts, success, error){
+        var data = {
+            func : 'view',
+            act : 'biz_list',
+            tag : opts.tag,
+            subtag : opts.subtag,
+            subregion : opts.subregion,
+            page : opts.page
+        };
+
+        if(opts.dy){
+            _.extend(data, opts.dy);
+        }
+
+        return this.ajax(data, success, error);
     }
 };

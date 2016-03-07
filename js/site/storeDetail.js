@@ -236,6 +236,23 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 		this.elem.find('.c-top').on('click', '.js_share', function(){
 			util.dialog.showQrCode(location.href);
+		}).on('click', '.js_fav', function(){
+			var o = $(this);
+			if(KG.user.get('isLogin')){
+				KG.request.addFavForStore({
+					bizId : self.data.id
+				}, function(flag, rs){
+					if(flag){
+						o.html('<i class="icon fa fa-star"></i>已收藏').removeClass('js_fav');
+					}
+					else{
+						o.html('<i class="icon fa fa-star"></i>已收藏').removeClass('js_fav');
+					}
+				});
+			}
+			else{
+				util.dialog.showLoginBox();
+			}
 		});
 	},
 	initEnd : function(){

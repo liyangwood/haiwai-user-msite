@@ -42,12 +42,13 @@ var JS = {
     site_css_min : 'site.min.css'
 };
 
+var v = new Date().getTime();
 var HtmlReplace = {
-    js_core : '../../js/dist/'+JS.core_min,
-    css : '../../css/'+JS.css_min,
+    js_core : '../../js/dist/'+JS.core_min+'?v='+v,
+    css : '../../css/'+JS.css_min+'?v='+v,
 
-    site_core : '../../js/dist/'+JS.site_min,
-    site_css : '../../style/'+JS.site_css_min
+    site_core : '../../js/dist/'+JS.site_min+'?v='+v,
+    site_css : '../../style/'+JS.site_css_min+'?v='+v
 };
 
 var F = {

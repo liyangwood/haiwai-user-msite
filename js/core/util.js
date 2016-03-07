@@ -80,7 +80,7 @@
         showPageLoading : function(f){
             f = f || false;
             if(f){
-                $('#fakeLoader').fakeLoader({
+                $('#fakeLoader').show().fakeLoader({
                     timeToHide : 20000,
                     zIndex : 999,
                     spinner : 'spinner1',
@@ -91,6 +91,21 @@
                 $('#fakeLoader').hide();
             }
 
+        },
+
+        loading : function(f){
+            f = f || false;
+            if(f){
+                $('#fakeLoader').show().fakeLoader({
+                    timeToHide : 20000,
+                    zIndex : 999,
+                    spinner : 'spinner7',
+                    bgColor : 'rgba(0,0,0,0.7)'
+                });
+            }
+            else{
+                $('#fakeLoader').hide();
+            }
         },
 
         replaceHtmlImgSrcToAbsolute : function(html){
@@ -448,6 +463,9 @@
 
     template.helper('storeFullAddress', function(item){
         return item.address+', '+item.city+', '+item.state+' '+item.zip;
+    });
+    template.helper('storeFullAddress1', function(item){
+        return item.address_t+', '+item.city+', '+item.state+' '+item.zip;
     });
     template.helper('defaultUserImage', function(image){
         if(!image){
