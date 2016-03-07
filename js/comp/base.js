@@ -894,9 +894,9 @@ $(function(){
             KG.component.init();
         }
 
-        util.delay(function(){
+        //util.delay(function(){
             util.showPageLoading(false);
-        }, 500);
+        //}, 500);
 
     });
 

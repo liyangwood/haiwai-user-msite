@@ -96,7 +96,7 @@
         loading : function(f){
             f = f || false;
             if(f){
-                $('#fakeLoader').show().fakeLoader({
+                $('#fakeLoader1').show().fakeLoader({
                     timeToHide : 20000,
                     zIndex : 999,
                     spinner : 'spinner7',
@@ -104,7 +104,7 @@
                 });
             }
             else{
-                $('#fakeLoader').hide();
+                $('#fakeLoader1').hide();
             }
         },
 

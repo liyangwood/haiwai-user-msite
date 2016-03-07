@@ -208,6 +208,7 @@ KG.Class.define('HWSiteStoreListPage', {
 			return;
 		}
 
+		util.loading(true);
 		self.getListData(function(rs){
 			util.message.publish('SiteStoreFilterComp', {
 				catlist : rs.second_tagid,
@@ -218,6 +219,7 @@ KG.Class.define('HWSiteStoreListPage', {
 				regionId : self.regionId
 			});
 
+			util.loading(false);
 			self.setBoxHtml(rs.list);
 		});
 
