@@ -338,7 +338,7 @@ KG.Class.define('SiteHeadingNav', {
 					'<img src="../../image/site/'+one.logo+'" />',
 					'<p class="cp">',
 					'{{each list as item}}',
-					'<a href="http://www.haiwai.com/biz/listing.php?tag={{item[1]}}" target="_blank">{{item[0]}}</a>',
+					'<a href="../site/storelist.html?tag={{item[1]}}" target="_blank">{{item[0]}}</a>',
 					'{{/each}}',
 					'</p>',
 				'</div>',
@@ -388,7 +388,7 @@ KG.Class.define('SiteHeadingNav', {
 			_.each(one, function(n){
 
 				var cls = 'cb',
-					l = 'http://www.haiwai.com/biz/listing.php?tag='+n[1];
+					l = '../site/storelist.html?tag='+n[1];
 				if(n[2] === n[1]){
 					cls = 'ca';
 					ha += '<a class="'+cls+'" href="'+l+'" target="_blank">'+n[0]+'</a>';

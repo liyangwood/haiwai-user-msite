@@ -160,7 +160,8 @@ KG.Class.define('SiteStoreAscComp', {
 	getTemplate : function(){
 		return [
 			'<div class="hw-SiteCouponAscComp">',
-			'<b>人气<i class="fa fa-arrow-down"></i></b>',
+			//'<b>人气<i class="fa fa-arrow-down"></i></b>',
+			'<b>&nbsp;</b>',
 			'</div>'
 		].join('');
 	}
@@ -207,14 +208,7 @@ KG.Class.define('HWSiteStoreListPage', {
 			return;
 		}
 
-
-		KG.request.getStoreListByTag({
-			tag : this.tagId,
-			subtag : this.subTagId,
-			subregion : this.regionId,
-			page : this.page
-		}, function(flag, rs){
-			console.log(rs);
+		self.getListData(function(rs){
 			util.message.publish('SiteStoreFilterComp', {
 				catlist : rs.second_tagid,
 				dynamic : rs.dy_fields,
@@ -226,6 +220,8 @@ KG.Class.define('HWSiteStoreListPage', {
 
 			self.setBoxHtml(rs.list);
 		});
+
+
 
 
 		next({});
@@ -249,18 +245,7 @@ KG.Class.define('HWSiteStoreListPage', {
 
 	initEvent : function(){
 		var self = this;
-		//reg message
-		util.message.register('hw-SiteCouponFilterComp', function(e, data){
-			self.loc = data.loc;
-			self.tag = data.tag;
-			self.page = 1;
 
-			self.getListData(function(list){
-				self.setBoxHtml(list);
-
-				self.setIndexPageHtml({});
-			});
-		});
 
 		//this.jq.pageBox.on('click', 'a.js_p', function(){
 		//	var o = $(this);
@@ -290,16 +275,21 @@ KG.Class.define('HWSiteStoreListPage', {
 			self.page++;
 			self.getListData(function(rs){
 				self.setBoxHtml(rs.list, true);
-				if(rs.list.length > 0){
-					self.jq.pageBox.find('.loading').hide();
-					self.jq.pageBox.find('.js_more').show();
-				}
-				else{
-					self.jq.pageBox.hide();
-				}
 			});
 
 		});
+	},
+
+	checkLoadingState : function(list){
+		var self = this;
+		if(list.length > 19){
+			self.jq.pageBox.show();
+			self.jq.pageBox.find('.loading').hide();
+			self.jq.pageBox.find('.js_more').show();
+		}
+		else{
+			self.jq.pageBox.hide();
+		}
 	},
 
 	initEnd : function(){
@@ -307,7 +297,7 @@ KG.Class.define('HWSiteStoreListPage', {
 	},
 
 	getListData : function(callback){
-
+		var self = this;
 		KG.request.getStoreListByTag({
 			tag : this.tagId,
 			subtag : this.subTagId,
@@ -317,7 +307,9 @@ KG.Class.define('HWSiteStoreListPage', {
 		}, function(flag, rs){
 			if(flag){
 				callback(rs);
+				self.checkLoadingState(rs.list);
 			}
+
 		});
 
 	},
