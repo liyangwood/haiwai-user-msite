@@ -137,11 +137,44 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			'</div>'
 		].join('');
 
+		//comment box
+		var T8 = [
+			'<div style="margin-top: 15px;" class="c-box js_cmbox">',
+				'<dt class="c-title">',
+					'<p></p>',
+				'</dt>',
+				'<dd class="c-content" style="padding: 0">',
+					'<div class="db hw-wp">',
+						'<a href="javascript:void(0)" class="hw-img">',
+							'{{if user.isLogin}}',
+								'<img src="{{user.image}}" />',
+								'<p>{{user.nick}}</p>',
+							'{{else}}',
+								'<img src="{{user.defaultImage}}" />',
+								'<p>未登录用户</p>',
+							'{{/if}}',
+
+						'</a>',
+						'<div class="r hw-time">',
+							'<div class="js_rank" style="margin-top:2px;" role="StarRank" data-enable="true"' +
+							' data-rank="0"></div>',
+						'</div>',
+						'<div class="r hw-ta nodis">',
+							'<textarea class="form-control" rows="2"></textarea>',
+							'<button data-loading-text="发表中..." class="hw-btn hw-blue-btn">发表评论</button>',
+						'</div>',
+
+					'</div>',
+					'<div class="dp"></div>',
+				'</dd>',
+			'</div>'
+		].join('');
+
 		return [
 			'<div class="hw-HWSiteStoreDetailPage">',
 				T1,
 				'<div class="hw-left-box">',
-					T7, T5,T6,
+					T7, T5,T6,T8,
 				'</div>',
 				'<div class="hw-right-box">',
 					T2,T3,T4,
@@ -208,9 +241,14 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 		return rs;
 	},
+	initStart : function(){
+		this.bizId = KG.data.get('id');
+		this.commentData = [];
+		this.lastCommentId = null;
+	},
 	getData : function(box, data, next){
 		var self = this;
-		var id = KG.data.get('id');
+		var id = this.bizId;
 		KG.request.getStoreDetail({
 			id : id
 		}, function(flag, rs){
@@ -219,17 +257,19 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				console.log(biz);
 				next({
 					id : id,
-					biz : biz
+					biz : biz,
+					user : KG.user.get()
 				});
 
 				var bg_pic = biz.background_pic.length > 5 ? biz.background_pic : KG.default.BizBigBgPic;
 				util.message.publish('HWSiteStoreBigBackgroundImage', bg_pic);
+
+				//init comment
+				self.getCommentData();
 			}
 		});
 
-		KG.request.getStoreCommentData({bizId : id}, function(flag, rs){
-			console.log(rs);
-		});
+
 	},
 	initEvent : function(){
 		var self = this;
@@ -258,8 +298,97 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				util.dialog.showLoginBox();
 			}
 		});
+
+		this.elem.find('.js_rank').click(function(){
+			if(!KG.user.get('isLogin')){
+				util.dialog.showLoginBox();
+				return false;
+			}
+
+			self.showReplyTextarea();
+		});
+
+		this.elem.find('.js_cmbox .db .hw-ta').find('.hw-btn').click(function(){
+			self.sendComment($(this));
+		});
+	},
+	showReplyTextarea : function(){
+		this.elem.find('.js_cmbox .db .hw-ta').removeClass('nodis');
+	},
+	sendComment : function(btnObj){
+		var self = this;
+		var ta = this.elem.find('.js_cmbox .db .hw-ta').find('textarea'),
+			val = ta.val();
+		if(!val){
+			util.toast.showError('请输入评论');
+			return;
+		}
+		var rank = KG.component.getObj(this.elem.find('.js_rank'));
+
+		btnObj.button('loading');
+		KG.request.sendStoreComment({
+			bizId : self.bizId,
+			msg : val,
+			star : rank.getValue()
+		}, function(flag, rs){
+			btnObj.button('reset');
+
+			if(flag){
+				console.log(rs);
+
+				rank.setValue(0);
+				ta.val('');
+				//self.elem.find('.js_cmbox .db .hw-ta').addClass('nodis');
+			}
+		});
 	},
 	initEnd : function(){
 		//$('.carousel').carousel();
+	},
+
+	getCommentData : function(callback){
+		callback = callback || util.noop;
+		var self = this;
+		var id = this.bizId,
+			lastid = this.lastCommentId;
+		KG.request.getStoreCommentData({
+			bizId : id,
+			lastid : lastid
+		}, function(flag, rs){
+			if(flag){
+				console.log(rs);
+				self.commentData = self.commentData.concat(rs);
+				self.setCommentBoxHtml();
+				callback(rs);
+			}
+		});
+	},
+
+	setCommentBoxHtml : function() {
+		var h = [
+			'{{each list as item}}',
+			'<div class="hw-rpeach">',
+			'<a href="javascript:void(0)" class="hw-img">',
+				'<img src="{{item.userinfo.avatar_url | absImage}}" />',
+				'<p>{{item.userinfo.nick}}</p>',
+			'</a>',
+			'<div class="r hw-time">',
+				'<div role="StarRank" data-rank={{item.star}}></div>',
+				'<span>{{item.datetime | formatDate}}</span>',
+			'</div>',
+			'<p class="r hw-msg">{{item.msg}}</p>',
+			'<p class="r hw-action"></p>',
+			'</div>',
+			'{{/each}}'
+		].join('');
+
+		var box = this.elem.find('.js_cmbox'),
+			list = this.commentData;
+
+		h = template.compile(h)({list: list});
+		box.find('.c-title p').html('评论（' + list.length + '）');
+		box.find('.c-content .dp').html(h);
+
+		KG.component.init(box.find('.c-content .dp'));
 	}
 });

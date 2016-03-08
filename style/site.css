@@ -18,6 +18,9 @@ a:hover, a:link {
 .nodis {
   display: none; }
 
+.hand {
+  cursor: pointer !important; }
+
 .hw-mypage {
   margin-top: 24px;
   min-height: 800px;
@@ -1357,6 +1360,8 @@ body {
         float: right; }
     .hw-HWSiteStoreDetailPage .c-box .c-content {
       padding: 12px 15px 20px; }
+      .hw-HWSiteStoreDetailPage .c-box .c-content p {
+        margin: 0; }
       .hw-HWSiteStoreDetailPage .c-box .c-content .hw-la {
         line-height: 40px;
         border-bottom: 1px solid #ebebeb;
@@ -1431,5 +1436,73 @@ body {
       height: 160px;
       margin-right: 8px;
       cursor: pointer; }
+  .hw-HWSiteStoreDetailPage .hw-rpeach {
+    position: relative;
+    min-height: 110px;
+    border-top: 1px solid #ebebeb;
+    top: -1px;
+    padding: 15px 20px 15px 95px; }
+    .hw-HWSiteStoreDetailPage .hw-rpeach .hw-img {
+      display: block;
+      position: absolute;
+      top: 15px;
+      left: 20px; }
+      .hw-HWSiteStoreDetailPage .hw-rpeach .hw-img img {
+        width: 60px;
+        height: 60px;
+        border-radius: 30px; }
+      .hw-HWSiteStoreDetailPage .hw-rpeach .hw-img p {
+        font-size: 14px;
+        color: #4a4a4a;
+        text-align: center;
+        margin-top: 5px; }
+    .hw-HWSiteStoreDetailPage .hw-rpeach .r {
+      position: static; }
+    .hw-HWSiteStoreDetailPage .hw-rpeach .hw-time {
+      text-align: left; }
+      .hw-HWSiteStoreDetailPage .hw-rpeach .hw-time span {
+        font-size: 14px;
+        color: #7d7d7d;
+        float: right; }
+    .hw-HWSiteStoreDetailPage .hw-rpeach .hw-msg {
+      font-size: 14px;
+      color: #7d7d7d;
+      margin-top: 10px;
+      line-height: 20px; }
+  .hw-HWSiteStoreDetailPage .hw-wp {
+    position: relative;
+    min-height: 110px;
+    border-top: 1px solid #ebebeb;
+    top: -1px;
+    padding: 15px 20px 15px 105px; }
+    .hw-HWSiteStoreDetailPage .hw-wp .hw-img {
+      display: block;
+      position: absolute;
+      top: 15px;
+      left: 20px; }
+      .hw-HWSiteStoreDetailPage .hw-wp .hw-img img {
+        width: 60px;
+        height: 60px;
+        border-radius: 30px; }
+      .hw-HWSiteStoreDetailPage .hw-wp .hw-img p {
+        font-size: 14px;
+        color: #4a4a4a;
+        text-align: center;
+        margin-top: 5px;
+        width: 70px;
+        text-overflow: ellipsis;
+        overflow: hidden; }
+    .hw-HWSiteStoreDetailPage .hw-wp .r {
+      position: static; }
+    .hw-HWSiteStoreDetailPage .hw-wp .hw-ta {
+      text-align: left; }
+      .hw-HWSiteStoreDetailPage .hw-wp .hw-ta textarea {
+        padding: 8px 12px; }
+      .hw-HWSiteStoreDetailPage .hw-wp .hw-ta .hw-btn {
+        height: 28px;
+        line-height: 28px;
+        font-size: 14px;
+        font-weight: 400;
+        margin-top: 10px; }
 
 /*# sourceMappingURL=site.css.map */

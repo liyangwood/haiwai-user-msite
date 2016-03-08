@@ -791,20 +791,24 @@
         getTemplate : function(){
             return [
                 '<div class="hw-comp-star">',
-                '{{each list as item}}',
-                '{{if item==="full"}}',
-                '<i class="icon fa fa-star"></i>',
-                '{{else if item==="half"}}',
-                '<i class="icon fa fa-star-half-o"></i>',
-                '{{else}}',
-                '<i class="icon fa fa-star-o"></i>',
-                '{{/if}}',
-                '{{/each}}',
+
                 '</div>'
             ].join('');
         },
+        initStart : function(){
+            this.rank = 0;
+            this.enableClick = false;
+        },
         getData : function(box, data, next){
-            var rank = parseFloat(box.data('rank'));
+            this.rank = parseFloat(box.data('rank')) || 0;
+            if(box.data('enable')){
+                this.enableClick = true;
+            }
+            next({});
+        },
+
+        render : function(){
+            var rank = this.rank;
 
             var list = [];
             for(var i= 1; i<6; i++){
@@ -825,9 +829,50 @@
                 }
             }
 
-            next({
-                list : list
-            });
+            var h = [
+                '{{each list as item index}}',
+                '{{if item==="full"}}',
+                '<i index="{{index}}" class="icon fa fa-star"></i>',
+                '{{else if item==="half"}}',
+                '<i index="{{index}}" class="icon fa fa-star-half-o"></i>',
+                '{{else}}',
+                '<i index="{{index}}" class="icon fa fa-star-o"></i>',
+                '{{/if}}',
+                '{{/each}}'
+            ].join('');
+            h = template.compile(h)({list : list});
+            this.elem.html(h);
+        },
+        setValue : function(v){
+            this.rank = v;
+            this.render();
+        },
+
+        getValue : function(){
+            return this.rank;
+        },
+        initEnd : function(){
+            this.render();
+        },
+        initEvent : function(){
+            var self = this;
+            if(this.enableClick){
+                this.elem.on('click', 'i.fa', function(e){
+                    var o = $(e.target);
+                    var i = o.attr('index');
+                    if(o.hasClass('fa-star-o')){
+                        self.rank = parseFloat(i)+0.5;
+                    }
+                    else if(o.hasClass('fa-star')){
+                        self.rank = parseInt(i, 10);
+                    }
+                    else if(o.hasClass('fa-star-half-o')){
+                        self.rank = parseInt(i, 10)+1;
+                    }
+
+                    self.render();
+                }).addClass('hand');
+            }
         }
     });
 

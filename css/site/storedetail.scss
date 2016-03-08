@@ -116,6 +116,10 @@
         .c-content{
             padding: 12px 15px 20px;
 
+            p{
+                margin: 0;
+            }
+
             .hw-la{
                 line-height: 40px;
                 border-bottom: 1px solid #ebebeb;
@@ -221,5 +225,102 @@
                 cursor: pointer;
             }
         }
+    }
+
+    .hw-rpeach{
+        position: relative;
+        min-height: 110px;
+        border-top: 1px solid #ebebeb;
+        top: -1px;
+        padding: 15px 20px 15px 95px;
+
+        .hw-img{
+            display: block;
+            position: absolute;
+            top: 15px;
+            left: 20px;
+
+            img{
+                width: 60px;
+                height: 60px;
+                border-radius: 30px;
+                //box-shadow: 0 0 4px #999;
+            }
+
+            p{
+                font-size: 14px;
+                color: $color-4a;
+                text-align: center;
+                margin-top: 5px;
+            }
+        }
+
+        .r{
+            position: static;
+        }
+        .hw-time{
+            text-align: left;
+            span{
+                font-size: 14px;
+                color: $color-7d;
+                float: right;
+            }
+        }
+        .hw-msg{
+            font-size: 14px;
+            color: $color-7d;
+            margin-top: 10px;
+            line-height: 20px;
+        }
+    }
+
+    .hw-wp{
+        position: relative;
+        min-height: 110px;
+        border-top: 1px solid #ebebeb;
+        top: -1px;
+        padding: 15px 20px 15px 105px;
+
+        .hw-img{
+            display: block;
+            position: absolute;
+            top: 15px;
+            left: 20px;
+
+            img{
+                width: 60px;
+                height: 60px;
+                border-radius: 30px;
+            }
+
+            p{
+                font-size: 14px;
+                color: $color-4a;
+                text-align: center;
+                margin-top: 5px;
+                width: 70px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        }
+
+        .r{
+            position: static;
+        }
+
+        .hw-ta{
+            text-align: left;
+            textarea{
+                padding: 8px 12px;
+            }
+            .hw-btn{
+                height: 28px;
+                line-height: 28px;
+                font-size: 14px;
+                font-weight: 400;
+                margin-top: 10px;
+            }
+        }
+
     }
 }

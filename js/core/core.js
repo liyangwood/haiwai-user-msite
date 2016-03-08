@@ -64,6 +64,7 @@
             return KG.request.ajax(data, function(flag, rs){
                 if(flag){
                     KG.user.reset();
+                    util.storage.set('current-login-user', null);
                     location.reload();
                 }
             });

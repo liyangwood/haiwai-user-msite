@@ -382,6 +382,11 @@
     };
 
 
+    util.toast = {
+        showError : function(msg, opts){
+            alert(msg);
+        }
+    };
 
 
 

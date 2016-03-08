@@ -813,8 +813,26 @@ KG.request = {
         var data = {
             func : 'comment',
             act : 'list',
-            bizid : opts.bizId
+            bizid : opts.bizId,
+            lastid : opts.lastid
         };
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=comment&act=post&userid=10051&bizid=2025249&msg=%E6%B5%8B%E8%AF%95%E5%8F%91%E8%A1%A8%E5%95%86%E9%93%BA%E8%AF%84%E8%AE%BA&dataType=2&dataID=2025249&star=3&token=
+    * */
+    sendStoreComment : function(opts, success, error){
+        var data = {
+            func : 'comment',
+            act : 'post',
+            bizid : opts.bizId,
+            msg : opts.msg,
+            dataType : 2,
+            dataID : opts.bizId,
+            star : opts.star
+        };
+        data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
     }
 };
