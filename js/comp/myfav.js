@@ -102,7 +102,7 @@
                     '{{/if}}',
 
                     '<div class="h4">',
-                        '<a class="h4" href="{{item.bookmarkid | toStorePath}}">{{item.name_cn}}</a>',
+                        '<a class="h4" href="{{item.entityID | toStorePath}}">{{item.name_cn}}</a>',
                         '<i class="icon icon-v">v</i>',
 
                         //'<i class="icon icon-coupon"></i>',

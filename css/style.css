@@ -22,6 +22,18 @@ a:hover, a:link {
 .hand {
   cursor: pointer !important; }
 
+.hw-loadingmore-bar {
+  padding: 12px 0;
+  text-align: center; }
+  .hw-loadingmore-bar .loading {
+    background: url("../image/loading.gif");
+    display: inline-block;
+    width: 32px;
+    height: 32px; }
+  .hw-loadingmore-bar b {
+    font-size: 14px;
+    cursor: pointer; }
+
 .hw-mypage {
   margin-top: 24px;
   min-height: 800px;
@@ -504,6 +516,23 @@ a:hover, a:link {
       position: absolute;
       top: -50px;
       left: 0; }
+
+.hw-dialog-alert .box {
+  width: 400px; }
+.hw-dialog-alert .modal-header .close {
+  display: none !important; }
+.hw-dialog-alert .modal-body .hw-title .hw-check {
+  margin-right: 15px;
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  border: 3px solid #37bccd; }
+  .hw-dialog-alert .modal-body .hw-title .hw-check .fa {
+    color: #37bccd;
+    font-size: 24px;
+    position: relative;
+    top: 3px; }
 
 .hw-mybiz-index, .hw-mybiz-coupon {
   margin-top: 24px;

@@ -16,7 +16,8 @@
         root : '/haiwai-user-msite',
         SiteRoot : site,
         ApiRoot : site+'/service/api/',
-        MD5_KEY : 'm.y^w8oP01K#gs'
+        MD5_KEY : 'm.y^w8oP01K#gs',
+        GoogleMapApiKey : 'AIzaSyCjKJoA5eBc75v5pQurBQ3IjP4vNkfoOzw'
     };
 
     KG.Const = {

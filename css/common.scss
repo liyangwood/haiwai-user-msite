@@ -29,6 +29,24 @@ a:hover, a:link{
 .hand{
     cursor: pointer !important;
 }
+.hw-loadingmore-bar{
+    padding: 12px 0;
+    text-align: center;
+
+    .loading{
+        background: url('../image/loading.gif');
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+    }
+
+    b{
+        font-size: 14px;
+        cursor: pointer;
+    }
+}
+
+
 
 
 .hw-mypage{

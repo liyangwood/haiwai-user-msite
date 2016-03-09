@@ -121,8 +121,26 @@
                 }
 
             });
+        },
+
+        getLatAndLongWithAddress : function(address, callback){
+            var url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+address+'&key='+KG.config.GoogleMapApiKey;
+            $.getJSON(url, {}, function(rs){
+                if(rs.status === 'OK'){
+                    callback(rs.results[0].geometry.location);
+                }
+            });
         }
     });
+
+    util.dom = {
+        scrollTo : function(top){
+            var win = $(window);
+
+            //TODO;
+            win.scrollTop(top);
+        }
+    };
 
     //TODO 优化逻辑
     var MessageParam = {};
@@ -207,7 +225,7 @@
 
                 '<div class="modal-body">',
                     '{{if title}}',
-                        '<h4 class="hw-title">{{title}}</h4>',
+                        '<h4 class="hw-title">{{#title}}</h4>',
                     '{{/if}}',
 
                     '{{if body}}<div class="hw-body">{{#body}}</div>{{/if}}',
@@ -385,6 +403,10 @@
     util.toast = {
         showError : function(msg, opts){
             alert(msg);
+        },
+        alert : function(msg){
+            var h = '<div class="hw-check"><i class="fa fa-check"></i></div>';
+            util.dialog.alert(h+msg);
         }
     };
 
@@ -437,6 +459,7 @@
             return '../view/store.html?id='+id;
         }
     };
+
 
 
     window.util = KG.util = util;

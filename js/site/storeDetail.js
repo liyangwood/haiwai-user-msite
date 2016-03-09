@@ -45,16 +45,15 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 		//dynamic field
 		var T3 = [
-			'{{if biz.dynamic_list.length > 0}}',
+
 			'<div style="margin-top: 30px;" class="c-box">',
-				'<img src="{{biz.logo.path | absImage}}" style="width:100%;" />',
+				'<div style="width:100%;height: 300px;" class="js_map"></div>',
 				'<dd class="c-content">',
 					'{{each biz.dynamic_list as item}}',
 					'<p class="hw-la">{{item.title}} : {{item.value}}</p>',
 					'{{/each}}',
 				'</dd>',
-			'</div>',
-			'{{/if}}'
+			'</div>'
 		].join('');
 
 		//timeinfo
@@ -141,7 +140,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		var T8 = [
 			'<div style="margin-top: 15px;" class="c-box js_cmbox">',
 				'<dt class="c-title">',
-					'<p></p>',
+					'<p>评论</p>',
 				'</dt>',
 				'<dd class="c-content" style="padding: 0">',
 					'<div class="db hw-wp">',
@@ -166,6 +165,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 					'</div>',
 					'<div class="dp"></div>',
+					'<nav class="hw-loadingmore-bar"><i class="loading" style="display: none;"></i><b class="js_more">加载更多</b></nav>',
 				'</dd>',
 			'</div>'
 		].join('');
@@ -239,12 +239,20 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			return KG.config.SiteRoot+item.path;
 		});
 
+		rs.articles = _.map(rs.articles, function(item){
+			if(!item.image){
+				item.image = KG.default.articleImage;
+			}
+			return item;
+		});
+
 		return rs;
 	},
 	initStart : function(){
 		this.bizId = KG.data.get('id');
 		this.commentData = [];
 		this.lastCommentId = null;
+		this.rpId = null;
 	},
 	getData : function(box, data, next){
 		var self = this;
@@ -297,6 +305,9 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			else{
 				util.dialog.showLoginBox();
 			}
+		}).on('click', '.js_reply', function(){
+			self.rpId = null;
+			self.showReplyTextarea();
 		});
 
 		this.elem.find('.js_rank').click(function(){
@@ -311,9 +322,42 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		this.elem.find('.js_cmbox .db .hw-ta').find('.hw-btn').click(function(){
 			self.sendComment($(this));
 		});
+
+		this.elem.find('.js_cmbox').on('click', '.js_more', function(e){
+			self.lastCommentId = _.last(self.commentData).id;
+			self.getCommentData();
+		});
+
+		this.elem.find('.js_cmbox').on('click', '.js_rp', function(e){
+			self.rpId = $(e.target).attr('param');
+			self.showReplyTextarea('回复'+$(e.target).attr('nick')+':');
+		}).on('click', '.js_like', function(e){
+			alert('comming soon');
+		}).on('click', '.js_jp', function(e){
+			var id = $(e.target).attr('param');
+			KG.request.reportStoreComment({
+				id : id,
+			}, function(flag, rs){
+				//if(flag){
+					util.toast.alert('举报成功，感谢您的参与');
+				//}
+
+			});
+		});
 	},
-	showReplyTextarea : function(){
-		this.elem.find('.js_cmbox .db .hw-ta').removeClass('nodis');
+	showReplyTextarea : function(val){
+		var box = this.elem.find('.js_cmbox .db'),
+			b1 = box.find('.hw-ta');
+
+		if(b1.hasClass('nodis')){
+			util.dom.scrollTo(box.offset().top);
+			b1.removeClass('nodis');
+		}
+
+
+		if(val){
+			b1.find('textarea').val(val).focus();
+		}
 	},
 	sendComment : function(btnObj){
 		var self = this;
@@ -329,21 +373,53 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		KG.request.sendStoreComment({
 			bizId : self.bizId,
 			msg : val,
-			star : rank.getValue()
+			star : rank.getValue(),
+			id : self.rpId
 		}, function(flag, rs){
 			btnObj.button('reset');
 
 			if(flag){
 				console.log(rs);
 
+				var user = KG.user.get();
+				var sd = {
+					basecode : rs,
+					dataID : self.bizId,
+					dataType : '2',
+					datetime : new Date().getTime(),
+					fk_entityID : self.bizId,
+					id : rs,
+					is_report : '0',
+					msg : val,
+					star : rank.getValue(),
+					treelevel : '0',
+					userID : user.userid,
+					userinfo : user
+				};
+
+				self.commentData = [sd].concat(self.commentData);
+				self.setCommentBoxHtml();
+
 				rank.setValue(0);
 				ta.val('');
-				//self.elem.find('.js_cmbox .db .hw-ta').addClass('nodis');
+				self.rpId = null;
+				self.elem.find('.js_cmbox .db .hw-ta').addClass('nodis');
 			}
 		});
 	},
 	initEnd : function(){
-		//$('.carousel').carousel();
+		var self = this;
+
+		var address = template.helpers.storeFullAddress(this.data.biz);
+
+
+		var startFN = KG.data.get('startFN');
+		startFN && util.getLatAndLongWithAddress(address, function(geo){
+			startFN(geo.lat, geo.lng, {
+				name : 'Test Store',
+				elem : self.elem.find('.js_map')[0]
+			});
+		});
 	},
 
 	getCommentData : function(callback){
@@ -351,15 +427,32 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		var self = this;
 		var id = this.bizId,
 			lastid = this.lastCommentId;
+		var m = this.elem.find('.js_cmbox .hw-loadingmore-bar'),
+			m1 = m.find('.loading'),
+			m2 = m.find('.js_more');
+
+		m1.show();
+		m2.hide();
 		KG.request.getStoreCommentData({
 			bizId : id,
 			lastid : lastid
 		}, function(flag, rs){
 			if(flag){
 				console.log(rs);
+				if(rs.length > 20){
+					m1.hide();
+					m2.show();
+				}
+				else{
+					m.hide();
+				}
+
 				self.commentData = self.commentData.concat(rs);
 				self.setCommentBoxHtml();
 				callback(rs);
+			}
+			else{
+				m.hide();
 			}
 		});
 	},
@@ -377,7 +470,11 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				'<span>{{item.datetime | formatDate}}</span>',
 			'</div>',
 			'<p class="r hw-msg">{{item.msg}}</p>',
-			'<p class="r hw-action"></p>',
+			'<p class="r hw-action">',
+				'<span param="{{item.id}}" nick="{{item.userinfo.nick}}" class="js_rp">回复</span>',
+				'<span param="{{item.id}}" class="js_like">赞(0)</span>',
+				'<span param="{{item.id}}" class="js_jp">举报</span>',
+			'</p>',
 			'</div>',
 			'{{/each}}'
 		].join('');

@@ -832,6 +832,22 @@ KG.request = {
             dataID : opts.bizId,
             star : opts.star
         };
+        if(opts.id){
+            data.replyid = opts.id;
+        }
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=comment&act=report&id=39&token=
+    * */
+    reportStoreComment : function(opts, success, error){
+        var data = {
+            func : 'comment',
+            act : 'report',
+            id : opts.id
+        };
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
     }

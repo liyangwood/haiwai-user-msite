@@ -10,6 +10,8 @@
 	<title></title>
 </head>
 <body>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyCjKJoA5eBc75v5pQurBQ3IjP4vNkfoOzw"></script>
+<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDxV6e_ZwnimMVVH4sozd2A-c4TYkk0U_4"></script>-->
 
 @@include('../../inc/head_nav.html')
 
@@ -31,6 +33,21 @@
 	KG.data.add({
 		needLogin : false,
 		page : 'view-store',
-		id : util.url.param('id')
+		id : util.url.param('id'),
+		startFN : function(latitude, longitude, opts){
+			var myLatlng = new google.maps.LatLng(latitude, longitude);
+			var mapOptions = {
+				center: myLatlng,
+				panControl: false,
+				zoom: 15
+			};
+			var map = new google.maps.Map(opts.elem, mapOptions);
+			var marker = new google.maps.Marker({
+				position: myLatlng,
+				map: map,
+				title: opts.name
+			});
+		}
+
 	});
 </script>
