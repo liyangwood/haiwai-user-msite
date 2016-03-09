@@ -176,11 +176,23 @@ a:hover, a:link {
       line-height: 42px;
       height: 42px;
       margin-top: 24px;
-      border-radius: 3px; }
+      border-radius: 3px;
+      color: #ffffff; }
+      .hw-loginRegBoxComp .c-right .hw-btn .icon {
+        display: inline-block;
+        vertical-align: bottom;
+        width: 42px;
+        height: 42px;
+        position: relative;
+        background-size: 100%; }
     .hw-loginRegBoxComp .c-right .hw-weixin {
       background: #12b116; }
+      .hw-loginRegBoxComp .c-right .hw-weixin .icon {
+        background-image: url("../image/wechat_login.png"); }
     .hw-loginRegBoxComp .c-right .hw-fb {
       background: #3b5998; }
+      .hw-loginRegBoxComp .c-right .hw-fb .icon {
+        background-image: url("../image/facebook_login.png"); }
   .hw-loginRegBoxComp .c-btm {
     height: 56px;
     background: #f5f5f5;

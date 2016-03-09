@@ -681,8 +681,8 @@
 
                     '<div class="c-right">',
                         '<h4>用以下账号直接登录</h4>',
-                        '<a class="hw-btn hw-weixin"></a>',
-                        '<a class="hw-btn hw-fb"></a>',
+                        '<a href="javascript:void(0)" class="hw-btn hw-weixin"><i class="icon"></i>微信扫一扫登录</a>',
+                        '<a href="javascript:void(0)" class="hw-btn hw-fb"><i class="icon"></i>facebook登录</a>',
                     '</div>',
 
                     '<div class="c-btm">',
@@ -764,6 +764,11 @@
 
                     alert(err);
                 });
+            });
+
+            this.elem.on('click', '.hw-weixin', function(){
+                util.dialog.showWeixinLoginQrCode('http://127.0.0.1:3000');
+                return false;
             });
         },
 

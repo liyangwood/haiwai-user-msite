@@ -266,7 +266,13 @@
             if(opts.beforeShowFn){
                 opts.beforeShowFn.call(obj);
             }
-            obj.modal();
+            if($('body').hasClass('modal-open')){
+                obj.addClass('in');
+            }
+            else{
+                obj.modal('show');
+            }
+
         },
         hide : function(){
             var obj = util.dialog.get();
@@ -355,6 +361,27 @@
                 title : title || '打开微信扫一扫以下二维码即可打开本店页面，点击屏幕右上角分享按钮',
                 foot : false,
                 'class' : 'hw-dialog-qrcode'
+            });
+        },
+
+        showWeixinLoginQrCode : function(redUrl){
+            var h = '<div class="hw-qr" id="js_weixin_qr"></div>';
+            util.dialog.show({
+                body : h,
+                title : '',
+                foot : false,
+                'class' : 'hw-dialog-qrcode'
+            });
+var a = encodeURIComponent(redUrl||location.href);
+            console.log(a);
+            return new WxLogin({
+                id : 'js_weixin_qr',
+                appid: KG.config.WeixinAppID,
+                scope: "snsapi_login",
+                redirect_uri: encodeURIComponent(redUrl||location.href),
+                state: 'aaa',
+                style: "black",   //white
+                href: ""
             });
         },
 

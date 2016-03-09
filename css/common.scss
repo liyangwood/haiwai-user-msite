@@ -244,14 +244,30 @@ a:hover, a:link{
             height: 42px;
             margin-top: 24px;
             border-radius: 3px;
+            color: #ffffff;
+            
+            .icon{
+                display: inline-block;
+                vertical-align: bottom;
+                width: 42px;
+                height: 42px;
+                position: relative;
+                background-size: 100%;
+            }
         }
 
         .hw-weixin{
             background: #12b116;
+            .icon{
+                background-image: url('../image/wechat_login.png');
+            }
         }
         
         .hw-fb{
             background: #3b5998;
+            .icon{
+                background-image: url('../image/facebook_login.png');
+            }
         }
     }
 
