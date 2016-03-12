@@ -158,10 +158,54 @@
     }
 }
 
+.hw-SiteStoreAscComp{
+    background: #ffffff;
+    padding: 12px 0;
+
+    .hw-box{
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        margin: 0 20px;
+        height: 44px;
+
+        label{
+            display: inline-block;
+            margin-right: 25px;
+            line-height: 44px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            color: $color-7d;
+            font-weight: 400;
+
+            &.active{
+                background: #f4a62a;
+                color: #ffffff;
+                border-radius: 4px;
+            }
+
+            input{
+                margin-right: 8px;
+            }
+        }
+    }
+
+    b{
+        font-weight: normal;
+        cursor: pointer;
+
+        .fa{
+            margin-left: 5px;
+            font-size: 14px;
+        }
+    }
+}
+
 .hw-SiteStoreFilterComp{
     padding: 20px 20px 8px 20px;
     background: #fff;
     border: 1px solid #ebebeb;
+    border-bottom: none;
 
 
     .c{

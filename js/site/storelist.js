@@ -159,11 +159,29 @@ KG.Class.define('SiteStoreAscComp', {
 	ParentClass : 'BaseComponent',
 	getTemplate : function(){
 		return [
-			'<div class="hw-SiteCouponAscComp">',
+			'<div class="hw-SiteStoreAscComp">',
 			//'<b>人气<i class="fa fa-arrow-down"></i></b>',
-			'<b>&nbsp;</b>',
+			'<div class="hw-box">',
+				'<label><input checked="true" type="radio" param="0" name="SiteStoreAscComp" />查看全部</label>',
+				'<label><input type="radio" param="4" name="SiteStoreAscComp" />只看优惠商家</label>',
+				'<label><input type="radio" param="3" name="SiteStoreAscComp" />只看认证商家</label>',
+			'</div>',
 			'</div>'
 		].join('');
+	},
+	initEvent : function(){
+		this.elem.find('.hw-box label input').change(function(e){
+			var o = $(this);
+			if(o.prop('checked')){
+				var p = o.attr('param');
+				util.message.publish('HWSiteStoreListPage', {
+					publisher_type : p
+				});
+			}
+		});
+	},
+	initEnd : function(){
+
 	}
 });
 
@@ -175,10 +193,10 @@ KG.Class.define('HWSiteStoreListPage', {
 			'<div class="hw-HWSiteStoreListPage">',
 			'<div role="SiteStoreFilterComp"></div>',
 
-			'<div style="margin-top: 24px;" role="SiteStoreAscComp"></div>',
+			'<div role="SiteStoreAscComp"></div>',
 
 			'<div class="box js_box nodis"></div>',
-			'<div class="box1 js_box nodis"></div>',
+			'<div class="box1 js_box1 nodis"></div>',
 
 			'<div class="hw-cpage js_cpage"></div>',
 			'</div>'
@@ -188,12 +206,14 @@ KG.Class.define('HWSiteStoreListPage', {
 	initStart : function() {
 		this.page = 1;
 		this.dy = {};
+
+		this.publisher_type = 0;
 	},
 
 	setJqVar : function(){
 		return {
 			box : this.elem.find('.js_box'),
-			box1 : this.elem.find('.box1'),
+			box1 : this.elem.find('.js_box1'),
 			pageBox : this.elem.find('.js_cpage')
 		};
 	},
@@ -233,9 +253,18 @@ KG.Class.define('HWSiteStoreListPage', {
 
 	registerMessage : function(e, data){
 		var self = this;
-		this.subTagId = data.subtag;
-		this.regionId = data.subregion;
-		this.dy = data.dy;
+		if(data.subtag)
+			this.subTagId = data.subtag;
+
+		if(data.subregion)
+			this.regionId = data.subregion;
+
+		if(data.dy)
+			this.dy = data.dy;
+
+		if(data.publisher_type){
+			this.publisher_type = data.publisher_type;
+		}
 
 		this.page = 1;
 		util.loading(true);
@@ -304,6 +333,7 @@ KG.Class.define('HWSiteStoreListPage', {
 			tag : this.tagId,
 			subtag : this.subTagId,
 			subregion : this.regionId,
+			publisher_type : this.publisher_type,
 			dy : this.dy,
 			page : this.page
 		}, function(flag, rs){

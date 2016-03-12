@@ -685,37 +685,38 @@ body {
   width: 1100px;
   margin-top: 24px;
   margin-left: -8px; }
-  .hw-HWSiteCouponListPage .box .hw-one {
-    width: 258px;
-    height: 298px;
-    background: #ffffff;
-    margin: 0 8px 15px;
-    display: inline-block;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-    position: relative;
-    padding: 160px 15px 0; }
-    .hw-HWSiteCouponListPage .box .hw-one .hw-logo {
+.hw-HWSiteCouponListPage .hw-one {
+  width: 258px;
+  height: 298px;
+  background: #ffffff;
+  margin: 0 8px 15px;
+  display: inline-block;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  padding: 160px 15px 0;
+  overflow: hidden; }
+  .hw-HWSiteCouponListPage .hw-one .hw-logo {
+    width: 100%;
+    height: 160px;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0; }
+    .hw-HWSiteCouponListPage .hw-one .hw-logo img {
       width: 100%;
-      height: 160px;
-      position: absolute;
-      overflow: hidden;
-      top: 0;
-      left: 0; }
-      .hw-HWSiteCouponListPage .box .hw-one .hw-logo img {
-        width: 100%;
-        height: 100%; }
-    .hw-HWSiteCouponListPage .box .hw-one h4 {
-      font-size: 16px;
-      color: #4a4a4a;
-      margin: 15px 0 0 0; }
-    .hw-HWSiteCouponListPage .box .hw-one .hw-address {
-      font-size: 12px;
-      color: #7d7d7d;
-      margin-top: 5px; }
-    .hw-HWSiteCouponListPage .box .hw-one h3 {
-      font-size: 21px;
-      color: #f4a62a;
-      text-align: center; }
+      height: 100%; }
+  .hw-HWSiteCouponListPage .hw-one h4 {
+    font-size: 16px;
+    color: #4a4a4a;
+    margin: 15px 0 0 0; }
+  .hw-HWSiteCouponListPage .hw-one .hw-address {
+    font-size: 12px;
+    color: #7d7d7d;
+    margin-top: 5px; }
+  .hw-HWSiteCouponListPage .hw-one h3 {
+    font-size: 21px;
+    color: #f4a62a;
+    text-align: center; }
 .hw-HWSiteCouponListPage .hw-cpage {
   margin-top: 24px;
   background: #ffffff;
@@ -736,6 +737,17 @@ body {
         background: #f4a62a;
         border-radius: 4px;
         color: #ffffff; }
+  .hw-HWSiteCouponListPage .hw-cpage .c-lb {
+    padding: 12px 0;
+    text-align: center; }
+    .hw-HWSiteCouponListPage .hw-cpage .c-lb b {
+      font-size: 14px;
+      cursor: pointer; }
+  .hw-HWSiteCouponListPage .hw-cpage .loading {
+    background: url("../image/loading.gif");
+    display: inline-block;
+    width: 32px;
+    height: 32px; }
 
 .hw-HWSiteStoreListPage .box {
   width: 1100px;
@@ -844,10 +856,41 @@ body {
     width: 32px;
     height: 32px; }
 
+.hw-SiteStoreAscComp {
+  background: #ffffff;
+  padding: 12px 0; }
+  .hw-SiteStoreAscComp .hw-box {
+    border-top: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
+    margin: 0 20px;
+    height: 44px; }
+    .hw-SiteStoreAscComp .hw-box label {
+      display: inline-block;
+      margin-right: 25px;
+      line-height: 44px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #7d7d7d;
+      font-weight: 400; }
+      .hw-SiteStoreAscComp .hw-box label.active {
+        background: #f4a62a;
+        color: #ffffff;
+        border-radius: 4px; }
+      .hw-SiteStoreAscComp .hw-box label input {
+        margin-right: 8px; }
+  .hw-SiteStoreAscComp b {
+    font-weight: normal;
+    cursor: pointer; }
+    .hw-SiteStoreAscComp b .fa {
+      margin-left: 5px;
+      font-size: 14px; }
+
 .hw-SiteStoreFilterComp {
   padding: 20px 20px 8px 20px;
   background: #fff;
-  border: 1px solid #ebebeb; }
+  border: 1px solid #ebebeb;
+  border-bottom: none; }
   .hw-SiteStoreFilterComp .c {
     position: relative;
     padding-left: 80px; }

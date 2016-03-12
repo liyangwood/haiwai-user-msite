@@ -795,7 +795,8 @@ KG.request = {
             tag : opts.tag,
             subtag : opts.subtag,
             subregion : opts.subregion,
-            page : opts.page
+            page : opts.page,
+            publisher_type : opts.publisher_type
         };
 
         if(opts.dy){
@@ -849,6 +850,34 @@ KG.request = {
             id : opts.id
         };
         data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=comment&act=buzz&id=93&token=
+    * */
+    addLikeToStoreComment : function(opts, success, error){
+        var data = {
+            func : 'comment',
+            act : 'buzz',
+            id : opts.id
+        };
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=view&act=event_list&tag=114&subregion=861&page=2
+    * */
+    getCouponListByTag : function(opts, success, error){
+        var data = {
+            func : 'view',
+            act : 'event_list',
+            tag : opts.tag,
+            subtag : opts.subtag,
+            subregion : opts.subregion,
+            page : opts.page || 1
+        };
         return this.ajax(data, success, error);
     }
 };

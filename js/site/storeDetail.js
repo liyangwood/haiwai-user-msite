@@ -332,7 +332,12 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			self.rpId = $(e.target).attr('param');
 			self.showReplyTextarea('回复'+$(e.target).attr('nick')+':');
 		}).on('click', '.js_like', function(e){
-			alert('comming soon');
+			var id = $(e.target).attr('param');
+			KG.request.addLikeToStoreComment({id : id}, function(flag, rs){
+				if(flag){
+					$(e.target).html('赞('+rs+')');
+				}
+			});
 		}).on('click', '.js_jp', function(e){
 			var id = $(e.target).attr('param');
 			KG.request.reportStoreComment({
@@ -472,7 +477,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			'<p class="r hw-msg">{{item.msg}}</p>',
 			'<p class="r hw-action">',
 				'<span param="{{item.id}}" nick="{{item.userinfo.nick}}" class="js_rp">回复</span>',
-				'<span param="{{item.id}}" class="js_like">赞(0)</span>',
+				'<span param="{{item.id}}" class="js_like">赞({{item.buzz}})</span>',
 				'<span param="{{item.id}}" class="js_jp">举报</span>',
 			'</p>',
 			'</div>',
