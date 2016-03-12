@@ -131,3 +131,63 @@
 
     }
 }
+
+.hw-HWSiteCouponDetailComp{
+
+    padding: 0 15px 30px;
+
+    .ca{
+        height: 80px;
+        border: 1px solid #ebebeb;
+    }
+
+    .cb{
+        h4{
+            text-align: center;
+            font-size: 24px;
+            color: #f4a62a;
+            line-height: 24px;
+            margin: 0;
+        }
+
+        label{
+            font-size: 16px;
+            color: $color-4a;
+            margin-top: 10px;
+        }
+        p{
+            font-size: 14px;
+            color: $color-7d;
+            line-height: 20px;
+            margin: 0;
+        }
+
+        .hw-img{
+            text-align: center;
+            margin: 15px auto;
+            img{
+                max-width: 100%;
+            }
+        }
+
+
+    }
+    .cc{
+        margin-top: 30px;
+        text-align: center;
+        //border-top: 1px solid #ebebeb;
+        padding: 10px 0;
+
+        input{
+            width: 600px;
+            margin: 0 auto;
+        }
+        .hw-btn{
+            height: 36px;
+            line-height: 36px;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+    }
+
+}

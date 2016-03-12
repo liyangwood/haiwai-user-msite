@@ -216,3 +216,20 @@
     }
 
 }
+
+.hw-dialog-coupon{
+    .modal-dialog{
+        width: 820px !important;
+        margin-top : 100px !important;
+    }
+    .modal-header{
+        height: 0 !important;
+    }
+    .modal-body{
+        padding: 18px 15px !important;
+
+        .hw-body{
+            padding: 0 !important;
+        }
+    }
+}

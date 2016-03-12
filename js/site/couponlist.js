@@ -131,7 +131,7 @@ KG.Class.define('HWSiteCouponListPage', {
             '<div class="hw-HWSiteCouponListPage">',
             '<div role="SiteCouponFilterComp"></div>',
 
-            '<div style="margin-top: 24px;" role="SiteCouponAscComp"></div>',
+            '<div style="margin-top: 24px;" class="nodis" role="SiteCouponAscComp"></div>',
 
             '<div class="box js_box nodis"></div>',
             '<div class="box1 js_box1 nodis"></div>',
@@ -234,6 +234,11 @@ KG.Class.define('HWSiteCouponListPage', {
             });
 
         });
+
+        this.jq.box.on('click', '.hw-one', function(e){
+            var id = $(this).attr('param');
+            util.dialog.showCouponDetail(id);
+        });
     },
 
     checkLoadingState : function(list){
@@ -274,7 +279,7 @@ KG.Class.define('HWSiteCouponListPage', {
     getItemTemplate : function(){
         return [
             '{{each list as item}}',
-            '<div class="hw-one">',
+            '<div param="{{item.ci_id_i}}" class="hw-one">',
             '<div class="hw-logo"><img src="{{item.pic | absImage}}" /></div>',
 
             '<h4>{{item.subject_cntmw}}</h4>',

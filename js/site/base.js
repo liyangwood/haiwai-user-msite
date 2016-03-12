@@ -419,4 +419,107 @@ KG.Class.define('SiteHeadingNav', {
 
 		return h;
 	}
-})
+});
+
+KG.Class.define('HWSiteCouponDetailComp', {
+	ParentClass : 'BaseComponent',
+	getTemplate : function(){
+		return [
+			'<div class="hw-HWSiteCouponDetailComp">',
+				'<div class="ca js_sbox nodis">',
+				'</div>',
+				'<div class="cb js_box nodis"></div>',
+				'<div class="cc js_acbox nodis"></div>',
+				'<div class="js_loading" style="display: none;">Loading ...</div>',
+			'</div>'
+		].join('');
+	},
+	defineProperty : function(){
+		return {
+			coupon : {}
+		};
+	},
+	loading : function(f){
+		var loading = this.elem.find('.js_loading');
+		if(f){
+			loading.css({
+				'text-align' : 'center',
+				'font-size' : '17px'
+			}).show();
+		}
+		else{
+			loading.hide();
+		}
+	},
+	getData : function(box, data, next){
+		this.id = this.prop.coupon;
+		next({});
+	},
+	initEnd : function(){
+		var self = this;
+		this.loading(true);
+		KG.request.getCouponDetail({id : this.id}, function(flag, rs){
+			if(flag){
+				console.log(rs);
+				self.loading(false);
+
+				self.setStoreBoxHtml(rs);
+				self.setCouponBoxHtml(rs);
+				self.setActionBoxHtml(rs);
+			}
+		});
+	},
+
+	setJqVar : function(){
+		return {
+			storeBox : this.elem.find('.js_sbox'),
+			box : this.elem.find('.js_box'),
+			actionBox : this.elem.find('.js_acbox')
+		};
+
+	},
+
+	setStoreBoxHtml : function(data){
+		if(!data.bizinfo.id){
+			this.jq.storeBox.hide();
+			return;
+		}
+	},
+	setCouponBoxHtml : function(data){
+		var h = [
+			'<h4>{{data.subject}}</h4>',
+			'{{#dyHtml}}',
+			'<label>活动详情</label>',
+			'<p>{{data.description}}</p>',
+			'{{if data.files[0]}}',
+			'<div class="hw-img"><img src="{{data.files[0].path | absImage}}" /></div>',
+			'{{/if}}'
+		].join('');
+
+		var dy = '';
+		_.each(data.dynamic_field||[], function(item){
+			dy += '<label>'+item.field_name+'</label><p>'+item.value+'</p>';
+		});
+
+		h = template.compile(h)({
+			data : data,
+			dyHtml : dy
+		});
+
+		this.jq.box.html(h);
+		this.jq.box.removeClass('nodis');
+	},
+	setActionBoxHtml : function(data){
+		var h = [
+			'<input class="form-control js_tel" type="text" placeholder="请输入手机号" />',
+			//TODO verify code
+			'<button class="hw-btn hw-blue-btn">获取优惠</button>'
+		].join('');
+
+		h = template.compile(h)({
+			data : data
+		});
+
+		this.jq.actionBox.html(h).removeClass('nodis');
+	}
+});

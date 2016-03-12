@@ -546,6 +546,16 @@ a:hover, a:link {
     position: relative;
     top: 3px; }
 
+.hw-dialog-coupon .modal-dialog {
+  width: 820px !important;
+  margin-top: 100px !important; }
+.hw-dialog-coupon .modal-header {
+  height: 0 !important; }
+.hw-dialog-coupon .modal-body {
+  padding: 18px 15px !important; }
+  .hw-dialog-coupon .modal-body .hw-body {
+    padding: 0 !important; }
+
 .hw-mybiz-index, .hw-mybiz-coupon {
   margin-top: 24px;
   min-height: 800px;

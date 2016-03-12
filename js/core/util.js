@@ -419,6 +419,20 @@ var a = encodeURIComponent(redUrl||location.href);
                 body : '<p></p>',
                 'class' : 'hw-dialog-alert'
             });
+        },
+
+        showCouponDetail : function(couponID){
+            var param = {
+                foot : false,
+                title : '',
+                'class' : 'hw-dialog-coupon',
+                body : '<div class="js_role" role="HWSiteCouponDetailComp" data-coupon="'+couponID+'"></div>',
+                beforeShowFn : function(){
+                    var o = this;
+                    KG.component.initWithElement(o.find('.js_role'));
+                }
+            };
+            util.dialog.show(param);
         }
     };
 
