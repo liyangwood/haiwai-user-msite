@@ -74,7 +74,7 @@
 
         getQrCode : function(url, size){
             size = size || 240;
-            return 'https://api.qrserver.com/v1/create-qr-code/?size='+size+'x'+size+'&data='+encodeURIComponent(url);
+            return 'http://api.qrserver.com/v1/create-qr-code/?size='+size+'x'+size+'&data='+encodeURIComponent(url);
         },
 
         showPageLoading : function(f){

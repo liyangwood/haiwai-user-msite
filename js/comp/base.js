@@ -721,9 +721,9 @@
 
         setRegBox : function(){
             var h = [
-                '<input type="text" placeholder="邮箱" />',
-                '<input type="password" placeholder="密码" />',
-                '<input type="password" placeholder="确认密码" />',
+                '<input type="text" class="js_email" placeholder="邮箱" />',
+                '<input type="password" class="js_pwd" placeholder="密码" />',
+                '<input type="password" class="js_pwd2" placeholder="确认密码" />',
                 '<button class="hw-btn hw-blue-btn js_regBtn">注册</button>',
                 '<p>点击注册表示您同意海外同城的<a href="#">使用协议</a>和<a href="#">隐私保护协议</a></p>'
             ].join('');
@@ -753,6 +753,26 @@
 
             this.elem.on('click', '.js_regBtn', function(){
                 //click reg button
+                var data = self.getRegisterValue();
+                console.log(data);
+                KG.user.register(data, function(flag, rs){
+                    if(flag){
+                        var sd = {
+                            username : data.email,
+                            password : data.password
+                        };
+                        KG.user.login(sd, function(){
+                            location.reload();
+                        }, function(err){
+
+                            alert(err);
+                        });
+
+                    }
+                    else{
+                        util.toast.showError(rs);
+                    }
+                });
 
             });
             this.elem.on('click', '.js_loginBtn', function(){
@@ -778,6 +798,13 @@
                 password : this.jq.left.find('.js_pwd').val()
             };
             return data;
+        },
+        getRegisterValue : function(){
+            return {
+                email : this.jq.left.find('.js_email').val(),
+                password : this.jq.left.find('.js_pwd').val(),
+                confirm_password : this.jq.left.find('.js_pwd2').val()
+            };
         },
 
         initEnd : function(){

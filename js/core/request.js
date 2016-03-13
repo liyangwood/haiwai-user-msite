@@ -730,6 +730,22 @@ KG.request = {
     },
 
     /*
+    * func=passport&act=register&email=sida95678910test@gmail.com&password=user2015&confirm_password=user2015&tou_accepted=1
+    * */
+    register : function(opts, success, error){
+        var data = {
+            func : 'passport',
+            act : 'register',
+            email : opts.email,
+            password : opts.password,
+            confirm_password : opts.confirm_password,
+            tou_accepted : 1
+        };
+
+        return this.ajax(data, success, error);
+    },
+
+    /*
     * func=passport&act=checkToken&token=
     * */
     checkLogin : function(opts, success, error){

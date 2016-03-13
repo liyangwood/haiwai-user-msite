@@ -100,6 +100,10 @@
             KG.request.login(opts, successFN, error);
         },
 
+        register : function(opts, success, error){
+            return KG.request.register(opts, success, error);
+        },
+
         update : function(){
             KG.request.getUserDetailInfo({}, function(f, json){
                 if(f){
