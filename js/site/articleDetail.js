@@ -43,11 +43,13 @@
 
         getData : function(box, data, next){
             var id = KG.data.get('id');
+            util.loading(true);
             KG.request.getSiteArticleDetail({
                 id : id
             }, function(flag, rs){
                 console.log(rs);
 
+                util.loading(false);
                 if(flag){
                     rs.view.msgbody = util.replaceHtmlImgSrcToAbsolute(rs.view.msgbody);
                     next({

@@ -60,18 +60,21 @@
                     '</div>',
 
 
-                    '<button style="float: right;" class="js_btn hw-btn hw-blue-btn">下一步</button>',
+                    '<button style="float: right;" class="js_btn hw-btn hw-blue-btn">{{btnText}}</button>',
 
                 '<div>'
             ].join('');
         },
         getData : function(box, data, next){
+            var self = this;
+            this.type = 'create';
 
             var list = [function(){
                 return KG.request.getAllStoreCategoryList({});
             }];
 
             if(KG.data.get('id')){
+                this.type = 'edit';
                 list.push(function(){
                     return KG.request.getBizDetailById({
                         bizId : KG.data.get('id')
@@ -79,10 +82,14 @@
                 });
             }
 
+            util.loading(true);
             KG.request.defer(list, function(catList, bizInfo){
+                util.loading(false);
                 next({
                     catList : catList,
-                    biz : bizInfo || false
+                    biz : bizInfo || false,
+                    type : self.type,
+                    btnText : self.type==='create'?'下一步':'保存'
                 });
             });
 
@@ -133,7 +140,7 @@
                 if(!self.validate(data)){
                     return false;
                 }
-                if(KG.data.get('id')){
+                if(self.type === 'edit'){
                     data.bizId = KG.data.get('id');
                     KG.request.saveStoreByStep1(data, function(flag, rs){
                         if(flag){
@@ -170,9 +177,11 @@
             });
 
             if(this.data.biz){
+
                 var index = util.map(this.data.catList, function(item){return item.pk_id;});
                 index = util.indexOf(index, this.data.biz.fk_main_tag_id);
                 var tmpData = this.data.catList[index];
+
                 this.jq.cat.setValue(index);
 
                 this.switchCategory(tmpData, function(){
