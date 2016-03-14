@@ -890,7 +890,6 @@ KG.request = {
             func : 'view',
             act : 'event_list',
             tag : opts.tag,
-            subtag : opts.subtag,
             subregion : opts.subregion,
             page : opts.page || 1
         };

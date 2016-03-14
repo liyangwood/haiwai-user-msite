@@ -89,7 +89,7 @@ KG.Class.define('SiteCouponFilterComp', {
     setFilter : function(){
 
         var data = {
-            subtag : this.tag!=='all'?this.tag:null,
+            tag : this.tag!=='all'?this.tag:null,
             subregion : this.region!=='all'?this.region:null
         };
 
@@ -156,7 +156,6 @@ KG.Class.define('HWSiteCouponListPage', {
     getData : function(box, data, next){
         var self = this;
         this.tagId = util.url.param('tag');
-        this.subTagId = util.url.param('subtag');
         this.regionId = util.url.param('subregion');
         if(!this.tagId){
             alert('wrong param');
@@ -170,7 +169,7 @@ KG.Class.define('HWSiteCouponListPage', {
                 catlist : rs.event_tag,
                 subregion : rs.subregion,
 
-                catId : self.subTagId,
+                catId : self.tagId,
                 regionId : self.regionId
             });
 
@@ -188,7 +187,7 @@ KG.Class.define('HWSiteCouponListPage', {
 
     registerMessage : function(e, data){
         var self = this;
-        this.subTagId = data.subtag;
+        this.tagId = data.tag;
         this.regionId = data.subregion;
 
         this.page = 1;
@@ -262,7 +261,6 @@ KG.Class.define('HWSiteCouponListPage', {
         var self = this;
         KG.request.getCouponListByTag({
             tag : this.tagId,
-            subtag : this.subTagId,
             subregion : this.regionId,
             page : this.page
         }, function(flag, rs){

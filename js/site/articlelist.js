@@ -80,9 +80,11 @@ KG.Class.define('HWSiteArticleListPage', {
     getData : function(box, data, next){
         var cat = KG.data.get('categoryID');
         console.log(cat);
+        util.loading(true);
         KG.request.getSiteArticleList({
             category : cat
         }, function(flag, rs){
+            util.loading(false);
             if(flag){
                 console.log(rs);
                 next({

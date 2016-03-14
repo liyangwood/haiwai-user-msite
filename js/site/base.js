@@ -7,10 +7,10 @@ KG.Class.define('SiteHeadingNav', {
 				'<div class="container">',
 
 					'<a href="javascript:void(0)" class="nav js_tab">本地商家<i class="icon glyphicon glyphicon-chevron-down"></i></a>',
-					'<a href="#" class="nav js_coupon">本地优惠</a>',
-					'<a href="#" class="nav js_live">生活指南</a>',
+					'<a href="../site/couponlist.html?tag=256" class="nav js_couponList">本地优惠</a>',
+					'<a href="../site/articlelist.html?category=hot" class="nav js_articleList">生活指南</a>',
 					//'<a href="../site/articlelist.html?category=11" class="nav js_cat">分类信息</a>',
-					'<a href="../site/articlelist.html?category=hot" class="nav js_cat">分类信息</a>',
+					'<a href="http://www.haiwai.com" class="nav js_cat">分类信息</a>',
 
 				'</div>',
 				'<div class="hw-box container">',
@@ -300,7 +300,7 @@ KG.Class.define('SiteHeadingNav', {
 	},
 	getData : function(box, data, next){
 		var page = KG.data.get('page').split('-');
-		page = page[0] || '';
+		page = page[1] || '';
 
 		next({
 			page : page
@@ -326,7 +326,8 @@ KG.Class.define('SiteHeadingNav', {
 
 	initEnd : function(){
 		this.setLeftBox();
-
+		var page = this.data.page;
+		this.elem.find('.js_'+page).addClass('active');
 	},
 
 	setLeftBox : function(){
