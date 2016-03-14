@@ -46,7 +46,7 @@ var JS = {
 var v = new Date().getTime();
 var HtmlReplace = {
     js_core : '../../js/dist/'+JS.core_min+'?v='+v,
-    css : '../../css/'+JS.css_min+'?v='+v,
+    css : '../../style/'+JS.css_min+'?v='+v,
 
     site_core : '../../js/dist/'+JS.site_min+'?v='+v,
     site_css : '../../style/'+JS.site_css_min+'?v='+v
@@ -102,10 +102,10 @@ gulp.task('core', function(){
         .pipe(gulp.dest('./js/dist'));
 });
 gulp.task('css', function(){
-    gulp.src(['css/style.css'])
+    gulp.src(['style/style.css'])
         .pipe(minifyCss({compatibility: 'ie8'}))
         .pipe(concat(JS.css_min))
-        .pipe(gulp.dest('css/'));
+        .pipe(gulp.dest('style/'));
 
     gulp.src(['style/site.css'])
         .pipe(minifyCss({compatibility: 'ie8'}))
