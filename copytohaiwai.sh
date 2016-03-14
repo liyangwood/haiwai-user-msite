@@ -17,6 +17,7 @@ copyFile(){
 }
 
 echo "---- start copy file ----";
+gulp pub;
 copyFile bower_components;
 copyFile lib;
 copyFile js;

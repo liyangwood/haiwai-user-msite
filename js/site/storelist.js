@@ -124,8 +124,8 @@ KG.Class.define('SiteStoreFilterComp', {
 	setFilter : function(){
 
 		var data = {
-			subtag : this.tag!=='all'?this.tag:null,
-			subregion : this.region!=='all'?this.region:null
+			subtag : this.tag!=='all'?this.tag:'-1',
+			subregion : this.region!=='all'?this.region:'-1'
 		};
 
 		data.dy = {};
@@ -329,14 +329,22 @@ KG.Class.define('HWSiteStoreListPage', {
 
 	getListData : function(callback){
 		var self = this;
-		KG.request.getStoreListByTag({
+		var data = {
 			tag : this.tagId,
 			subtag : this.subTagId,
 			subregion : this.regionId,
 			publisher_type : this.publisher_type,
 			dy : this.dy,
 			page : this.page
-		}, function(flag, rs){
+		};
+		if(data.subtag === '-1'){
+			delete data.subtag;
+		}
+		if(data.subregion === '-1'){
+			delete data.subregion;
+		}
+
+		KG.request.getStoreListByTag(data, function(flag, rs){
 			if(flag){
 				callback(rs);
 				self.checkLoadingState(rs.list);
@@ -366,16 +374,16 @@ KG.Class.define('HWSiteStoreListPage', {
 	getItemTemplate1 : function(){
 		return [
 			'{{each list as item}}',
-			'<a href="{{item.entityID_i | toStorePath}}" target="_blank" class="hw-one1">',
+			'<a href="{{item.entityID | toStorePath}}" target="_blank" class="hw-one1">',
 			'<div class="hw-logo"><img src="{{item.logo | absImage}}" /></div>',
 
 			'<div class="right">',
-			'<h4>{{item.name_cn_cntmw}}</h4>',
+			'<h4>{{item.name_cn || item.name_en}}</h4>',
 			'<div class="ca">',
 				'<div class="hw-star" role="StarRank" data-rank="3"></div>',
 
 			'</div>',
-			'<div class="hw-address">{{item | storeFullAddress1}}</div>',
+			'<div class="hw-address">{{item | storeFullAddress}}</div>',
 			'</div>',
 			'</a>',
 			'{{/each}}'

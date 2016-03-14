@@ -115,7 +115,7 @@
                 '<nav class="kg-header-comp">',
                     '<div class="container" id="js_header_comp">',
 
-                    '<a class="logo" href=""></a>',
+                    '<a class="logo" href="/"></a>',
 
 
                     '<div class="input-group search">',
