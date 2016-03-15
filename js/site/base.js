@@ -7,7 +7,7 @@ KG.Class.define('SiteHeadingNav', {
 				'<div class="container">',
 
 					'<a href="javascript:void(0)" class="nav js_tab">本地商家<i class="icon glyphicon glyphicon-chevron-down"></i></a>',
-					'<a href="../site/couponlist.html?tag=256" class="nav js_couponList">本地优惠</a>',
+					'<a href="../site/couponlist.html" class="nav js_couponList">本地优惠</a>',
 					'<a href="../site/articlelist.html?category=hot" class="nav js_articleList">生活指南</a>',
 					//'<a href="../site/articlelist.html?category=11" class="nav js_cat">分类信息</a>',
 					'<a href="http://www.haiwai.com" class="nav js_cat">分类信息</a>',
@@ -491,7 +491,7 @@ KG.Class.define('HWSiteCouponDetailComp', {
 			'<h4>{{data.subject}}</h4>',
 			'{{#dyHtml}}',
 			'<label>活动详情</label>',
-			'<p>{{data.description}}</p>',
+			'<p>{{#data.description | decode}}</p>',
 			'{{if data.files[0]}}',
 			'<div class="hw-img"><img src="{{data.files[0].path | absImage}}" /></div>',
 			'{{/if}}'

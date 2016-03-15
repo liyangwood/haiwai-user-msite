@@ -89,8 +89,8 @@ KG.Class.define('SiteCouponFilterComp', {
     setFilter : function(){
 
         var data = {
-            tag : this.tag!=='all'?this.tag:null,
-            subregion : this.region!=='all'?this.region:null
+            tag : this.tag!=='all'?this.tag:'all',
+            subregion : this.region!=='all'?this.region:'all'
         };
 
         console.log(data);
@@ -142,7 +142,8 @@ KG.Class.define('HWSiteCouponListPage', {
     },
 
     initStart : function() {
-        this.page = 1;
+        this.lastid = null;
+        this.listData = [];
     },
 
     setJqVar : function(){
@@ -155,16 +156,14 @@ KG.Class.define('HWSiteCouponListPage', {
 
     getData : function(box, data, next){
         var self = this;
-        this.tagId = util.url.param('tag');
+        this.tagId = util.url.param('tag') || null;
         this.regionId = util.url.param('subregion');
-        if(!this.tagId){
-            alert('wrong param');
-            return;
-        }
+
 
         util.loading(true);
         self.getListData(function(rs){
             console.log(rs);
+            self.listData = rs.list;
             util.message.publish('SiteCouponFilterComp', {
                 catlist : rs.event_tag,
                 subregion : rs.subregion,
@@ -190,9 +189,11 @@ KG.Class.define('HWSiteCouponListPage', {
         this.tagId = data.tag;
         this.regionId = data.subregion;
 
-        this.page = 1;
+        this.lastid = null;
+        this.listData = [];
         util.loading(true);
         this.getListData(function(rs){
+            self.listData = rs.list;
             self.setBoxHtml(rs.list, false);
             util.loading(false);
         });
@@ -229,6 +230,7 @@ KG.Class.define('HWSiteCouponListPage', {
 
             self.page++;
             self.getListData(function(rs){
+                self.listData = self.listData.concat(rs.list);
                 self.setBoxHtml(rs.list, true);
             });
 
@@ -255,15 +257,29 @@ KG.Class.define('HWSiteCouponListPage', {
 
     initEnd : function(){
         this.setLoadingStateHtml();
+
+        if(util.url.param('viewid')){
+            util.dialog.showCouponDetail(util.url.param('viewid'));
+        }
     },
 
     getListData : function(callback){
         var self = this;
-        KG.request.getCouponListByTag({
-            tag : this.tagId,
-            subregion : this.regionId,
-            page : this.page
-        }, function(flag, rs){
+
+        this.lastid = _.last(this.listData)?_.last(this.listData).pk_id : null;
+
+        var data = {};
+        if(this.tagId !== 'all'){
+            data.tag = this.tagId;
+
+            this.lastid = _.last(this.listData)?_.last(this.listData).bizinfo.entityID : null;
+        }
+        if(this.regionId !== 'all'){
+            data.subregion = this.regionId;
+        }
+        data.lastid = this.lastid;
+
+        KG.request.getCouponListByTag(data, function(flag, rs){
             if(flag){
                 callback(rs);
                 self.checkLoadingState(rs.list);
@@ -277,12 +293,12 @@ KG.Class.define('HWSiteCouponListPage', {
     getItemTemplate : function(){
         return [
             '{{each list as item}}',
-            '<div param="{{item.ci_id_i}}" class="hw-one">',
+            '<div param="{{item.pk_id}}" class="hw-one">',
             '<div class="hw-logo"><img src="{{item.pic | absImage}}" /></div>',
 
-            '<h4>{{item.subject_cntmw}}</h4>',
-            '<span class="hw-address">{{item.description_cntmw}}</span>',
-            //'<h3>{{item.title}}</h3>',
+            '<h4>{{item.bizinfo.name_cn || item.bizinfo.name_en}}</h4>',
+            '<span class="hw-address">{{item.bizinfo | storeFullAddress}}</span>',
+            '<h3>{{item.subject}}</h3>',
             '</div>',
             '{{/each}}'
         ].join('');

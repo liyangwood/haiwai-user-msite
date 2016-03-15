@@ -891,7 +891,7 @@ KG.request = {
             act : 'event_list',
             tag : opts.tag,
             subregion : opts.subregion,
-            page : opts.page || 1
+            lastid : opts.lastid
         };
         return this.ajax(data, success, error);
     }
