@@ -380,7 +380,7 @@ KG.Class.define('HWSiteStoreListPage', {
 			'<div class="right">',
 			'<h4>{{item.name_cn || item.name_en}}</h4>',
 			'<div class="ca">',
-				'<div class="hw-star" role="StarRank" data-rank="3"></div>',
+				'<div class="hw-star" role="StarRank" data-rank="{{item.star}}"></div>',
 
 			'</div>',
 			'<div class="hw-address">{{item | storeFullAddress}}</div>',
