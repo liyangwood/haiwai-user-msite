@@ -10,7 +10,7 @@ KG.Class.define('SiteHeadingNav', {
 					'<a href="../site/couponlist.html" class="nav js_couponList">本地优惠</a>',
 					'<a href="../site/articlelist.html?category=hot" class="nav js_articleList">生活指南</a>',
 					//'<a href="../site/articlelist.html?category=11" class="nav js_cat">分类信息</a>',
-					'<a href="http://www.haiwai.com" class="nav js_cat">分类信息</a>',
+					'<a href="http://www.haiwai.com" target="_blank" class="nav js_cat">分类信息</a>',
 
 				'</div>',
 				'<div class="hw-box container">',
@@ -214,7 +214,7 @@ KG.Class.define('SiteHeadingNav', {
 			},
 			{
 				logo : 'loan.png',
-				title : [['房产经纪、', 0], ['贷款', 0]],
+				title : [['房产经纪、', 27], ['贷款', 375]],
 				children : [
 					[
 						['房产经纪', 27, 27],
@@ -454,6 +454,7 @@ KG.Class.define('HWSiteCouponDetailComp', {
 	},
 	getData : function(box, data, next){
 		this.id = this.prop.coupon;
+		this.couponData = {};
 		next({});
 	},
 	initEnd : function(){
@@ -462,6 +463,7 @@ KG.Class.define('HWSiteCouponDetailComp', {
 		KG.request.getCouponDetail({id : this.id}, function(flag, rs){
 			if(flag){
 				console.log(rs);
+				self.couponData = rs;
 				self.loading(false);
 
 				self.setStoreBoxHtml(rs);
@@ -481,10 +483,11 @@ KG.Class.define('HWSiteCouponDetailComp', {
 	},
 
 	setStoreBoxHtml : function(data){
-		if(!data.bizinfo.id){
+		if(!data.bizinfo.entityID){
 			this.jq.storeBox.hide();
 			return;
 		}
+
 	},
 	setCouponBoxHtml : function(data){
 		var h = [
@@ -514,7 +517,7 @@ KG.Class.define('HWSiteCouponDetailComp', {
 		var h = [
 			'<input class="form-control js_tel" type="text" placeholder="请输入手机号" />',
 			//TODO verify code
-			'<button class="hw-btn hw-blue-btn">获取优惠</button>'
+			'<button class="hw-btn hw-blue-btn js_getCoupon">获取优惠</button>'
 		].join('');
 
 		h = template.compile(h)({
@@ -522,5 +525,28 @@ KG.Class.define('HWSiteCouponDetailComp', {
 		});
 
 		this.jq.actionBox.html(h).removeClass('nodis');
+	},
+	initEvent : function(){
+		var self = this;
+		this.elem.on('click', '.js_getCoupon', function(){
+			var tel = self.elem.find('.js_tel').val();
+			if(!tel){
+				util.toast.showError('tel number is require');
+				return;
+			}
+
+			KG.request.sendSmsToUserPhone({
+				number : tel,
+				biz_name : self.couponData.bizinfo.name_cn || self.couponData.bizinfo.name_en,
+				event_title : self.couponData.subject
+			}, function(flag, rs){
+				if(flag){
+					util.toast.alert(rs);
+				}
+				else{
+					util.toast.showError(rs);
+				}
+			});
+		});
 	}
 });

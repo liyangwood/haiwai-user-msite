@@ -128,7 +128,64 @@
             return data;
         },
 
-        validate : function(){
+        validate : function(data){
+            var jq = this.getElemObj();
+            if(!data.bizName){
+                jq.name.showError('店铺名称不能为空');
+                return false;
+            }
+            else{
+                jq.name.showError();
+            }
+
+            if(!data.bizTel){
+                jq.tel.showError('店铺电话不能为空');
+                return false;
+            }
+            else{
+                jq.tel.showError();
+            }
+
+            if(!/^[0-9]{10,11}$/g.test(data.bizTel)){
+                jq.tel.showError('店铺电话格式不对');
+                return false;
+            }
+            else{
+                jq.tel.showError();
+            }
+
+            if(!data.bizTagId){
+                this.jq.cat.showError('请选择店铺类别');
+                return false;
+            }
+            else{
+                this.jq.cat.showError();
+            }
+
+            if(!data.zip){
+                jq.zip.showError('请输入邮编');
+                return false;
+            }
+            else{
+                jq.zip.showError();
+            }
+
+            if(!data.city){
+                jq.city.showError('请输入城市');
+                return false;
+            }
+            else{
+                jq.city.showError();
+            }
+
+            if(!data.state){
+                jq.state.showError('请输入州省');
+                return false;
+            }
+            else{
+                jq.state.showError();
+            }
+
             return true;
         },
 
@@ -275,6 +332,8 @@
                 c.net.setValue(this.data.biz.website);
                 c.wechat.setValue(this.data.biz.wechat);
                 c.desc.val(this.data.biz.briefintro);
+
+                this.jq.btn.html('保存');
             }
         },
 
@@ -502,7 +561,8 @@
                     break;
             }
 
-            this.dynamicObj[item.field_name].id =item.field_id;
+            if(this.dynamicObj[item.field_name])
+                this.dynamicObj[item.field_name].id =item.field_id;
         }
 
     });
@@ -847,9 +907,31 @@
                 var data = self.getFormValue();
                 KG.request.createStoreByStep3(data, function(flag, rs){
                     if(flag){
-                        location.href = 'http://beta.haiwai.com/biz/view.php?id='+rs;
+                        //location.href = 'http://beta.haiwai.com/biz/view.php?id='+rs;
+                        self.showSuccessDialog(rs);
                     }
                 });
+            });
+        },
+
+        showSuccessDialog : function(id){
+
+            var msg = '<div class="hw-icon"><i class="fa fa-check"></i></div>您的店铺已建成！';
+            util.dialog.show({
+                foot : true,
+                title : msg,
+                body : '<p>您马上就可以管理和分享您的店铺，我们会在1-2个工作日之内完成审核，将您的店铺发布到海外同城首页和文学城首页。</p>',
+                'class' : 'hw-confirm',
+                YesFn : function(){
+                    var href = util.path.store(id);
+                    location.href = href;
+                },
+                YesText : '查看我的店铺',
+                NoFn : function(){
+                    var href = '../mybiz/editStore.html?id='+id;
+                    location.href = href;
+                },
+                NoText : '管理我的店铺'
             });
         },
 
@@ -859,6 +941,7 @@
             });
 
             this.elem.find('.js_bigimage').eq(0).trigger('click');
+
         },
 
         getFormValue : function(){

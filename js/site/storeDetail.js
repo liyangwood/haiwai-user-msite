@@ -38,7 +38,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			'<div class="c-box">',
 				'<dt class="c-title"><p>简介</p></dt>',
 				'<dd class="c-content hw-brief">',
-					'{{biz.briefintro}}',
+					'{{biz.briefintro | htmlToText}}',
 				'</dd>',
 			'</div>'
 		].join('');
@@ -262,6 +262,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		}, function(flag, rs){
 			if(flag){
 				var biz = self.makeBizData(rs);
+
 				console.log(biz);
 				next({
 					id : id,
@@ -287,7 +288,8 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		});
 
 		this.elem.find('.c-top').on('click', '.js_share', function(){
-			util.dialog.showQrCode(location.href);
+			var href = 'http://beta.haiwai.com/mobile/ionic/article.html?id='+self.bizId;
+			util.dialog.showQrCode(href);
 		}).on('click', '.js_fav', function(){
 			var o = $(this);
 			if(KG.user.get('isLogin')){

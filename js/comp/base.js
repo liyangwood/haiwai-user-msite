@@ -140,7 +140,7 @@
 
                     '<div class="dropdown">',
                     '<button id="js_right_dd_2" class="c2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
-                    '<img src="../../image/user_default.png" />',
+                    '<img src="{{user.image}}" />',
                     '</button>',
                     '<div class="dropdown-menu" aria-labelledby="js_right_dd_2">',
                     '<a href="../myfav/list.html">我的收藏</a>',
@@ -152,9 +152,9 @@
                 '</div>',
                 '{{else}}',
                 '<div class="right">',
-                    '<a class="hw-light-btn hw-btn" href="#">我是商家</a>',
-                    '<a class="hw-a js_login">登录</a>',
-                    '<a class="hw-a js_reg">注册</a>',
+                    '<a class="hw-light-btn hw-btn" href="../site/landing.html">我是商家</a>',
+                    '<a href="javascript:void(0)" class="hw-a js_login">登录</a>',
+                    '<a href="javascript:void(0)" class="hw-a js_reg">注册</a>',
 
                 '</div>',
                 '{{/if}}',

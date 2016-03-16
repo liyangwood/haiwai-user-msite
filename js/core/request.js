@@ -190,7 +190,9 @@ KG.request = {
 
     uploadImage : function(opts, success, error){
         var data = {
-            url : 'func=article&act=upload',
+            func : 'article',
+            act : 'upload',
+            method : 'post',
             type : 'image',
             'uploadfield[]' : opts.image
         };
@@ -530,6 +532,7 @@ KG.request = {
         var data = {
             func : 'biz',
             act : 'pc_add',
+            //method : 'post',
             step : 3,
             jsonp : true,
             biz_tmpid : opts.bizTmpId||'',
@@ -565,6 +568,7 @@ KG.request = {
         var data = {
             func : 'biz',
             act : 'upload',
+            method : 'post',
             tmp : 1,
             logo : 1,
             biz_tmpid : opts.bizTmpId,

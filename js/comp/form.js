@@ -114,6 +114,7 @@
             return [
                 '<div class="form-group hw-comp-BaseSelectInput">',
                     '<label class="lab {{if require}}require{{/if}}">{{label}}</label>',
+                    '<label class="control-label hw-err"></label>',
                     '<div class="dropdown hw-drop">',
                         '<button id="{{uuid}}" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
                         '<input type="text" readonly="true" class="form-control js_input" placeholder="{{placeholder}}">',

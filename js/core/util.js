@@ -100,7 +100,7 @@
                     timeToHide : 20000,
                     zIndex : 999,
                     spinner : 'spinner7',
-                    bgColor : 'rgba(0,0,0,0.7)'
+                    bgColor : 'rgba(0,0,0,0.4)'
                 });
             }
             else{
@@ -185,8 +185,11 @@
             html.on('hidden.bs.modal', function(){
                 var box = html.find('.box');
                 box.find('.js_yes').unbind('click');
+                box.find('.js_no').unbind('click');
 
                 box.empty();
+
+
             });
 
 
@@ -212,6 +215,9 @@
                 YesText : '确认',
                 YesFn : util.noop,
                 NoText : '取消',
+                NoFn : function(callback){
+                    callback();
+                },
 
                 end : null
             }, opts);
@@ -234,7 +240,7 @@
 
                 '{{if foot}}',
                 '<div class="modal-footer">',
-                    '<button type="button" class="hw-btn hw-light-btn" data-dismiss="modal">{{NoText}}</button>',
+                    '<button type="button" class="hw-btn hw-light-btn js_no">{{NoText}}</button>',
                     '{{if YesText}}<button type="button" class="hw-btn hw-blue-btn js_yes">{{YesText}}</button>{{/if}}',
                 '</div>',
                 '{{/if}}'
@@ -246,6 +252,12 @@
 
             obj.find('.js_yes').click(function(e){
                 p.YesFn(function(){
+                    util.dialog.hide();
+                }, e);
+            });
+
+            obj.find('.js_no').click(function(e){
+                p.NoFn(function(){
                     util.dialog.hide();
                 }, e);
             });
@@ -446,7 +458,7 @@ var a = encodeURIComponent(redUrl||location.href);
             alert(msg);
         },
         alert : function(msg){
-            var h = '<div class="hw-check"><i class="fa fa-check"></i></div>';
+            var h = '<div class="hw-icon"><i class="fa fa-check"></i></div>';
             util.dialog.alert(h+msg);
         }
     };

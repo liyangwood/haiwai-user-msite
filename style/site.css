@@ -87,7 +87,7 @@ a:hover, a:link {
   min-width: 96px;
   font-size: 16px;
   font-weight: 700;
-  padding: 0;
+  padding: 0 15px;
   border-radius: 2px; }
   .hw-btn:focus {
     outline: none; }
@@ -297,7 +297,7 @@ a:hover, a:link {
       padding-right: 25px; }
 
 .kg-header-nav-comp {
-  background: #00a7bc;
+  background: #37bccd;
   height: 40px; }
   .kg-header-nav-comp .nav {
     width: 128px;
@@ -307,7 +307,7 @@ a:hover, a:link {
     font-size: 16px;
     display: inline-block; }
   .kg-header-nav-comp .nav.active, .kg-header-nav-comp .nav:hover {
-    background: #27b4cb; }
+    background: #00a7bc; }
 
 .hw-footer-comp {
   background: #37bccd; }
@@ -445,6 +445,18 @@ a:hover, a:link {
   min-width: 430px; }
   #kg_modal_dialog .modal-content .modal-body {
     padding-top: 0; }
+    #kg_modal_dialog .modal-content .modal-body .hw-icon {
+      margin-right: 15px;
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      border-radius: 18px;
+      border: 3px solid #37bccd; }
+      #kg_modal_dialog .modal-content .modal-body .hw-icon .fa {
+        color: #37bccd;
+        font-size: 24px;
+        position: relative;
+        top: 3px; }
   #kg_modal_dialog .modal-content .hw-title {
     font-size: 18px;
     font-weight: 700;
@@ -532,18 +544,6 @@ a:hover, a:link {
   width: 400px; }
 .hw-dialog-alert .modal-header .close {
   display: none !important; }
-.hw-dialog-alert .modal-body .hw-title .hw-check {
-  margin-right: 15px;
-  display: inline-block;
-  width: 36px;
-  height: 36px;
-  border-radius: 18px;
-  border: 3px solid #37bccd; }
-  .hw-dialog-alert .modal-body .hw-title .hw-check .fa {
-    color: #37bccd;
-    font-size: 24px;
-    position: relative;
-    top: 3px; }
 
 .hw-dialog-coupon .modal-dialog {
   width: 820px !important;

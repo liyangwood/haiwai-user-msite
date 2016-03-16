@@ -28,6 +28,22 @@
 
         .modal-body{
             padding-top: 0;
+
+            .hw-icon{
+                margin-right: 15px;
+                display: inline-block;
+                width: 36px;
+                height: 36px;
+                border-radius: 18px;
+                border : 3px solid $blue-color;
+
+                .fa{
+                    color: $blue-color;
+                    font-size: 24px;
+                    position: relative;
+                    top: 3px;
+                }
+            }
         }
 
         .hw-title{
@@ -196,23 +212,7 @@
         }
     }
     .modal-body{
-        .hw-title{
-            .hw-check{
-                margin-right: 15px;
-                display: inline-block;
-                width: 36px;
-                height: 36px;
-                border-radius: 18px;
-                border : 3px solid $blue-color;
 
-                .fa{
-                    color: $blue-color;
-                    font-size: 24px;
-                    position: relative;
-                    top: 3px;
-                }
-            }
-        }
     }
 
 }
