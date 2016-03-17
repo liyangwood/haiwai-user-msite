@@ -120,7 +120,7 @@
 
                     '<div class="input-group search">',
                         '<span class="input-group-addon"><i class="icon"></i></span>',
-                        '<input type="text" class="form-control" placeholder="">',
+                        '<input type="text" class="form-control" placeholder="搜素店铺，专家服务...">',
                     '</div>',
 
                 '{{if user.isLogin}}',

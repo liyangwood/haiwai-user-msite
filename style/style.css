@@ -303,6 +303,9 @@ a:hover, a:link {
       border-radius: 5px;
       padding-left: 25px;
       padding-right: 25px; }
+      .kg-header-comp .right .hw-btn:hover {
+        background: #37bccd;
+        color: #ffffff; }
 
 .kg-header-nav-comp {
   background: #37bccd;

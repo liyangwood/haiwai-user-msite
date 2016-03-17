@@ -303,8 +303,11 @@ KG.Class.define('HWSiteIndexDataComp', {
 		return '<div class="nodis"></div>';
 	},
 	getData : function(){
+
+		util.loading(true);
 		KG.request.getSiteHomePageData({}, function(flag, rs){
 			console.log(rs);
+			util.loading(false);
 
 			KG.component.initWithElement($('div[role="HWIndexFocesImage"]'), {
 				list : rs.votes

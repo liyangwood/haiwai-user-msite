@@ -76,7 +76,14 @@
             });
         },
         deleteStore : function(){
-            alert(this.data.bizId);
+
+            KG.request.deleteStoreById({
+                id : this.data.bizId
+            }, function(flag){
+                if(flag){
+                    location.href = '../mybiz/index.html';
+                }
+            });
         }
     });
 

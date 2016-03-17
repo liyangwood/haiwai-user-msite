@@ -32,6 +32,7 @@ var JS = {
     site_core : baseCore.concat([
         'js/comp/base.js',
         'js/site/base.js',
+        'js/site/index.js',
         'js/site/storelist.js',
         'js/site/couponlist.js',
         'js/site/articlelist.js',

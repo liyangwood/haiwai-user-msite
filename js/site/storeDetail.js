@@ -297,16 +297,25 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					bizId : self.data.id
 				}, function(flag, rs){
 					if(flag){
-						o.html('<i class="icon fa fa-star"></i>已收藏').removeClass('js_fav');
+						o.html('<i class="icon fa fa-star"></i>已收藏').removeClass('js_fav').addClass('js_fav_on');
 					}
 					else{
-						o.html('<i class="icon fa fa-star"></i>已收藏').removeClass('js_fav');
+						alert(rs);
 					}
 				});
 			}
 			else{
 				util.dialog.showLoginBox();
 			}
+		}).on('click', '.js_fav_on', function(){
+			var o = $(this);
+			KG.request.deleteMyFavStore({
+				id : self.data.id
+			}, function(flag, rs){
+				if(flag){
+					o.html('<i class="icon fa fa-star-o"></i>收藏').removeClass('js_fav_on').addClass('js_fav');
+				}
+			});
 		}).on('click', '.js_reply', function(){
 			self.rpId = null;
 			self.showReplyTextarea();
@@ -427,6 +436,10 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				elem : self.elem.find('.js_map')[0]
 			});
 		});
+
+		if(this.data.biz.is_booked){
+			this.elem.find('.js_fav').html('<i class="icon fa fa-star"></i>已收藏').removeClass('js_fav').addClass('js_fav_on');
+		}
 	},
 
 	getCommentData : function(callback){

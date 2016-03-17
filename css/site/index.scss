@@ -24,6 +24,7 @@
         bottom: 0;
         text-align: right;
         width: 70%;
+        z-index: 2;
 
         li{
             margin-right: 10px;
@@ -294,7 +295,9 @@
             color: $blue-color;
         }
     }
-    .top { float: left; border-bottom: 1px dotted #9b9b9b; padding-bottom: 8px; margin: 0 15px; }
+    .top { float: left; border-bottom: 1px dotted #9b9b9b; padding-bottom: 8px; margin: 0 15px;
+        position: static !important;
+    }
     .top:hover{
         .toptitle{
             color: $blue-color;

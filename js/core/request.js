@@ -908,5 +908,18 @@ KG.request = {
             func : 'view'
         };
         return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=del&bizid=2025634&token=&format=json
+    * */
+    deleteStoreById : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'del',
+            bizid : opts.id
+        };
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
     }
 };
