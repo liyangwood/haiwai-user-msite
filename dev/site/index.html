@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	@@include('../../inc/meta_site.html')
+
+	<title></title>
+</head>
+<body>
+
+
+@@include('../../inc/head_nav.html')
+<div role="SiteHeadingNav" data-leftshow="true"></div>
+
+<div class="container hw-site-page" style="margin-top: 12px;margin-bottom: 0;">
+	<div class="hw-index-bannerview">
+		<div init-self="true" style="width: 560px;height: 240px;" role="HWIndexFocesImage"></div>
+		<div init-self="true" role="HWIndexHotNavComp"></div>
+	</div>
+	<div role="HWSiteIndexAppBanner"></div>
+
+	<div role="HWSiteIndexHotCoupon"></div>
+
+</div>
+<div style="background: #ffffff;margin-top: 20px;padding-bottom: 40px;">
+	<div class="container">
+		<div role="HWSiteIndexNewStoreRecommend"></div>
+		<div role="HWSiteIndexHotArticle"></div>
+	</div>
+
+</div>
+<div role="HWSiteIndexDataComp"></div>
+@@include('../../inc/footer.html')
+
+</body>
+</html>
+<script type="text/javascript">
+	KG.data.add({
+		page : 'site-index'
+	});
+</script>

@@ -1,8 +1,15 @@
 @charset "UTF-8";
+body {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  -webkit-text-size-adjust: none; }
+
 * {
   font-family: MicrosoftYaHei, STHeiti, sans-serif;
   font-size: 14px;
-  color: #4a4a4a; }
+  color: #4a4a4a;
+  padding: 0; }
 
 a {
   display: inline-block; }

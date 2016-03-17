@@ -898,5 +898,15 @@ KG.request = {
             lastid : opts.lastid
         };
         return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=view
+    * */
+    getSiteHomePageData : function(opts, success, error){
+        var data = {
+            func : 'view'
+        };
+        return this.ajax(data, success, error);
     }
 };

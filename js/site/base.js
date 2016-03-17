@@ -21,6 +21,15 @@ KG.Class.define('SiteHeadingNav', {
 			'</nav>'
 		].join('');
 	},
+
+	defineProperty : function(){
+		return {
+			leftshow : {
+				defaultValue : false
+			}
+		};
+	},
+
 	initStart : function(){
 		this.navData = [
 			{
@@ -315,11 +324,19 @@ KG.Class.define('SiteHeadingNav', {
 
 	initEvent : function(){
 		var left = this.jq.left;
-		this.elem.find('.js_tab').add(left).hover(function(){
-			left.show();
-		}, function(){
-			left.hide();
-		});
+
+		if(this.prop.leftshow){
+			//set left show
+			left.removeClass('nodis');
+		}
+		else{
+			this.elem.find('.js_tab').add(left).hover(function(){
+				left.show();
+			}, function(){
+				left.hide();
+			});
+		}
+
 
 
 	},
@@ -328,6 +345,10 @@ KG.Class.define('SiteHeadingNav', {
 		this.setLeftBox();
 		var page = this.data.page;
 		this.elem.find('.js_'+page).addClass('active');
+
+		if(page === 'index'){
+			this.elem.find('.js_tab').addClass('active');
+		}
 	},
 
 	setLeftBox : function(){

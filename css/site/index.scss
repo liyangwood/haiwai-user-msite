@@ -1,0 +1,362 @@
+
+.hw-index-bannerview{
+    width: 560px;
+    height: 480px;
+    position: relative;
+    left: 270px;
+}
+.hw-index-focusimage{
+
+    .carousel-inner{
+        height: 240px;
+        overflow: hidden;
+        .img-item{
+            width: 560px;
+            height: 240px;
+            
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+    .carousel-indicators{
+        bottom: 0;
+        text-align: right;
+        width: 70%;
+
+        li{
+            margin-right: 10px;
+            background: #000000;
+
+            &.active{
+                background: #f4a62a;
+            }
+        }
+    }
+}
+
+.hw-HWIndexHotNavComp{
+    margin-top: 30px;
+    h4{
+        color: $color-4a;
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 400;
+        margin: 0;
+    }
+    dd{
+        line-height: 24px;
+        margin: 0;
+        padding: 14px 0;
+        border-bottom: 1px solid #ebebeb;
+
+        &:last-child{
+            border-bottom: none;
+        }
+        a{
+            display: inline-block;
+            margin-right: 35px;
+            color: #666;
+            font-size: 16px;
+            @include fontRender;
+        }
+    }
+}
+
+.hw-HWSiteIndexAppBanner{
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    .appcom {background-color: #fff; float: left; width: 230px; height: 448px; text-align: center; font-size: 14px; }
+    .appcom a { display: block; }
+    .button, .slogan { margin: 0 auto; width: 148px; }
+    .button { height: 40px; line-height: 40px; font-size: 14px; margin-top: 25px; background-color: #37bccd; border: 0 none; border-radius: 3px; color: #fff; position: relative; text-transform: uppercase; }
+    a.button:hover { background-color: #00a7bc; color: #FFF; }
+    .slogan, .appad, .appstore { margin: 22px auto 0; }
+    .appad img { width: 155px; height: 184px; }
+    .appstore { width: 133px; height: 45px; }
+}
+
+.hw-HWSiteIndexHotCoupon{
+    width: 100%;
+    margin-top: 20px;
+
+    dt{
+        label{
+            border-left: 4px solid #f4a62a;
+            font-size: 18px;
+            color: $color-4a;
+            line-height: 40px;
+            padding-left: 15px;
+            font-weight: normal;
+        }
+        .hw-a{
+            float: right;
+            font-size: 14px;
+            color: $color-7d;
+            font-weight: normal;
+
+            &:hover{
+                color: $blue-color;
+            }
+        }
+    }
+
+    dd{
+        width: 1100px;
+        margin-top: 24px;
+        margin-left: -8px;
+        .hw-each{
+            width: 258px;
+            height: 298px;
+            background: #ffffff;
+            margin: 0 8px 15px;
+            display: inline-block;
+            box-shadow: 0 0 4px rgba(0,0,0,0.1);
+            position: relative;
+            padding: 160px 15px 0;
+            overflow: hidden;
+            cursor: pointer;
+
+            .hw-logo{
+                width: 100%;
+                height: 160px;
+                position: absolute;
+                overflow: hidden;
+                top: 0;
+                left: 0;
+
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            h4{
+                font-size: 17px;
+                color: $color-4a;
+                margin: 15px 0 0 0;
+                font-weight: normal;
+            }
+            .hw-address{
+                font-size: 14px;
+                color: $color-7d;
+                margin-top: 5px;
+                max-height: 50px;
+                overflow: hidden;
+                display: inline-block;
+                word-break: break-all;
+                @include fontRender;
+            }
+
+            h3{
+                font-size: 19px;
+                color: #f4a62a;
+                margin-top: 12px;
+                text-align: center;
+                font-weight: normal;
+            }
+        }
+    }
+}
+
+.hw-HWSiteIndexNewStoreRecommend{
+    width: 100%;
+    margin-top: 20px;
+    dt{
+        label{
+            border-left: 4px solid #f4a62a;
+            font-size: 18px;
+            color: $color-4a;
+            line-height: 40px;
+            padding-left: 15px;
+            font-weight: normal;
+        }
+        .hw-a{
+            float: right;
+            font-size: 14px;
+            color: $color-7d;
+            font-weight: normal;
+
+            &:hover{
+                color: $blue-color;
+            }
+        }
+    }
+    dd{
+
+        .carousel-indicators{
+            bottom: 0;
+            width: 70%;
+
+            li{
+                margin-right: 10px;
+                background: #000000;
+
+                &.active{
+                    background: #f4a62a;
+                }
+            }
+        }
+
+        .hw-onebox{
+            padding: 0 25px;
+
+            .hw-one{
+                width: 190px;
+                height: 260px;
+                text-align: center;
+                display: inline-block;
+                margin-left: 15px;
+                vertical-align: top;
+                overflow: hidden;
+                padding: 5px 15px;
+
+                &:hover{
+                    background : #f7f7f7;
+                    h4{
+                        color: $blue-color;
+                    }
+                }
+                
+                img{
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 60px;
+                    margin: 0 auto;
+                }
+                h4{
+                    font-size: 16px;
+                    color: $color-4a;
+                    margin: 0;
+                    margin-top: 5px;
+                }
+                .hw-p{
+                    font-size: 12px;
+                    color: $color-7d;
+                    margin-top: 5px;
+                }
+                .hw-n{
+                    font-size: 12px;
+                    color: $color-7d;
+                    margin-top: 5px;
+                }
+            }
+        }
+    }
+}
+
+.hw-HWSiteIndexHotArticle{
+    width: 100%;
+    margin-top: 30px;
+    dt{
+        label{
+            border-left: 4px solid #f4a62a;
+            font-size: 18px;
+            color: $color-4a;
+            line-height: 40px;
+            padding-left: 15px;
+            font-weight: normal;
+        }
+
+    }
+    dd{
+        margin-top: 15px;
+    }
+
+    .detail{
+        background-color: #fff;
+        border: 1px solid #979797;
+        height: 320px;
+        overflow: hidden;
+        width: 320px;
+        font-size: 14px;
+        display: inline-block;
+    }
+    .detail .list ul.l_ul1 li { width: 686px; float: left; height: 29px; line-height: 20px; margin-top: 10px; overflow: hidden; border-bottom: 1px dotted #9b9b9b; }
+    .detail .list ul.l_ul1 li:last-child { border-bottom: none; }
+    .m20 { margin: 20px; }
+    .lef { width: 716.4px; height: 542px; margin-right: 11px; }
+    .lef li{
+        margin-left: 0;
+    }
+    .lef li a {
+        width: 497px;
+        height: 22px;
+        font-size: 16px;
+        line-height: 22px;
+        color: #3c3c3c;
+        @include fontRender;
+
+        &:hover{
+            color: $blue-color;
+        }
+    }
+    .top { float: left; border-bottom: 1px dotted #9b9b9b; padding-bottom: 8px; margin: 0 15px; }
+    .top:hover{
+        .toptitle{
+            color: $blue-color;
+        }
+    }
+    .topimg { float: left; margin: 0 10px 0 0; }
+    .top img { width: 147px; height: 108px; }
+    .toptitle{
+        float: left;
+        margin-top: 10px;
+        width: 362px;
+        height: 28px;
+        font-size: 18px;
+        line-height: 28px;
+        color: $color-4a;
+        @include fontRender;
+    }
+    .toptext { float: left; width: 523px; height: 56px; font-size: 14px; line-height: 28px;overflow:hidden; color: #9b9b9b;}
+    .rig { width: 345px; height: 542px; }
+    .rig .list ul.l_ul1 li { list-style: none; width: 314px; padding: 8px 0; height:56px; font-size: 14px; line-height: 20px; }
+    .rig .list ul.l_ul1 li:last-child { border-bottom: none; }
+    .rig .list ul.l_ul1 li a {
+        display: block;
+        margin-left: 40px;
+        width: 254px;
+        height: 40px;
+        line-height: 20px;
+        overflow: hidden;
+        color:$color-4a;
+        font-size:14px;
+        @include fontRender;
+
+        &:hover{
+            color: $blue-color;
+        }
+    }
+    .stitle {
+        background-color: #f7f7f7;
+        height: 48px;
+        line-height: 48px;
+        padding: 0 0 0 15px;
+        position: relative;
+        margin-bottom: 10px;
+        font-size: 16px;
+        color: $color-4a;
+        margin-top: 0;
+        font-weight: normal;
+    }
+    .round { margin-right: 15px; width: 9px; height: 9px; font-size: 20px; line-heigth: 16px; text-align: center; color: #f4a62a; text-decoration: none; }
+    .roundb {
+        background: #f4a62a;
+        font-weight: normal;
+        background-repeat: no-repeat; padding-left: 8px;
+        float: left;
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+        border-radius: 15px;
+
+        span{
+            color: #ffffff;
+            font-size: 20px;
+        }
+    }
+}
