@@ -638,8 +638,24 @@
                     KG.request.createStoreCouponEvent(data, function(flag, rs){
                         if(flag){
                             console.log(rs);
-                            location.href = 'http://www.haiwai.com/classifiedinfo/view.php?id='+rs;
+                            //location.href = 'http://www.haiwai.com/classifiedinfo/view.php?id='+rs;
+
+                            //create success
+                            var msg = '<div class="hw-icon"><i class="fa fa-check"></i></div>创建优惠成功！别忘了点击“分享”，让更多的人知道！';
+                            util.dialog.show({
+                                foot : true,
+                                title : msg,
+                                body : '',
+                                'class' : 'hw-dialog-alert',
+                                YesFn : function(){
+
+                                    location.href = '../mybiz/coupon.html';
+                                },
+                                YesText : '确定'
+                            });
                         }
+
+
                     });
                 }
             });
