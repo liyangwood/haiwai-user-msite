@@ -589,10 +589,12 @@
                 biztype : {
                     defaultValue : 'tmp'
                 },
-                bizid : {}
+                bizid : {},
+                image : {}
             };
         },
         getData : function(box, data, next){
+            console.log(this.prop)
             next({
                 image : this.prop.image
             });
@@ -621,8 +623,14 @@
         uploadImageFn : function(file, callback){
             var self = this;
             var data = {};
+
             if(this.prop.biztype === 'tmp'){
-                data.bizTmpId = this.prop.bizid;
+                data.bizId = this.prop.bizid;
+                data.type = 'tmp';
+            }
+            else{
+                data.type = 'biz';
+                data.bizId = this.prop.bizid;
             }
 
             var fr = new FileReader();
@@ -641,6 +649,9 @@
 
             fr.readAsDataURL(file);
 
+
+        },
+        initEnd : function(){
 
         }
     });
@@ -803,8 +814,12 @@
                     '<div class="form-group">',
                         '<label class="lab">店铺Logo</label>',
                         '<p class="hw-img-p">店铺／专属页Logo图片是重要的品牌识别标识，建议您上传店铺Logo或职业头像，以增加专业性。该Logo也将用于您的店铺／专属页与用户互动的头像，如回复评论、发布文章、活动。 </p>',
-                        '<div class="hw-upload" data-biztype="tmp" data-bizid="{{tmpId}}"' +
+                        '{{if tmpId}}',
+                        '<div class="hw-upload js_logo" data-biztype="tmp" init-self="true" data-bizid="{{tmpId}}"' +
                         ' role="UploadStoreImage"></div>',
+                        '{{else}}',
+                '<div class="hw-upload js_logo" init-self="true" data-image="{{logo}}" data-biztype="biz" data-bizid="{{bizId}}" role="UploadStoreImage"></div>',
+                        '{{/if}}',
                     '</div>',
 
 
@@ -852,6 +867,10 @@
                 KG.request.getBizDetailById({
                     bizId : KG.data.get('id')
                 }, function(flag, json){
+                    var logo = null;
+                    if(json.logo){
+                        logo = KG.config.SiteRoot+json.logo.path;
+                    }
 
                     KG.request.getStoreBigBackgroundPic({
                         mainTagId : json.fk_main_tag_id
@@ -868,7 +887,8 @@
                             bigBgImageList : bigBgImageList,
                             bizId : KG.data.get('id'),
                             tagId : tagId,
-                            biz : json
+                            biz : json,
+                            logo : logo
                         });
                     });
                 });
@@ -942,6 +962,7 @@
 
             this.elem.find('.js_bigimage').eq(0).trigger('click');
 
+            KG.component.initWithElement(this.elem.find('.js_logo'), {});
         },
 
         getFormValue : function(){

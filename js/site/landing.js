@@ -14,7 +14,12 @@
                         '海外最大的媒体平台帮你直达400万华人',
                     '</p>',
 
+                    '{{if isLogin}}',
+                    '<img src="{{user.image}}" class="hw-img" />',
+                    '{{else}}',
                     '<img src="../../image/haiwai1.png" class="hw-img" />',
+                    '{{/if}}',
+
 
                     '<div class="hw-box">',
 
@@ -28,13 +33,6 @@
             };
         },
 
-        defineProperty : function(){
-            return {
-                login : {
-                    defaultValue : false
-                }
-            };
-        },
 
         setLoginBox : function(){
             var h = [
@@ -59,16 +57,17 @@
         },
 
         setAfterLoginBox : function(){
-            var h = '<a href="javascript:void(0)" style="margin-top: 200px;" class="hw-btn hw-blue-btn">我是商家，创建店铺</a>';
+            var h = '<a href="../mybiz/createStore.html" style="margin-top: 200px;" class="hw-btn hw-blue-btn">我是商家，创建店铺</a>';
 
             this.jq.box.html(h);
         },
 
         getData : function(box, data, next){
-            console.log(this.prop);
-            var isLogin = this.prop.login;
+            var user = KG.user.get();
+            var isLogin = user.isLogin;
             next({
-                isLogin : isLogin
+                isLogin : isLogin,
+                user : user
             });
         },
 
@@ -91,6 +90,34 @@
                         location.href = '../mybiz/index.html';
                     }
 
+                }, function(err){
+                    util.toast.showError(err);
+                });
+            });
+
+            this.elem.on('click', '.js_reg', function(e){
+                var data = {
+                    email : self.jq.box.find('.js_email').val(),
+                    password : self.jq.box.find('.js_pwd').val(),
+                    confirm_password : self.jq.box.find('.js_pwd2').val()
+                };
+                console.log(data);
+                KG.user.register(data, function(flag, rs){
+                    if(flag){
+                        var sd = {
+                            username : data.email,
+                            password : data.password
+                        };
+                        KG.user.login(sd, function(){
+                            location.href = '../mycount/info.html';
+                        }, function(err){
+
+                            util.toast.showError(err);
+                        });
+                    }
+                    else{
+                        util.toast.showError(rs);
+                    }
                 });
             });
 
@@ -107,6 +134,7 @@
             }
         }
     });
+
 
     KG.Class.define('HWLandingBigImage', {
         ParentClass : 'BaseComponent',

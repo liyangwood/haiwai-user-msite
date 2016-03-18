@@ -17,12 +17,7 @@ KG.Class.define('SiteAticleListLeftNav', {
 
     getData : function(box, data, next){
 
-        var list = [
-            {
-                category_id : 'biz',
-                name : '商家专栏'
-            }
-        ];
+        var list = [];
         var cat = util.url.param('category');
 
         KG.request.getArticleCategoryList({}, function(flag, rs){
@@ -33,7 +28,7 @@ KG.Class.define('SiteAticleListLeftNav', {
 
             next({
                 list : list,
-                cat : cat
+                cat : cat.toString()
             });
 
         });
@@ -99,6 +94,15 @@ KG.Class.define('HWSiteArticleListPage', {
     initEnd : function(){
         this.setBoxHtml(this.data.list);
         this.setLoadingStateHtml();
+
+        if(this.data.list.length > 0){
+            this.lastid = this.data.list[this.data.list.length -1].id;
+            this.jq.pageBox.find('.loading').hide();
+            this.jq.pageBox.find('.js_more').show();
+        }
+        else{
+            this.jq.pageBox.hide();
+        }
     },
 
     setTitle : function(tlt){
@@ -147,7 +151,7 @@ KG.Class.define('HWSiteArticleListPage', {
     },
 
     initVar : function(){
-        this.lastid = this.data.list[this.data.list.length-1].id;
+        this.lastid = this.data.length > 0 ? this.data.list[this.data.list.length-1].id : null;
     },
 
     setJqVar : function(){

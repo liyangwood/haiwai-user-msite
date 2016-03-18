@@ -147,7 +147,7 @@
                     '<a href="../mycoupon/list.html">我的优惠</a>',
                     '<a href="../mysys/index.html">系统消息</a>',
                     '<a href="../mycount/info.html">账户设置</a>',
-                    '<a class="js_logout" href="javascript:void(0)">注销</a>',
+                    '<a class="js_logout" href="javascript:void(0)">退出登录</a>',
                     '</div>',
                 '</div>',
                 '{{else}}',
@@ -356,7 +356,7 @@
                     list : runningList
                 });
 
-                util.message.publish('kg-mybiz-stop-list', stopList);
+                KG.component.initWithElement($('div[role="MybizStopStoreList"]'), stopList);
             });
         },
         initEvent : function(){
@@ -388,8 +388,8 @@
                 '<em>{{item.commentnum}}条新评论</em>',
 
                 '<div class="r">',
-                '<a class="hw-a js_restart" href="">重新营业</a>',
-                '<a class="hw-a js_del" href="">删除</a>',
+                '<a class="hw-a js_restart" param="{{item.entityID}}" href="javascript:void(0)">重新营业</a>',
+                '<a class="hw-a js_del" param="{{item.entityID}}" href="javascript:void(0)">删除</a>',
                 '</div>',
                 '</div>',
                 '{{/each}}',
@@ -397,36 +397,61 @@
             ].join('');
         },
         getData : function(box, data, next){
-            util.message.register('kg-mybiz-stop-list', function(e, list){
-                next(list || []);
+            var list = data;
+            next({
+                list : list
             });
         },
         initEvent : function(){
             var self = this;
-            this.elem.find('.js_restart').click(function(){
-                util.dialog.show();
-            });
 
             this.elem.find('.js_del').click(function(){
+                var o = $(this);
                 util.dialog.confirm({
                     title : '确认要删除这个店铺吗？',
                     msg : '点击确认，我们将为您删除这个店铺的所有信息，包括基本信息，图片，店铺评级和评论等，并且不能再找回这些信息，请谨慎操作。',
-                    YesFn : self.deleteStore
+                    YesFn : function(callback){
+                        callback();
+                        self.deleteStore(o.attr('param'));
+                    }
                 });
 
                 return false;
             });
 
             this.elem.find('.js_restart').click(function(e){
-                //TODO restart store
+                var id = $(this).attr('param');
+
+                util.dialog.confirm({
+                    title : '确认要重新营业么？',
+                    msg : '点击确认，此店铺将重新开始营业。',
+                    YesFn : function(callback){
+                        KG.request.changeStoreOpenStatus({
+                            bizId : id,
+                            status : true
+                        }, function(flag, rs){
+                            callback();
+                            if(flag){
+                                location.reload(true);
+                            }
+                        });
+                    }
+                });
+
+
             });
 
 
         },
-        deleteStore : function(callback){
-            //TODO delete store
+        deleteStore : function(id){
+            KG.request.deleteStoreById({
+                id : id
+            }, function(flag){
+                if(flag){
+                    location.reload();
+                }
+            });
 
-            callback();
 
         }
     });

@@ -18,10 +18,10 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		var T1 = [
 			'<div class="c-top">',
 				'<img class="hw-logo" src="{{biz.logo.path | absImage}}" />',
-				'<p class="hw-renling">申请认领</p>',
+				'{{if biz.verified=="unverified"}}<p class="hw-renling">申请认领</p>{{/if}}',
 				'<div class="c-r">',
 					'<h4>{{biz.name_cn}}</h4>',
-					'<div class="hw-star" role="StarRank" data-rank="{{biz.rankid}}"></div>',
+					'<div class="hw-star" role="StarRank" data-rank="{{biz.star}}"></div>',
 					'<span class="hw-rp">{{biz.comments.length}}条评论</span>',
 					'<p class="hw-p">地址：{{biz | storeFullAddress}}</p>',
 					'<p class="hw-p">特色：{{biz.tag_name}}</p>',
@@ -358,6 +358,16 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					util.toast.alert('举报成功，感谢您的参与');
 				//}
 
+			});
+		});
+
+		this.elem.on('click', '.hw-renling', function(e){
+			var h = '<div class="hw-icon"><i class="fa fa-check"></i></div>';
+			util.dialog.show({
+				foot : false,
+				title : h+'成功提交申请，我们会在24小时内电话联系您。',
+				'class' : 'hw-dialog-alert',
+				body : '<p><input class="form-control" type="text" placeholder="请输入您的联系电话" /></p>'
 			});
 		});
 	},

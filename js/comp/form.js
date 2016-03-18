@@ -187,7 +187,7 @@
             return [
                 '{{if pageTitle}}<h3>{{pageTitle}}<h3>{{/if}}',
                 '<div placeholder="请选择店铺" class="js_biz" data-label="将文章发布到" data-require="true" role="BaseSelectInput" init-self="true"></div>',
-                '<div placeholder="请选择分类" class="js_cat" data-label="文章类别" data-require="true" role="BaseSelectInput" init-self="true"></div>',
+                //'<div placeholder="请选择分类" class="js_cat" data-label="文章类别" data-require="true" role="BaseSelectInput" init-self="true"></div>',
                 '<div class="form-group">',
                     '<label class="require" for="lb_bbb">文章标题</label>',
                     '<input type="text" class="form-control js_title" id="lb_bbb" placeholder="e.g. 海底捞成功的秘密">',
@@ -222,11 +222,8 @@
             var getBizList = function(){
                 return KG.request.getBizList({});
             };
-            var getCateList = function(){
-                return KG.request.getArticleCategoryList({});
-            };
 
-            var list = [getBizList, getCateList];
+            var list = [getBizList];
 
             if(type === 'edit'){
                 list.push(function(){
@@ -236,12 +233,11 @@
                 });
             }
 
-            KG.request.defer(list, function(bizList, catList, articleData){
+            KG.request.defer(list, function(bizList, articleData){
                 callback({
                     id : id,
                     pageTitle : title,
-                    bizList : bizList,
-                    catList : catList,
+                    bizList : _.isArray(bizList)?bizList:[],
                     articleData : articleData,
 
                     btnText : type==='edit'?'保存':'发表'
@@ -253,10 +249,25 @@
 
         initVar : function(){
             this.biz = null;
-            this.cat = null;
+            this.cat = 30;
         },
 
         validate : function(data){
+            var jq = this.getElemObj();
+            if(!data.bizId){
+                jq.biz.showError('请选择要发布的店铺');
+                return false;
+            }
+            else{
+                jq.biz.showError();
+            }
+
+            //TODO
+            if(!data.title){
+                alert('请输入标题');
+                return false;
+            }
+
             return true;
         },
 
@@ -272,6 +283,7 @@
                         if(flag){
                             console.log(rs);
                             util.dialog.alert('保存成功');
+                            location.href = 'article.html'
                         }
                     });
                 }
@@ -291,7 +303,7 @@
 
         getElemObj : function(){
             return {
-
+                biz : KG.component.getObj(this.elem.find('.js_biz'))
             };
         },
 
@@ -307,7 +319,6 @@
         initEnd : function(){
             var self = this;
             this.ck = CKEDITOR.replace('lb_ccc');
-            console.log(this.ck);
 
             var biz = this.elem.find('.js_biz');
             KG.component.initWithElement(biz, {
@@ -321,16 +332,6 @@
                 }
             });
 
-            KG.component.initWithElement(this.elem.find('.js_cat'), {
-                list : this.data.catList,
-                clickCallback : function(rs){
-                    console.log(rs);
-                    self.cat = rs.category_id;
-                },
-                getEachHtml : function(){
-                    return '{{item.name}}';
-                }
-            });
 
             if(this.prop.type === 'edit'){
                 this.setFormValue(this.data.articleData);
@@ -338,15 +339,11 @@
         },
         setFormValue : function(data){
             console.log(data);
-            var biz = KG.component.getObj(this.elem.find('.js_biz')),
-                cat = KG.component.getObj(this.elem.find('.js_cat'));
+            var biz = KG.component.getObj(this.elem.find('.js_biz'));
             biz.setValue(_.findIndex(this.data.bizList, function(one){
                 return one.fk_entityID === data.entityID;
             }));
 
-            cat.setValue(_.findIndex(this.data.catList, function(one){
-                return one.category_id === data.category_id;
-            }));
 
             this.elem.find('.js_title').val(data.title);
             this.ck.setData(data.msgbody);
