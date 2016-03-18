@@ -868,13 +868,18 @@ body {
     .hw-HWSiteIndexNewStoreRecommend dt .hw-a:hover {
       color: #37bccd; }
   .hw-HWSiteIndexNewStoreRecommend dd .carousel-indicators {
-    bottom: 0;
-    width: 70%; }
+    bottom: 0; }
     .hw-HWSiteIndexNewStoreRecommend dd .carousel-indicators li {
       margin-right: 10px;
-      background: #000000; }
+      background: #ffffff;
+      border: 1px solid #f4a62a; }
       .hw-HWSiteIndexNewStoreRecommend dd .carousel-indicators li.active {
         background: #f4a62a; }
+  .hw-HWSiteIndexNewStoreRecommend dd .carousel-control {
+    width: 40px;
+    background: transparent; }
+    .hw-HWSiteIndexNewStoreRecommend dd .carousel-control .glyphicon {
+      color: #9c9c9c; }
   .hw-HWSiteIndexNewStoreRecommend dd .hw-onebox {
     padding: 0 25px; }
     .hw-HWSiteIndexNewStoreRecommend dd .hw-onebox .hw-one {

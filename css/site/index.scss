@@ -35,6 +35,8 @@
             }
         }
     }
+
+
 }
 
 .hw-HWIndexHotNavComp{
@@ -190,15 +192,24 @@
 
         .carousel-indicators{
             bottom: 0;
-            width: 70%;
 
             li{
                 margin-right: 10px;
-                background: #000000;
+                background: #ffffff;
+                border: 1px solid #f4a62a;
 
                 &.active{
                     background: #f4a62a;
                 }
+            }
+        }
+
+        .carousel-control{
+            width: 40px;
+            background: transparent;
+
+            .glyphicon{
+                color: #9c9c9c;
             }
         }
 

@@ -205,6 +205,16 @@ KG.Class.define('HWSiteIndexNewStoreRecommend', {
 			'{{/each}}',
 			'</div>',
 
+			'<a class="left carousel-control" href="#carousel-22" init-self="true" role="button"' +
+			' data-slide="prev">',
+			'<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>',
+
+			'</a>',
+			'<a class="right carousel-control" href="#carousel-22" init-self="true" role="button"' +
+			' data-slide="next">',
+			'<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>',
+			'</a>',
+
 
 			'</div>'
 		].join('');

@@ -848,6 +848,7 @@ KG.request = {
         };
         if(opts.id){
             data.replyid = opts.id;
+            data.act = 'reply';
         }
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
