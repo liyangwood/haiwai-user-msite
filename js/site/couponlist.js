@@ -296,7 +296,7 @@ KG.Class.define('HWSiteCouponListPage', {
             '<div param="{{item.pk_id}}" class="hw-one">',
             '<div class="hw-logo"><img src="{{item.pic | absImage}}" /></div>',
 
-            '<h4>{{item.bizinfo.name_cn || item.bizinfo.name_en}}</h4>',
+            '<a href="{{item.bizinfo.entityID | toStorePath}}"><h4>{{item.bizinfo.name_cn || item.bizinfo.name_en}}</h4></a>',
             '<span class="hw-address">{{item.bizinfo | storeFullAddress}}</span>',
             '<h3>{{item.subject}}</h3>',
             '</div>',

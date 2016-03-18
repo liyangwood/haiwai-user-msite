@@ -82,9 +82,8 @@
             if(f){
                 $('#fakeLoader').show().fakeLoader({
                     timeToHide : 20000,
-                    zIndex : 999,
-                    spinner : 'spinner1',
-                    bgColor : 'rgba(0,0,0,0.4)'
+                    spinner : 'spinner7',
+                    bgColor : 'rgba(0,0,0,0)'
                 });
             }
             else{
@@ -98,9 +97,8 @@
             if(f){
                 $('#fakeLoader1').show().fakeLoader({
                     timeToHide : 20000,
-                    zIndex : 999,
                     spinner : 'spinner7',
-                    bgColor : 'rgba(0,0,0,0.4)'
+                    bgColor : 'rgba(0,0,0,0)'
                 });
             }
             else{

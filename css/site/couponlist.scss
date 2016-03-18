@@ -96,6 +96,9 @@
             font-size: 16px;
             color: $color-4a;
             margin: 15px 0 0 0;
+            &:hover{
+                color: $blue-color;
+            }
         }
         .hw-address{
             font-size: 12px;

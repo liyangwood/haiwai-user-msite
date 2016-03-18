@@ -74,7 +74,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				'<dt class="c-title"><p>本店优惠</p></dt>',
 				'<dd class="c-content" style="padding: 0 15px;">',
 				'{{each biz.events as item}}',
-					'<div class="hw-item hw-cp">',
+					'<div class="hw-item hw-cp js_coupon_item" param="{{item.pk_id}}" style="cursor: pointer">',
 						'<img src="http://beta.haiwai.com/images_beta/eassyimg.png" />',
 						'<h4>{{item.subject}}</h4>',
 						'<p class="hw-lt">{{item.count}}人已领取</p>',
@@ -369,6 +369,11 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				'class' : 'hw-dialog-alert',
 				body : '<p><input class="form-control" type="text" placeholder="请输入您的联系电话" /></p>'
 			});
+		});
+
+		this.elem.on('click', '.js_coupon_item', function(e){
+			var id = $(this).attr('param');
+			util.dialog.showCouponDetail(id);
 		});
 	},
 	showReplyTextarea : function(val){
