@@ -406,8 +406,8 @@
             KG.request.getUserDetailInfo({}, function(flag, rs){
                 console.log(rs);
                 var region = [],
-                    tmp = rs.region_tree;
-                for(var i=3; i>-1; i--){
+                    tmp = rs.region_tree.reverse();
+                for(var i= 0, len=tmp.length; i<len; i++){
                     region.push(tmp[i]?tmp[i].pk_id:'-1');
                 }
                 next({
