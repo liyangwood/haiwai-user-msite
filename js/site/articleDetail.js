@@ -32,7 +32,7 @@
                     '</a>',
                     '{{/if}}',
 
-                    '<div class="hw-article">{{#data.msgbody | decode}}</div>',
+                    '<div class="hw-article">{{#data.msgbody}}</div>',
 
                     '<div class="hw-share">',
                         '<b class="js_share"><i class="fa fa-weixin"></i>分享文章到微信</b>',
@@ -51,6 +51,10 @@
 
                 util.loading(false);
                 if(flag){
+                    try{
+                        rs.view.msgbody = decodeURIComponent(rs.view.msgbody);
+                    }catch(e){}
+console.log(rs.view.msgbody)
                     rs.view.msgbody = util.replaceHtmlImgSrcToAbsolute(rs.view.msgbody);
                     next({
                         id : id,
