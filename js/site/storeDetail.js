@@ -20,16 +20,17 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				'<img class="hw-logo" src="{{biz.logo.path | absImage}}" />',
 				'{{if biz.verified=="unverified"}}<p class="hw-renling">申请认领</p>{{/if}}',
 				'<div class="c-r">',
-					'<h4>{{biz.name_cn}}</h4>',
+					'<h4>{{biz.name_cn}}{{if biz.verified=="yes"}}<i class="icon icon-v">v</i>{{/if}}</h4>',
 					'<div class="hw-star" role="StarRank" data-rank="{{biz.star}}"></div>',
-					'<span class="hw-rp">{{biz.comments.length}}条评论</span>',
+					'<a href="#hw-id-reply" class="hw-rp">{{biz.comments.length}}条评论</a>',
 					'<p class="hw-p">地址：{{biz | storeFullAddress}}</p>',
 					'<p class="hw-p">特色：{{biz.tag_name}}</p>',
 					'<p class="hw-p">电话：{{biz.tel}}</p>',
+					'{{if biz.events&&biz.events[0]}}<p param="{{biz.events[0].pk_id}}" class="hw-coupon js_coupon_item"><i class="icon"></i>{{biz.events[0].subject}}</p>{{/if}}',
 				'</div>',
-				'<b class="hw-act js_fav"><i class="icon fa fa-star-o"></i>收藏</b>',
-				'<b class="hw-act js_reply" style="left: 800px;"><i class="icon fa fa-external-link"></i>评论</b>',
-				'<b class="hw-act js_share" style="left: 900px;"><i class="icon fa fa-wechat"></i>分享</b>',
+				'<b class="hw-act js_fav" style="left:750px;"><i class="icon fa fa-star-o"></i>收藏</b>',
+				'<b class="hw-act js_reply" style="left: 850px;"><i class="icon fa fa-external-link"></i>评论</b>',
+				'<b class="hw-act js_share" style="left: 950px;"><i class="icon fa fa-wechat"></i>分享</b>',
 			'</div>'
 		].join('');
 
@@ -70,33 +71,25 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 		//coupon
 		var T5 = [
+			'{{if biz.events.length>0}}',
 			'<div style="margin-top: 15px;" class="c-box">',
 				'<dt class="c-title"><p>本店优惠</p></dt>',
-				'<dd class="c-content" style="padding: 0 15px;">',
-				'{{each biz.events as item}}',
-					'<div class="hw-item hw-cp js_coupon_item" param="{{item.pk_id}}" style="cursor: pointer">',
-						'<img src="http://beta.haiwai.com/images_beta/eassyimg.png" />',
-						'<h4>{{item.subject}}</h4>',
-						'<p class="hw-lt">{{item.count}}人已领取</p>',
-					'</div>',
-				'{{/each}}',
+				'<dd class="c-content js_coupon_box" style="padding: 0 15px;">',
+
 				'</dd>',
-			'</div>'
+			'</div>',
+			'{{/if}}'
 		].join('');
 
 		var T6 = [
+			'{{if biz.articles.length>0}}',
 			'<div style="margin-top: 15px;" class="c-box">',
 				'<dt class="c-title"><p>本店文章</p></dt>',
-				'<dd class="c-content" style="padding: 0 15px;">',
-				'{{each biz.articles as item}}',
-				'<a href="../view/article.html?id={{item.id}}" target="_blank" style="display: block;" class="hw-item hw-art">',
-					'<img src="{{item.image}}" />',
-					'<h4>{{item.title}}</h4>',
-					'<p class="hw-lt">{{item.msgbody | htmlToText}}</p>',
-				'</a>',
-				'{{/each}}',
+				'<dd class="c-content js_article_box" style="padding: 0 15px;">',
+
 				'</dd>',
-			'</div>'
+			'</div>',
+			'{{/if}}'
 		].join('');
 
 		//image list
@@ -138,7 +131,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 		//comment box
 		var T8 = [
-			'<div style="margin-top: 15px;" class="c-box js_cmbox">',
+			'<div id="hw-id-reply" style="margin-top: 15px;" class="c-box js_cmbox">',
 				'<dt class="c-title">',
 					'<p>评论</p>',
 				'</dt>',
@@ -246,6 +239,8 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			return item;
 		});
 
+		rs.role = rs.is_owner ? 'admin' : 'user';
+
 		return rs;
 	},
 	initStart : function(){
@@ -340,8 +335,20 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		});
 
 		this.elem.find('.js_cmbox').on('click', '.js_rp', function(e){
-			self.rpId = $(e.target).attr('param');
-			self.showReplyTextarea('回复'+$(e.target).attr('nick')+':');
+
+			var box = $(this).closest('.hw-rpeach');
+			if(box.find('.js_rpbox').length > 0){
+				box.find('.js_rpbox').remove();
+				return false;
+			}
+			self.elem.find('.js_cmbox').find('.js_rpbox').remove();
+
+			self.rpId = $(this).attr('param');
+			var h = $(self.getCommentRpHtml(self.rpId));
+			h.appendTo(box).slideDown(200, function(){
+				box.find('textarea').focus();
+			});
+
 		}).on('click', '.js_like', function(e){
 			var id = $(e.target).attr('param');
 			KG.request.addLikeToStoreComment({id : id}, function(flag, rs){
@@ -359,6 +366,13 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				//}
 
 			});
+		});
+
+		this.elem.find('.js_cmbox').on('click', '.js_rpbox .hw-btn', function(){
+			var box = self.elem.find('.js_cmbox').find('.js_rpbox');
+			var id = box.attr('param');
+
+			self.replyComment(id, box);
 		});
 
 		this.elem.on('click', '.hw-renling', function(e){
@@ -390,13 +404,64 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			b1.find('textarea').val(val).focus();
 		}
 	},
+	replyComment : function(rpId, box){
+		var self = this;
+		var ta = box.find('textarea'),
+			val = ta.val();
+		if(!val){
+			util.dom.showErrorPopover(ta, '请输入评论');
+			return;
+		}
+
+
+		KG.request.sendStoreComment({
+			bizId : self.bizId,
+			msg : val,
+			id : rpId
+		}, function(flag, rs){
+			box.remove();
+
+			if(flag){
+				console.log(rs);
+
+				var user = KG.user.get();
+				var sd = {
+					basecode : rs,
+					dataID : self.bizId,
+					dataType : '2',
+					datetime : new Date().getTime(),
+					fk_entityID : self.bizId,
+					id : rs,
+					is_report : '0',
+					msg : val,
+					treelevel : '0',
+					userID : user.userid,
+					userinfo : user
+				};
+
+				var tmp = _.find(self.commentData, {id:rpId});
+				tmp.reply = sd;
+				tmp.treelevel = '1';
+
+				self.setCommentBoxHtml();
+
+			}
+		});
+	},
+
 	sendComment : function(btnObj){
 		var self = this;
 		var ta = this.elem.find('.js_cmbox .db .hw-ta').find('textarea'),
 			val = ta.val();
 		if(!val){
-			util.toast.showError('请输入评论');
+			util.dom.showErrorPopover(ta, '请输入评论', {
+				trigger : 'focus'
+			});
+			ta.focus();
 			return;
+		}
+		else{
+			util.dom.showErrorPopover(ta, false);
 		}
 		var rank = KG.component.getObj(this.elem.find('.js_rank'));
 
@@ -404,8 +469,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		KG.request.sendStoreComment({
 			bizId : self.bizId,
 			msg : val,
-			star : rank.getValue(),
-			id : self.rpId
+			star : rank.getValue()
 		}, function(flag, rs){
 			btnObj.button('reset');
 
@@ -455,6 +519,22 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		if(this.data.biz.is_booked){
 			this.elem.find('.js_fav').html('<i class="icon fa fa-star"></i>已收藏').removeClass('js_fav').addClass('js_fav_on');
 		}
+
+		self.initArticleBox();
+		self.initCouponBox();
+	},
+
+	getCommentRpHtml : function(replyId){
+		var h = [
+			'<div param="{{replyId}}" style="display: none;" class="js_rpbox c-rp-area">',
+				'<textarea class="form-control"></textarea>',
+				'<button class="hw-btn hw-blue-btn">回复</button>',
+			'</div>'
+		].join('');
+
+		return template.compile(h)({
+			replyId : replyId || ''
+		});
 	},
 
 	getCommentData : function(callback){
@@ -506,10 +586,20 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			'</div>',
 			'<p class="r hw-msg">{{item.msg}}</p>',
 			'<p class="r hw-action">',
-				'<span param="{{item.id}}" nick="{{item.userinfo.nick}}" class="js_rp">回复</span>',
+				'{{if role=="admin"}}<span param="{{item.id}}" nick="{{item.userinfo.nick}}"' +
+				' class="js_rp">回复</span>{{/if}}',
 				'<span param="{{item.id}}" class="js_like">赞({{item.buzz}})</span>',
 				'<span param="{{item.id}}" class="js_jp">举报</span>',
 			'</p>',
+
+			'{{if item.treelevel=="1"}}',
+			'<div class="c-rp">',
+				'<img src="{{item.reply.userinfo.avatar_url | absImage}}" />',
+				'<p>{{item.reply.userinfo.nick}}回复：</p>',
+				'<p>{{item.reply.msg}}</p>',
+			'</div>',
+			'{{/if}}',
+
 			'</div>',
 			'{{/each}}'
 		].join('');
@@ -517,10 +607,108 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		var box = this.elem.find('.js_cmbox'),
 			list = this.commentData;
 
-		h = template.compile(h)({list: list});
+		h = template.compile(h)({
+			list: list,
+			role : this.data.biz.role
+		});
 		box.find('.c-title p').html('评论（' + list.length + '）');
 		box.find('.c-content .dp').html(h);
 
 		KG.component.init(box.find('.c-content .dp'));
+	},
+
+	initArticleBox : function(){
+		var self = this;
+		if(!this.data.biz.articles || this.data.biz.articles.length < 1){
+			return false;
+		}
+
+		var box = this.elem.find('.js_article_box').data('number', 0),
+			data = this.data.biz.articles;
+		var more = function(){
+			var n = box.data('number'),
+				f = false,
+				rs = [];
+			if(data.length > (n+5)){
+				f = true;
+				rs = data.slice(0, n+5);
+			}
+			else{
+				rs = data.slice(0, data.length);
+			}
+			box.data('number', rs.length);
+			self.setArticleListHtml(rs, f);
+		};
+
+		box.on('click', '.hw-more', more);
+		more();
+	},
+
+	setArticleListHtml : function(list, flag){
+		var box = this.elem.find('.js_article_box');
+		var h = [
+			'{{each list as item}}',
+			'<a href="../view/article.html?id={{item.id}}" target="_blank" style="display: block;" class="hw-item hw-art">',
+			'<img src="{{item.image}}" />',
+			'<h4>{{item.title}}</h4>',
+			'<p class="hw-lt">{{item.msgbody | htmlToText}}</p>',
+			'</a>',
+			'{{/each}}',
+			'{{if flag}}<p class="hw-more">查看更多</p>{{/if}}'
+		].join('');
+
+		h = template.compile(h)({
+			list : list,
+			flag : flag
+		});
+
+		box.html(h);
+	},
+
+	initCouponBox : function(){
+		var self = this;
+		if(!this.data.biz.events || this.data.biz.events.length < 1){
+			return false;
+		}
+
+		var box = this.elem.find('.js_coupon_box').data('number', 0),
+			data = this.data.biz.events;
+		var more = function(){
+			var n = box.data('number'),
+				f = false,
+				rs = [];
+			if(data.length > (n+5)){
+				f = true;
+				rs = data.slice(0, n+5);
+			}
+			else{
+				rs = data.slice(0, data.length);
+			}
+			box.data('number', rs.length);
+			self.setCouponListHtml(rs, f);
+		};
+
+		box.on('click', '.hw-more', more);
+		more();
+	},
+
+	setCouponListHtml : function(list, flag){
+		var box = this.elem.find('.js_coupon_box');
+		var h = [
+			'{{each list as item}}',
+			'<div class="hw-item hw-cp js_coupon_item" param="{{item.pk_id}}" style="cursor: pointer">',
+			'<img src="http://beta.haiwai.com/images_beta/eassyimg.png" />',
+			'<h4>{{item.subject}}</h4>',
+			'<p class="hw-lt">{{item.count}}人已领取</p>',
+			'</div>',
+			'{{/each}}',
+			'{{if flag}}<p class="hw-more">查看更多</p>{{/if}}'
+		].join('');
+		h = template.compile(h)({
+			list : list,
+			flag : flag
+		});
+
+		box.html(h);
 	}
 });

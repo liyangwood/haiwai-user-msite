@@ -277,7 +277,6 @@ KG.Class.define('HWSiteStoreListPage', {
 	initEvent : function(){
 		var self = this;
 
-
 		//this.jq.pageBox.on('click', 'a.js_p', function(){
 		//	var o = $(this);
 		//	if(o.hasClass('active')) return false;
@@ -308,6 +307,12 @@ KG.Class.define('HWSiteStoreListPage', {
 				self.setBoxHtml(rs.list, true);
 			});
 
+		});
+
+		this.elem.on('click', '.js_coupon_item', function(e){
+			var id = $(this).attr('param');
+			util.dialog.showCouponDetail(id);
+			return false;
 		});
 	},
 
@@ -378,12 +383,19 @@ KG.Class.define('HWSiteStoreListPage', {
 			'<div class="hw-logo"><img src="{{item.logo | absImage}}" /></div>',
 
 			'<div class="right">',
-			'<h4>{{item.name_cn || item.name_en}}</h4>',
-			'<div class="ca">',
-				'<div class="hw-star" role="StarRank" data-rank="{{item.star}}"></div>',
+				'<h4>{{item.name_cn || item.name_en}}</h4>',
+				'<div class="ca">',
+					'<div class="hw-star" role="StarRank" data-rank="{{item.star}}"></div>',
+					'<span>{{item.commentnum}}条评论</span>',
+				'</div>',
+				'<div class="hw-address">地址 : {{item | storeFullAddress}}</div>',
 
-			'</div>',
-			'<div class="hw-address">{{item | storeFullAddress}}</div>',
+				'{{if item.event}}',
+				'<div param="{{item.event.pk_id}}" class="hw-coupon js_coupon_item">',
+					'<i class="icon"></i>{{item.event.subject}}',
+				'</div>',
+				'{{/if}}',
+
 			'</div>',
 			'</a>',
 			'{{/each}}'

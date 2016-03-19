@@ -2,6 +2,7 @@ $blue-color:#37bccd;
 $color-4a:#4a4a4a;
 $border-color:#c5c5c5;
 $color-7d:#7d7d7d;
+$yellow-color : #f4a62a;
 @mixin fontRender{
     text-rendering: geometricPrecision;
 }
@@ -63,7 +64,14 @@ a:hover, a:link{
 }
 #fakeLoader1 .spinner7, #fakeLoader .spinner7{
     top: auto !important;
-    bottom: 120px !important;
+    bottom: 220px !important;
+}
+
+.icon-v{
+    font-size: 48px;
+    font-family: STSongti-SC-Bold;
+    color: #f4a62a;
+    line-height: 48px;
 }
 
 

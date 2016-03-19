@@ -50,6 +50,12 @@
                 color: $color-7d;
                 margin: 0;
                 font-weight: 400;
+
+                .icon-v{
+                    position: relative;
+                    top: 5px;
+                    left: 4px;
+                }
             }
 
             .hw-star{
@@ -66,6 +72,21 @@
                 color: $color-7d;
                 margin-top: 8px;
                 margin-bottom: 0;
+            }
+            .hw-coupon{
+                margin-top: 12px;
+                color: #f4a62a;
+                font-size: 20px;
+                cursor: pointer;
+
+                .icon{
+                    background: url('../image/store_coupon.png');
+                    width: 30px;
+                    height: 30px;
+                    background-size: 100%;
+                    margin-right: 8px;
+                    vertical-align: middle;
+                }
             }
         }
         .hw-act{
@@ -128,6 +149,14 @@
             }
 
         }
+
+        .hw-more{
+            margin: 0;
+            padding: 8px 0;
+            text-align: center;
+            font-size: 14px;
+            cursor: pointer;
+        }
     }
 
     .hw-left-box{
@@ -163,7 +192,7 @@
             padding: 12px 0;
             border-bottom: 1px solid #ebebeb;
             position: relative;
-            height: 114px;
+            min-height: 114px;
             padding-left: 110px;
             img{
                 width: 90px;
@@ -279,6 +308,44 @@
                 color: $color-7d;
                 margin-left: 10px;
                 cursor: pointer;
+            }
+        }
+
+        .c-rp{
+            position: relative;
+            padding: 12px 80px 12px 60px;
+
+            img{
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                left: 0;
+                top: 12px;
+            }
+            p{
+                font-size: 14px;
+                color: $color-7d;
+            }
+        }
+
+        .c-rp-area{
+            text-align: right;
+            margin-top: 12px;
+            
+            textarea{
+                border-color: #f4a62a;
+                resize: none;
+                background: #f7f7f7;
+                border-radius: 0;
+            }
+            .hw-btn{
+                margin-top: 8px;
+                display: inline-block;
+                height: 36px;
+                line-height: 36px;
+                background: $yellow-color;
+                border: none;
+                border-radius: 0;
             }
         }
     }

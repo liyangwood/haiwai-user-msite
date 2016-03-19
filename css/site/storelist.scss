@@ -54,7 +54,7 @@
         padding-bottom: 65px;
 
         .hw-one1{
-            padding: 15px 0;
+            padding: 15px 0 5px 0;
             margin: 0 20px;
             border-bottom: 1px solid #ebebeb;
             position: relative;
@@ -99,12 +99,36 @@
                         font-size: 24px;
                     }
                 }
+
+                span{
+                    font-size: 17px;
+                    margin-left: 12px;
+                    color: $color-7d;
+                }
             }
 
             .hw-address{
                 font-size: 16px;
                 color: $color-7d;
                 margin-top: 12px;
+            }
+
+            .hw-coupon{
+                border-top: 1px dashed #ebebeb;
+                margin-top: 10px;
+                color: $yellow-color;
+                font-size: 18px;
+                cursor: pointer;
+                padding-top: 5px;
+
+                .icon{
+                    background: url('../image/store_coupon.png');
+                    width: 30px;
+                    height: 30px;
+                    background-size: 100%;
+                    margin-right: 8px;
+                    vertical-align: middle;
+                }
             }
         }
     }
@@ -158,9 +182,19 @@
     }
 }
 
+.hw-SiteStoreSearchFilterComp{
+    background: #ffffff;
+    padding: 12px 15px;
+    border: 1px solid #ebebeb;
+    color: $color-7d;
+    font-size: 18px;
+}
+
 .hw-SiteStoreAscComp{
     background: #ffffff;
     padding: 12px 0;
+    border-left: 1px solid #ebebeb;
+    border-right: 1px solid #ebebeb;
 
     .hw-box{
         border-top: 1px solid #ebebeb;

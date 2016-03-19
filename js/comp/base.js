@@ -118,9 +118,9 @@
                     '<a class="logo" href="/"></a>',
 
 
-                    '<div class="input-group search">',
+                    '<div class="input-group search js_search">',
                         '<span class="input-group-addon"><i class="icon"></i></span>',
-                        '<input type="text" class="form-control" placeholder="搜素店铺，专家服务...">',
+                        '<input type="text" class="form-control" placeholder="搜索店铺，专家服务...">',
                     '</div>',
 
                 '{{if user.isLogin}}',
@@ -180,6 +180,20 @@
             else{
                 this.initEventByBeforeLogin();
             }
+
+            var searchBox = this.elem.find('.js_search');
+            searchBox.find('input').keyup(function(e){
+                if(e.keyCode !== 13){
+                    return false;
+                }
+
+                var val = $(this).val();
+                if(!val){
+                    return false;
+                }
+
+                location.href = '../site/search.html?keyword='+val;
+            });
         },
 
         initEventByAfterLogin : function(){
@@ -195,6 +209,13 @@
             this.elem.find('.js_reg').click(function(){
                 util.dialog.showRegBox();
             });
+        },
+
+        initEnd : function(){
+            var x = KG.data.get('keyword');
+            if(x){
+                this.elem.find('.js_search').find('input').val(x);
+            }
         }
     });
 

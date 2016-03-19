@@ -45,7 +45,13 @@ a:hover, a:link {
 
 #fakeLoader1 .spinner7, #fakeLoader .spinner7 {
   top: auto !important;
-  bottom: 120px !important; }
+  bottom: 220px !important; }
+
+.icon-v {
+  font-size: 48px;
+  font-family: STSongti-SC-Bold;
+  color: #f4a62a;
+  line-height: 48px; }
 
 .hw-mypage {
   margin-top: 24px;
@@ -1215,7 +1221,7 @@ body {
   border-top: none;
   padding-bottom: 65px; }
   .hw-HWSiteStoreListPage .box1 .hw-one1 {
-    padding: 15px 0;
+    padding: 15px 0 5px 0;
     margin: 0 20px;
     border-bottom: 1px solid #ebebeb;
     position: relative;
@@ -1243,10 +1249,28 @@ body {
       margin-top: 10px; }
       .hw-HWSiteStoreListPage .box1 .hw-one1 .ca .hw-star .icon {
         font-size: 24px; }
+      .hw-HWSiteStoreListPage .box1 .hw-one1 .ca span {
+        font-size: 17px;
+        margin-left: 12px;
+        color: #7d7d7d; }
     .hw-HWSiteStoreListPage .box1 .hw-one1 .hw-address {
       font-size: 16px;
       color: #7d7d7d;
       margin-top: 12px; }
+    .hw-HWSiteStoreListPage .box1 .hw-one1 .hw-coupon {
+      border-top: 1px dashed #ebebeb;
+      margin-top: 10px;
+      color: #f4a62a;
+      font-size: 18px;
+      cursor: pointer;
+      padding-top: 5px; }
+      .hw-HWSiteStoreListPage .box1 .hw-one1 .hw-coupon .icon {
+        background: url("../image/store_coupon.png");
+        width: 30px;
+        height: 30px;
+        background-size: 100%;
+        margin-right: 8px;
+        vertical-align: middle; }
 .hw-HWSiteStoreListPage .hw-cpage {
   background: #ffffff;
   text-align: right;
@@ -1280,9 +1304,18 @@ body {
     width: 32px;
     height: 32px; }
 
+.hw-SiteStoreSearchFilterComp {
+  background: #ffffff;
+  padding: 12px 15px;
+  border: 1px solid #ebebeb;
+  color: #7d7d7d;
+  font-size: 18px; }
+
 .hw-SiteStoreAscComp {
   background: #ffffff;
-  padding: 12px 0; }
+  padding: 12px 0;
+  border-left: 1px solid #ebebeb;
+  border-right: 1px solid #ebebeb; }
   .hw-SiteStoreAscComp .hw-box {
     border-top: 1px solid #ebebeb;
     border-bottom: 1px solid #ebebeb;
@@ -1822,6 +1855,10 @@ body {
         color: #7d7d7d;
         margin: 0;
         font-weight: 400; }
+        .hw-HWSiteStoreDetailPage .c-top .c-r h4 .icon-v {
+          position: relative;
+          top: 5px;
+          left: 4px; }
       .hw-HWSiteStoreDetailPage .c-top .c-r .hw-star {
         margin-top: 8px; }
       .hw-HWSiteStoreDetailPage .c-top .c-r .hw-rp {
@@ -1833,6 +1870,18 @@ body {
         color: #7d7d7d;
         margin-top: 8px;
         margin-bottom: 0; }
+      .hw-HWSiteStoreDetailPage .c-top .c-r .hw-coupon {
+        margin-top: 12px;
+        color: #f4a62a;
+        font-size: 20px;
+        cursor: pointer; }
+        .hw-HWSiteStoreDetailPage .c-top .c-r .hw-coupon .icon {
+          background: url("../image/store_coupon.png");
+          width: 30px;
+          height: 30px;
+          background-size: 100%;
+          margin-right: 8px;
+          vertical-align: middle; }
     .hw-HWSiteStoreDetailPage .c-top .hw-act {
       position: absolute;
       top: 230px;
@@ -1875,6 +1924,12 @@ body {
         border-bottom: 1px solid #ebebeb;
         font-size: 17px;
         color: #7d7d7d; }
+    .hw-HWSiteStoreDetailPage .c-box .hw-more {
+      margin: 0;
+      padding: 8px 0;
+      text-align: center;
+      font-size: 14px;
+      cursor: pointer; }
   .hw-HWSiteStoreDetailPage .hw-left-box {
     width: 750px;
     float: left;
@@ -1902,7 +1957,7 @@ body {
       padding: 12px 0;
       border-bottom: 1px solid #ebebeb;
       position: relative;
-      height: 114px;
+      min-height: 114px;
       padding-left: 110px; }
       .hw-HWSiteStoreDetailPage .hw-left-box .hw-art img {
         width: 90px;
@@ -1984,6 +2039,34 @@ body {
         color: #7d7d7d;
         margin-left: 10px;
         cursor: pointer; }
+    .hw-HWSiteStoreDetailPage .hw-rpeach .c-rp {
+      position: relative;
+      padding: 12px 80px 12px 60px; }
+      .hw-HWSiteStoreDetailPage .hw-rpeach .c-rp img {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        left: 0;
+        top: 12px; }
+      .hw-HWSiteStoreDetailPage .hw-rpeach .c-rp p {
+        font-size: 14px;
+        color: #7d7d7d; }
+    .hw-HWSiteStoreDetailPage .hw-rpeach .c-rp-area {
+      text-align: right;
+      margin-top: 12px; }
+      .hw-HWSiteStoreDetailPage .hw-rpeach .c-rp-area textarea {
+        border-color: #f4a62a;
+        resize: none;
+        background: #f7f7f7;
+        border-radius: 0; }
+      .hw-HWSiteStoreDetailPage .hw-rpeach .c-rp-area .hw-btn {
+        margin-top: 8px;
+        display: inline-block;
+        height: 36px;
+        line-height: 36px;
+        background: #f4a62a;
+        border: none;
+        border-radius: 0; }
   .hw-HWSiteStoreDetailPage .hw-wp {
     position: relative;
     min-height: 110px;

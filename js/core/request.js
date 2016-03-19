@@ -929,5 +929,18 @@ KG.request = {
 
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=view&act=biz_search&keyword=火锅
+    * */
+    searchStoreByKeyword : function(opts, success, error){
+        var data = {
+            func : 'view',
+            act : 'biz_search',
+            keyword : opts.keyword,
+            page : opts.page || 1
+        };
+        return this.ajax(data, success, error);
     }
 };

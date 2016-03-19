@@ -6,7 +6,7 @@
         getTemplate : function(){
             return [
                 '<div class="hw-SiteArticleDetailPage">',
-                    '<p class="hw-tap">{{category.name}}</p>',
+                    '{{if category}}<p class="hw-tap">{{category.name}}</p>{{/if}}',
                     '<h3>{{data.title}}</h3>',
 
                     '<p class="hw-st">',
@@ -32,7 +32,7 @@
                     '</a>',
                     '{{/if}}',
 
-                    '<div class="hw-article">{{#data.msgbody}}</div>',
+                    '<div class="hw-article">{{#data.msgbody | decode}}</div>',
 
                     '<div class="hw-share">',
                         '<b class="js_share"><i class="fa fa-weixin"></i>分享文章到微信</b>',

@@ -137,6 +137,24 @@
 
             //TODO;
             win.scrollTop(top);
+        },
+
+        showErrorPopover : function(obj, msg, opts){
+            var color = '#ff0000';
+
+            if(msg === false){
+                obj.popover('destroy');
+                return;
+            }
+
+            opts = opts || {};
+            obj.popover({
+                placement : 'bottom',
+                html : true,
+                //title : '',
+                trigger : opts.trigger || 'click',
+                content : '<span style="color:'+color+'">'+msg+'</span>'
+            }).popover('show');
         }
     };
 
@@ -556,7 +574,7 @@ var a = encodeURIComponent(redUrl||location.href);
         return decodeURIComponent(str);
     });
     template.helper('htmlToText', function(html){
-        return html.replace(/<([^>]*)>/g, '');
+        return decodeURIComponent(html).replace(/<([^>]*)>/g, '');
     });
 
     template.helper('toArticlePath', function(id){

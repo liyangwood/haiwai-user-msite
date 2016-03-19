@@ -46,7 +46,13 @@ a:hover, a:link {
 
 #fakeLoader1 .spinner7, #fakeLoader .spinner7 {
   top: auto !important;
-  bottom: 120px !important; }
+  bottom: 220px !important; }
+
+.icon-v {
+  font-size: 48px;
+  font-family: STSongti-SC-Bold;
+  color: #f4a62a;
+  line-height: 48px; }
 
 .hw-mypage {
   margin-top: 24px;

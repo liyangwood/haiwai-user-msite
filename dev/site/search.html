@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	@@include('../../inc/meta_site.html')
+
+	<title></title>
+</head>
+<body>
+
+@@include('../../inc/head_nav.html')
+<div role="SiteHeadingNav"></div>
+
+<div class="container hw-site-page">
+
+	<div style="min-height:120px;" role="HWSiteSearchStoreListPage"></div>
+
+
+</div>
+
+@@include('../../inc/footer.html')
+
+</body>
+</html>
+<script type="text/javascript">
+	KG.data.add({
+		page : 'site-search',
+		keyword : util.url.param('keyword')
+	});
+</script>
