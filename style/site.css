@@ -1858,7 +1858,8 @@ body {
         .hw-HWSiteStoreDetailPage .c-top .c-r h4 .icon-v {
           position: relative;
           top: 5px;
-          left: 4px; }
+          left: 4px;
+          line-height: 12px; }
       .hw-HWSiteStoreDetailPage .c-top .c-r .hw-star {
         margin-top: 8px; }
       .hw-HWSiteStoreDetailPage .c-top .c-r .hw-rp {

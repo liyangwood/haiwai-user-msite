@@ -942,5 +942,32 @@ KG.request = {
             page : opts.page || 1
         };
         return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=passport&act=reset_password&email=sida9567@gmail.com
+    * */
+    sendResetPasswordEmail : function(opts, success, error){
+        var data = {
+            func : 'passport',
+            act : 'reset_password',
+            email : opts.email
+        };
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=passport&act=modify_password&email=sida9567@gmail.com&checkpassword=&password=pianoring
+    * */
+    resetPassword : function(opts, success, error){
+        var data = {
+            func : 'passport',
+            act : 'modify_password',
+            email : opts.email,
+            checkpassword : opts.check,
+            password : opts.password
+        };
+
+        return this.ajax(data, success, error);
     }
 };

@@ -124,3 +124,37 @@
 		margin-bottom: 10px;
 	}
 }
+
+.hw-HWMycountForgetPasswordForm{
+	text-align: center;
+	margin: 40px auto 50px;
+	width : 600px;
+	padding: 30px 0;
+	background: #ffffff;
+
+	p{
+		font-size: 16px;
+		color: $color-7d;
+	}
+	input{
+		width: 320px;
+		margin: 20px auto;
+	}
+	.hw-btn{
+		line-height: 36px;
+		height: 36px;
+		font-size: 14px;
+	}
+}
+
+.hw-HWMycountResetPasswordForm{
+	text-align: center;
+	margin: 40px auto 50px;
+	width : 600px;
+	padding: 30px 100px;
+	background: #ffffff;
+
+	.hw-btn{
+		margin-top: 20px;
+	}
+}

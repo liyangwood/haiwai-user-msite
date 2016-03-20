@@ -149,7 +149,7 @@
 
             opts = opts || {};
             obj.popover({
-                placement : 'bottom',
+                placement : opts.placement || 'bottom',
                 html : true,
                 //title : '',
                 trigger : opts.trigger || 'click',
@@ -440,11 +440,11 @@ var a = encodeURIComponent(redUrl||location.href);
             };
             util.dialog.show(param);
         },
-        alert : function(msg){
+        alert : function(msg, body){
             util.dialog.show({
                 foot : false,
                 title : msg,
-                body : '<p></p>',
+                body : '<p>'+body+'</p>',
                 'class' : 'hw-dialog-alert'
             });
         },
@@ -471,11 +471,14 @@ var a = encodeURIComponent(redUrl||location.href);
 
     util.toast = {
         showError : function(msg, opts){
-            alert(msg);
+            var h = '<div class="hw-icon" style="border: none;"><i style="color: #ff0000;" class="fa' +
+                '  fa-exclamation-triangle"></i></div>';
+            util.dialog.alert(h+msg, '');
         },
-        alert : function(msg){
+        alert : function(msg, body){
+            body = body || '';
             var h = '<div class="hw-icon"><i class="fa fa-check"></i></div>';
-            util.dialog.alert(h+msg);
+            util.dialog.alert(h+msg, body);
         }
     };
 
@@ -526,6 +529,14 @@ var a = encodeURIComponent(redUrl||location.href);
         },
         store : function(id){
             return '../view/store.html?id='+id;
+        }
+    };
+
+    util.validate = {
+        email : function(email){
+            var reg = /^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/;
+
+            return reg.test(email);
         }
     };
 
