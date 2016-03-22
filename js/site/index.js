@@ -130,7 +130,7 @@ KG.Class.define('HWSiteIndexHotCoupon', {
 			'<div param="{{item.pk_id}}" class="hw-each">',
 				'<div class="hw-logo"><img src="{{item.files[0].path | absImage}}" /></div>',
 				'<h4>{{item.bizinfo.name_cn || item.bizinfo.name_en}}</h4>',
-				'<span class="hw-address">{{item.bizinfo | storeFullAddress}}</span>',
+				'<span class="hw-address">{{item.bizinfo.city}} {{item.bizinfo.state}}</span>',
 				'<h3>{{item.subject}}</h3>',
 			'</div>',
 			'{{/each}}'
@@ -209,12 +209,12 @@ KG.Class.define('HWSiteIndexNewStoreRecommend', {
 
 			'<a class="left carousel-control" href="#carousel-22" init-self="true" role="button"' +
 			' data-slide="prev">',
-			'<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>',
+			'<span class="icon fa fa-angle-left" aria-hidden="true"></span>',
 
 			'</a>',
 			'<a class="right carousel-control" href="#carousel-22" init-self="true" role="button"' +
 			' data-slide="next">',
-			'<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>',
+			'<span class="icon fa fa-angle-right" aria-hidden="true"></span>',
 			'</a>',
 
 

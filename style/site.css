@@ -330,7 +330,7 @@ a:hover, a:link {
       margin-left: 15px; }
     .kg-header-comp .right .hw-btn {
       height: 36px;
-      line-height: 36px;
+      line-height: 34px;
       font-size: 14px;
       border-width: 2px;
       border-radius: 5px;
@@ -361,17 +361,17 @@ a:hover, a:link {
       background: url("../image/haiwai1.png");
       width: 88px;
       height: 88px;
-      margin: 24px auto 0;
+      margin: 5px auto 0;
       background-size: 100%; }
     .hw-footer-comp .container .smap, .hw-footer-comp .container .cr {
       color: #fff;
-      margin: 35px auto 0;
+      margin: 25px auto 0;
       text-align: center; }
       .hw-footer-comp .container .smap a, .hw-footer-comp .container .cr a {
         color: #ffffff;
         margin: 0 4px; }
     .hw-footer-comp .container .cr {
-      margin-top: 15px;
+      margin-top: 30px;
       font-size: 12px; }
 
 .hw-comp-BackPageLink {
@@ -777,7 +777,8 @@ body {
   z-index: 2; }
   .hw-index-focusimage .carousel-indicators li {
     margin-right: 10px;
-    background: #000000; }
+    background: rgba(0, 0, 0, 0.45);
+    border: none; }
     .hw-index-focusimage .carousel-indicators li.active {
       background: #f4a62a; }
 
@@ -793,15 +794,17 @@ body {
     line-height: 24px;
     margin: 0;
     padding: 14px 0;
-    border-bottom: 1px solid #ebebeb; }
+    border-bottom: 1px dashed #979797; }
     .hw-HWIndexHotNavComp dd:last-child {
       border-bottom: none; }
     .hw-HWIndexHotNavComp dd a {
       display: inline-block;
       margin-right: 35px;
       color: #666;
-      font-size: 16px;
+      font-size: 15px;
       text-rendering: geometricPrecision; }
+      .hw-HWIndexHotNavComp dd a:hover {
+        color: #f4a62a; }
 
 .hw-HWSiteIndexAppBanner {
   position: absolute;
@@ -847,16 +850,17 @@ body {
   margin-top: 20px; }
   .hw-HWSiteIndexHotCoupon dt label {
     border-left: 4px solid #f4a62a;
-    font-size: 18px;
+    font-size: 20px;
     color: #4a4a4a;
-    line-height: 40px;
+    line-height: 26px;
     padding-left: 15px;
     font-weight: normal; }
   .hw-HWSiteIndexHotCoupon dt .hw-a {
     float: right;
     font-size: 14px;
     color: #7d7d7d;
-    font-weight: normal; }
+    font-weight: normal;
+    line-height: 26px; }
     .hw-HWSiteIndexHotCoupon dt .hw-a:hover {
       color: #37bccd; }
   .hw-HWSiteIndexHotCoupon dd {
@@ -890,7 +894,7 @@ body {
         margin: 15px 0 0 0;
         font-weight: normal; }
       .hw-HWSiteIndexHotCoupon dd .hw-each .hw-address {
-        font-size: 14px;
+        font-size: 13px;
         color: #7d7d7d;
         margin-top: 5px;
         max-height: 50px;
@@ -901,18 +905,22 @@ body {
       .hw-HWSiteIndexHotCoupon dd .hw-each h3 {
         font-size: 19px;
         color: #f4a62a;
-        margin-top: 12px;
+        font-weight: normal;
+        position: absolute;
+        top: 242px;
         text-align: center;
-        font-weight: normal; }
+        width: 100%;
+        margin: 0;
+        left: 0; }
 
 .hw-HWSiteIndexNewStoreRecommend {
   width: 100%;
-  margin-top: 20px; }
+  margin-top: 46px; }
   .hw-HWSiteIndexNewStoreRecommend dt label {
     border-left: 4px solid #f4a62a;
-    font-size: 18px;
+    font-size: 20px;
     color: #4a4a4a;
-    line-height: 40px;
+    line-height: 26px;
     padding-left: 15px;
     font-weight: normal; }
   .hw-HWSiteIndexNewStoreRecommend dt .hw-a {
@@ -922,68 +930,74 @@ body {
     font-weight: normal; }
     .hw-HWSiteIndexNewStoreRecommend dt .hw-a:hover {
       color: #37bccd; }
-  .hw-HWSiteIndexNewStoreRecommend dd .carousel-indicators {
-    bottom: 0; }
-    .hw-HWSiteIndexNewStoreRecommend dd .carousel-indicators li {
-      margin-right: 10px;
-      background: #ffffff;
-      border: 1px solid #f4a62a; }
-      .hw-HWSiteIndexNewStoreRecommend dd .carousel-indicators li.active {
-        background: #f4a62a; }
-  .hw-HWSiteIndexNewStoreRecommend dd .carousel-control {
-    width: 40px;
-    background: transparent; }
-    .hw-HWSiteIndexNewStoreRecommend dd .carousel-control .glyphicon {
-      color: #9c9c9c; }
-  .hw-HWSiteIndexNewStoreRecommend dd .hw-onebox {
-    padding: 0 25px; }
-    .hw-HWSiteIndexNewStoreRecommend dd .hw-onebox .hw-one {
-      width: 190px;
-      height: 260px;
-      text-align: center;
-      display: inline-block;
-      margin-left: 15px;
-      vertical-align: top;
-      overflow: hidden;
-      padding: 5px 15px; }
-      .hw-HWSiteIndexNewStoreRecommend dd .hw-onebox .hw-one:hover {
-        background: #f7f7f7; }
-        .hw-HWSiteIndexNewStoreRecommend dd .hw-onebox .hw-one:hover h4 {
-          color: #37bccd; }
-      .hw-HWSiteIndexNewStoreRecommend dd .hw-onebox .hw-one img {
-        width: 120px;
-        height: 120px;
-        border-radius: 60px;
-        margin: 0 auto; }
-      .hw-HWSiteIndexNewStoreRecommend dd .hw-onebox .hw-one h4 {
-        font-size: 16px;
-        color: #4a4a4a;
-        margin: 0;
-        margin-top: 5px; }
-      .hw-HWSiteIndexNewStoreRecommend dd .hw-onebox .hw-one .hw-p {
-        font-size: 12px;
-        color: #7d7d7d;
-        margin-top: 5px; }
-      .hw-HWSiteIndexNewStoreRecommend dd .hw-onebox .hw-one .hw-n {
-        font-size: 12px;
-        color: #7d7d7d;
-        margin-top: 5px; }
+  .hw-HWSiteIndexNewStoreRecommend dd {
+    margin-top: 30px; }
+    .hw-HWSiteIndexNewStoreRecommend dd .carousel-indicators {
+      bottom: 0; }
+      .hw-HWSiteIndexNewStoreRecommend dd .carousel-indicators li {
+        margin-right: 10px;
+        background: #d8d8d8;
+        border: 1px solid #d8d8d8; }
+        .hw-HWSiteIndexNewStoreRecommend dd .carousel-indicators li.active {
+          background: #f4a62a;
+          border: none; }
+    .hw-HWSiteIndexNewStoreRecommend dd .carousel-control {
+      width: 40px;
+      background: transparent; }
+      .hw-HWSiteIndexNewStoreRecommend dd .carousel-control .icon {
+        color: #787878;
+        font-size: 48px;
+        position: relative;
+        top: 110px; }
+    .hw-HWSiteIndexNewStoreRecommend dd .hw-onebox {
+      padding: 0 25px; }
+      .hw-HWSiteIndexNewStoreRecommend dd .hw-onebox .hw-one {
+        width: 180px;
+        height: 256px;
+        text-align: center;
+        display: inline-block;
+        margin-left: 20px;
+        vertical-align: top;
+        overflow: hidden;
+        padding: 15px 15px; }
+        .hw-HWSiteIndexNewStoreRecommend dd .hw-onebox .hw-one:hover {
+          background: #f7f7f7; }
+          .hw-HWSiteIndexNewStoreRecommend dd .hw-onebox .hw-one:hover h4 {
+            color: #37bccd; }
+        .hw-HWSiteIndexNewStoreRecommend dd .hw-onebox .hw-one img {
+          width: 120px;
+          height: 120px;
+          border-radius: 60px;
+          margin: 0 auto; }
+        .hw-HWSiteIndexNewStoreRecommend dd .hw-onebox .hw-one h4 {
+          font-size: 16px;
+          color: #4a4a4a;
+          margin: 0;
+          margin-top: 5px; }
+        .hw-HWSiteIndexNewStoreRecommend dd .hw-onebox .hw-one .hw-p {
+          font-size: 12px;
+          color: #7d7d7d;
+          margin-top: 5px; }
+        .hw-HWSiteIndexNewStoreRecommend dd .hw-onebox .hw-one .hw-n {
+          font-size: 12px;
+          color: #7d7d7d;
+          margin-top: 5px; }
 
 .hw-HWSiteIndexHotArticle {
   width: 100%;
   margin-top: 30px; }
   .hw-HWSiteIndexHotArticle dt label {
     border-left: 4px solid #f4a62a;
-    font-size: 18px;
+    font-size: 20px;
     color: #4a4a4a;
-    line-height: 40px;
+    line-height: 26px;
     padding-left: 15px;
     font-weight: normal; }
   .hw-HWSiteIndexHotArticle dd {
     margin-top: 15px; }
   .hw-HWSiteIndexHotArticle .detail {
     background-color: #fff;
-    border: 1px solid #979797;
+    border: 1px solid #c5c5c5;
     height: 320px;
     overflow: hidden;
     width: 320px;
@@ -1000,7 +1014,7 @@ body {
   .hw-HWSiteIndexHotArticle .detail .list ul.l_ul1 li:last-child {
     border-bottom: none; }
   .hw-HWSiteIndexHotArticle .m20 {
-    margin: 20px; }
+    margin: 0 20px; }
   .hw-HWSiteIndexHotArticle .lef {
     width: 716.4px;
     height: 542px;
@@ -1053,17 +1067,17 @@ body {
   .hw-HWSiteIndexHotArticle .rig .list ul.l_ul1 li {
     list-style: none;
     width: 314px;
-    padding: 8px 0;
-    height: 56px;
+    margin: 0 0 12px 0;
+    height: auto;
     font-size: 14px;
-    line-height: 20px; }
+    line-height: 24px;
+    padding: 4px 0 10px 0; }
   .hw-HWSiteIndexHotArticle .rig .list ul.l_ul1 li:last-child {
     border-bottom: none; }
   .hw-HWSiteIndexHotArticle .rig .list ul.l_ul1 li a {
     display: block;
     margin-left: 40px;
     width: 254px;
-    height: 40px;
     line-height: 20px;
     overflow: hidden;
     color: #4a4a4a;

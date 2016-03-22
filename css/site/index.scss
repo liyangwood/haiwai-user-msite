@@ -28,7 +28,8 @@
 
         li{
             margin-right: 10px;
-            background: #000000;
+            background: rgba(0,0,0,0.45);
+            border: none;
 
             &.active{
                 background: #f4a62a;
@@ -52,7 +53,7 @@
         line-height: 24px;
         margin: 0;
         padding: 14px 0;
-        border-bottom: 1px solid #ebebeb;
+        border-bottom: 1px dashed #979797;
 
         &:last-child{
             border-bottom: none;
@@ -61,8 +62,12 @@
             display: inline-block;
             margin-right: 35px;
             color: #666;
-            font-size: 16px;
+            font-size: 15px;
             @include fontRender;
+
+            &:hover{
+                color: $yellow-color;
+            }
         }
     }
 }
@@ -89,9 +94,9 @@
     dt{
         label{
             border-left: 4px solid #f4a62a;
-            font-size: 18px;
+            font-size: 20px;
             color: $color-4a;
-            line-height: 40px;
+            line-height: 26px;
             padding-left: 15px;
             font-weight: normal;
         }
@@ -100,6 +105,7 @@
             font-size: 14px;
             color: $color-7d;
             font-weight: normal;
+            line-height: 26px;
 
             &:hover{
                 color: $blue-color;
@@ -144,7 +150,7 @@
                 font-weight: normal;
             }
             .hw-address{
-                font-size: 14px;
+                font-size: 13px;
                 color: $color-7d;
                 margin-top: 5px;
                 max-height: 50px;
@@ -157,9 +163,13 @@
             h3{
                 font-size: 19px;
                 color: #f4a62a;
-                margin-top: 12px;
-                text-align: center;
                 font-weight: normal;
+                position: absolute;
+                top: 242px;
+                text-align: center;
+                width: 100%;
+                margin: 0;
+                left: 0;
             }
         }
     }
@@ -167,13 +177,13 @@
 
 .hw-HWSiteIndexNewStoreRecommend{
     width: 100%;
-    margin-top: 20px;
+    margin-top: 46px;
     dt{
         label{
             border-left: 4px solid #f4a62a;
-            font-size: 18px;
+            font-size: 20px;
             color: $color-4a;
-            line-height: 40px;
+            line-height: 26px;
             padding-left: 15px;
             font-weight: normal;
         }
@@ -189,17 +199,19 @@
         }
     }
     dd{
+        margin-top: 30px;
 
         .carousel-indicators{
             bottom: 0;
 
             li{
                 margin-right: 10px;
-                background: #ffffff;
-                border: 1px solid #f4a62a;
+                background: #d8d8d8;
+                border: 1px solid #d8d8d8;
 
                 &.active{
-                    background: #f4a62a;
+                    background: $yellow-color;
+                    border: none;
                 }
             }
         }
@@ -208,8 +220,12 @@
             width: 40px;
             background: transparent;
 
-            .glyphicon{
-                color: #9c9c9c;
+
+            .icon{
+                color: #787878;
+                font-size: 48px;
+                position: relative;
+                top: 110px;
             }
         }
 
@@ -217,14 +233,14 @@
             padding: 0 25px;
 
             .hw-one{
-                width: 190px;
-                height: 260px;
+                width: 180px;
+                height: 256px;
                 text-align: center;
                 display: inline-block;
-                margin-left: 15px;
+                margin-left: 20px;
                 vertical-align: top;
                 overflow: hidden;
-                padding: 5px 15px;
+                padding: 15px 15px;
 
                 &:hover{
                     background : #f7f7f7;
@@ -266,9 +282,9 @@
     dt{
         label{
             border-left: 4px solid #f4a62a;
-            font-size: 18px;
+            font-size: 20px;
             color: $color-4a;
-            line-height: 40px;
+            line-height: 26px;
             padding-left: 15px;
             font-weight: normal;
         }
@@ -280,7 +296,7 @@
 
     .detail{
         background-color: #fff;
-        border: 1px solid #979797;
+        border: 1px solid #c5c5c5;
         height: 320px;
         overflow: hidden;
         width: 320px;
@@ -289,7 +305,7 @@
     }
     .detail .list ul.l_ul1 li { width: 686px; float: left; height: 29px; line-height: 20px; margin-top: 10px; overflow: hidden; border-bottom: 1px dotted #9b9b9b; }
     .detail .list ul.l_ul1 li:last-child { border-bottom: none; }
-    .m20 { margin: 20px; }
+    .m20 { margin: 0 20px; }
     .lef { width: 716.4px; height: 542px; margin-right: 11px; }
     .lef li{
         margin-left: 0;
@@ -328,13 +344,14 @@
     }
     .toptext { float: left; width: 523px; height: 56px; font-size: 14px; line-height: 28px;overflow:hidden; color: #9b9b9b;}
     .rig { width: 345px; height: 542px; }
-    .rig .list ul.l_ul1 li { list-style: none; width: 314px; padding: 8px 0; height:56px; font-size: 14px; line-height: 20px; }
+    .rig .list ul.l_ul1 li { list-style: none; width: 314px;
+        margin: 0 0 12px 0; height:auto; font-size: 14px; line-height: 24px;
+        padding: 4px 0 10px 0;}
     .rig .list ul.l_ul1 li:last-child { border-bottom: none; }
     .rig .list ul.l_ul1 li a {
         display: block;
         margin-left: 40px;
         width: 254px;
-        height: 40px;
         line-height: 20px;
         overflow: hidden;
         color:$color-4a;

@@ -294,7 +294,7 @@ KG.Class.define('SiteHeadingNav', {
 				]
 			},
 			{
-				logo : 'sat.png',
+				logo : 'store.png',
 				title : [['私家小店', 645]],
 				children : [
 					[
