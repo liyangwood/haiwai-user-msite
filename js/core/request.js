@@ -1017,5 +1017,27 @@ KG.request = {
         };
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=passport&act=get_region
+    * */
+    getHotLocationRegion : function(opts, success, error){
+        var data = {
+            func : 'passport',
+            act : 'get_region'
+        };
+        return this.ajax(data, success, error);
+    },
+    /*
+    * func=passport&act=set_region&regionID=192
+    * */
+    setHotLocationRegion : function(opts, success, error){
+        var data = {
+            func : 'passport',
+            act : 'set_region',
+            regionID : opts.regionID
+        };
+        return this.ajax(data, success, error);
     }
 };

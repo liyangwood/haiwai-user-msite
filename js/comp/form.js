@@ -514,6 +514,7 @@
                 '<div class="form-group">',
                     '<label style="display: block;">优惠结束时间</label>',
                     '<input style="width: 410px;display: inline-block" type="text" class="form-control js_endDate" readonly="true" placeholder="10/20/2016">',
+                    '<label style="vertical-align: top;position: relative;top: -12px;margin-left:12px;">不限结束时间<input style="position: relative; top: 13px;left:8px;" class="js_endlimit" type="checkbox" /></label>',
                     //'<input style="width: 140px;display: inline-block;margin-left: 50px;" type="text" class="form-control js_endTime" placeholder="8:30AM">',
                 '</div>',
 
@@ -539,6 +540,7 @@
                 endDate : this.elem.find('.js_endDate'),
                 endTime : this.elem.find('.js_endTime'),
                 desc : this.elem.find('.js_desc'),
+                endlimit : this.elem.find('.js_endlimit'),
 
                 btn : this.elem.find('.js_btn')
             };
@@ -564,7 +566,7 @@
 
         getFormValue : function(){
             var c = this.getElemObj();
-            return {
+            var data = {
                 biz : this.jq.biz.getValue().entityID,
                 subject : c.title.getValue(),
                 description : this.jq.desc.val(),
@@ -572,6 +574,10 @@
                 endDate : this.jq.endDate.val(),
                 imageList : c.image.getValue()
             };
+            if(this.jq.endlimit.prop('checked')){
+                data.endDate = 'unlimit';
+            }
+            return data;
         },
 
         validate : function(data){

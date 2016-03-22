@@ -224,7 +224,7 @@
                 this.elem.find('.js_search').find('input').val(x);
             }
 
-            var regionName = util.cookie.get('region_name') || 'New York city';
+            var regionName = util.cookie.get('region_cn') || '旧金山湾区';
             this.elem.find('.js_loc').show().find('span').html(regionName);
         }
     });
@@ -749,85 +749,21 @@
             ].join('');
         },
         getData : function(box, data, next){
-            var hotLocation = [
-                {
-                    id : 192,
-                    name : 'San Francisco Bay Area',
-                    cn : '旧金山湾区'
-                },
-                {
-                    id : 399,
-                    name : 'New York city',
-                    cn : '大纽约地区'
-                },
-                {
-                    id : 182,
-                    name : 'Los Angeles',
-                    cn : '大洛杉矶地区'
-                },
-                {
-                    id : 315,
-                    name : 'Boston',
-                    cn : '大波士顿地区'
-                },
-                {
-                    id : 215,
-                    name : 'Washington',
-                    cn : '大华盛顿地区'
-                },
-                {
-                    id : 256,
-                    name : 'Chicago',
-                    cn : '大芝加哥地区'
-                },
-                {
-                    id : 501,
-                    name : 'Houston',
-                    cn : '大休斯顿地区'
-                },
-                {
-                    id : 461,
-                    name : 'Philadelphia',
-                    cn : '费城'
-                },
-                {
-                    id : 538,
-                    name : 'Seattle-tacoma',
-                    cn : '大西雅图地区'
-                },
-                {
-                    id : 496,
-                    name : 'Dallas',
-                    cn : '大达拉斯-沃斯堡都会区（DFW）'
-                },
-                {
-                    id : 192,
-                    name : 'san francisco bay area',
-                    cn : '圣地亚哥'
-                },
-                {
-                    id : 240,
-                    name : 'Atlanta',
-                    cn : '亚特兰大'
-                },
-                {
-                    id : 375,
-                    name : 'Las vegas',
-                    cn : '拉斯维加斯'
-                },
-                {
-                    id : 610,
-                    name : 'Toronto',
-                    cn : '大多伦多地区'
-                },
-                {
-                    id : 583,
-                    name : 'Vancouver',
-                    cn : '大温哥华地区'
-                }
-            ];
 
-            next({list : hotLocation});
+            KG.request.getHotLocationRegion({}, function(flag, rs){
+                var list = [];
+                _.each(rs, function(item, key){
+                    list.push({
+                        id : item.id,
+                        cn : item.area_name,
+                        name : key
+                    });
+                });
+
+                next({list : list});
+            });
+
+
         },
         initEvent : function(){
             var self = this;
@@ -839,8 +775,26 @@
                 util.cookie.set('regionID', data.id);
                 util.cookie.set('region_name', data.name);
                 util.cookie.set('region_cn', data.cn);
-                location.reload();
+
+                KG.request.setHotLocationRegion({
+                    regionID : data.id
+                }, function(flag, rs){
+                    location.reload();
+                });
+
             });
+        },
+        initEnd : function(){
+            var id = util.cookie.get('regionID');
+            var index = 0;
+            if(id){
+                index = _.findIndex(this.data.list, function(one){
+                    return one.id.toString() === id;
+                });
+                this.elem.find('.js_one').eq(index).addClass('active');
+            }
+
+
         }
     });
 
