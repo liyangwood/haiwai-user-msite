@@ -85,6 +85,19 @@
             util.loading(true);
             KG.request.defer(list, function(catList, bizInfo){
                 util.loading(false);
+
+                if(!bizInfo && util.url.hash()==='fromstorage'){
+                    bizInfo = util.storage.get(self.__name);
+                    bizInfo.name_cn = bizInfo.bizName;
+                    bizInfo.tel = bizInfo.bizTel;
+                    bizInfo.fk_main_tag_id = bizInfo.bizTagId;
+                    bizInfo.tags = _.map(bizInfo.tags.split(','), function(one){
+                        return {
+                            pk_id : one
+                        };
+                    });
+                }
+
                 next({
                     catList : catList,
                     biz : bizInfo || false,
@@ -132,6 +145,7 @@
             var jq = this.getElemObj();
             if(!data.bizName){
                 jq.name.showError('店铺名称不能为空');
+                jq.name.focus();
                 return false;
             }
             else{
@@ -140,6 +154,7 @@
 
             if(!data.bizTel){
                 jq.tel.showError('店铺电话不能为空');
+                jq.tel.focus();
                 return false;
             }
             else{
@@ -148,6 +163,7 @@
 
             if(!/^[0-9]{10,11}$/g.test(data.bizTel)){
                 jq.tel.showError('店铺电话格式不对');
+                jq.tel.focus();
                 return false;
             }
             else{
@@ -156,6 +172,7 @@
 
             if(!data.bizTagId){
                 this.jq.cat.showError('请选择店铺类别');
+                this.jq.cat.focus();
                 return false;
             }
             else{
@@ -164,6 +181,7 @@
 
             if(!data.zip){
                 jq.zip.showError('请输入邮编');
+                jq.zip.focus();
                 return false;
             }
             else{
@@ -172,6 +190,7 @@
 
             if(!data.city){
                 jq.city.showError('请输入城市');
+                jq.city.focus();
                 return false;
             }
             else{
@@ -180,6 +199,7 @@
 
             if(!data.state){
                 jq.state.showError('请输入州省');
+                jq.state.focus();
                 return false;
             }
             else{
@@ -202,12 +222,18 @@
                     KG.request.saveStoreByStep1(data, function(flag, rs){
                         if(flag){
                             console.log(rs);
-                            location.href = 'editStore_2.html?id='+rs;
+                            util.toast.alert('修改成功');
+                            util.delay(function(){
+                                location.href = '../mybiz/index.html';
+                            }, 1000);
                         }
                     });
 
                 }
                 else{
+                    //save value to storage
+                    util.storage.set(self.__name, data);
+
                     KG.request.createStoreByStep1(data, function(flag, rs){
                         if(flag){
                             console.log(rs);
@@ -304,7 +330,7 @@
                         '<textarea style="height: 150px;" class="form-control hw-area js_desc"></textarea>',
                     '</div>',
 
-                    '<a class="hw-btn hw-light-btn" style="border: none;font-weight: 400;" href="{{backLink}}">返回上一步</a>',
+                    '<a class="hw-btn hw-light-btn" style="border: none;font-weight: 400;padding: 0;text-align: left;" href="{{backLink}}">返回上一步</a>',
                     '<button style="float: right;" class="js_btn hw-btn hw-blue-btn">下一步</button>',
 
                 '<div>'
@@ -327,13 +353,21 @@
         initEnd : function(){
             this.renderDynamicBox();
 
+            var c = this.getElemObj();
+
             if(this.type === 'edit'){
-                var c = this.getElemObj();
                 c.net.setValue(this.data.biz.website);
                 c.wechat.setValue(this.data.biz.wechat);
                 c.desc.val(this.data.biz.briefintro);
 
                 this.jq.btn.html('保存');
+            }
+            else if(util.url.hash() === 'fromstorage'){
+                var data = util.storage.get(this.__name);
+                console.log(data);
+                c.net.setValue(data.website);
+                c.wechat.setValue(data.wechat);
+                c.desc.val(data.description);
             }
         },
 
@@ -354,6 +388,9 @@
                 data.dynamic = self.getDynamicData();
 
                 if(self.type === 'create'){
+                    //save to storage
+                    util.storage.set(self.__name, data);
+
                     KG.request.createStoreByStep2(data, function(flag, rs){
                         if(flag){
                             console.log(rs);
@@ -367,6 +404,13 @@
                     KG.request.saveStoreByStep2(data, function(flag, rs){
                         if(flag){
                             console.log(rs);
+                            util.toast.alert('修改成功');
+                            util.delay(function(){
+                                location.href = '../mybiz/index.html';
+                            }, 1000);
+                        }
+                        else{
+                            util.toast.showError('修改失败，请检查');
                         }
                     });
                 }
@@ -392,7 +436,7 @@
                 var tmpId = KG.data.get('tmpBizId'),
                     tagId = KG.data.get('mainTagId');
 
-                backLink = 'createStore.html?tmp_biz_id='+tmpId+'&main_tag_id='+tagId;
+                backLink = 'createStore.html?tmp_biz_id='+tmpId+'&main_tag_id='+tagId+'#fromstorage';
                 KG.request.getTmpStoreDynamicField({
                     mainTagId : tagId
                 }, function(flag, rs){
@@ -673,6 +717,12 @@
             ].join('');
         },
 
+        defineProperty : function(){
+            return {
+                type : {}
+            }
+        },
+
         setJqVar : function(){
             return {
                 add : this.elem.find('.js_add'),
@@ -693,38 +743,39 @@
             this.jq.fileInput.change(function(){
                 var file = this.files[0];
 
-                self.uploadImageFn(file, function(url){
-                    self.addNewImage(url);
+                self.uploadImageFn(file, function(url, json){
+                    self.addNewImage(url, json.fileid);
                 });
 
                 $(this).val('');
             });
 
-            this.elem.click(function(e){
-                var o = $(e.target);
+            var type = self.prop.type;
+            this.elem.on('click', '.js_del', function(e){
+                var o  =$(this);
+                var id = $(this).attr('param');
 
-                var x = o.closest('.js_del');
-                if(x.length > 0){
-                    // click delete
-                    util.dialog.confirm1({
-                        YesText : '删除',
-                        msg : '您确定要删除这张照片吗？',
-                        YesFn : function(){
-                            self.deleteImage(x);
-                            util.dialog.hide();
+                util.dialog.confirm1({
+                    YesText : '删除',
+                    msg : '您确定要删除这张照片吗？',
+                    YesFn : function(callback){
+                        if(type === 'edit'){
+                            self.deleteImage(id, function(){
+                                o.parent('.js_img').remove();
+                            });
                         }
-                    });
+                        else{
+                            o.parent('.js_img').remove();
+                        }
 
+                        callback();
+                    }
+                });
+                return false;
 
-                    return false;
-                }
-
-                x = o.closest('.js_img');
-                if(x.length > 0){
-                    // show big image
-                    self.showBigImage(x.find('img').attr('src'));
-                    return false;
-                }
+            }).on('click', '.js_img', function(){
+                self.showBigImage($(this).find('img').attr('src'));
+                return false;
             });
 
 
@@ -748,39 +799,78 @@
             return this.getImageList();
         },
 
-        deleteImage : function(o){
-            var img = o.closest('.js_img');
-            img.remove();
+        deleteImage : function(id, callback){
+            KG.request.deleteStoreImage({
+                fileid : id,
+                bizId : KG.data.get('id')
+            }, function(flag, rs){
+                if(flag){
+                    callback();
+                }
+                else{
+                    util.toast.showError(rs);
+                }
+            });
         },
 
-        getEachHtml : function(url){
+        getEachHtml : function(url, id){
             var h = [
                 '<div class="hw-one js_img">',
                     '<img src="{{url}}" />',
-                    '<b class="js_del">删除</b>',
+                    '<b param="'+id+'" class="js_del">删除</b>',
                 '</div>'
             ].join('');
             return template.compile(h)({url : url});
         },
 
         uploadImageFn : function(file, callback){
-            util.uploadImage(file, function(url){
-                var url = KG.config.SiteRoot+url;
 
-                callback(url);
-            });
+            if(this.prop.type === 'edit'){
+                util.readFile(file, function(binary){
+                    KG.request.uploadStoreImage({
+                        image : binary,
+                        bizId : KG.data.get('id')
+                    }, function(flag, rs){
+                        if(flag){
+                            callback(KG.config.SiteRoot+rs.files[0], rs);
+                        }
+                        else{
+                            util.toast.showError(rs);
+                        }
+                    });
+                });
+
+            }
+            else{
+                util.readFile(file, function(binary){
+                    KG.request.uploadStoreImage({
+                        image : binary,
+                        bizId : util.url.param('tmp_biz_id'),
+                        type : 'tmp'
+                    }, function(flag, rs){
+                        if(flag){
+                            callback(KG.config.SiteRoot+rs.files[0], rs);
+                        }
+                        else{
+                            util.toast.showError(rs);
+                        }
+                    });
+                });
+            }
+
         },
 
-        addNewImage : function(src){
-            var h = this.getEachHtml(src);
+        addNewImage : function(src, id){
+            var h = this.getEachHtml(src, id);
             this.jq.add.after(h);
         },
 
         initEnd : function(){
             var self = this;
             var list = this.data.list;
-            util.each(list, function(url){
-                self.addNewImage(url);
+            util.each(list, function(item){
+                var url = KG.config.SiteRoot+item.path;
+                self.addNewImage(url, item.pk_id);
             });
         }
 
@@ -800,7 +890,7 @@
                         '{{each bigBgImageList as item}}',
                             '<div class="hw-bigimage">',
                                 '<div class="js_bigimage c-box">',
-                                    '<img class="js_bigimage" src={{item.url}} />',
+                                    '<img class="js_bigimage1" src={{item.url}} />',
                                     '<i class="fa fa-check"></i>',
                                 '</div>',
 
@@ -827,19 +917,27 @@
 
                     '<div class="form-group">',
                         '<label class="lab">店铺图片</label>',
-                        '<div class="js_image" role="MybizUploadStoreImage" init-self="true"></div>',
+                        '<div class="js_image" data-type="'+this.type+'" role="MybizUploadStoreImage"' +
+                        ' init-self="true"></div>',
 
                     '</div>',
 
 
-                    '<a class="hw-btn hw-light-btn" style="float: left;border: none;font-weight: 400;" href="createStore_2.html">返回上一步</a>',
+                    '{{if backLink}}<a class="hw-btn hw-light-btn" style="float: left;border: none;font-weight: 400;" href="{{backLink}}">返回上一步</a>{{/if}}',
                     '<button style="float: right;" class="js_btn hw-btn hw-blue-btn">完成</button>',
 
 
                 '</div>'
             ].join('');
         },
+        defineProperty : function(){
+            return {
+                type : {}
+            };
+        },
         getData : function(box, data, next){
+            var backLink;
+            this.type = this.prop.type;
 
             if(this.type === 'create'){
                 var tmpId = KG.data.get('tmpBizId'),
@@ -855,8 +953,11 @@
                         bigBgImageList = null;
                     }
 
+                    backLink = 'createStore_2.html?tmp_biz_id='+tmpId+'&main_tag_id='+tagId+'#fromstorage';
+
                     next({
                         bigBgImageList : bigBgImageList,
+                        backLink : backLink,
                         tmpId : tmpId,
                         tagId : tagId
                     });
@@ -886,6 +987,7 @@
                         next({
                             bigBgImageList : bigBgImageList,
                             bizId : KG.data.get('id'),
+                            backLink : null,
                             tagId : tagId,
                             biz : json,
                             logo : logo
@@ -898,13 +1000,7 @@
 
         },
 
-        initStart : function(){
-            this.type = 'create';
-            if(KG.data.get('id')){
-                this.id = KG.data.get('id');
-                this.type = 'edit';
-            }
-        },
+        initStart : function(){},
 
         setJqVar : function(){
             return {
@@ -925,12 +1021,32 @@
 
             this.jq.btn.click(function(e){
                 var data = self.getFormValue();
-                KG.request.createStoreByStep3(data, function(flag, rs){
-                    if(flag){
-                        //location.href = 'http://beta.haiwai.com/biz/view.php?id='+rs;
-                        self.showSuccessDialog(rs);
-                    }
-                });
+                console.log(data);
+
+                if(self.type === 'create'){
+                    KG.request.createStoreByStep3(data, function(flag, rs){
+                        if(flag){
+                            //location.href = 'http://beta.haiwai.com/biz/view.php?id='+rs;
+                            self.showSuccessDialog(rs);
+                        }
+                    });
+                }
+                else{
+                    data.bizId = self.data.bizId;
+                    KG.request.updateStoreByStep3(data, function(flag, rs){
+                        if(flag){
+                            util.toast.alert('修改成功');
+                            util.delay(function(){
+                                location.href = '../mybiz/index.html';
+                            }, 1000);
+                        }
+                        else{
+                            util.toast.showError('修改失败，请检查');
+                        }
+                    });
+                }
+
+
             });
         },
 
@@ -956,11 +1072,18 @@
         },
 
         initEnd : function(){
+            var self = this;
             this.image = KG.component.initWithElement(this.elem.find('.js_image'), {
-                list : this.data.imageList || []
+                list : this.data.biz ? this.data.biz.files : []
             });
 
-            this.elem.find('.js_bigimage').eq(0).trigger('click');
+            var index = 0;
+            if(self.data.biz){
+                index = _.findIndex(this.data.bigBgImageList, function(one){
+                    return one.url === self.data.biz.background_pic;
+                });
+            }
+            this.elem.find('.js_bigimage1').eq(index).trigger('click');
 
             KG.component.initWithElement(this.elem.find('.js_logo'), {});
         },

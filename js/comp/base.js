@@ -344,7 +344,7 @@
                 '<div class="hw-each">',
                 '<img class="hw-img" src="{{item.logo | absImage}}" />',
                 '<a class="h4" href="{{item.entityID | toStorePath}}">{{item.name_cn}}</a>',
-                '<p>{{item.address}}, {{item.city}}, {{item.state}}, {{item.zip}}</p>',
+                '<p>{{item | storeFullAddress}}</p>',
                 '<em>{{item.commentnum}}条新评论</em>',
 
                 '<div class="r">',
@@ -358,7 +358,7 @@
         },
         getData : function(box, data, next){
             KG.request.getBizList({}, function(flag, rs){
-                var list = []
+                var list = [];
                 if(flag){
                     list = rs;
                 }
@@ -378,6 +378,10 @@
                 });
 
                 KG.component.initWithElement($('div[role="MybizStopStoreList"]'), stopList);
+
+                if(list.length > 0){
+                    $('.hw-MybizCreateNewStore').addClass('nodis');
+                }
             });
         },
         initEvent : function(){
@@ -393,6 +397,10 @@
             util.delay(function(){
                 util.message.publish('MybizRightStoreRank', 80);
             }, 1000);
+
+            if(this.data.list.length > 0){
+                this.elem.parent('.hw-panel').removeClass('nodis');
+            }
         }
     });
 
@@ -474,6 +482,12 @@
             });
 
 
+        },
+        initEnd : function(){
+            console.log(this.data.list);
+            if(this.data.list.length > 0){
+                this.elem.parent('.hw-panel').removeClass('nodis');
+            }
         }
     });
 
@@ -606,7 +620,7 @@
                 '</a>'
             ].join('');
         },
-        initEvent : function(){
+        initEnd : function(){
 
         }
     });

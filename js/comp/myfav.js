@@ -113,8 +113,8 @@
                     '<p style="font-size: 14px;margin-top:8px;">地址 : {{item | storeFullAddress}} &nbsp;&nbsp; 电话 : {{item.tel}}</p>',
 
                     '<div class="r">',
-                        '<b class="hw-a js_share" style="margin-top: 18px;">分享</b>',
-                        '<b class="hw-a js_toReply">评论</b>',
+                        '<b class="hw-a js_share" param="{{item.entityID}}" style="margin-top: 18px;">分享</b>',
+                        '<a class="hw-a" href="{{item.entityID | toStorePath}}#hw-id-reply">评论</a>',
                         '<b param="{{item.bookmarkid}}" class="hw-a js_del">取消收藏</b>',
                     '</div>',
                 '</div>',
@@ -213,13 +213,11 @@
 
             });
 
-            this.elem.on('click', '.js_toReply', function(){
-                alert('To Reply Page');
-            });
 
             this.elem.on('click', '.js_share', function(e){
-                var url = 'http:www.wenxuecity.com';
-                alert('share biz url '+url);
+                var id = $(this).attr('param'),
+                    url = util.path.toMSiteStore(id);
+
                 util.dialog.showQrCode(url);
             });
         },

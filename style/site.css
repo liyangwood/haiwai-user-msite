@@ -23,7 +23,7 @@ a:hover, a:link {
   position: relative; }
 
 .nodis {
-  display: none; }
+  display: none !important; }
 
 .hand {
   cursor: pointer !important; }

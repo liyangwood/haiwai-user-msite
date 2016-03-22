@@ -63,10 +63,13 @@
 
         getData : function(box, data, next){
             KG.request.getMycouponList({}, function(flag, rs){
-
                 var allList = rs,
                     runningList = [],
                     stopList = [];
+                if(!flag){
+                    allList = [];
+                }
+
                 util.each(allList, function(item){
                     if(item.active_time){
                         runningList.push(item);
@@ -130,8 +133,9 @@
             });
             this.jq.panelBody.on('click', '.js_share', function(){
                 var o = $(this),
-                    id = o.attr('param');
-                util.dialog.showQrCode('http://www.haiwai.com');
+                    id = o.attr('param'),
+                    url = util.path.toMSiteCoupon(id);
+                util.dialog.showQrCode(url);
             });
         },
         initEnd : function(){

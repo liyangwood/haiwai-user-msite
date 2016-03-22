@@ -520,7 +520,6 @@ KG.request = {
             act : 'pc_add',
             //method : 'post',
             step : 3,
-            jsonp : true,
             biz_tmpid : opts.bizTmpId||'',
             background_pic : opts.bgPic
         };
@@ -530,8 +529,21 @@ KG.request = {
         });
 
         data = util.addUserIdToRequestData(data);
-        console.log(data);
+        return this.ajax(data, success, error);
+    },
 
+    /*
+    * func=biz&act=update_upload&bizid=2025591&background_pic=http://www.sinomedianet.com/haiwai2015.3.19/images/biz_cover/auto03.png
+    * */
+    updateStoreByStep3 : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'update_upload',
+            method : 'post',
+            bizid : opts.bizId,
+            background_pic : opts.bgPic
+        };
+        data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
     },
 
@@ -566,6 +578,28 @@ KG.request = {
         }
         else{
             data.bizid = opts.bizId;
+        }
+
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=upload&uploadfield[]=data:image/png;base64,iVBORw0KGgoAAAAN&uploadfield[]=data:image/png;base64,iVBORw0KGgoAAAAN&biz_tmpid=1&tmp=1
+    * */
+    uploadStoreImage : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'upload',
+            method : 'post',
+            'uploadfield[]' : opts.image,
+            bizid : opts.bizId
+        };
+
+        if(opts.type === 'tmp'){
+            data.biz_tmpid = opts.bizId;
+            data.tmp = 1;
+            delete data.bizid;
         }
 
         data = util.addUserIdToRequestData(data);
@@ -968,6 +1002,20 @@ KG.request = {
             password : opts.password
         };
 
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=delfile&fileid=702037&bizid=2025249&token=
+    * */
+    deleteStoreImage : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'delfile',
+            fileid : opts.fileid,
+            bizid : opts.bizId
+        };
+        data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
     }
 };

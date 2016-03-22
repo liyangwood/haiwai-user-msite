@@ -72,6 +72,15 @@
             fr.readAsDataURL(file);
         },
 
+        readFile : function(file, callback){
+            var fr = new FileReader();
+            fr.onload = function(e){
+                var binary = e.target.result;
+                callback(binary);
+            };
+            fr.readAsDataURL(file);
+        },
+
         getQrCode : function(url, size){
             size = size || 240;
             return 'http://api.qrserver.com/v1/create-qr-code/?size='+size+'x'+size+'&data='+encodeURIComponent(url);
@@ -492,6 +501,9 @@ var a = encodeURIComponent(redUrl||location.href);
             var regex = new RegExp("[\\?&]" + key + "=([^&#]*)"),
                 results = regex.exec(url);
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        },
+        hash : function(){
+            return location.hash.replace(/^#/, '');
         }
     };
 
@@ -529,6 +541,16 @@ var a = encodeURIComponent(redUrl||location.href);
         },
         store : function(id){
             return '../view/store.html?id='+id;
+        },
+
+        toMSiteStore : function(id){
+            return 'http://www.haiwai.com/mobile/ionic/store.html?id='+id;
+        },
+        toMSiteArticle : function(id){
+            return 'http://www.haiwai.com/mobile/ionic/article.html?id='+id;
+        },
+        toMSiteCoupon : function(id){
+            return 'http://www.haiwai.com/mobile/ionic/action.html?id='+id;
         }
     };
 

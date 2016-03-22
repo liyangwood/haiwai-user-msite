@@ -85,6 +85,10 @@
 
         },
 
+        focus : function(){
+            this.elem.find('input').focus();
+        },
+
         getValue : function(){
             return this.elem.find('input').val();
         },

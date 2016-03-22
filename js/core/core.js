@@ -18,7 +18,9 @@
         ApiRoot : site+'/service/api/',
         MD5_KEY : 'm.y^w8oP01K#gs',
         GoogleMapApiKey : 'AIzaSyCjKJoA5eBc75v5pQurBQ3IjP4vNkfoOzw',
-        WeixinAppID : 'wx5bc29415f5ecfc16'
+        WeixinAppID : 'wx4c519e506d840934',
+
+        SJAPP_AppleStore_Url : 'https://itunes.apple.com/us/app/hai-wai-tong-cheng-shang-jia/id974815137'
     };
 
     KG.Const = {

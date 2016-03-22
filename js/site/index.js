@@ -87,10 +87,12 @@ KG.Class.define('HWSiteIndexAppBanner', {
 				'<p>免费下载商家版App</p>',
 				'<p>随时随地轻松管理店铺</p>',
 				'</div>',
-				'<a class="appad" href="#">',
+				'<a class="appad" target="_blank"' +
+				' href="'+KG.config.SJAPP_AppleStore_Url+'">',
 				'<img src="{{root}}/images_beta/app.png" alt="">',
 				'</a>',
-				'<a class="appstore" href="#">',
+				'<a class="appstore" target="_blank"' +
+				' href="'+KG.config.SJAPP_AppleStore_Url+'">',
 				'<img src="{{root}}/images_beta/appstore.png" alt="">',
 				'</a>',
 				'</div>',

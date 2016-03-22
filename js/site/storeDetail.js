@@ -522,6 +522,12 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 		self.initArticleBox();
 		self.initCouponBox();
+
+		if(location.hash){
+			util.delay(function(){
+				location.href = location.hash;
+			}, 1000);
+		}
 	},
 
 	getCommentRpHtml : function(replyId){
