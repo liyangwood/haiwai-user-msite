@@ -160,7 +160,13 @@ a:hover, a:link {
     .hw-loginRegBoxComp .c-left h4 {
       font-size: 18px;
       color: #4a4a4a;
-      margin-bottom: 20px; }
+      margin-bottom: 10px; }
+    .hw-loginRegBoxComp .c-left .c-error {
+      color: #f20d0d;
+      font-size: 14px;
+      text-align: right;
+      width: 288px;
+      margin: 5px auto; }
     .hw-loginRegBoxComp .c-left input {
       width: 288px;
       height: 42px;

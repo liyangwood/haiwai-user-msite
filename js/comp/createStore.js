@@ -406,7 +406,7 @@
                             console.log(rs);
                             util.toast.alert('修改成功');
                             util.delay(function(){
-                                location.href = '../mybiz/index.html';
+                                //location.href = '../mybiz/index.html';
                             }, 1000);
                         }
                         else{
@@ -600,6 +600,29 @@
                     };
 
                     break;
+                case '7':
+                    rs = '<div class="hw-dym" param="'+item.field_id+'"><span>'+item.field_name+'</span>';
+                    _.each(item.default_option, function(one){
+                        rs += '<label><input type="checkbox" value="'+one.m_value+'" class="radio-inline" name="'+item.field_id+'" />'+one.m_value+'</label>';
+                    });
+                    rs += '</div>';
+
+                    box.append(rs);
+
+                    this.dynamicObj[item.field_name] = {
+                        obj : null,
+                        type : item.field_type,
+                        val : function(){
+                            var r = [];
+                            box.find('[param="'+item.field_id+'"]').find('input').each(function(){
+                                var o = $(this);
+                                if(o.prop('checked')){
+                                    r.push(o.val());
+                                }
+                            });
+                            return r;
+                        }
+                    };
 
                 default :
                     break;

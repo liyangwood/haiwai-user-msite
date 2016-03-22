@@ -140,6 +140,21 @@
         }
     });
 
+    util.oauth = {
+        weixin : function(code){
+            var url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='+KG.config.WeixinAppID+'&secret='+KG.config.WeixinAppSecret+'&code='+code+'&grant_type=authorization_code';
+            $.ajax({
+                type : 'get',
+                dataType : 'jsonp',
+                url : url,
+                success : function(){
+                    console.log(arguments)
+                }
+            });
+
+        }
+    };
+
     util.dom = {
         scrollTo : function(top){
             var win = $(window);
@@ -409,13 +424,12 @@
                 foot : false,
                 'class' : 'hw-dialog-qrcode'
             });
-var a = encodeURIComponent(redUrl||location.href);
-            console.log(a);
+            console.log(redUrl)
             return new WxLogin({
                 id : 'js_weixin_qr',
                 appid: KG.config.WeixinAppID,
                 scope: "snsapi_login",
-                redirect_uri: encodeURIComponent(redUrl||location.href),
+                redirect_uri: encodeURIComponent(redUrl),
                 state: 'aaa',
                 style: "black",   //white
                 href: ""

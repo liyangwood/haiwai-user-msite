@@ -365,7 +365,7 @@ KG.Class.define('MycountChangeInfoForm', {
 
             '<div class="form-group">',
             '<label class="lab require">所在地区</label>',
-            '<div class="js_loc" data-region="{{region}}" role="SelectLocationRange"></div>',
+            '<div class="js_loc" data-region="{{region}}" init-self="true" role="SelectLocationRange"></div>',
             '</div>',
 
             '<div class="js_phone" data-value="{{user.tel}}" data-label="联络电话" role="BaseInput"></div>',
@@ -440,7 +440,7 @@ KG.Class.define('MycountChangeInfoForm', {
             if(!flag){
                 util.dialog.alert(rs);
             }
-            util.alert('修改成功');
+            util.toast.alert('修改成功');
             KG.user.update();
 
         });
@@ -448,7 +448,7 @@ KG.Class.define('MycountChangeInfoForm', {
     },
 
     initEnd : function(){
-
+        KG.component.initWithElement(this.elem.find('.js_loc'));
     }
 
 });

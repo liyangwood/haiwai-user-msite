@@ -765,9 +765,10 @@
 
             var h = [
                 '<h4>登陆海外同城</h4>',
+                '<div class="c-error"></div>',
                 '<input type="text" class="js_email" placeholder="邮箱" />',
                 '<input type="password" class="js_pwd" placeholder="密码" />',
-                '<button class="hw-btn hw-blue-btn js_loginBtn">登陆</button>',
+                '<button class="hw-btn hw-blue-btn js_loginBtn">登录</button>',
                 '<p>忘记账号或密码？<a href="#">在这里找回</a></p>'
             ].join('');
             this.jq.left.html(h);
@@ -781,6 +782,7 @@
 
         setRegBox : function(){
             var h = [
+                '<div class="c-error"></div>',
                 '<input type="text" class="js_email" placeholder="邮箱" />',
                 '<input type="password" class="js_pwd" placeholder="密码" />',
                 '<input type="password" class="js_pwd2" placeholder="确认密码" />',
@@ -804,6 +806,9 @@
                     defaultValue : 'reg'
                 }
             };
+        },
+        showError : function(err){
+            this.elem.find('.c-error').html(err);
         },
 
         initEvent : function(){
@@ -830,7 +835,7 @@
 
                     }
                     else{
-                        util.toast.showError(rs);
+                        self.showError(rs);
                     }
                 });
 
@@ -842,12 +847,12 @@
                     location.reload();
                 }, function(err){
 
-                    alert(err);
+                    self.showError(err);
                 });
             });
 
             this.elem.on('click', '.hw-weixin', function(){
-                util.dialog.showWeixinLoginQrCode('http://127.0.0.1:3000');
+                util.dialog.showWeixinLoginQrCode(KG.config.WeixinLoginRedirectUrl);
                 return false;
             });
         },
@@ -1012,7 +1017,16 @@ KG.component = {
 
 
 $(function(){
-    //dom ready
+
+    if(util.url.param('code') && util.url.param('state')==='aaa'){
+        //weixin login
+        util.showPageLoading(true);
+        alert(util.url.param('code'));
+        //util.oauth.weixin(util.url.param('code'));
+
+        return false;
+    }
+
 
     //check login
     util.showPageLoading(true);
