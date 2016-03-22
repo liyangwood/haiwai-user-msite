@@ -116,7 +116,10 @@
                     '<div class="container" id="js_header_comp">',
 
                     '<a class="logo" href="/"></a>',
-
+                    '<div class="hw-loc js_loc" style="display: none;">',
+                        '<span></span>',
+                        '<i class="icon fa fa-caret-down"></i>',
+                    '</div>',
 
                     '<div class="input-group search js_search">',
                         '<span class="input-group-addon"><i class="icon"></i></span>',
@@ -194,6 +197,10 @@
 
                 location.href = '../site/search.html?keyword='+val;
             });
+
+            this.elem.find('.js_loc').click(function(){
+                util.dialog.showSelectLocationRegion();
+            });
         },
 
         initEventByAfterLogin : function(){
@@ -216,6 +223,9 @@
             if(x){
                 this.elem.find('.js_search').find('input').val(x);
             }
+
+            var regionName = util.cookie.get('region_name') || 'New York city';
+            this.elem.find('.js_loc').show().find('span').html(regionName);
         }
     });
 
@@ -722,6 +732,114 @@
         initEnd : function(){
             this.elem.find('.js_'+this.data.page).addClass('active').click(function(){
                 return false;
+            });
+        }
+    });
+
+    KG.Class.define('HWSelectRegionLocation', {
+        ParentClass : 'BaseComponent',
+        getTemplate : function(){
+            return [
+                '<div class="hw-HWSelectRegionLocation">',
+                    '{{each list as item index}}',
+                    '<button param="{{index}}" class="js_one hw-btn hw-light-btn">{{item.cn}}</button>',
+
+                    '{{/each}}',
+                '</div>'
+            ].join('');
+        },
+        getData : function(box, data, next){
+            var hotLocation = [
+                {
+                    id : 192,
+                    name : 'San Francisco Bay Area',
+                    cn : '旧金山湾区'
+                },
+                {
+                    id : 399,
+                    name : 'New York city',
+                    cn : '大纽约地区'
+                },
+                {
+                    id : 182,
+                    name : 'Los Angeles',
+                    cn : '大洛杉矶地区'
+                },
+                {
+                    id : 315,
+                    name : 'Boston',
+                    cn : '大波士顿地区'
+                },
+                {
+                    id : 215,
+                    name : 'Washington',
+                    cn : '大华盛顿地区'
+                },
+                {
+                    id : 256,
+                    name : 'Chicago',
+                    cn : '大芝加哥地区'
+                },
+                {
+                    id : 501,
+                    name : 'Houston',
+                    cn : '大休斯顿地区'
+                },
+                {
+                    id : 461,
+                    name : 'Philadelphia',
+                    cn : '费城'
+                },
+                {
+                    id : 538,
+                    name : 'Seattle-tacoma',
+                    cn : '大西雅图地区'
+                },
+                {
+                    id : 496,
+                    name : 'Dallas',
+                    cn : '大达拉斯-沃斯堡都会区（DFW）'
+                },
+                {
+                    id : 192,
+                    name : 'san francisco bay area',
+                    cn : '圣地亚哥'
+                },
+                {
+                    id : 240,
+                    name : 'Atlanta',
+                    cn : '亚特兰大'
+                },
+                {
+                    id : 375,
+                    name : 'Las vegas',
+                    cn : '拉斯维加斯'
+                },
+                {
+                    id : 610,
+                    name : 'Toronto',
+                    cn : '大多伦多地区'
+                },
+                {
+                    id : 583,
+                    name : 'Vancouver',
+                    cn : '大温哥华地区'
+                }
+            ];
+
+            next({list : hotLocation});
+        },
+        initEvent : function(){
+            var self = this;
+            this.elem.on('click', '.js_one', function(){
+                var o = $(this),
+                    index = o.attr('param'),
+                    data = self.data.list[index];
+
+                util.cookie.set('regionID', data.id);
+                util.cookie.set('region_name', data.name);
+                util.cookie.set('region_cn', data.cn);
+                location.reload();
             });
         }
     });

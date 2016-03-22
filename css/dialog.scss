@@ -233,3 +233,17 @@
         }
     }
 }
+
+.hw-dialog-region{
+    .modal-dialog{
+        width: 820px !important;
+        margin-top : 100px !important;
+    }
+    .modal-header{
+        border-bottom: 1px solid #ebebeb !important;
+    }
+    .modal-body{
+        padding: 18px 15px !important;
+
+    }
+}

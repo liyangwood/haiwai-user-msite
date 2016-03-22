@@ -19,11 +19,28 @@
 		background: url('../image/haiwai.png') 0 0 no-repeat;
 	}
 
+	.hw-loc{
+		position: absolute;
+		top: 34px;
+		left: 120px;
+		cursor: pointer;
+
+		span{
+			font-size: 16px;
+			color: $color-4a;
+		}
+		.icon{
+			margin-left: 5px;
+			font-size: 18px;
+		}
+	}
+
 	.search{
 		width: 520px;
 		height: 40px;
 		margin: 24px auto;
 		border-color: #9b9b9b;
+		position: relative;
 
 		span{
 			background: #ffffff;
@@ -311,3 +328,21 @@
 	}
 }
 
+.hw-HWSelectRegionLocation{
+	.hw-btn{
+		height: 32px;
+		line-height: 32px;
+		font-size: 14px;
+		font-weight: normal;
+		margin: 12px 15px 0 0;
+		min-width: inherit;
+
+		&:hover{
+			background: #ebebeb;
+		}
+		&.active{
+			color: #ffffff;
+			background: $blue-color;
+		}
+	}
+}

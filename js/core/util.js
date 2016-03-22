@@ -155,6 +155,43 @@
         }
     };
 
+    util.cookie = {
+        get : function(name) {
+            var tmp, reg = new RegExp("(^| )"+name+"=([^;]*)(;|$)","gi");
+            if( tmp = reg.exec( unescape(document.cookie) ) )
+                return(tmp[2]);
+            return null;
+        },
+
+        set : function(name, value, expires, path, domain) {
+            path = path || "/";
+            expires = expires || 'never';
+            var str = name + "=" + escape(value);
+            if(expires){
+                if (expires == 'never') {
+                    expires = 100*365*24*60;
+                }
+                var exp = new Date();
+                exp.setTime(exp.getTime() + expires*60*1000);
+                str += "; expires="+exp.toGMTString();
+            }
+            if(path){
+                str += "; path=" + path;
+            }
+            if(domain){
+                str += "; domain=" + domain;
+            }
+            document.cookie = str;
+        },
+
+        remove: function(name, path, domain) {
+            document.cookie = name + "=" +
+                ((path) ? "; path=" + path : "") +
+                ((domain) ? "; domain=" + domain : "") +
+                "; expires="+new Date(0).toGMTString();
+        }
+    };
+
     util.dom = {
         scrollTo : function(top){
             var win = $(window);
@@ -478,6 +515,20 @@
                 title : '',
                 'class' : 'hw-dialog-coupon',
                 body : '<div class="js_role" role="HWSiteCouponDetailComp" data-coupon="'+couponID+'"></div>',
+                beforeShowFn : function(){
+                    var o = this;
+                    KG.component.initWithElement(o.find('.js_role'));
+                }
+            };
+            util.dialog.show(param);
+        },
+
+        showSelectLocationRegion : function(){
+            var param = {
+                foot : false,
+                title : '选择地区',
+                'class' : 'hw-dialog-region',
+                body : '<div class="js_role" role="HWSelectRegionLocation"></div>',
                 beforeShowFn : function(){
                     var o = this;
                     KG.component.initWithElement(o.find('.js_role'));

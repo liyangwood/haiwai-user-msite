@@ -266,11 +266,23 @@ a:hover, a:link {
     left: 0;
     top: 22px;
     background: url("../image/haiwai.png") 0 0 no-repeat; }
+  .kg-header-comp .hw-loc {
+    position: absolute;
+    top: 34px;
+    left: 120px;
+    cursor: pointer; }
+    .kg-header-comp .hw-loc span {
+      font-size: 16px;
+      color: #4a4a4a; }
+    .kg-header-comp .hw-loc .icon {
+      margin-left: 5px;
+      font-size: 18px; }
   .kg-header-comp .search {
     width: 520px;
     height: 40px;
     margin: 24px auto;
-    border-color: #9b9b9b; }
+    border-color: #9b9b9b;
+    position: relative; }
     .kg-header-comp .search span {
       background: #ffffff; }
       .kg-header-comp .search span .icon {
@@ -460,6 +472,19 @@ a:hover, a:link {
     color: #f4a62a;
     margin-right: 4px; }
 
+.hw-HWSelectRegionLocation .hw-btn {
+  height: 32px;
+  line-height: 32px;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 12px 15px 0 0;
+  min-width: inherit; }
+  .hw-HWSelectRegionLocation .hw-btn:hover {
+    background: #ebebeb; }
+  .hw-HWSelectRegionLocation .hw-btn.active {
+    color: #ffffff;
+    background: #37bccd; }
+
 #kg_modal_dialog .modal-dialog {
   margin-top: 200px; }
 #kg_modal_dialog .modal-header {
@@ -586,6 +611,14 @@ a:hover, a:link {
   padding: 18px 15px !important; }
   .hw-dialog-coupon .modal-body .hw-body {
     padding: 0 !important; }
+
+.hw-dialog-region .modal-dialog {
+  width: 820px !important;
+  margin-top: 100px !important; }
+.hw-dialog-region .modal-header {
+  border-bottom: 1px solid #ebebeb !important; }
+.hw-dialog-region .modal-body {
+  padding: 18px 15px !important; }
 
 body {
   background: #f7f7f7; }
