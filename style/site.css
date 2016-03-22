@@ -23,6 +23,9 @@ a:hover, a:link {
   position: relative; }
 
 .nodis {
+  display: none; }
+
+.no_dis {
   display: none !important; }
 
 .hand {
@@ -1152,7 +1155,8 @@ body {
   .hw-HWSiteCouponListPage .hw-one h3 {
     font-size: 21px;
     color: #f4a62a;
-    text-align: center; }
+    text-align: center;
+    margin-top: 6px; }
 .hw-HWSiteCouponListPage .hw-cpage {
   margin-top: 24px;
   background: #ffffff;

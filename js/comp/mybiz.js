@@ -87,4 +87,38 @@
         }
     });
 
+
 })();
+
+KG.Class.define('HWMybizIndexStoreAdsBlock', {
+    ParentClass : 'BaseComponent',
+    getTemplate : function(){
+        if(this.type === 'create'){
+            return [
+                '<div class="hw-HWMybizIndexStoreAdsBlock">',
+                    '<h4>店铺文学城广告位</h4>',
+                    '<div class="cf">',
+                        '新用户可获得免费文学城首页的广告位，用于推广您的店铺，<a href="http://www.wenxuecity.com" target="_blank">去文学城首页查看已有广告</a>',
+                    '</div>',
+                    '<a class="hw-btn hw-blue-btn" href="#">免费创建广告</a>',
+                '</div>'
+
+            ].join('');
+        }
+
+        return [
+            '<div class="hw-HWMybizIndexStoreAdsBlock">',
+                '<h4>店铺文学城广告位</h4>',
+                '<img src="{{image}}" />',
+                '<div class="ca">{{#info}}</div>',
+                '{{#btn}}',
+            '</div>'
+        ].join('');
+    },
+    getData : function(box, data, next){
+        data = data || {};
+        this.type = data.type || 'create';
+
+        next({});
+    }
+});

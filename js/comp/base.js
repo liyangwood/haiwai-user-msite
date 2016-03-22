@@ -382,6 +382,8 @@
                 if(list.length > 0){
                     $('.hw-MybizCreateNewStore').addClass('nodis');
                 }
+
+                KG.component.initWithElement($('div[role="HWMybizIndexStoreAdsBlock"]'), {});
             });
         },
         initEvent : function(){
@@ -764,7 +766,7 @@
             this.jq.tlt.hide();
 
             var h = [
-                '<h4>登陆海外同城</h4>',
+                '<h4>登录海外同城</h4>',
                 '<div class="c-error"></div>',
                 '<input type="text" class="js_email" placeholder="邮箱" />',
                 '<input type="password" class="js_pwd" placeholder="密码" />',

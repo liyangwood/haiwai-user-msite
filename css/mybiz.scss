@@ -68,15 +68,50 @@
     }
 }
 
+.hw-HWMybizIndexStoreAdsBlock{
+	width: 240px;
+	border: 1px solid #c5c5c5;
+	text-align: center;
+
+	h4{
+		margin: 0 8px;
+		text-align: center;
+		font-weight: normal;
+		font-size: 12px;
+		color: #9b9b9b;
+		line-height: 36px;
+		border-bottom: 1px solid #ebebeb;
+	}
+
+	.cf{
+		margin: 18px 25px 15px;
+		font-size: 12px;
+		color: #979797;
+		text-align: left;
+
+		a{
+			color: $blue-color;
+			font-size: 12px;
+			display: inline;
+		}
+	}
+	.hw-btn{
+		height: 28px;
+		line-height: 28px;
+		font-size: 14px;
+		font-weight: normal;
+		margin: 5px auto 20px;
+	}
+}
 
 .hw-MybizRightStoreRank{
     width: 240px;
     height: 350px;
     border: 1px solid #c5c5c5;
-    position: absolute;
-    right: 0;
+    position: static;
     padding: 16px 15px 24px 15px;
     text-align: center;
+	margin-top: 24px;
 
     span{
         color: $color-4a;
@@ -835,4 +870,59 @@
     float: right;
     background: #f7f7f7;
     padding: 46px 135px 50px;
+}
+
+.hw-MybizStoreInputDatepicker{
+	.ca{
+		span{
+			font-size: 14px;
+			color: $color-7d;
+		}
+
+		.ml{
+			margin-right: 15px;
+		}
+
+		span.bn{
+			color: $blue-color;
+			cursor: pointer;
+		}
+	}
+	
+	.cb{
+		input{
+			width: 140px;
+			display: inline-block;
+			height: 36px;
+			line-height: 36px;
+		}
+
+		b{
+			display: inline-block;
+			color: $color-4a;
+			font-weight: normal;
+		}
+
+		select{
+			width: 142px;
+			display: inline-block;
+			line-height: 36px;
+			height: 36px;
+			padding-left: 5px;
+			border: 1px solid #c5c5c5;
+			background: url(../image/arrow_down.png) right no-repeat #fff;
+			-webkit-appearance: none;
+			border-radius: 0;
+		}
+
+		.hw-btn{
+			width: 120px;
+			height: 36px;
+			line-height: 36px;
+			border-color: $color-4a;
+			color: $color-4a;
+			font-size: 14px;
+			margin-left: 20px;
+		}
+	}
 }
