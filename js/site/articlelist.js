@@ -120,7 +120,7 @@ KG.Class.define('HWSiteArticleListPage', {
         return [
             '{{each list as item}}',
             '<a target="_blank" href="../view/article.html?id={{item.id}}" class="hw-one">',
-            '<img src="{{item.image}}" />',
+            '<img src="{{item.pic | absImage}}" />',
             '<h4>{{item.title}}</h4>',
             '<h6>{{item.description}}</h6>',
             '<p>',
@@ -138,7 +138,7 @@ KG.Class.define('HWSiteArticleListPage', {
 
     setBoxHtml : function(list){
         _.map(list, function(item){
-            item.image = KG.config.SiteRoot+item.pic;
+            //item.image = KG.config.SiteRoot+item.pic;
             item.description = item.msgbody.replace(/<([^>]*)>/g, '');
             return item;
         });

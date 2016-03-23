@@ -1269,13 +1269,16 @@ body {
     margin-top: 5px;
     max-height: 50px;
     overflow: hidden;
-    display: inline-block;
+    display: block;
     word-break: break-all; }
   .hw-HWSiteCouponListPage .hw-one h3 {
     font-size: 21px;
     color: #f4a62a;
     text-align: center;
-    margin-top: 6px; }
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 36px; }
 .hw-HWSiteCouponListPage .hw-cpage {
   margin-top: 24px;
   background: #ffffff;
@@ -1730,7 +1733,7 @@ body {
       font-size: 14px;
       margin: 0; }
   .hw-HWSiteArticleDetailMoreComp .hw-one {
-    height: 134px;
+    min-height: 134px;
     position: relative;
     margin: 0 15px;
     border-top: 1px dashed #c5c5c5;

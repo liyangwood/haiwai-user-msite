@@ -581,6 +581,12 @@
             body = body || '';
             var h = '<div class="hw-icon"><i class="fa fa-check"></i></div>';
             util.dialog.alert(h+msg, body);
+
+            util.delay(function(){
+                try{
+                    util.dialog.hide();
+                }catch(e){}
+            }, 3000);
         }
     };
 

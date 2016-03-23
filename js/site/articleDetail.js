@@ -25,7 +25,7 @@
                     '</p>',
 
                     '{{if bizInfo}}',
-                    '<a class="hw-biz" style="display: block;">',
+                    '<a class="hw-biz" href="{{bizInfo.entityID | toStorePath}}" style="display: block;">',
                         '<img src="{{bizInfo.logo | absImage}}" />',
                         '<h6>{{bizInfo.name_cn}}</h6>',
                         '<p class="hw-p">{{bizInfo | storeFullAddress}}</p>',
@@ -88,7 +88,7 @@ console.log(rs.view.msgbody)
         ParentClass : 'BaseComponent',
         getTemplate : function(){
             return [
-                '<div class="hw-HWSiteArticleDetailMoreComp">',
+                '<div class="hw-HWSiteArticleDetailMoreComp no_dis">',
                     '<div class="hw-head">',
                         '<label class="js_title">本店更多文章</label>',
                     '</div>',
@@ -105,6 +105,13 @@ console.log(rs.view.msgbody)
         registerMessage : function(e, data){
             this.setListHtml(data.list, data.biz);
         },
+        initEvent : function(){
+            this.elem.on('click', '.hw-biz', function(){
+                var url = $(this).attr('param');
+                location.href = url;
+                return false;
+            });
+        },
         setListHtml : function(list, biz){
             var h = [
                 '{{each list as item}}',
@@ -112,14 +119,14 @@ console.log(rs.view.msgbody)
                 '<img src="{{item.pic | absImage}}" />',
                 '<h4>{{item.title}}</h4>',
 
-                '<div class="hw-biz">',
+                '<div param="{{bizInfo.entityID | toStorePath}}" class="hw-biz">',
                 '<img src="{{bizInfo.logo | absImage}}" />',
                 '<h6>{{bizInfo.name_cn}}</h6>',
                 '<p class="hw-p">{{bizInfo | storeFullAddress}}</p>',
                 '</div>',
 
-                '<p>',
-                '<span class="hw-time">{{item.msgbody}}</span>',
+                '<p style="display: inline-block;">',
+                '<span class="hw-time">{{item.msgbody | htmlToText}}</span>',
 
                 '<span class="hw-view">',
                 '<i class="fa fa-eye"></i>',
@@ -136,6 +143,10 @@ console.log(rs.view.msgbody)
             });
 
             this.elem.find('.js_box').html(h);
+
+            if(list.length > 0){
+                this.elem.removeClass('no_dis');
+            }
         },
     });
 
