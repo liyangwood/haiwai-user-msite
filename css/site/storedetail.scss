@@ -262,9 +262,7 @@
             height: 220px;
             width: 680px;
             margin: 0 auto;
-            position: relative;
-            left: 8px;
-            top: -4px;
+            overflow: hidden;
 
 
             .img-item{
@@ -279,6 +277,9 @@
                 vertical-align: top;
                 text-align: center;
                 overflow: hidden;
+                position: relative;
+                left: 8px;
+                top: -4px;
                 
                 img{
                     width: 100%;

@@ -2136,9 +2136,7 @@ body {
     height: 220px;
     width: 680px;
     margin: 0 auto;
-    position: relative;
-    left: 8px;
-    top: -4px; }
+    overflow: hidden; }
     .hw-HWSiteStoreDetailPage .hw-imglist .item .img-item {
       width: 160px;
       height: 160px;
@@ -2149,7 +2147,10 @@ body {
       justify-content: center;
       vertical-align: top;
       text-align: center;
-      overflow: hidden; }
+      overflow: hidden;
+      position: relative;
+      left: 8px;
+      top: -4px; }
       .hw-HWSiteStoreDetailPage .hw-imglist .item .img-item img {
         width: 100%; }
   .hw-HWSiteStoreDetailPage .hw-rpeach {
