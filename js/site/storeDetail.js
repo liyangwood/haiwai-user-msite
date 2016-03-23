@@ -234,6 +234,9 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		});
 		rs.image_list = h;
 		rs.imagelist = _.map(rs.files, function(item){
+			if(/^http/.test(item.path)){
+				return item.path
+			}
 			return KG.config.SiteRoot+item.path;
 		});
 
