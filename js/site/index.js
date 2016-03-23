@@ -106,6 +106,34 @@ KG.Class.define('HWSiteIndexAppBanner', {
 	}
 });
 
+KG.Class.define('HWSiteIndexAppBanner1', {
+	ParentClass : 'BaseComponent',
+	getTemplate : function(){
+		return [
+			'<div class="appcom hw-HWSiteIndexAppBanner1">',
+				'<div class="bw">',
+					'<a class="hw-btn hw-blue-btn" target="_blank" href="'+KG.config.SJAPP_AppleStore_Url+'">商家免费入驻</a>',
+				'</div>',
+				'<a class="appad" href="'+KG.config.SJAPP_AppleStore_Url+'" target="_blank">',
+					'<img src="{{root}}/images_beta/appp.png" alt="">',
+				'</a>',
+				'<div class="slogan">',
+					'<p>免费下载商家版App</p>',
+					'<p>随时随地轻松管理店铺</p>',
+				'</div>',
+				'<a class="appstore" target="_blank" href="'+KG.config.SJAPP_AppleStore_Url+'">',
+					'<img src="{{root}}/images_beta/appstore.png" alt="">',
+				'</a>',
+			'</div>'
+		].join('');
+	},
+	getData : function(box, data, next){
+		next({
+			root : KG.config.SiteRoot
+		});
+	}
+});
+
 KG.Class.define('HWSiteIndexHotCoupon', {
 	ParentClass : 'BaseComponent',
 	getTemplate : function(){

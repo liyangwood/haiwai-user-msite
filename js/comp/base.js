@@ -352,7 +352,7 @@
                 '<div class="hw-comp-store-list">',
                 '{{each list as item}}',
                 '<div class="hw-each">',
-                '<img class="hw-img" src="{{item.logo | absImage}}" />',
+                '<img class="hw-img" src="{{item.logo[0].path | absImage}}" />',
                 '<a class="h4" href="{{item.entityID | toStorePath}}">{{item.name_cn}}</a>',
                 '<p>{{item | storeFullAddress}}</p>',
                 '<em>{{item.commentnum}}条新评论</em>',
@@ -390,7 +390,7 @@
                 KG.component.initWithElement($('div[role="MybizStopStoreList"]'), stopList);
 
                 if(list.length > 0){
-                    $('.hw-MybizCreateNewStore').addClass('nodis');
+                    $('.hw-MybizCreateNewStore').addClass('no_dis');
                 }
 
                 KG.component.initWithElement($('div[role="HWMybizIndexStoreAdsBlock"]'), {});
@@ -423,7 +423,7 @@
                 '<div class="hw-comp-store-list">',
                 '{{each list as item}}',
                 '<div class="hw-each">',
-                '<img class="hw-img" src="{{item.logo | absImage}}" />',
+                '<img class="hw-img" src="{{item.logo[0].path | absImage}}" />',
                 '<h4>{{item.name_cn}}</h4>',
                 '<p>{{item.address}}, {{item.city}}, {{item.state}}, {{item.zip}}</p>',
                 '<em>{{item.commentnum}}条新评论</em>',
@@ -535,6 +535,10 @@
                     next({
                         list : list
                     });
+
+                    if(list.length > 0){
+                        this.elem.parent('.hw-panel').removeClass('no_dis');
+                    }
                 }
             });
         },
@@ -582,6 +586,10 @@
                     next({
                         list : list
                     });
+
+                    if(list.length > 0){
+                        this.elem.parent('.hw-panel').removeClass('no_dis');
+                    }
                 }
             });
         },

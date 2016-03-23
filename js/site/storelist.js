@@ -364,7 +364,7 @@ KG.Class.define('HWSiteStoreListPage', {
 		return [
 			'{{each list as item}}',
 			'<a href="{{item.entityID_i | toStorePath}}" target="_blank" class="hw-one">',
-				'<div class="hw-logo"><img src="{{item.logo | absImage}}" /></div>',
+				'<div class="hw-logo"><img src="{{item.logo[0].path | absImage}}" /></div>',
 
 				'<div class="right">',
 					'<h4>{{item.name_cn_cntmw}}</h4>',
@@ -380,7 +380,7 @@ KG.Class.define('HWSiteStoreListPage', {
 		return [
 			'{{each list as item}}',
 			'<a href="{{item.entityID | toStorePath}}" target="_blank" class="hw-one1">',
-			'<div class="hw-logo"><img src="{{item.logo | absImage}}" /></div>',
+			'<div class="hw-logo"><img src="{{item.logo[0].path | absImage}}" /></div>',
 
 			'<div class="right">',
 				'<h4>{{item.name_cn || item.name_en}}</h4>',

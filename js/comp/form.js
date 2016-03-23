@@ -506,21 +506,24 @@
                 '<div class="js_title" role="BaseInput" data-label="优惠标题" data-require="true" placeholder="e.g. 美食府金秋品尝会，邀您免费试吃"></div>',
 
                 '<div class="form-group">',
-                    '<label style="display: block;">优惠开始时间</label>',
-                    '<input style="width: 410px;display: inline-block" type="text" class="form-control js_startDate" readonly="true" placeholder="10/20/2015">',
+                    '<label class="">优惠开始时间</label>',
+                    '<label style="right:190px;" class="control-label hw-err"></label>',
+                    '<input style="width: 410px;display: block;" type="text" class="form-control js_startDate" readonly="true" placeholder="10/20/2015">',
                     //'<input style="width: 140px;display: inline-block;margin-left: 50px;" type="text" class="form-control js_startTime" placeholder="8:30AM">',
                 '</div>',
 
                 '<div class="form-group">',
-                    '<label style="display: block;">优惠结束时间</label>',
-                    '<input style="width: 410px;display: inline-block" type="text" class="form-control js_endDate" readonly="true" placeholder="10/20/2016">',
-                    '<label style="vertical-align: top;position: relative;top: -12px;margin-left:12px;">不限结束时间<input style="position: relative; top: 13px;left:8px;" class="js_endlimit" type="checkbox" /></label>',
+                    '<label class="require">优惠结束时间</label>',
+                    '<label style="right:190px;" class="control-label hw-err"></label>',
+                    '<input style="width: 410px;display: block;" type="text" class="form-control js_endDate" readonly="true" placeholder="10/20/2016">',
+                    '<label style="vertical-align: top;position: absolute;top: 10px;left:425px;">不限结束时间<input style="position: relative; top: 13px;left:8px;" class="js_endlimit" type="checkbox" /></label>',
                     //'<input style="width: 140px;display: inline-block;margin-left: 50px;" type="text" class="form-control js_endTime" placeholder="8:30AM">',
                 '</div>',
 
 
                 '<div class="form-group">',
                     '<label class="require" for="lb_ccc">优惠描述</label>',
+                    '<label class="control-label hw-err"></label>',
                     '<textarea style="height: 170px;" placeholder="优惠宣传、细节、方式、如何报名等信息提升参与度" class="js_desc form-control" id="lb_ccc"></textarea>',
                 '</div>',
 
@@ -582,6 +585,65 @@
 
         validate : function(data){
             data = data || this.getFormValue();
+            var c = this.getElemObj();
+
+            if(!data.biz){
+                this.jq.biz.showError('请选择发布的店铺');
+                this.jq.biz.focus();
+                return false;
+            }
+            else{
+                this.jq.biz.showError();
+            }
+
+            if(!data.subject){
+                c.title.showError('请输入优惠标题');
+                c.title.focus();
+                return false;
+            }
+            else{
+                c.title.showError();
+            }
+
+            if(data.startDate && moment(data.startDate).isBefore(moment(new Date()), 'day')){
+                this.jq.startDate.parent('div.form-group').addClass('has-error').find('.hw-err').html('开始时间不能早于当前时间');
+                this.jq.startDate.focus();
+                return false;
+            }
+            else{
+                this.jq.startDate.parent('div.form-group').removeClass('has-error').find('.hw-err').html('');
+            }
+
+            if(!data.endDate){
+                this.jq.endDate.parent('div.form-group').addClass('has-error').find('.hw-err').html('请选择结束时间');
+                this.jq.endDate.focus();
+                return false;
+            }
+            else{
+                this.jq.endDate.parent('div.form-group').removeClass('has-error').find('.hw-err').html('');
+            }
+
+            var start = data.startDate ? moment(data.startDate) : moment(new Date());
+            if(data.endDate!=='unlimit'&&moment(data.endDate).isBefore(start, 'day')){
+                this.jq.endDate.parent('div.form-group').addClass('has-error').find('.hw-err').html('结束时间不能早于开始时间');
+                this.jq.endDate.focus();
+                return false;
+            }
+            else{
+                this.jq.endDate.parent('div.form-group').removeClass('has-error').find('.hw-err').html('');
+            }
+
+
+            if(!data.description){
+                this.jq.desc.parent('div.form-group').addClass('has-error').find('.hw-err').html('请输入优惠描述');
+                this.jq.desc.focus();
+                return false;
+            }
+            else{
+                this.jq.desc.parent('div.form-group').removeClass('has-error').find('.hw-err').html('');
+            }
+
+
 
             //TODO validate
             return true;
@@ -645,7 +707,13 @@
                     KG.request.createStoreCouponEvent(data, function(flag, rs){
                         if(flag){
                             console.log(rs);
-                            //location.href = 'http://www.haiwai.com/classifiedinfo/view.php?id='+rs;
+                            if(self.prop.type === 'edit'){
+                                util.toast.alert('修改成功');
+                                util.delay(function(){
+                                    location.href = '../mybiz/coupon.html';
+                                }, 1000);
+                                return false;
+                            }
 
                             //create success
                             var msg = '<div class="hw-icon"><i class="fa fa-check"></i></div>创建优惠成功！别忘了点击“分享”，让更多的人知道！';

@@ -368,6 +368,32 @@
             obj.modal('hide');
         },
 
+        showImageList : function(list, clickFn){
+            var h = [
+                '<div class="js_box">',
+                    '{{each list as item index}}',
+                    '<div param="{{index}}" class="img-item"><img src="{{item}}" /></div>',
+                    '{{/each}}',
+                '</div>'
+            ].join('');
+            h = template.compile(h)({
+                list : list
+            });
+            util.dialog.show({
+                body : h,
+                foot : false,
+                'class' : 'hw-dialog-imglist',
+                title : '('+list.length+')'
+            });
+
+
+            var obj = util.dialog.get();
+            obj.find('.js_box').on('click', '.img-item', function(){
+                var index = $(this).attr('param');
+                clickFn(index);
+                return false;
+            });
+        },
 
         showFocusImage : function(index, list){
             var h = [
@@ -391,11 +417,11 @@
                     '</div>',
 
                     '<a class="left carousel-control" href="#cb_cccc" role="button" data-slide="prev">',
-                        '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>',
+                        '<span class="glyphicon glyphicon-chevron-left glyphicon-menu-left" aria-hidden="true"></span>',
                         '<span class="sr-only">Previous</span>',
                     '</a>',
                     '<a class="right carousel-control" href="#cb_cccc" role="button" data-slide="next">',
-                        '<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>',
+                        '<span class="glyphicon glyphicon-chevron-right glyphicon-menu-right" aria-hidden="true"></span>',
                         '<span class="sr-only">Next</span>',
                     '</a>',
                 '</div>'
@@ -411,6 +437,8 @@
                 'class' : 'hw-carousel',
                 title : ''
             });
+
+            return util.dialog.get();
         },
 
         confirm : function(opts){

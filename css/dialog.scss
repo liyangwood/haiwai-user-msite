@@ -71,6 +71,43 @@
     }
 }
 
+.hw-dialog-imglist{
+    .modal-dialog{
+        width: 742px;
+
+        .modal-header{
+            border-bottom: 1px solid #ebebeb !important;
+        }
+    }
+    .hw-body{
+        padding: 20px 10px !important;
+    }
+
+    .hw-title{
+        position: absolute;
+        top: -32px;
+    }
+
+    .img-item{
+        width: 160px;
+        height: 160px;
+        margin-right: 8px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #f7f7f7;
+        vertical-align: top;
+        text-align: center;
+        overflow: hidden;
+
+        img{
+            max-width: 100%;
+            margin: auto;
+        }
+    }
+}
+
 .hw-carousel{
     .modal-dialog{
         width: 742px;
@@ -78,6 +115,10 @@
         .modal-header{
             border-bottom: 1px solid #ebebeb !important;
         }
+    }
+
+    .hw-body{
+        padding: 20px 10px !important;
     }
 
 
@@ -92,12 +133,16 @@
                 text-align: center;
                 img{
                     height: 300px;
-                    max-width: 100%;
+                    max-width: 586px;
                     margin: 0 auto;
                 }
             }
 
 
+        }
+        .carousel-control{
+            background: transparent;
+            width: 20px;
         }
     }
 }
@@ -219,7 +264,7 @@
 
 .hw-dialog-coupon{
     .modal-dialog{
-        width: 820px !important;
+        width: 585px !important;
         margin-top : 100px !important;
     }
     .modal-header{

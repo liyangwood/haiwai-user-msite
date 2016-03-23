@@ -372,7 +372,7 @@ a:hover, a:link {
         color: #ffffff;
         margin: 0 4px; }
     .hw-footer-comp .container .cr {
-      margin-top: 30px;
+      margin-top: 40px;
       font-size: 12px; }
 
 .hw-comp-BackPageLink {
@@ -531,18 +531,48 @@ a:hover, a:link {
   #kg_modal_dialog .modal-footer .hw-light-btn {
     margin-right: 40px; }
 
+.hw-dialog-imglist .modal-dialog {
+  width: 742px; }
+  .hw-dialog-imglist .modal-dialog .modal-header {
+    border-bottom: 1px solid #ebebeb !important; }
+.hw-dialog-imglist .hw-body {
+  padding: 20px 10px !important; }
+.hw-dialog-imglist .hw-title {
+  position: absolute;
+  top: -32px; }
+.hw-dialog-imglist .img-item {
+  width: 160px;
+  height: 160px;
+  margin-right: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7f7f7;
+  vertical-align: top;
+  text-align: center;
+  overflow: hidden; }
+  .hw-dialog-imglist .img-item img {
+    max-width: 100%;
+    margin: auto; }
+
 .hw-carousel .modal-dialog {
   width: 742px; }
   .hw-carousel .modal-dialog .modal-header {
     border-bottom: 1px solid #ebebeb !important; }
+.hw-carousel .hw-body {
+  padding: 20px 10px !important; }
 .hw-carousel .carousel .carousel-indicators {
   display: none; }
 .hw-carousel .carousel .carousel-inner .item {
   text-align: center; }
   .hw-carousel .carousel .carousel-inner .item img {
     height: 300px;
-    max-width: 100%;
+    max-width: 586px;
     margin: 0 auto; }
+.hw-carousel .carousel .carousel-control {
+  background: transparent;
+  width: 20px; }
 
 .hw-confirm1 .modal-dialog {
   width: 432px; }
@@ -604,7 +634,7 @@ a:hover, a:link {
   display: none !important; }
 
 .hw-dialog-coupon .modal-dialog {
-  width: 820px !important;
+  width: 585px !important;
   margin-top: 100px !important; }
 .hw-dialog-coupon .modal-header {
   height: 0 !important; }
@@ -1188,7 +1218,8 @@ a:hover, a:link {
     display: inline-block;
     margin: 0 6px 20px;
     position: relative;
-    vertical-align: top; }
+    vertical-align: top;
+    overflow: hidden; }
   .hw-coupon-uploadimage .hw-add .icon {
     font-size: 120px; }
   .hw-coupon-uploadimage .hw-add p {

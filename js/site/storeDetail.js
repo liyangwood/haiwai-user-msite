@@ -17,7 +17,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 	getTemplate : function(){
 		var T1 = [
 			'<div class="c-top">',
-				'<img class="hw-logo" src="{{biz.logo.path | absImage}}" />',
+				'<img class="hw-logo" src="{{biz.logo[0].path | absImage}}" />',
 				'{{if biz.verified=="unverified"}}<p class="hw-renling">申请认领</p>{{/if}}',
 				'<div class="c-r">',
 					'<h4>{{biz.name_cn}}{{if biz.verified=="yes"}}<i class="icon icon-v">v</i>{{/if}}</h4>',
@@ -94,10 +94,11 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 		//image list
 		var T7 = [
+			'{{if biz.files.length > 0}}',
 			'<div class="c-box">',
 				'<dt class="c-title">',
 					'<p>图片 ({{biz.files.length}})</p>',
-					//'<b>全部图片</b>',
+					'<b class="js_showimg hand">全部图片</b>',
 				'</dt>',
 				'<dd class="c-content hw-imglist" style="padding: 0 15px;">',
 					'{{if biz.files.length>0}}',
@@ -106,27 +107,30 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 						'<div class="carousel-inner" init-self="true" role="listbox">',
 							'{{each biz.image_list as item}}',
-							'<div class="item{{if $index<1}} active{{/if}}"><div class="img-item">',
+							'<div class="item{{if $index<1}} active{{/if}}">',
 								'{{each item as one}}',
-									'<img class="js_cimg" param={{one.index}} src="{{one.path | absImage}}" />',
+									'<div class="img-item"><img class="js_cimg" param={{one.index}} src="{{one.path | absImage}}" /></div>',
 								'{{/each}}',
-							'</div></div>',
+							'</div>',
 							'{{/each}}',
 						'</div>',
 
 						'<a class="left carousel-control" href="#carousel-11" init-self="true" role="button"' +
 						' data-slide="prev">',
-							'<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>',
+							'<span class="glyphicon glyphicon-chevron-left glyphicon-menu-left"' +
+							' aria-hidden="true"></span>',
 
 						'</a>',
 						'<a class="right carousel-control" href="#carousel-11" init-self="true" role="button"' +
 						' data-slide="next">',
-							'<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>',
+							'<span class="glyphicon glyphicon-chevron-right glyphicon-menu-right"' +
+							' aria-hidden="true"></span>',
 						'</a>',
 					'</div>',
 					'{{/if}}',
 				'</dd>',
-			'</div>'
+			'</div>',
+			'{{/if}}'
 		].join('');
 
 		//comment box
@@ -273,13 +277,32 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			}
 		});
 
+	},
 
+	showFocusImage : function(index){
+		var self = this;
+		var obj = util.dialog.showFocusImage(index, self.data.biz.imagelist);
+		var hh = '<div style="position: relative;font-size: 16px;line-height: 25px;top:-10px;" class="hand"><i' +
+			' style="margin-right:10px;font-size:18px;position:relative;top:2px;"' +
+			' class="icon glyphicon glyphicon-th"></i>返回相册</div>';
+		hh = $(hh);
+		hh.click(function(){
+			util.dialog.showImageList(self.data.biz.imagelist, function(n){
+				self.showFocusImage(n);
+			});
+		});
+		obj.find('.carousel').before(hh);
 	},
 	initEvent : function(){
 		var self = this;
 		this.elem.find('.hw-imglist').on('click', '.js_cimg', function(e){
-			var index = $(e.target).attr('param');
-			util.dialog.showFocusImage(index, self.data.biz.imagelist);
+			var index = $(this).attr('param');
+			self.showFocusImage(index);
+		});
+		this.elem.on('click', '.js_showimg', function(){
+			util.dialog.showImageList(self.data.biz.imagelist, function(n){
+				self.showFocusImage(n);
+			});
 		});
 
 		this.elem.find('.c-top').on('click', '.js_share', function(){
@@ -584,11 +607,11 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			'<div class="hw-rpeach">',
 			'<a href="javascript:void(0)" class="hw-img">',
 				'<img src="{{item.userinfo.avatar_url | absImage}}" />',
-				'<p>{{item.userinfo.nick}}</p>',
+				'<p title="{{item.userinfo.nick}}">{{item.userinfo.nick}}</p>',
 			'</a>',
 			'<div class="r hw-time">',
 				'<div role="StarRank" data-rank={{item.star}}></div>',
-				'<span>{{item.datetime | formatDate}}</span>',
+				'<span>{{item.datetime | formatDate:"mm/dd/yy"}}</span>',
 			'</div>',
 			'<p class="r hw-msg">{{item.msg}}</p>',
 			'<p class="r hw-action">',
@@ -657,6 +680,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			'<a href="../view/article.html?id={{item.id}}" target="_blank" style="display: block;" class="hw-item hw-art">',
 			'<img src="{{item.image}}" />',
 			'<h4>{{item.title}}</h4>',
+			'<p class="hw-time">{{item.dateline | formatDate:"mm/dd/yy"}}</p>',
 			'<p class="hw-lt">{{item.msgbody | htmlToText}}</p>',
 			'</a>',
 			'{{/each}}',
@@ -703,9 +727,11 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		var h = [
 			'{{each list as item}}',
 			'<div class="hw-item hw-cp js_coupon_item" param="{{item.pk_id}}" style="cursor: pointer">',
-			'<img src="http://beta.haiwai.com/images_beta/eassyimg.png" />',
+			'<img src="{{item.pic | absImage}}" />',
 			'<h4>{{item.subject}}</h4>',
 			'<p class="hw-lt">{{item.count}}人已领取</p>',
+			'<button class="hw-btn hw-blue-btn">立即领取</button>',
+
 			'</div>',
 			'{{/each}}',
 			'{{if flag}}<p class="hw-more">查看更多</p>{{/if}}'

@@ -360,7 +360,7 @@ KG.Class.define('SiteHeadingNav', {
 					'<img src="../../image/site/'+one.logo+'" />',
 					'<p class="cp">',
 					'{{each list as item}}',
-					'<a href="../site/storelist.html?tag={{item[1]}}" target="_blank">{{item[0]}}</a>',
+					'<a href="../site/storelist.html?tag={{item[1]}}">{{item[0]}}</a>',
 					'{{/each}}',
 					'</p>',
 				'</div>',
@@ -413,14 +413,14 @@ KG.Class.define('SiteHeadingNav', {
 					l = '../site/storelist.html?tag='+n[1];
 				if(n[2] === n[1]){
 					cls = 'ca';
-					ha += '<a class="'+cls+'" href="'+l+'" target="_blank">'+n[0]+'</a>';
+					ha += '<a class="'+cls+'" href="'+l+'" target="_self">'+n[0]+'</a>';
 				}
 				else if(n[2] === 0){
-					hb += '<a class="'+cls+'" href="'+l+'" target="_blank">'+n[0]+'</a>';
+					hb += '<a class="'+cls+'" href="'+l+'" target="_self">'+n[0]+'</a>';
 				}
 				else{
 					l += '&subtag='+n[2];
-					hb += '<a class="'+cls+'" href="'+l+'" target="_blank">'+n[0]+'</a>';
+					hb += '<a class="'+cls+'" href="'+l+'" target="_self">'+n[0]+'</a>';
 				}
 			});
 
@@ -508,6 +508,12 @@ KG.Class.define('HWSiteCouponDetailComp', {
 			this.jq.storeBox.hide();
 			return;
 		}
+
+		var h = [
+			'<div class="">',
+
+			'</div>'
+		].join('');
 
 	},
 	setCouponBoxHtml : function(data){

@@ -371,7 +371,7 @@ a:hover, a:link {
         color: #ffffff;
         margin: 0 4px; }
     .hw-footer-comp .container .cr {
-      margin-top: 30px;
+      margin-top: 40px;
       font-size: 12px; }
 
 .hw-comp-BackPageLink {
@@ -530,18 +530,48 @@ a:hover, a:link {
   #kg_modal_dialog .modal-footer .hw-light-btn {
     margin-right: 40px; }
 
+.hw-dialog-imglist .modal-dialog {
+  width: 742px; }
+  .hw-dialog-imglist .modal-dialog .modal-header {
+    border-bottom: 1px solid #ebebeb !important; }
+.hw-dialog-imglist .hw-body {
+  padding: 20px 10px !important; }
+.hw-dialog-imglist .hw-title {
+  position: absolute;
+  top: -32px; }
+.hw-dialog-imglist .img-item {
+  width: 160px;
+  height: 160px;
+  margin-right: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7f7f7;
+  vertical-align: top;
+  text-align: center;
+  overflow: hidden; }
+  .hw-dialog-imglist .img-item img {
+    max-width: 100%;
+    margin: auto; }
+
 .hw-carousel .modal-dialog {
   width: 742px; }
   .hw-carousel .modal-dialog .modal-header {
     border-bottom: 1px solid #ebebeb !important; }
+.hw-carousel .hw-body {
+  padding: 20px 10px !important; }
 .hw-carousel .carousel .carousel-indicators {
   display: none; }
 .hw-carousel .carousel .carousel-inner .item {
   text-align: center; }
   .hw-carousel .carousel .carousel-inner .item img {
     height: 300px;
-    max-width: 100%;
+    max-width: 586px;
     margin: 0 auto; }
+.hw-carousel .carousel .carousel-control {
+  background: transparent;
+  width: 20px; }
 
 .hw-confirm1 .modal-dialog {
   width: 432px; }
@@ -603,7 +633,7 @@ a:hover, a:link {
   display: none !important; }
 
 .hw-dialog-coupon .modal-dialog {
-  width: 820px !important;
+  width: 585px !important;
   margin-top: 100px !important; }
 .hw-dialog-coupon .modal-header {
   height: 0 !important; }
@@ -747,7 +777,7 @@ body {
     text-align: center;
     padding: 10px 0; }
     .hw-HWSiteCouponDetailComp .cc input {
-      width: 600px;
+      width: 400px;
       margin: 0 auto; }
     .hw-HWSiteCouponDetailComp .cc .hw-btn {
       height: 36px;
@@ -804,7 +834,7 @@ body {
       font-size: 15px;
       text-rendering: geometricPrecision; }
       .hw-HWIndexHotNavComp dd a:hover {
-        color: #f4a62a; }
+        color: #37bccd; }
 
 .hw-HWSiteIndexAppBanner {
   position: absolute;
@@ -985,7 +1015,7 @@ body {
 
 .hw-HWSiteIndexHotArticle {
   width: 100%;
-  margin-top: 30px; }
+  margin-top: 46px; }
   .hw-HWSiteIndexHotArticle dt label {
     border-left: 4px solid #f4a62a;
     font-size: 20px;
@@ -1118,6 +1148,48 @@ body {
     .hw-HWSiteIndexHotArticle .roundb span {
       color: #ffffff;
       font-size: 20px; }
+
+.hw-HWSiteIndexAppBanner1 {
+  background-color: #fff;
+  font-size: 14px;
+  height: 239px;
+  margin: 0 0 0 14px;
+  text-align: center;
+  width: 280px;
+  border: 1px solid #ebebeb; }
+  .hw-HWSiteIndexAppBanner1 .hw-btn {
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    text-transform: uppercase;
+    margin: 15px auto;
+    width: 148px; }
+  .hw-HWSiteIndexAppBanner1 a {
+    display: block; }
+  .hw-HWSiteIndexAppBanner1 .appad {
+    float: left;
+    height: 116px;
+    padding-left: 15px;
+    width: 81.3px; }
+  .hw-HWSiteIndexAppBanner1 .appstore {
+    float: left;
+    height: 45px;
+    margin: 22px auto 0;
+    margin-left: 40px;
+    margin-top: 8px;
+    padding: 0;
+    width: 133px; }
+  .hw-HWSiteIndexAppBanner1 .bw {
+    border-bottom: 1px dotted #c5c5c5;
+    margin: 5px 10px 10px; }
+  .hw-HWSiteIndexAppBanner1 .slogan {
+    height: 50px;
+    margin: 48px 0 0 30px;
+    width: 260px; }
+    .hw-HWSiteIndexAppBanner1 .slogan p {
+      margin: 0;
+      padding: 0; }
 
 .hw-SiteCouponFilterComp {
   padding: 20px 20px 8px 20px;
@@ -2011,6 +2083,15 @@ body {
         color: #7d7d7d;
         font-size: 14px;
         margin-top: 20px; }
+      .hw-HWSiteStoreDetailPage .hw-left-box .hw-cp .hw-btn {
+        height: 40px;
+        line-height: 40px;
+        width: 120px;
+        font-size: 14px;
+        font-weight: normal;
+        position: absolute;
+        top: 40px;
+        right: 15px; }
     .hw-HWSiteStoreDetailPage .hw-left-box .hw-art {
       padding: 12px 0;
       border-bottom: 1px solid #ebebeb;
@@ -2027,6 +2108,12 @@ body {
         font-size: 20px;
         color: #4a4a4a;
         margin: 0; }
+      .hw-HWSiteStoreDetailPage .hw-left-box .hw-art .hw-time {
+        position: absolute;
+        top: 12px;
+        right: 5px;
+        color: #7d7d7d;
+        font-size: 14px; }
       .hw-HWSiteStoreDetailPage .hw-left-box .hw-art .hw-lt {
         color: #7d7d7d;
         font-size: 16px;
@@ -2044,7 +2131,7 @@ body {
   .hw-HWSiteStoreDetailPage .hw-imglist .carousel-control {
     width: 24px;
     background: none; }
-  .hw-HWSiteStoreDetailPage .hw-imglist .img-item {
+  .hw-HWSiteStoreDetailPage .hw-imglist .item {
     padding: 30px 0;
     height: 220px;
     width: 680px;
@@ -2052,21 +2139,27 @@ body {
     position: relative;
     left: 8px;
     top: -4px; }
-    .hw-HWSiteStoreDetailPage .hw-imglist .img-item img {
+    .hw-HWSiteStoreDetailPage .hw-imglist .item .img-item {
       width: 160px;
       height: 160px;
       margin-right: 8px;
-      cursor: pointer; }
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: top;
+      text-align: center;
+      overflow: hidden; }
+      .hw-HWSiteStoreDetailPage .hw-imglist .item .img-item img {
+        width: 100%; }
   .hw-HWSiteStoreDetailPage .hw-rpeach {
     position: relative;
     min-height: 110px;
     border-bottom: 1px solid #ebebeb;
-    padding: 15px 20px 15px 95px; }
+    padding: 15px 20px 15px 15px; }
     .hw-HWSiteStoreDetailPage .hw-rpeach .hw-img {
-      display: block;
-      position: absolute;
-      top: 15px;
-      left: 20px; }
+      float: left;
+      width: 90px; }
       .hw-HWSiteStoreDetailPage .hw-rpeach .hw-img img {
         width: 60px;
         height: 60px;
@@ -2074,10 +2167,11 @@ body {
       .hw-HWSiteStoreDetailPage .hw-rpeach .hw-img p {
         font-size: 14px;
         color: #4a4a4a;
-        text-align: center;
-        margin-top: 5px; }
-    .hw-HWSiteStoreDetailPage .hw-rpeach .r {
-      position: static; }
+        text-align: left;
+        margin-top: 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 85px; }
     .hw-HWSiteStoreDetailPage .hw-rpeach .hw-time {
       text-align: left; }
       .hw-HWSiteStoreDetailPage .hw-rpeach .hw-time span {

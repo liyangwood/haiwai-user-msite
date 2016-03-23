@@ -66,7 +66,7 @@
             @include fontRender;
 
             &:hover{
-                color: $yellow-color;
+                color: $blue-color;
             }
         }
     }
@@ -278,7 +278,7 @@
 
 .hw-HWSiteIndexHotArticle{
     width: 100%;
-    margin-top: 30px;
+    margin-top: 46px;
     dt{
         label{
             border-left: 4px solid #f4a62a;
@@ -388,6 +388,62 @@
         span{
             color: #ffffff;
             font-size: 20px;
+        }
+    }
+}
+
+.hw-HWSiteIndexAppBanner1{
+    background-color: #fff;
+    font-size: 14px;
+    height: 239px;
+    margin: 0 0 0 14px;
+    text-align: center;
+    width: 280px;
+    border: 1px solid #ebebeb;
+
+    .hw-btn{
+        font-size: 14px;
+        height: 40px;
+        line-height: 40px;
+        position: relative;
+        text-transform: uppercase;
+        margin: 15px auto;
+        width: 148px;
+    }
+
+    a{
+        display: block;
+    }
+    .appad{
+        float: left;
+        height: 116px;
+        padding-left: 15px;
+        width: 81.3px;
+    }
+
+    .appstore{
+        float: left;
+        height: 45px;
+        margin: 22px auto 0;
+        margin-left: 40px;
+        margin-top: 8px;
+        padding: 0;
+        width: 133px;
+    }
+
+    .bw{
+        border-bottom: 1px dotted #c5c5c5;
+        margin: 5px 10px 10px;
+    }
+
+    .slogan{
+        height: 50px;
+        margin: 48px 0 0 30px;
+        width: 260px;
+
+        p{
+            margin: 0;
+            padding: 0;
         }
     }
 }
