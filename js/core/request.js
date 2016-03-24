@@ -677,7 +677,7 @@ KG.request = {
         var data = {
             func : 'article',
             act : 'post',
-            //method : 'post',
+            method : 'post',
             category_id : opts.category,
             title : opts.title,
             msgbody : (opts.msgbody),
@@ -1038,6 +1038,61 @@ KG.request = {
             act : 'set_region',
             regionID : opts.regionID
         };
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=passport&act=mobile_login&login_type=wechat&code=
+    * */
+    oauthLoginWithWeixinCode : function(opts, success, error){
+        var data = {
+            func : 'passport',
+            act : 'mobile_login',
+            login_type : 'wechat',
+            code : opts.code
+        };
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=event&act=upload&uploadfield[]=data:image/png;base64,iVBORw0KGgoAAAAN&uploadfield[]=data:image/png;base64,iVBORw0KGgoAAAAN&token=&eventID=129400&userid=10051
+    * */
+    uploadCouponImage : function(opts, success, error){
+        var data = {
+            func : 'event',
+            act : 'upload',
+            method : 'post',
+            'uploadfield[]' : opts.image,
+            eventID : opts.id
+        };
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=article&act=del&userid=10051&id=1138&token=
+    * */
+    deleteArticle : function(opts, success, error){
+        var data = {
+            func : 'article',
+            act : 'del',
+            id : opts.id
+        };
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=verified&bizid=2025656&tel_tmp=123456789&token=
+    * */
+    pcRenZhengStore : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'verified',
+            bizid : opts.bizId,
+            tel_tmp : opts.tel
+        };
+        data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
     }
 };

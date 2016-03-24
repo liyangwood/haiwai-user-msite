@@ -37,7 +37,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 		//briefinfo
 		var T2 = [
-			'<div class="c-box">',
+			'<div style="margin-top: 16px;" class="c-box">',
 				'<dt class="c-title"><p>简介</p></dt>',
 				'<dd class="c-content hw-brief">',
 					'{{biz.briefintro | htmlToText}}',
@@ -48,7 +48,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		//dynamic field
 		var T3 = [
 
-			'<div style="margin-top: 30px;" class="c-box">',
+			'<div style="margin-top: 16px;" class="c-box">',
 				'<div style="width:100%;height: 300px;" class="js_map"></div>',
 				'<dd class="c-content">',
 					'{{each biz.dynamic_list as item}}',
@@ -60,7 +60,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 		//timeinfo
 		var T4 = [
-			'<div style="margin-top: 30px;" class="c-box">',
+			'<div class="c-box">',
 				'<dt class="c-title"><p>营业时间</p></dt>',
 				'<dd class="c-content">',
 					'{{each biz.timeinfo_list as item}}',
@@ -175,7 +175,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					T7, T5,T6,T8,
 				'</div>',
 				'<div class="hw-right-box">',
-					T2,T3,T4,
+					T4, T3, T2,
 				'</div>',
 			'</div>'
 		].join('');
@@ -405,10 +405,46 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		this.elem.on('click', '.hw-renling', function(e){
 			var h = '<div class="hw-icon"><i class="fa fa-check"></i></div>';
 			util.dialog.show({
-				foot : false,
+				foot : true,
 				title : h+'成功提交申请，我们会在24小时内电话联系您。',
-				'class' : 'hw-dialog-alert',
-				body : '<p><input class="form-control" type="text" placeholder="请输入您的联系电话" /></p>'
+				'class' : 'hw-confirm',
+				body : '<div style="text-align:center;"><div style="width:400px;margin:0 auto;" class="js_tel" role="BaseInput" data-label="请输入您的联系电话" data-require="true" placeholder="e.g. 5107687776"></div></div>',
+				YesFn : function(callback){
+					var obj = util.dialog.get(),
+						jq = KG.component.getObj(obj.find('.js_tel')),
+						val = jq.getValue();
+					if(!val){
+						jq.showError('请输入您的联系电话');
+						jq.focus();
+						return false;
+					}
+					else if(!util.validate.AmericanPhone(val)){
+						jq.showError('电话格式错误');
+						jq.focus();
+						return false;
+					}
+					else{
+						jq.showError();
+					}
+
+					KG.request.pcRenZhengStore({
+						tel : val,
+						bizId : self.bizId
+					}, function(flag, rs){
+						if(flag){
+							util.toast.alert('提交成功， 请留意您的电话');
+						}
+						else{
+							util.toast.showError(rs);
+						}
+					});
+
+
+				},
+				beforeShowFn : function(){
+					var obj = this;
+					KG.component.init(obj.find('.hw-body'));
+				}
 			});
 		});
 

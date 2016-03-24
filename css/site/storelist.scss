@@ -89,6 +89,14 @@
                 font-size: 20px;
                 color: $color-4a;
                 margin: 0;
+                display: inline-block;
+            }
+
+            .icon-v{
+                margin-left: 4px;
+                line-height: 2px;
+                position: relative;
+                top: 4px;
             }
 
             .ca{
@@ -192,7 +200,7 @@
 
 .hw-SiteStoreAscComp{
     background: #ffffff;
-    padding: 12px 0;
+    padding: 2px 0;
     border-left: 1px solid #ebebeb;
     border-right: 1px solid #ebebeb;
 

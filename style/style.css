@@ -3,7 +3,10 @@ body {
   margin: 0;
   padding: 0;
   list-style: none;
-  -webkit-text-size-adjust: none; }
+  -webkit-text-size-adjust: none;
+  height: 100%;
+  position: relative;
+  padding-bottom: 250px; }
 
 * {
   font-family: MicrosoftYaHei, STHeiti, sans-serif;
@@ -124,6 +127,8 @@ a:hover, a:link {
     color: #fff; }
   .hw-blue-btn:hover {
     background: #00a7bc; }
+  .hw-blue-btn:visited {
+    color: #fff; }
 
 .hw-light-btn {
   color: #37bccd;
@@ -355,7 +360,11 @@ a:hover, a:link {
     background: #00a7bc; }
 
 .hw-footer-comp {
-  background: #37bccd; }
+  background: #37bccd;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0; }
   .hw-footer-comp .container {
     height: 220px; }
     .hw-footer-comp .container .logo {
@@ -800,7 +809,8 @@ a:hover, a:link {
   .hw-comp-store-list .hw-each p {
     color: #4a4a4a;
     font-size: 12px;
-    margin: 0; }
+    margin: 0;
+    max-width: 580px; }
   .hw-comp-store-list .hw-each em {
     color: #37bccd;
     font-size: 12px;
@@ -871,6 +881,8 @@ a:hover, a:link {
   min-height: 200px;
   padding: 40px 180px 50px;
   margin-bottom: 50px; }
+  .hw-comp-bform input[disabled] {
+    background: #ebebeb !important; }
   .hw-comp-bform h3 {
     font-size: 24px;
     text-align: center;
@@ -922,6 +934,12 @@ a:hover, a:link {
   .hw-comp-bform .hw-btn {
     float: right;
     margin-top: 25px; }
+  .hw-comp-bform .hw-delete {
+    font-weight: normal;
+    position: relative;
+    top: 30px;
+    color: #4a4a4a;
+    cursor: pointer; }
 
 /* 建店三步 */
 .hw-createStore-page {
@@ -1317,7 +1335,8 @@ a:hover, a:link {
   .hw-myfav-list .hw-right-panel-list .hw-each {
     padding: 12px 15px;
     padding-left: 115px;
-    height: 114px; }
+    min-height: 114px;
+    height: auto; }
     .hw-myfav-list .hw-right-panel-list .hw-each .hw-img {
       width: 90px;
       height: 90px;
@@ -1335,7 +1354,7 @@ a:hover, a:link {
         position: relative; }
       .hw-myfav-list .hw-right-panel-list .hw-each .h4 .icon-v {
         font-size: 48px;
-        font-family: STSongti-SC-Bold;
+        font-family: STSongti-SC-Bold !important;
         color: #f4a62a;
         line-height: 48px;
         top: -18px;
@@ -1598,5 +1617,132 @@ a:hover, a:link {
   background: #ffffff; }
   .hw-HWMycountResetPasswordForm .hw-btn {
     margin-top: 20px; }
+
+.kg-site-header-nav-comp .js_tab {
+  width: 250px; }
+.kg-site-header-nav-comp .nav .icon {
+  color: #ffffff;
+  font-size: 16px;
+  margin-left: 10px;
+  position: relative;
+  top: 4px; }
+.kg-site-header-nav-comp .hw-box .left {
+  width: 250px;
+  position: absolute;
+  background: #ffffff;
+  border-bottom: 1px solid #37bccd;
+  z-index: 3;
+  float: left; }
+  .kg-site-header-nav-comp .hw-box .left .hw-item:first-child {
+    border-top: none !important; }
+  .kg-site-header-nav-comp .hw-box .left .hw-item {
+    line-height: 42px;
+    height: 52px;
+    border-top: 1px solid #c5c5c5;
+    border-left: 1px solid #37bccd;
+    border-right: 1px solid #37bccd; }
+    .kg-site-header-nav-comp .hw-box .left .hw-item .hw-one {
+      position: relative; }
+    .kg-site-header-nav-comp .hw-box .left .hw-item img {
+      position: absolute;
+      top: 16px;
+      left: 15px; }
+    .kg-site-header-nav-comp .hw-box .left .hw-item .cp {
+      margin: 0;
+      position: absolute;
+      top: 5px;
+      left: 55px; }
+      .kg-site-header-nav-comp .hw-box .left .hw-item .cp a {
+        float: left;
+        font-size: 17px;
+        color: #4a4a4a;
+        font-weight: 400;
+        text-rendering: geometricPrecision;
+        letter-spacing: -1px; }
+        .kg-site-header-nav-comp .hw-box .left .hw-item .cp a:hover {
+          color: #37bccd; }
+  .kg-site-header-nav-comp .hw-box .left .hw-item.hover {
+    border-top: 1px solid #37bccd;
+    border-right: 1px solid transparent; }
+  .kg-site-header-nav-comp .hw-box .left .hw-item.second {
+    border-top: 1px solid #37bccd; }
+  .kg-site-header-nav-comp .hw-box .left .right {
+    background: #ffffff;
+    width: 620px;
+    height: 469px;
+    position: absolute;
+    left: 250px;
+    top: 0;
+    border: 1px solid #37bccd;
+    border-left: none;
+    border-top: none;
+    padding: 15px 0 12px; }
+    .kg-site-header-nav-comp .hw-box .left .right dl {
+      padding-left: 5px;
+      margin: 0 10px 20px;
+      position: relative;
+      float: left; }
+      .kg-site-header-nav-comp .hw-box .left .right dl dt {
+        width: 98px;
+        line-height: 32px;
+        float: left; }
+      .kg-site-header-nav-comp .hw-box .left .right dl dd {
+        line-height: 24px;
+        float: left;
+        display: inline; }
+      .kg-site-header-nav-comp .hw-box .left .right dl a {
+        font-size: 14px;
+        color: #4a4a4a;
+        display: inline-block;
+        line-height: 28px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 98px;
+        margin: 5px 0 4px 15px; }
+        .kg-site-header-nav-comp .hw-box .left .right dl a:hover {
+          color: #37bccd; }
+      .kg-site-header-nav-comp .hw-box .left .right dl .ca {
+        font-size: 16px;
+        font-weight: 400;
+        color: #9c9c9c; }
+
+.hw-HWSiteCouponDetailComp {
+  padding: 0 15px 30px; }
+  .hw-HWSiteCouponDetailComp .ca {
+    height: 80px;
+    border: 1px solid #ebebeb; }
+  .hw-HWSiteCouponDetailComp .cb h4 {
+    text-align: center;
+    font-size: 24px;
+    color: #f4a62a;
+    line-height: 24px;
+    margin: 0; }
+  .hw-HWSiteCouponDetailComp .cb label {
+    font-size: 16px;
+    color: #4a4a4a;
+    margin-top: 10px; }
+  .hw-HWSiteCouponDetailComp .cb p {
+    font-size: 14px;
+    color: #7d7d7d;
+    line-height: 20px;
+    margin: 0; }
+  .hw-HWSiteCouponDetailComp .cb .hw-img {
+    text-align: center;
+    margin: 15px auto; }
+    .hw-HWSiteCouponDetailComp .cb .hw-img img {
+      max-width: 100%; }
+  .hw-HWSiteCouponDetailComp .cc {
+    margin-top: 30px;
+    text-align: center;
+    padding: 10px 0; }
+    .hw-HWSiteCouponDetailComp .cc input {
+      width: 400px;
+      margin: 0 auto; }
+    .hw-HWSiteCouponDetailComp .cc .hw-btn {
+      height: 36px;
+      line-height: 36px;
+      font-size: 14px;
+      margin-top: 15px; }
 
 /*# sourceMappingURL=style.css.map */

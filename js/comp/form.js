@@ -1,189 +1,6 @@
 'use strict';
 (function(){
-    KG.Class.define('BaseForm', {
-        ParentClass : 'BaseComponent',
 
-        getTemplate : function(){
-            return [
-                '<div class="container hw-comp-bform">',
-                    this.getInsideTemplate(),
-                '</div>'
-            ].join('');
-        },
-        getInsideTemplate : function(){}
-    });
-
-    KG.Class.define('BaseInput', {
-        ParentClass : 'BaseComponent',
-        defineProperty : function(){
-            return {
-                value : {
-                    defaultValue : ''
-                },
-                label : {},
-                require : {},
-                type : {
-                    defaultValue : 'text'
-                },
-                delbtn : {}
-            };
-        },
-        getTemplate : function(){
-            return [
-                '<div class="form-group hw-comp-BaseInput">',
-                '<label class="lab {{if require}}require{{/if}}" for="{{uuid}}">{{label}}</label>',
-                '<label class="control-label hw-err"></label>',
-                '<input type="{{type}}" class="form-control" id="{{uuid}}" placeholder="{{placeholder}}">',
-                '</div>'
-            ].join('');
-        },
-        getData : function(box, data, next){
-            var prop = this.prop;
-            next({
-                value : prop.value,
-                label : prop.label,
-                require : prop.require,
-                type : prop.type,
-                placeholder : box.attr('placeholder') || '',
-                uuid : 'lb_'+util.getUuid()
-            });
-        },
-
-        initEvent : function(){
-            var self = this;
-            if(this.prop.delbtn){
-                var ip = this.elem.find('input');
-
-                ip.after('<i class="fa del fa-times-circle" style="display: none;"></i>');
-                this.jq.delBtn = this.elem.find('.del');
-
-                this.jq.delBtn.click(function(){
-                    ip.val('');
-                    self.checkDeleteIcon();
-                    ip.focus();
-                });
-
-                ip.bind('keyup', this.checkDeleteIcon.bind(this));
-                ip.bind('paste', this.checkDeleteIcon.bind(this));
-            }
-        },
-
-        initEnd : function(){
-            if(this.prop.value){
-                this.elem.find('input').val(this.prop.value);
-            }
-        },
-
-        checkDeleteIcon : function(){
-            var val = this.elem.find('input').val();
-            if(val){
-                this.jq.delBtn.show();
-            }
-            else{
-                this.jq.delBtn.hide();
-            }
-
-        },
-
-        focus : function(){
-            this.elem.find('input').focus();
-        },
-
-        getValue : function(){
-            return this.elem.find('input').val();
-        },
-        setValue : function(v){
-            this.elem.find('input').val(v);
-        },
-        showError : function(msg){
-            if(msg){
-                this.elem.addClass('has-error');
-                this.elem.find('.hw-err').html(msg);
-            }
-            else{
-                this.elem.removeClass('has-error');
-                this.elem.find('.hw-err').html('');
-            }
-        },
-        reset : function(){
-            this.elem.find('input').val('');
-            this.showError(false);
-        }
-    });
-
-
-    KG.Class.define('BaseSelectInput', {
-        ParentClass : 'BaseInput',
-        getTemplate : function(){
-            return [
-                '<div class="form-group hw-comp-BaseSelectInput">',
-                    '<label class="lab {{if require}}require{{/if}}">{{label}}</label>',
-                    '<label class="control-label hw-err"></label>',
-                    '<div class="dropdown hw-drop">',
-                        '<button id="{{uuid}}" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
-                        '<input type="text" readonly="true" class="form-control js_input" placeholder="{{placeholder}}">',
-                        '<i class="icon fa fa-caret-down"></i>',
-                        '</button>',
-                        '<ul class="dropdown-menu" aria-labelledby="{{uuid}}">',
-                        '{{each list as item}}',
-                        '<li index="{{$index}}" class="js_drop">',
-                            this.getEachHtml(),
-                        '</li>',
-                        '{{/each}}',
-                        '</ul>',
-                    '</div>',
-                '</div>'
-            ].join('');
-        },
-        initVar : function(){
-            this.index = -1;
-        },
-        getData : function(box, data, next){
-            //点击drop的回调
-            this.clickCallback = data.clickCallback;
-
-            //设置drop的innerHTML
-            this.getEachHtml = data.getEachHtml || function(){
-                    return '{{item}}';
-                };
-
-            var prop = this.prop;
-            next({
-                value : prop.value,
-                label : prop.label,
-                require : prop.require,
-                placeholder : box.attr('placeholder') || '',
-                uuid : 'dl_'+util.getUuid(),
-                list : data.list
-            });
-        },
-        initEvent : function(){
-            var self = this;
-            var input = this.elem.find('.js_input');
-            this.elem.find('.js_drop').click(function(){
-                input.val($(this).text());
-
-                var index = $(this).attr('index');
-                self.index = index;
-                self.clickCallback(self.data.list[index]);
-            });
-        },
-        initEnd : function(){
-
-        },
-        getValue : function(){
-            if(this.index < 0){
-                return {};
-            }
-            return this.data.list[this.index];
-        },
-        setValue : function(index){
-            this.elem.find('.js_drop').filter('[index="'+index+'"]').trigger('click');
-        },
-        setOnlyValue : function(val){
-            this.elem.find('.js_input').val(val);
-        }
-    });
 
     KG.Class.define('MybizArticleForm', {
         ParentClass : 'BaseForm',
@@ -191,16 +8,15 @@
             return [
                 '{{if pageTitle}}<h3>{{pageTitle}}<h3>{{/if}}',
                 '<div placeholder="请选择店铺" class="js_biz" data-label="将文章发布到" data-require="true" role="BaseSelectInput" init-self="true"></div>',
-                //'<div placeholder="请选择分类" class="js_cat" data-label="文章类别" data-require="true" role="BaseSelectInput" init-self="true"></div>',
-                '<div class="form-group">',
-                    '<label class="require" for="lb_bbb">文章标题</label>',
-                    '<input type="text" class="form-control js_title" id="lb_bbb" placeholder="e.g. 海底捞成功的秘密">',
-                '</div>',
+
+                '<div class="js_title" role="BaseInput" data-label="文章标题" data-require="true" placeholder="e.g. 海底捞成功的秘密"></div>',
 
                 '<div class="form-group">',
                     '<label class="require" for="lb_ccc">文章正文</label>',
+                    '<label class="control-label hw-err"></label>',
                     '<textarea class="form-control" id="lb_ccc"></textarea>',
                 '</div>',
+                '{{if type==="edit"}}<b class="hw-delete js_del">删除这篇文章</b>{{/if}}',
                 '<a href="javascript:void(0)" class="js_btn hw-btn hw-blue-btn">{{btnText}}</a>'
             ].join('');
         },
@@ -243,6 +59,7 @@
                     pageTitle : title,
                     bizList : _.isArray(bizList)?bizList:[],
                     articleData : articleData,
+                    type : type,
 
                     btnText : type==='edit'?'保存':'发表'
                 });
@@ -260,16 +77,29 @@
             var jq = this.getElemObj();
             if(!data.bizId){
                 jq.biz.showError('请选择要发布的店铺');
+                jq.biz.focus();
                 return false;
             }
             else{
                 jq.biz.showError();
             }
 
-            //TODO
             if(!data.title){
-                alert('请输入标题');
+                jq.title.showError('请输入文章标题');
+                jq.title.focus();
                 return false;
+            }
+            else{
+                jq.title.showError();
+            }
+
+
+            if(!data.msgbody){
+                $(this.ck.element.$).parent('div.form-group').addClass('has-error').find('.hw-err').html('请输入文章正文');
+                return false;
+            }
+            else{
+                $(this.ck.element.$).parent('div.form-group').removeClass('has-error').find('.hw-err').html('');
             }
 
             return true;
@@ -286,8 +116,10 @@
                     KG.request.createStoreArticle(data, function(flag, rs){
                         if(flag){
                             console.log(rs);
-                            util.dialog.alert('保存成功');
-                            location.href = 'article.html'
+                            util.toast.alert('修改成功');
+                            util.delay(function(){
+                                location.href = 'article.html'
+                            }, 2000);
                         }
                     });
                 }
@@ -295,27 +127,53 @@
                     KG.request.createStoreArticle(data, function(flag, rs){
                         if(flag){
                             console.log(rs);
-                            location.href = 'article.html'
+                            util.toast.alert('发表成功');
+                            util.delay(function(){
+                                location.href = 'article.html'
+                            }, 2000);
+
                         }
                     });
                 }
 
             });
 
+            if(this.prop.type === 'edit'){
+                this.elem.find('.js_del').click(function(){
+                    util.dialog.confirm1({
+                        msg : '确认要删除这篇文章么？',
+                        YesFn : function(){
+                            KG.request.deleteArticle({
+                                id : self.data.id
+                            }, function(flag, rs){
+                                if(flag){
+                                    location.href = '../mybiz/article.html';
+                                }
+                                else{
+                                    util.toast.showError(rs);
+                                }
+                            });
+                        }
+                    });
+                });
+            }
+
 
         },
 
         getElemObj : function(){
             return {
-                biz : KG.component.getObj(this.elem.find('.js_biz'))
+                biz : KG.component.getObj(this.elem.find('.js_biz')),
+                title : KG.component.getObj(this.elem.find('.js_title'))
             };
         },
 
         getFormValue : function(){
+            var c = this.getElemObj();
             return {
                 category : this.cat,
                 bizId : this.biz,
-                title : this.elem.find('.js_title').val(),
+                title : c.title.getValue(),
                 msgbody : this.ck.getData()
             };
         },
@@ -343,13 +201,13 @@
         },
         setFormValue : function(data){
             console.log(data);
-            var biz = KG.component.getObj(this.elem.find('.js_biz'));
-            biz.setValue(_.findIndex(this.data.bizList, function(one){
+            var c = this.getElemObj();
+            c.biz.setValue(_.findIndex(this.data.bizList, function(one){
                 return one.fk_entityID === data.entityID;
             }));
 
 
-            this.elem.find('.js_title').val(data.title);
+            c.title.setValue(data.title);
             this.ck.setData(data.msgbody);
         }
     });
@@ -379,7 +237,6 @@
         },
 
         getData : function(box, data, next){
-            var tmp = KG.user.get('image');
             var list = data.list;
             next({
                 list : list
@@ -456,39 +313,50 @@
             }
         },
 
-        getEachHtml : function(url){
+        getEachHtml : function(url, id){
             var h = [
                 '<div class="hw-one js_img">',
                 '<img src="{{url}}" />',
-                '<b class="js_del">删除</b>',
+                '<b param="{{id}}" class="js_del">删除</b>',
                 '</div>'
             ].join('');
-            return template.compile(h)({url : url});
-        },
-
-        uploadImageFn : function(file, callback){
-            util.uploadImage(file, function(url){
-                var url = KG.config.SiteRoot+url;
-
-                callback(url);
+            return template.compile(h)({
+                url : url,
+                id : id
             });
         },
 
-        addNewImage : function(src){
+        uploadImageFn : function(file, callback){
+
+            //TODO
+            util.readFile(file, function(binary){
+                KG.request.uploadCouponImage({
+                    image : binary,
+                    id : util.url.param('id')
+                }, function(flag, rs){
+                    if(flag){
+                        console.log(rs);
+                    }
+                });
+            });
+        },
+
+        addNewImage : function(url, id){
             var len = this.getImageList().length;
             if(len === 2){
                 this.jq.add.hide();
             }
 
-            var h = this.getEachHtml(src);
+            var h = this.getEachHtml(url, id);
             this.jq.add.after(h);
         },
 
         initEnd : function(){
             var self = this;
             var list = this.data.list;
-            util.each(list, function(url){
-                self.addNewImage(url);
+            console.log(list);
+            util.each(list, function(item){
+                self.addNewImage(KG.config.SiteRoot+item.path, item.pk_id);
             });
         }
 
@@ -516,7 +384,7 @@
                     '<label class="require">优惠结束时间</label>',
                     '<label style="right:190px;" class="control-label hw-err"></label>',
                     '<input style="width: 410px;display: block;" type="text" class="form-control js_endDate" readonly="true" placeholder="10/20/2016">',
-                    '<label style="vertical-align: top;position: absolute;top: 10px;left:425px;">不限结束时间<input style="position: relative; top: 13px;left:8px;" class="js_endlimit" type="checkbox" /></label>',
+                    '<label style="vertical-align: top;position: absolute;top: 14px;left:425px;">不限结束时间<input style="position: relative; top: 13px;left:8px;" class="js_endlimit" type="checkbox" /></label>',
                     //'<input style="width: 140px;display: inline-block;margin-left: 50px;" type="text" class="form-control js_endTime" placeholder="8:30AM">',
                 '</div>',
 
@@ -532,6 +400,7 @@
                     '<div class="js_image" role="MybizUploadCouponImage" init-self="true"></div>',
                 '</div>',
 
+                '{{if type==="edit"}}<b class="hw-delete js_del_coupon">删除这个优惠</b>{{/if}}',
                 '<a href="javascript:void(0)" class="hw-btn hw-blue-btn js_btn">{{btnText}}</a>'
             ].join('');
         },
@@ -671,6 +540,7 @@
                     pageTitle : title,
                     bizList : bizList,
                     btnText : type==='edit'?'保存':'创建',
+                    type : type,
                     couponData : couponData || null
                 });
             });
@@ -734,6 +604,33 @@
                     });
                 }
             });
+
+            this.elem.find('.js_endlimit').change(function(){
+
+                self.jq.endDate.attr('disabled', $(this).prop('checked'));
+
+            });
+
+            if(this.prop.type === 'edit'){
+                this.elem.find('.js_del_coupon').click(function(){
+                    var id = KG.data.get('id');
+                    util.dialog.confirm1({
+                        msg : '确认要删除这个优惠么？',
+                        YesFn : function(){
+                            KG.request.deleteCouponById({
+                                id : id
+                            }, function(flag, rs){
+                                if(flag){
+                                    location.href = '../mybiz/coupon.html';
+                                }
+                                else{
+                                    util.toast.showError(rs);
+                                }
+                            });
+                        }
+                    })
+                });
+            }
         },
 
         initEnd : function(){
@@ -749,8 +646,12 @@
                 }
             });
 
+            var imageList = [];
+            if(this.prop.type === 'edit'){
+                imageList = this.data.couponData.files;
+            }
             this.image = KG.component.initWithElement(this.elem.find('.js_image'), {
-                list : this.data.imageList || []
+                list : imageList
             });
 
             if(this.data.couponData){
@@ -767,7 +668,15 @@
             c.title.setValue(data.subject);
             this.jq.desc.val(data.description);
             this.jq.startDate.val(moment(data.top_start_time*1000).format('MM/DD/YYYY'));
-            this.jq.endDate.val(moment(data.top_end_time*1000).format('MM/DD/YYYY'));
+
+            if(!data.top_end_time || parseInt(data.top_end_time)<1 || data.top_end_time==='unlimit'){
+                this.elem.find('.js_endlimit').prop('checked', true);
+                this.jq.endDate.attr('disabled', true);
+            }
+            else{
+                this.jq.endDate.val(moment(data.top_end_time*1000).format('MM/DD/YYYY'));
+            }
+
 
             if(data.files.length > 0){
                 _.each(data.files, function(item){

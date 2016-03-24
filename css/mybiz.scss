@@ -204,6 +204,7 @@
             color: $color-4a;
             font-size: 12px;
             margin: 0;
+			max-width: 580px;
         }
         em{
             color: $blue-color;
@@ -297,6 +298,10 @@
 	padding: 40px 180px 50px;
     margin-bottom: 50px;
 
+	input[disabled]{
+		background: #ebebeb !important;
+	}
+
 	h3{
 		font-size: 24px;
 		text-align: center;
@@ -368,6 +373,14 @@
 	.hw-btn{
 		float: right;
 		margin-top: 25px;
+	}
+
+	.hw-delete{
+		font-weight: normal;
+		position: relative;
+		top: 30px;
+		color: $color-4a;
+		cursor: pointer;
 	}
 }
 

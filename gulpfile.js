@@ -18,6 +18,9 @@ var baseCore = [
 var JS = {
     core : baseCore.concat([
         'js/comp/base.js',
+        'js/comp/component.js',
+        'js/site/base.js',
+
         'js/comp/form.js',
         'js/comp/myfav.js',
         'js/comp/mycoupon.js',
@@ -31,7 +34,9 @@ var JS = {
 
     site_core : baseCore.concat([
         'js/comp/base.js',
+        'js/comp/component.js',
         'js/site/base.js',
+
         'js/site/index.js',
         'js/site/storelist.js',
         'js/site/couponlist.js',

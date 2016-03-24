@@ -566,7 +566,7 @@ KG.Class.define('MybizStoreInfoFormStep2', {
     validate : function(data){
         var jq = this.getElemObj();
         if(!data.description){
-            jq.desc.parent('div.form-group').addClass('has-error').find('.hw-err').html('请输入评论');
+            jq.desc.parent('div.form-group').addClass('has-error').find('.hw-err').html('请输入描述');
             return false;
         }
         else{

@@ -12,6 +12,9 @@ body{
     padding: 0;
     list-style: none;
     -webkit-text-size-adjust: none;
+    height: 100%;
+    position: relative;
+    padding-bottom: 250px;
 }
 
 *{
@@ -170,6 +173,9 @@ a:hover, a:link{
     }
     &:hover{
         background: #00a7bc;
+    }
+    &:visited{
+        color : #fff;
     }
 }
 .hw-light-btn{

@@ -51,6 +51,7 @@ KG.Class.define('MycountChangePasswordForm', {
     },
 
     submit : function(){
+        var self = this;
         var oldObj = this.jq.oldObj,
             pwdObj = this.jq.pwdObj,
             pwd2Obj = this.jq.pwd2Obj;
@@ -81,8 +82,8 @@ KG.Class.define('MycountChangePasswordForm', {
             password : p1
         }, function(flag, rs){
             if(flag){
-                util.dialog.alert('修改成功');
-                this.reset();
+                util.toast.alert('修改成功');
+                self.reset();
             }
             else{
                 util.dialog.alert(rs);

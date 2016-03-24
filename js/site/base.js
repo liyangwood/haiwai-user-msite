@@ -531,10 +531,16 @@ KG.Class.define('HWSiteCouponDetailComp', {
 		_.each(data.dynamic_field||[], function(item){
 			dy += '<label>'+item.field_name+'</label><p>'+item.value+'</p>';
 		});
+		if(!data.top_start_time || parseInt(data.top_start_time)<1 || !data.top_end_time || parseInt(data.top_end_time)<1 || data.top_end_time.indexOf('unlimit')!==-1){
+			dy += '<label>活动时间</label><p>不限时间</p>';
+		}
+		else{
+			dy += '<label>活动时间</label><p>{{data.top_start_time | formatDate:"mm/dd/yy"}} &nbsp;&nbsp;到&nbsp;&nbsp; {{data.top_end_time | formatDate:"mm/dd/yy"}}</p>';
+		}
 
 		h = template.compile(h)({
 			data : data,
-			dyHtml : dy
+			dyHtml : template.compile(dy)({data : data})
 		});
 
 		this.jq.box.html(h);

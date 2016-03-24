@@ -509,8 +509,8 @@
             return [
                 '<div class="hw-comp-store-list">',
                 '{{each list as item}}',
-                '<div class="hw-each">',
-                '<img class="hw-img" src="{{item.logo | absImage}}" />',
+                '<div param="item.pk_id" class="hw-each js_each">',
+                '<img class="hw-img" src="{{item.pic | absImage}}" />',
                 '<h4 style="margin-top: 20px;">{{item.subject}}</h4>',
                 '<p style="color: #9b9b9b;font-size: 14px;margin-top:15px;">{{item.count}}人已经领取</p>',
 
@@ -524,6 +524,7 @@
             ].join('');
         },
         getData : function(box, data, next){
+            var self = this;
             KG.request.getUserArticleAndCouponList({}, function(flag, rs){
                 if(flag){
                     var list = [];
@@ -537,8 +538,36 @@
                     });
 
                     if(list.length > 0){
-                        this.elem.parent('.hw-panel').removeClass('no_dis');
+                        self.elem.parent('.hw-panel').removeClass('no_dis');
                     }
+                }
+            });
+
+            KG.request.getBizList({}, function(flag, rs){
+                var list = [];
+                if(flag){
+                    list = rs;
+                }
+
+                var runningList = [],
+                    stopList = [];
+                util.each(list, function(item){
+                    if(item.visible === '1'){
+                        runningList.push(item);
+                    }
+                    else{
+                        stopList.push(item);
+                    }
+                });
+
+                if(runningList.length < 1){
+                    util.dialog.confirm1({
+                        msg : '您还没有创建店铺，请先建店！',
+                        YesText : '立即建店',
+                        YesFn : function(callback){
+                            location.href = '../mybiz/createStore.html';
+                        }
+                    });
                 }
             });
         },
@@ -546,6 +575,11 @@
             this.elem.on('click', '.js_share', function(e){
                 var url = KG.config.SiteRoot+'/classifiedinfo/view.php?id='+$(e.target).attr('param');
                 util.dialog.showQrCode(url);
+                return false;
+            });
+            this.elem.on('click', '.js_each', function(){
+                var id = $(this).attr('param');
+                util.dialog.showCouponDetail(id);
             });
         }
     });
@@ -557,7 +591,7 @@
                 '<div class="hw-comp-store-list">',
                 '{{each list as item}}',
                 '<div class="hw-each">',
-                '<img class="hw-img" src="{{item.logo | absImage}}" />',
+                '<img class="hw-img" src="{{item.pic | absImage}}" />',
                 '<h4 style="margin-top: 10px;height:20px;">{{item.subject}}</h4>',
                 '<p style="color: #9b9b9b;font-size: 14px;margin-top:10px;">{{item.count}}人已经领取</p>',
                 '<p style="color: #9b9b9b;font-size: 14px;margin-top:5px;">{{item.startTime}} 至 {{item.endTime}}</p>',
@@ -572,6 +606,7 @@
             ].join('');
         },
         getData : function(box, data, next){
+            var self = this;
             KG.request.getUserArticleAndCouponList({}, function(flag, rs){
                 if(flag){
                     var list = [];
@@ -588,7 +623,7 @@
                     });
 
                     if(list.length > 0){
-                        this.elem.parent('.hw-panel').removeClass('no_dis');
+                        self.elem.parent('.hw-panel').removeClass('no_dis');
                     }
                 }
             });
@@ -684,6 +719,34 @@
                             one.link = util.path.article(one.id);
                             return one;
                         })
+                    });
+                }
+            });
+
+            KG.request.getBizList({}, function(flag, rs){
+                var list = [];
+                if(flag){
+                    list = rs;
+                }
+
+                var runningList = [],
+                    stopList = [];
+                util.each(list, function(item){
+                    if(item.visible === '1'){
+                        runningList.push(item);
+                    }
+                    else{
+                        stopList.push(item);
+                    }
+                });
+
+                if(runningList.length < 1){
+                    util.dialog.confirm1({
+                        msg : '您还没有创建店铺，请先建店！',
+                        YesText : '立即建店',
+                        YesFn : function(callback){
+                            location.href = '../mybiz/createStore.html';
+                        }
                     });
                 }
             });
@@ -1066,7 +1129,7 @@ KG.component = {
     },
 
     init : function(box){
-        box = box || $('body')
+        box = box || $('body');
         var elem = box.find('[role]');
 
         elem.each(function(){
@@ -1103,7 +1166,20 @@ $(function(){
     if(util.url.param('code') && util.url.param('state')==='aaa'){
         //weixin login
         util.showPageLoading(true);
-        alert(util.url.param('code'));
+        KG.request.oauthLoginWithWeixinCode({
+            code : util.url.param('code')
+        }, function(flag, rs){
+            if(flag){
+
+            }
+            else{
+                util.toast.showError(rs);
+                util.delay(function(){
+                    location.href = '../site/index.html';
+                }, 2000);
+            }
+        });
+
         //util.oauth.weixin(util.url.param('code'));
 
         return false;

@@ -13,7 +13,12 @@
     .hw-tag{
         font-size: 12px;
         color: $color-7d;
+        
+        &:hover{
+            color: $blue-color;
+        }
     }
+
     h3{
         margin: 0;
         margin-top: 16px;

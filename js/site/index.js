@@ -112,7 +112,7 @@ KG.Class.define('HWSiteIndexAppBanner1', {
 		return [
 			'<div class="appcom hw-HWSiteIndexAppBanner1">',
 				'<div class="bw">',
-					'<a class="hw-btn hw-blue-btn" target="_blank" href="'+KG.config.SJAPP_AppleStore_Url+'">商家免费入驻</a>',
+					'<a class="hw-btn hw-blue-btn" target="_blank" href="../site/landing.html">商家免费入驻</a>',
 				'</div>',
 				'<a class="appad" href="'+KG.config.SJAPP_AppleStore_Url+'" target="_blank">',
 					'<img src="{{root}}/images_beta/appp.png" alt="">',
@@ -212,7 +212,7 @@ KG.Class.define('HWSiteIndexNewStoreRecommend', {
 			'<div class="item hw-onebox{{if $index<1}} active{{/if}}">',
 				'{{each item as one}}',
 				'<a class="hw-one" href="{{one.entityID | toStorePath}}" target="_blank">',
-					'<img src="{{one.logo | absImage}}" />',
+					'<img src="{{one.logo[0].path | absImage}}" />',
 					'<h4>{{one.name_cn || one.name_en}}</h4>',
 					'<p class="hw-p">{{one | storeFullAddress}}</p>',
 					'<p class="hw-n">{{one.promotion}}</p>',

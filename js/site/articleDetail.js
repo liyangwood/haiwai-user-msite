@@ -6,7 +6,7 @@
         getTemplate : function(){
             return [
                 '<div class="hw-SiteArticleDetailPage">',
-                    '{{if category}}<p class="hw-tap">{{category.name}}</p>{{/if}}',
+                    '<a class="hw-tag" href="../site/articlelist.html?category=hot">精选内容<a/>{{if category}} <span class="hw-tag">|</span> <a href="../site/articlelist.html?category={{category.category_id}}" class="hw-tag">{{category.name}}</a>{{/if}}',
                     '<h3>{{data.title}}</h3>',
 
                     '<p class="hw-st">',

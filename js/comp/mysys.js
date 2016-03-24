@@ -85,7 +85,10 @@
 
             this.elem.find('.js_sel_all').click(function(){
                 var check = self.elem.find('.js_check');
-                check.prop('checked', true);
+                check.each(function(){
+                    var o = $(this);
+                    o.prop('checked', !o.prop('checked'));
+                });
             });
 
             this.elem.find('.js_del_all').click(function(){
@@ -105,6 +108,12 @@
         },
         initEnd : function(){
             this.elem.find('.js_a').eq(0).trigger('click');
+
+            if(this.data.list.length < 1){
+                this.elem.addClass('no_dis');
+                var h = '<h2 style="position: absolute;top:50px;left:480px;font-weight: normal;">暂无系统消息</h2>';
+                this.elem.after(h);
+            }
 
         },
         deleteOneMessage : function(id, callback){

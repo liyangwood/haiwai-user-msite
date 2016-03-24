@@ -6,7 +6,8 @@
 		.hw-each{
 			padding: 12px 15px;
 			padding-left: 115px;
-			height: 114px;
+			min-height: 114px;
+			height: auto;
 
 			.hw-img{
 				width: 90px;
@@ -32,7 +33,7 @@
 
 				.icon-v{
 					font-size: 48px;
-					font-family: STSongti-SC-Bold;
+					font-family: STSongti-SC-Bold !important;
 					color: #f4a62a;
 					line-height: 48px;
 					top: -18px;

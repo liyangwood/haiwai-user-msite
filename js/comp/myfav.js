@@ -95,7 +95,7 @@
             var h = [
                 '{{each list as item}}',
                 '<div class="hw-each">',
-                    '<img class="hw-img" src="{{item.logo | absImage}}" />',
+                    '<img class="hw-img" src="{{item.logo[0].path | absImage}}" />',
 
                     '{{if item.bizType==="pause"}}',
                     '<div class="mask">暂停营业</div>',
@@ -103,12 +103,16 @@
 
                     '<div class="h4">',
                         '<a class="h4" href="{{item.entityID | toStorePath}}">{{item.name_cn}}</a>',
-                        '<i class="icon icon-v">v</i>',
+                        '{{if item.verified&&item.verified==="yes"}}<i class="icon icon-v">v</i>{{/if}}',
 
-                        //'<i class="icon icon-coupon"></i>',
-                        //'<span class="cpt">全场满100送代金券</span>',
+                        '{{if item.event_info}}',
+                        '<i class="icon icon-coupon"></i>',
+                        '<span class="hand cpt js_coupon"' +
+                        ' param="{{item.event_info.pk_id}}">{{item.event_info.subject}}</span>',
+                        '{{/if}}',
+
                     '</div>',
-                    '<div style="margin-top: 0;" role="StarRank" data-rank="3.5"></div>',
+                    '<div style="margin-top: 0;" role="StarRank" data-rank="{{item.star}}"></div>',
                     '<span style="margin-left: 10px;font-size: 14px;">{{item.commentnum}}条评论</span>',
                     '<p style="font-size: 14px;margin-top:8px;">地址 : {{item | storeFullAddress}} &nbsp;&nbsp; 电话 : {{item.tel}}</p>',
 
@@ -130,6 +134,7 @@
             });
 
             this.jq.panelBody.html(h);
+            KG.component.init(this.jq.panelBody);
         },
         getData : function(box, data, next){
 
@@ -205,7 +210,7 @@
                                 });
                             }
                             else{
-                                alert(rs);
+                                util.toast.showError(rs);
                             }
                         });
                     }
@@ -219,6 +224,11 @@
                     url = util.path.toMSiteStore(id);
 
                 util.dialog.showQrCode(url);
+            });
+
+            this.elem.on('click', '.js_coupon', function(){
+                var id = $(this).attr('param');
+                util.dialog.showCouponDetail(id);
             });
         },
         initEnd : function(){

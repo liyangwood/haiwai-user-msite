@@ -154,6 +154,10 @@
 
 .hw-footer-comp{
     background: $blue-color;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	left: 0;
 
     .container{
         height: 220px;

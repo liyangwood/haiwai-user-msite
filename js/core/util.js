@@ -105,7 +105,7 @@
             f = f || false;
             if(f){
                 $('#fakeLoader1').show().fakeLoader({
-                    timeToHide : 20000,
+                    timeToHide : 50000,
                     spinner : 'spinner7',
                     bgColor : 'rgba(0,0,0,0)'
                 });
@@ -140,20 +140,6 @@
         }
     });
 
-    util.oauth = {
-        weixin : function(code){
-            var url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='+KG.config.WeixinAppID+'&secret='+KG.config.WeixinAppSecret+'&code='+code+'&grant_type=authorization_code';
-            $.ajax({
-                type : 'get',
-                dataType : 'jsonp',
-                url : url,
-                success : function(){
-                    console.log(arguments)
-                }
-            });
-
-        }
-    };
 
     util.cookie = {
         get : function(name) {
@@ -345,6 +331,7 @@
             if(opts.class){
                 obj.addClass(opts.class);
             }
+
 
             return obj;
         },
@@ -658,6 +645,10 @@
             var reg = /^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/;
 
             return reg.test(email);
+        },
+        AmericanPhone : function(phone){
+            var reg = /^[0-9]{10}$/;
+            return reg.test(phone);
         }
     };
 
@@ -691,7 +682,20 @@
 
 
     template.helper('storeFullAddress', function(item){
-        return item.address+', '+item.city+', '+item.state+' '+item.zip;
+        var h = '';
+        if(item.address){
+            h += item.address+', ';
+        }
+        if(item.city){
+            h += item.city+', ';
+        }
+        if(item.state){
+            h += item.state.toUpperCase()+' ';
+        }
+        if(item.zip){
+            h += item.zip;
+        }
+        return h;
     });
     template.helper('storeFullAddress1', function(item){
         return item.address_t+', '+item.city+', '+item.state+' '+item.zip;
@@ -703,10 +707,17 @@
         return image;
     });
     template.helper('decode', function(str){
+        if(!str) return '';
         return decodeURIComponent(str);
     });
     template.helper('htmlToText', function(html){
-        return decodeURIComponent(html).replace(/<([^>]*)>/g, '');
+        var h = '';
+        try{
+            h = decodeURIComponent(html).replace(/<([^>]*)>/g, '');
+        }catch(e){
+            h = html.replace(/<([^>]*)>/g, '');
+        }
+        return h;
     });
 
     template.helper('toArticlePath', function(id){
