@@ -178,9 +178,23 @@
             };
         },
 
+        getCKEditorConfig : function(){
+            //thanks http://www.wenxuecity.com/include/editor/ckeditor/wxccust/wxcconfig.js
+            var config = {
+                extraPlugins : 'DlgPicture, autolink',
+                toolbar : [
+                    {name : 'part1', items : ['Bold','Italic','Underline']},
+                    {name : 'part2', items : ['DlgPicture']}
+                ],
+                removePlugins : 'elementspath',
+                resize_enabled : false,
+                fontSize_sizes : '中号/16px;大号/24px;'
+            };
+        },
+
         initEnd : function(){
             var self = this;
-            this.ck = CKEDITOR.replace('lb_ccc');
+            this.ck = CKEDITOR.replace('lb_ccc', this.getCKEditorConfig);
 
             var biz = this.elem.find('.js_biz');
             KG.component.initWithElement(biz, {
