@@ -207,18 +207,32 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		h = [];
 		console.log(rs.timeinfo)
 		_.each(rs.timeinfo.format, function(v, k){
-			if(!v || !v[0]) return true;
-			var l = v[0].replace(',', ' - ');
-			var t = k.split(' - '),
-				tk = xc[t[0]];
-			if(t[1]){
-				tk += ' - '+xc[t[1]];
-			}
+			if(!v || !_.isArray(v)) return true;
+			_.each(v, function(x, i){
+				x = x.split(',');
+				var l;
+				if(_.contains(x, '休业')){
+					l = '休息';
+				}
+				else{
+					l = x.join(' - ');
+				}
 
-			h.push({
-				day : tk,
-				time : l
+
+				var t='', tk='';
+				if(true || i<1){
+					t = k.split(' - ');
+					tk = xc[t[0]];
+					if(t[1]){
+						tk += ' - '+xc[t[1]];
+					}
+				}
+				h.push({
+					day : tk,
+					time : l
+				});
 			});
+
 		});
 		rs.timeinfo_list = h;
 

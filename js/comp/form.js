@@ -15,6 +15,7 @@
                     '<label class="require" for="lb_ccc">文章正文</label>',
                     '<label class="control-label hw-err"></label>',
                     '<textarea class="form-control" id="lb_ccc"></textarea>',
+                    '<input style="display: none;" type="file" class="js_file" />',
                 '</div>',
                 '{{if type==="edit"}}<b class="hw-delete js_del">删除这篇文章</b>{{/if}}',
                 '<a href="javascript:void(0)" class="js_btn hw-btn hw-blue-btn">{{btnText}}</a>'
@@ -181,20 +182,51 @@
         getCKEditorConfig : function(){
             //thanks http://www.wenxuecity.com/include/editor/ckeditor/wxccust/wxcconfig.js
             var config = {
-                extraPlugins : 'DlgPicture, autolink',
                 toolbar : [
-                    {name : 'part1', items : ['Bold','Italic','Underline']},
-                    {name : 'part2', items : ['DlgPicture']}
+                    ['Bold','Italic','Underline','-', 'Image']
                 ],
+                removeButtons : 'Subscript,Superscript',
                 removePlugins : 'elementspath',
                 resize_enabled : false,
                 fontSize_sizes : '中号/16px;大号/24px;'
             };
+            return config;
+        },
+
+        initCKEditor : function(){
+            var self = this;
+            var file = self.elem.find('.js_file');
+            this.ck = CKEDITOR.replace('lb_ccc', this.getCKEditorConfig());
+            var ck = this.ck;
+
+            file.change(function(e){
+                var ff = e.target.files[0];
+                if(!ff){
+                    return false;
+                }
+                util.uploadImage(ff, function(url){
+                    var img = '<img style="max-width:100%;" src="'+KG.config.SiteRoot+url+'" />';
+                    ck.insertHtml(img);
+                });
+            });
+
+            this.ck.on('instanceReady', function(){
+                ck.addCommand('image', {
+                    modes : { wysiwyg: 1, source: 1 },
+                    exec : function(editor){
+                        console.log(arguments);
+                        file.trigger('click');
+                    }
+                });
+
+            });
+
+            return ck;
         },
 
         initEnd : function(){
             var self = this;
-            this.ck = CKEDITOR.replace('lb_ccc', this.getCKEditorConfig);
+            self.initCKEditor();
 
             var biz = this.elem.find('.js_biz');
             KG.component.initWithElement(biz, {

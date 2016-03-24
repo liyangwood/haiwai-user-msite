@@ -38,17 +38,10 @@ KG.Class.define('MybizStoreInputDatepicker', {
         return [
             '<div class="form-group hw-MybizStoreInputDatepicker">',
                 '<label>营业时间</label>',
-                '<div class="ca js_b1">',
 
-                '</div>',
                 '<div class="cb js_b2">',
-                    '<select class="js_week">',
-                        '{{each DAY as item}}',
-                        '<option value="{{item}}">{{item}}</option>',
-                        '{{/each}}',
-                    '</select>',
 
-                    '<select style="margin-left: 20px;" class="js_start">',
+                    '<select class="js_start">',
                         '{{each timelist as item}}',
                         '<option value="{{item}}">{{item}}</option>',
                         '{{/each}}',
@@ -62,7 +55,16 @@ KG.Class.define('MybizStoreInputDatepicker', {
                         '{{/each}}',
                     '</select>',
 
-                    '<button class="hw-btn hw-light-btn js_add">添加营业时间</button>',
+                '</div>',
+                '<div class="cc">',
+                    '<span>适用于</span>',
+                    '{{each DAY as item}}',
+                    '<b class="js_day">{{item}}</b>',
+                    '{{/each}}',
+                '</div>',
+                '<button class="hw-btn hw-light-btn js_add">添加营业时间</button>',
+
+                '<div class="ca js_b1" style="display: none;">',
 
                 '</div>',
             '</div>'
@@ -79,15 +81,23 @@ KG.Class.define('MybizStoreInputDatepicker', {
             '09:00PM','09:30PM','10:00PM','10:30PM','11:00PM','11:30PM','12:00PM','12:30PM'
         ];
         this.DAY = ['周一','周二','周三','周四','周五','周六','周日'];
+        this.SD = [
+            'monday',
+            'tuesday',
+            'wednesday',
+            'thursday',
+            'friday',
+            'saturday',
+            'sunday'
+        ];
 
-        this.td = {};
+        this.td = [];
     },
     setJqVar : function(){
         var bb = this.elem.find('.js_b2');
         return {
             box : this.elem.find('.js_b1'),
             bb : bb,
-            week : bb.find('.js_week'),
             start : bb.find('.js_start'),
             end : bb.find('.js_end')
         };
@@ -101,60 +111,59 @@ KG.Class.define('MybizStoreInputDatepicker', {
 
     setBoxHtml : function(){
         var h = [
-            '{{each list as item}}',
-            '{{if dd[item]}}',
+            '{{each list as item index}}',
 
-            '{{if dd[item].start==="休业"}}',
-            '<div><span class="ml">{{dd[item].week}}</span> <span class="ml">{{dd[item].start}}</span>' +
-            ' <span param="{{item}}" class="js_del bn">删除</span></div>',
+            '{{if item.start==="休业"}}',
+            '<div><span class="ml">{{item.weekString}}</span> <span class="ml">{{item.start}}</span>' +
+            ' <span param="{{index}}" class="js_del bn">删除</span></div>',
             '{{else}}',
-            '<div><span class="ml">{{dd[item].week}}</span> <span>{{dd[item].start}}</span> －' +
-            ' <span class="ml">{{dd[item].end}}</span>' +
-            ' <span param="{{item}}" class="js_del bn">删除</span></div>',
+            '<div><span class="ml">{{item.weekString}}</span> <span>{{item.start}}</span> －' +
+            ' <span class="ml">{{item.end}}</span>' +
+            ' <span param="{{index}}" class="js_del bn">删除</span></div>',
             '{{/if}}',
 
-            '{{/if}}',
+
             '{{/each}}'
         ].join('');
 
+        var list = _.map(this.td, function(item) {
+            item.weekString = item.week.join(' ');
+            return item;
+        });
+
         h = template.compile(h)({
-            list : this.DAY,
-            dd : this.td
+            list : list
         });
 
         this.jq.box.html(h);
+
+        this.checkListBox();
+        this.reset();
     },
 
     getAddData : function(){
         var data = {
-            week : this.jq.week.val(),
             start : this.jq.start.val(),
             end : this.jq.end.val()
         };
+        data.week = _.map(this.elem.find('.js_day').filter('.active'), function(one){
+            return $(one).html();
+        });
+
         return data;
     },
 
-    checkAddBox : function(){
-        var self = this;
-
+    checkListBox : function(){
         var f = false;
-        _.find(this.DAY, function(day){
-            if(!self.td[day]){
-                self.jq.week.val(day);
-
-                self.jq.start.val('08:00AM');
-                self.jq.end.val('09:00PM');
-
-                f = true;
-                return true;
-            }
-        });
+        if(this.td.length > 0){
+            f = true;
+        }
 
         if(!f){
-            this.jq.bb.hide();
+            this.jq.box.hide();
         }
         else{
-            this.jq.bb.show();
+            this.jq.box.show();
         }
 
     },
@@ -188,22 +197,100 @@ KG.Class.define('MybizStoreInputDatepicker', {
 
     initEvent : function(){
         var self = this;
-        this.jq.bb.on('click', '.js_add', function(){
+        this.elem.on('click', '.js_add', function(){
             var data = self.getAddData();
             if(!self.checkDayTime([data.start, data.end])){
                 util.toast.showError('时间格式错误');
                 return false;
             }
-            console.log(data);
-            self.td[data.week] = data;
+
+            self.td.push(data);
             self.setBoxHtml();
-            self.checkAddBox();
+
 
         });
+        this.elem.on('click', '.js_day', function(){
+            if($(this).hasClass('active')){
+                $(this).removeClass('active');
+            }
+            else{
+                $(this).addClass('active');
+            }
+        });
+        this.jq.box.on('click', '.js_del', function(){
+            var index = $(this).attr('param');
+            self.td.splice(index, 1);
+            self.setBoxHtml();
+        });
+
+        this.jq.start.change(function(){
+            if($(this).val() === self.timelist[0]){
+                self.jq.end.val(self.timelist[0]);
+            }
+        });
+        this.jq.end.change(function(){
+            if($(this).val() === self.timelist[0]){
+                self.jq.start.val(self.timelist[0]);
+            }
+        });
+
+    },
+
+    reset : function(){
+        this.elem.find('.js_day').removeClass('active');
+        this.jq.start.val('08:00AM');
+        this.jq.end.val('09:00PM');
     },
 
     initEnd : function(){
-        this.checkAddBox();
+        this.checkListBox();
+        this.reset();
+    },
+    setValue : function(data){
+        var self = this;
+        var rs = [];
+        _.each(data, function(one){
+            var tmp = {
+                start : one.datetime1,
+                end : one.datetime2
+            };
+
+            var wt = [];
+            _.each(self.SD, function(x, index){
+                if(one[x] === '1'){
+                    wt.push(self.DAY[index]);
+                }
+            });
+            tmp.week = wt;
+            rs.push(tmp);
+        });
+        self.td = rs;
+console.log(self.td);
+        self.setBoxHtml();
+        self.checkListBox();
+    },
+    getValue : function(){
+        var self = this;
+        var rs = [];
+        _.each(this.td, function(item){
+            var tmp = {
+                daytime : [item.start, item.end]
+            };
+
+            var wt = [];
+            _.each(self.DAY, function(day){
+                if(_.contains(item.week, day)){
+                    wt.push('1');
+                }
+                else{
+                    wt.push('0');
+                }
+            });
+            tmp.weektime = wt;
+            rs.push(tmp);
+        });
+
+        return rs;
     }
 });
 
@@ -218,21 +305,21 @@ KG.Class.define('MybizStoreInfoFormStep1', {
 
             '<div class="js_cat" data-label="服务类别" data-require="true" role="BaseSelectInput" init-self="true" placeholder="请选择一种类别"></div>',
 
+            '<div class="form-group js_tag" style="display: none;">',
+                '<label>营业特色</label>',
+                '<div class="hw-tagbox">',
+                '</div>',
+            '</div>',
+
             '<div {{if biz}}data-value="{{biz.address}}"{{/if}} class="js_address" role="BaseInput" data-label="店铺地址" placeholder="街道地址，如3442 Mackenzie Dr (可选)"></div>',
 
             '<div {{if biz}}data-value="{{biz.zip}}"{{/if}} style="margin-left: 0;" class="js_zip hw-inline" role="BaseInput" data-require="true" data-label="邮编" placeholder="e.g. 94536"></div>',
             '<div {{if biz}}data-value="{{biz.city}}"{{/if}} class="js_city hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="城市"></div>',
             '<div {{if biz}}data-value="{{biz.state}}"{{/if}} class="js_state hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="州/省"></div>',
 
-            '<div role="MybizStoreInputDatepicker"></div>',
-
-            '<div class="form-group js_tag">',
-            '<label>营业特色</label>',
-            '<div class="hw-tagbox">',
+            '<div class="js_wktime" role="MybizStoreInputDatepicker"></div>',
 
 
-            '</div>',
-            '</div>',
 
 
             '<button style="float: right;" class="js_btn hw-btn hw-blue-btn">{{btnText}}</button>',
@@ -296,7 +383,8 @@ KG.Class.define('MybizStoreInfoFormStep1', {
             address : KG.component.getObj(this.elem.find('.js_address')),
             zip : KG.component.getObj(this.elem.find('.js_zip')),
             city : KG.component.getObj(this.elem.find('.js_city')),
-            state : KG.component.getObj(this.elem.find('.js_state'))
+            state : KG.component.getObj(this.elem.find('.js_state')),
+            timeinfo : KG.component.getObj(this.elem.find('.js_wktime'))
         };
     },
 
@@ -312,6 +400,8 @@ KG.Class.define('MybizStoreInfoFormStep1', {
             state : jq.state.getValue(),
             tags : this.getTagBoxValue()
         };
+
+        data.timeinfo = jq.timeinfo.getValue();
 
         return data;
     },
@@ -399,7 +489,7 @@ KG.Class.define('MybizStoreInfoFormStep1', {
                         console.log(rs);
                         util.toast.alert('修改成功');
                         util.delay(function(){
-                            location.href = '../mybiz/index.html';
+                            //location.href = '../mybiz/index.html';
                         }, 1000);
                     }
                 });
@@ -416,7 +506,6 @@ KG.Class.define('MybizStoreInfoFormStep1', {
                     }
                 });
             }
-
 
         });
     },
@@ -444,15 +533,17 @@ KG.Class.define('MybizStoreInfoFormStep1', {
             }
             else{
                 tmpData = {pk_id:this.data.biz.fk_main_tag_id};
+
             }
-
-
 
             this.switchCategory(tmpData, function(){
                 util.each(self.data.biz.tags, function(one){
                     self.jq.tagBox.find('[uid="'+one.pk_id+'"]').attr('checked', true);
                 });
             });
+
+
+            this.getElemObj().timeinfo.setValue(this.data.biz.timeinfo.unformat);
         }
 
     },
@@ -479,6 +570,7 @@ KG.Class.define('MybizStoreInfoFormStep1', {
 
         h = template.compile(h)({list:tagList});
         this.jq.tagBox.html(h);
+        this.elem.find('.js_tag').show();
     },
 
     getTagBoxValue : function(){

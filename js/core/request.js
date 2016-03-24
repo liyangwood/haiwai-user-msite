@@ -408,8 +408,14 @@ KG.request = {
             city : opts.city,
             state : opts.state,
             zip : opts.zip
-
         };
+
+        if(opts.timeinfo && _.isArray(opts.timeinfo)){
+            _.each(opts.timeinfo, function(item, index){
+                data['timeinfo['+index+'][daytime]'] = item.daytime.join(',');
+                data['timeinfo['+index+'][weektime]'] = item.weektime.join(',');
+            });
+        }
 
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
@@ -432,6 +438,13 @@ KG.request = {
             tel : opts.bizTel,
             sec_tags : opts.tags
         };
+
+        if(opts.timeinfo && _.isArray(opts.timeinfo)){
+            _.each(opts.timeinfo, function(item, index){
+                data['timeinfo['+index+'][daytime]'] = item.daytime.join(',');
+                data['timeinfo['+index+'][weektime]'] = item.weektime.join(',');
+            });
+        }
 
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
