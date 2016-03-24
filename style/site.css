@@ -5,7 +5,7 @@ body {
   -webkit-text-size-adjust: none;
   height: 100%;
   position: relative;
-  padding-bottom: 250px; }
+  padding-bottom: 220px; }
 
 * {
   font-family: MicrosoftYaHei, STHeiti, sans-serif;
@@ -658,6 +658,25 @@ a:hover, a:link {
   border-bottom: 1px solid #ebebeb !important; }
 .hw-dialog-region .modal-body {
   padding: 18px 15px !important; }
+
+.hw-660-dialog .modal-dialog {
+  width: 680px !important; }
+  .hw-660-dialog .modal-dialog .modal-header {
+    border-bottom: 1px solid #ebebeb !important; }
+  .hw-660-dialog .modal-dialog .modal-body .modal-body {
+    padding: 0 20px !important; }
+    .hw-660-dialog .modal-dialog .modal-body .modal-body .hw-body {
+      padding: 0 !important; }
+  .hw-660-dialog .modal-dialog .modal-body .hw-title {
+    font-size: 18px !important;
+    position: relative;
+    top: -32px;
+    color: #4a4a4a !important;
+    font-weight: normal !important; }
+    .hw-660-dialog .modal-dialog .modal-body .hw-title b {
+      font-size: 18px;
+      color: #37bccd;
+      font-weight: normal; }
 
 body {
   background: #f7f7f7; }
@@ -2281,5 +2300,29 @@ body {
         font-size: 14px;
         font-weight: 400;
         margin-top: 10px; }
+
+.hw-jubao-box {
+  height: 220px;
+  position: relative; }
+  .hw-jubao-box p {
+    font-size: 18px;
+    position: relative;
+    top: -10px; }
+  .hw-jubao-box label {
+    position: absolute;
+    font-size: 16px;
+    font-weight: normal; }
+    .hw-jubao-box label input {
+      margin-right: 5px; }
+  .hw-jubao-box .left {
+    top: 30px; }
+  .hw-jubao-box .right {
+    top: 30px;
+    left: 350px; }
+  .hw-jubao-box textarea {
+    position: absolute;
+    top: 150px;
+    height: 80px;
+    resize: none; }
 
 /*# sourceMappingURL=site.css.map */

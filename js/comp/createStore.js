@@ -1146,7 +1146,7 @@ KG.Class.define('MybizStoreInfoFormStep3', {
 
 
             '{{if backLink}}<a class="hw-btn hw-light-btn" style="float: left;border: none;font-weight: 400;" href="{{backLink}}">返回上一步</a>{{/if}}',
-            '<button style="float: right;" class="js_btn hw-btn hw-blue-btn">完成</button>',
+            '<button style="float: right;" class="js_btn hw-btn hw-blue-btn">{{btnText}}</button>',
 
 
             '</div>'
@@ -1181,7 +1181,8 @@ KG.Class.define('MybizStoreInfoFormStep3', {
                     bigBgImageList : bigBgImageList,
                     backLink : backLink,
                     tmpId : tmpId,
-                    tagId : tagId
+                    tagId : tagId,
+                    btnText : '完成'
                 });
             });
         }
@@ -1212,7 +1213,8 @@ KG.Class.define('MybizStoreInfoFormStep3', {
                         backLink : null,
                         tagId : tagId,
                         biz : json,
-                        logo : logo
+                        logo : logo,
+                        btnText : '保存'
                     });
                 });
             });

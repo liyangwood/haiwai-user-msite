@@ -120,10 +120,11 @@ KG.Class.define('HWSiteSearchStoreListPage', {
 		return [
 			'{{each list as item}}',
 			'<a href="{{item.entityID | toStorePath}}" target="_blank" class="hw-one1">',
-			'<div class="hw-logo"><img src="{{item.logo | absImage}}" /></div>',
+			'<div class="hw-logo"><img src="{{item.logo[0].path | absImage}}" /></div>',
 
 			'<div class="right">',
 			'<h4>{{item.name_cn || item.name_en}}</h4>',
+			'{{if item.verified_time}}<i class="icon icon-v">v</i>{{/if}}',
 			'<div class="ca">',
 			'<div class="hw-star" role="StarRank" data-rank="{{item.star}}"></div>',
 			'<span>{{item.commentnum}}条评论</span>',

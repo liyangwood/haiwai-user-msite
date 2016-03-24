@@ -292,3 +292,39 @@
 
     }
 }
+
+.hw-660-dialog{
+    .modal-dialog{
+        width: 680px !important;
+
+        .modal-header{
+            border-bottom: 1px solid #ebebeb !important;
+        }
+
+        .modal-body{
+            .modal-body{
+                padding: 0 20px !important;
+
+                .hw-body{
+                    padding: 0 !important;
+
+                }
+            }
+            .hw-title{
+                font-size: 18px !important;
+                position: relative;
+                top: -32px;
+                color: $color-4a !important;
+                font-weight: normal !important;
+
+                b{
+                    font-size: 18px;
+                    color: $blue-color;
+                    font-weight: normal;
+                }
+            }
+        }
+
+
+    }
+}

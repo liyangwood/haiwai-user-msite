@@ -384,14 +384,13 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				}
 			});
 		}).on('click', '.js_jp', function(e){
-			var id = $(e.target).attr('param');
-			KG.request.reportStoreComment({
-				id : id,
-			}, function(flag, rs){
-				//if(flag){
-					util.toast.alert('举报成功，感谢您的参与');
-				//}
+			var o = $(this),
+				name = o.parents('.hw-rpeach').find('.hw-img').find('p[title]').text(),
+				id = o.attr('param');
 
+			self.showJuBaoReplyDialog({
+				toName : name,
+				id : id,
 			});
 		});
 
@@ -782,5 +781,60 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		});
 
 		box.html(h);
+	},
+
+
+	showJuBaoReplyDialog : function(opts){
+		var id = opts.id;
+		var h = [
+			'<div class="hw-jubao-box">',
+				'<p>请选择举报类型</p>',
+				'<label class="left"><input value="有害信息" name="jubao" type="radio" /> 有害信息</label>',
+				'<label class="right"><input value="色情暴力" name="jubao" type="radio" /> 色情暴力</label>',
+				'<label style="top:70px;" class="left"><input value="垃圾广告" name="jubao" type="radio" /> 垃圾广告</label>',
+				'<label style="top:70px;" class="right"><input value="无关内容" name="jubao" type="radio" /> 无关内容</label>',
+				'<label style="top:110px;" class="left"><input value="其他" name="jubao" type="radio" /> 其他（请写下举报原因）</label>',
+				'<textarea class="form-control" row="3"></textarea>',
+			'</div>'
+		].join('');
+
+		var param = {
+			foot : true,
+			'class' : 'hw-660-dialog',
+			title : '举报<b>'+opts.toName+'</b>的评论',
+			body : h,
+			YesText : '举报',
+			YesFn : function(){
+				var obj = util.dialog.get(),
+					box = obj.find('.hw-jubao-box');
+				var type = _.filter(box.find('input'), function(one){
+					return $(one).prop('checked');
+				});
+				type = $(type).val();
+
+				KG.request.reportStoreComment({
+					id : id,
+					type : type,
+					msgbody : box.find('textarea').val()
+				}, function(flag, rs){
+					if(flag){
+						util.toast.alert('评论成功，感谢您的参与！');
+					}
+					else{
+						util.toast.showError(rs);
+					}
+				});
+			},
+			beforeShowFn : function(){
+				var obj = $(this),
+					box = obj.find('.hw-jubao-box');
+				_.delay(function(){
+					box.find('input').eq(0).prop('checked', true);
+				}, 100);
+
+			}
+		};
+
+		util.dialog.show(param);
 	}
 });

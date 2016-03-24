@@ -889,13 +889,16 @@ KG.request = {
     },
 
     /*
-    * func=comment&act=report&id=39&token=
+    * func=comment&act=report&id=93&type=有害信息&msgbody=菜里有蟑螂!&token=
     * */
     reportStoreComment : function(opts, success, error){
         var data = {
             func : 'comment',
             act : 'report',
-            id : opts.id
+            id : opts.id,
+            type : opts.type,
+            msgbody : opts.msgbody || '',
+            method : 'post'
         };
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
