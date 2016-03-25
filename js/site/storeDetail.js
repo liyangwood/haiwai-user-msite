@@ -295,6 +295,9 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				//init comment
 				self.getCommentData();
 			}
+			else{
+				util.toast.showError(rs);
+			}
 		});
 
 	},
