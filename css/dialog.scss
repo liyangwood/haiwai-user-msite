@@ -257,7 +257,7 @@
         }
     }
     .modal-body{
-
+        text-align: center !important;
     }
 
 }
@@ -269,6 +269,11 @@
     }
     .modal-header{
         height: 0 !important;
+
+        .close{
+            position: relative !important;
+            z-index: 99;
+        }
     }
     .modal-body{
         padding: 18px 15px !important;

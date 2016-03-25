@@ -641,12 +641,17 @@ a:hover, a:link {
   width: 520px !important; }
 .hw-dialog-alert .modal-header .close {
   display: none !important; }
+.hw-dialog-alert .modal-body {
+  text-align: center !important; }
 
 .hw-dialog-coupon .modal-dialog {
   width: 585px !important;
   margin-top: 100px !important; }
 .hw-dialog-coupon .modal-header {
   height: 0 !important; }
+  .hw-dialog-coupon .modal-header .close {
+    position: relative !important;
+    z-index: 99; }
 .hw-dialog-coupon .modal-body {
   padding: 18px 15px !important; }
   .hw-dialog-coupon .modal-body .hw-body {
@@ -1751,15 +1756,29 @@ a:hover, a:link {
     border-bottom: 1px solid #ebebeb;
     position: absolute;
     width: 100%;
-    top: 0;
+    top: -20px;
     left: 0;
-    padding-left: 90px; }
+    padding-left: 98px;
+    z-index: 2; }
     .hw-HWSiteCouponDetailComp .ca img {
       width: 56px;
       height: 56px;
       position: absolute;
       top: 8px;
       left: 30px; }
+    .hw-HWSiteCouponDetailComp .ca a.h4 {
+      font-size: 16px;
+      color: #4a4a4a;
+      font-weight: normal;
+      margin: 0;
+      margin-top: 15px;
+      display: block; }
+      .hw-HWSiteCouponDetailComp .ca a.h4:hover {
+        color: #37bccd; }
+    .hw-HWSiteCouponDetailComp .ca p {
+      font-size: 14px;
+      color: #4a4a4a;
+      margin-top: 10px; }
   .hw-HWSiteCouponDetailComp .cb h4 {
     text-align: center;
     font-size: 24px;
@@ -1781,7 +1800,7 @@ a:hover, a:link {
     .hw-HWSiteCouponDetailComp .cb .hw-img img {
       max-width: 100%; }
   .hw-HWSiteCouponDetailComp .cc {
-    margin-top: 30px;
+    margin-top: 40px;
     text-align: center;
     padding: 10px 0; }
     .hw-HWSiteCouponDetailComp .cc input {

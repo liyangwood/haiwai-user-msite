@@ -348,7 +348,7 @@ KG.request = {
     },
 
     /*
-    * func=sms&act=send_event&userid=10051&number=5735769567&biz_name=apptest&event_title=测试店铺活动
+    * func=sms&act=send_event&userid=10051&number=5735769567&biz_name=apptest&event_title=测试店铺活动&entityID=140144
     *
     * */
     sendSmsToUserPhone : function(opts, success, error){
@@ -356,11 +356,13 @@ KG.request = {
             func : 'sms',
             act : 'send_event',
             number : opts.number,
-            biz_name : opts.biz_name,
-            event_title : opts.event_title
+            biz_name : encodeURIComponent(opts.biz_name),
+            event_title : encodeURIComponent(opts.event_title),
+            entityID : opts.id
+            //method : 'post'
         };
 
-        util.addUserIdToRequestData(data);
+        //util.addUserIdToRequestData(data);
 
         return this.ajax(data, success, error);
     },

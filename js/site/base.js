@@ -512,7 +512,8 @@ KG.Class.define('HWSiteCouponDetailComp', {
 		var h = [
 			'<div class="">',
 				'<img src="{{biz.logo[0].path | absImage}}" />',
-				'<h4>{{biz.name_cn || biz.name_en}}</h4>',
+				'<a href="{{biz.entityID | toStorePath}}" class="h4">{{biz.name_cn || biz.name_en}}</a>',
+				'<p>{{biz | storeFullAddress}}</p>',
 			'</div>'
 		].join('');
 		h = template.compile(h)({
@@ -548,12 +549,19 @@ KG.Class.define('HWSiteCouponDetailComp', {
 			dyHtml : template.compile(dy)({data : data})
 		});
 
+
 		this.jq.box.html(h);
 		this.jq.box.removeClass('nodis');
+
+		if(data.bizinfo.entityID){
+			this.jq.box.css({
+				'margin-top' : '60px'
+			});
+		}
 	},
 	setActionBoxHtml : function(data){
 		var h = [
-			'<input class="form-control js_tel" type="text" placeholder="请输入手机号" />',
+			'<div style="width:400px;margin: 0 auto;" class="js_tel" role="BaseInput" placeholder="请输入手机号"></div>',
 			//TODO verify code
 			'<button class="hw-btn hw-blue-btn js_getCoupon">获取优惠</button>'
 		].join('');
@@ -563,23 +571,31 @@ KG.Class.define('HWSiteCouponDetailComp', {
 		});
 
 		this.jq.actionBox.html(h).removeClass('nodis');
+		KG.component.init(this.jq.actionBox);
 	},
 	initEvent : function(){
 		var self = this;
 		this.elem.on('click', '.js_getCoupon', function(){
-			var tel = self.elem.find('.js_tel').val();
-			if(!tel){
-				util.toast.showError('tel number is require');
+			var jq = KG.component.getObj(self.elem.find('.js_tel')),
+				tel = jq.getValue();
+
+			if(!tel || !util.validate.AmericanPhone(tel)){
+				jq.showError('电话格式不正确');
+				jq.focus();
 				return;
+			}
+			else{
+				jq.showError();
 			}
 
 			KG.request.sendSmsToUserPhone({
 				number : tel,
 				biz_name : self.couponData.bizinfo.name_cn || self.couponData.bizinfo.name_en,
-				event_title : self.couponData.subject
+				event_title : self.couponData.subject,
+				id : self.couponData.pk_id
 			}, function(flag, rs){
 				if(flag){
-					util.toast.alert(rs);
+					util.toast.alert('短信已成功发送至 '+tel, '出示短信内容给商家，就可以享受优惠！');
 				}
 				else{
 					util.toast.showError(rs);
