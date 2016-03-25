@@ -297,7 +297,13 @@ a:hover, a:link {
         height: 22px; }
     .kg-header-comp .search input {
       height: 40px;
-      border-left: 0; }
+      border-left: 0;
+      border-color: #cccccc;
+      box-shadow: none; }
+      .kg-header-comp .search input:focus {
+        outline: 0;
+        border-color: #cccccc;
+        box-shadow: none; }
   .kg-header-comp .right {
     position: absolute;
     top: 26px;
@@ -565,7 +571,8 @@ a:hover, a:link {
   background: #f7f7f7;
   vertical-align: top;
   text-align: center;
-  overflow: hidden; }
+  overflow: hidden;
+  margin-bottom: 8px; }
   .hw-dialog-imglist .img-item img {
     max-width: 100%;
     margin: auto; }
@@ -2254,6 +2261,7 @@ body {
         text-overflow: ellipsis;
         width: 85px; }
     .hw-HWSiteStoreDetailPage .hw-rpeach .hw-time {
+      margin-top: 2px;
       text-align: left; }
       .hw-HWSiteStoreDetailPage .hw-rpeach .hw-time span {
         font-size: 14px;
@@ -2289,7 +2297,8 @@ body {
     .hw-HWSiteStoreDetailPage .hw-rpeach .c-rp-area {
       text-align: right;
       margin-top: 12px;
-      margin-left: 102px; }
+      margin-left: 102px;
+      width: 580px; }
       .hw-HWSiteStoreDetailPage .hw-rpeach .c-rp-area textarea {
         border-color: #f4a62a;
         resize: none;
@@ -2320,21 +2329,28 @@ body {
       .hw-HWSiteStoreDetailPage .hw-wp .hw-img p {
         font-size: 14px;
         color: #4a4a4a;
-        text-align: center;
+        text-align: left;
         margin-top: 5px;
         width: 70px;
         text-overflow: ellipsis;
         overflow: hidden; }
+    .hw-HWSiteStoreDetailPage .hw-wp .hw-time {
+      margin-top: 20px; }
+      .hw-HWSiteStoreDetailPage .hw-wp .hw-time .hw-comp-star .icon {
+        font-size: 26px; }
     .hw-HWSiteStoreDetailPage .hw-wp .r {
       position: static; }
     .hw-HWSiteStoreDetailPage .hw-wp .hw-ta {
+      margin-top: 25px;
       text-align: left; }
       .hw-HWSiteStoreDetailPage .hw-wp .hw-ta textarea {
-        padding: 8px 12px; }
+        padding: 8px 12px;
+        resize: none;
+        height: 100px;
+        width: 580px; }
       .hw-HWSiteStoreDetailPage .hw-wp .hw-ta .hw-btn {
-        height: 28px;
-        line-height: 28px;
-        font-size: 14px;
+        width: 120px;
+        font-size: 16px;
         font-weight: 400;
         margin-top: 10px; }
 

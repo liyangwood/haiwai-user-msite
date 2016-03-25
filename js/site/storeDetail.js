@@ -157,7 +157,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 							' data-rank="0"></div>',
 						'</div>',
 						'<div class="r hw-ta nodis">',
-							'<textarea class="form-control" rows="2"></textarea>',
+							'<textarea class="form-control" placeholder="请写下您的评论~"></textarea>',
 							'<button data-loading-text="发表中..." class="hw-btn hw-blue-btn">发表评论</button>',
 						'</div>',
 
@@ -576,7 +576,8 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					star : rank.getValue(),
 					treelevel : '0',
 					userID : user.userid,
-					userinfo : user
+					userinfo : user,
+					buzz : 0
 				};
 
 				self.commentData = [sd].concat(self.commentData);

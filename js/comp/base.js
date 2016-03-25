@@ -122,7 +122,7 @@
                     '</div>',
 
                     '<div class="input-group search js_search">',
-                        '<span class="input-group-addon"><i class="icon"></i></span>',
+                        '<span class="input-group-addon hand js_tosearch"><i class="icon"></i></span>',
                         '<input type="text" class="form-control" placeholder="搜索店铺，专家服务...">',
                     '</div>',
 
@@ -192,6 +192,15 @@
 
                 var val = $(this).val();
                 if(!val){
+                    return false;
+                }
+
+                location.href = '../site/search.html?keyword='+val;
+            });
+            searchBox.find('.js_tosearch').click(function(){
+                var val = searchBox.find('input').val();
+                if(!val){
+                    searchBox.find('input').focus();
                     return false;
                 }
 
@@ -1110,6 +1119,10 @@
                     }
                     else if(o.hasClass('fa-star-half-o')){
                         self.rank = parseInt(i, 10)+1;
+                    }
+
+                    if(self.rank === 0){
+                        self.rank = 0.5;
                     }
 
                     self.render();

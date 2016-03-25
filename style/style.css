@@ -298,7 +298,13 @@ a:hover, a:link {
         height: 22px; }
     .kg-header-comp .search input {
       height: 40px;
-      border-left: 0; }
+      border-left: 0;
+      border-color: #cccccc;
+      box-shadow: none; }
+      .kg-header-comp .search input:focus {
+        outline: 0;
+        border-color: #cccccc;
+        box-shadow: none; }
   .kg-header-comp .right {
     position: absolute;
     top: 26px;
@@ -566,7 +572,8 @@ a:hover, a:link {
   background: #f7f7f7;
   vertical-align: top;
   text-align: center;
-  overflow: hidden; }
+  overflow: hidden;
+  margin-bottom: 8px; }
   .hw-dialog-imglist .img-item img {
     max-width: 100%;
     margin: auto; }

@@ -325,6 +325,7 @@
 
         }
         .hw-time{
+            margin-top: 2px;
             text-align: left;
             span{
                 font-size: 14px;
@@ -372,6 +373,7 @@
             text-align: right;
             margin-top: 12px;
             margin-left: 102px;
+            width: 580px;
             
             textarea{
                 border-color: #f4a62a;
@@ -412,11 +414,21 @@
             p{
                 font-size: 14px;
                 color: $color-4a;
-                text-align: center;
+                text-align: left;
                 margin-top: 5px;
                 width: 70px;
                 text-overflow: ellipsis;
                 overflow: hidden;
+            }
+        }
+
+        .hw-time{
+            margin-top: 20px;
+
+            .hw-comp-star{
+                .icon{
+                    font-size: 26px;
+                }
             }
         }
 
@@ -425,14 +437,17 @@
         }
 
         .hw-ta{
+            margin-top: 25px;
             text-align: left;
             textarea{
                 padding: 8px 12px;
+                resize: none;
+                height: 100px;
+                width: 580px;
             }
             .hw-btn{
-                height: 28px;
-                line-height: 28px;
-                font-size: 14px;
+                width: 120px;
+                font-size: 16px;
                 font-weight: 400;
                 margin-top: 10px;
             }
