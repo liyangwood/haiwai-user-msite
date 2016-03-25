@@ -208,6 +208,10 @@ KG.Class.define('SelectLocationRange', {
     },
 
     getData : function(box, data, next){
+        if(this.prop.region.toString() === '-1'){
+            this.prop.region = 1;
+        }
+
         var self = this;
         KG.request.getAllAddressAreaInfo({}, function(flag, rs){
             var countryList = self.getListData(rs);
@@ -224,8 +228,7 @@ KG.Class.define('SelectLocationRange', {
             };
             loop(rs);
 
-            var region = self.prop.region.split(',');
-
+            var region = self.prop.region.toString().split(',');
             next({
                 countryList : countryList,
                 all : all,
@@ -254,7 +257,7 @@ KG.Class.define('SelectLocationRange', {
     },
 
     changeCountry : function(cid, v){
-        if(cid==='-1'){
+        if(!cid || cid.toString()==='-1'){
             this.jq.state.val('-1');
             this.jq.city.val('-1').hide();
             this.jq.area.val('-1').hide();
@@ -265,7 +268,7 @@ KG.Class.define('SelectLocationRange', {
         this.setListHtml(list, this.jq.state, v);
     },
     changeState : function(cid, v){
-        if(cid==='-1'){
+        if(!cid || cid.toString()==='-1'){
             this.jq.city.val('-1').hide();
             this.jq.area.val('-1').hide();
             return;
@@ -275,7 +278,7 @@ KG.Class.define('SelectLocationRange', {
         this.setListHtml(list, this.jq.city, v);
     },
     changeCity : function(cid, v){
-        if(cid==='-1'){
+        if(!cid || cid.toString()==='-1'){
             this.jq.area.val('-1').hide();
             return;
         }
@@ -439,7 +442,8 @@ KG.Class.define('MycountChangeInfoForm', {
 
         KG.request.modifyUserInfo(data, function(flag, rs){
             if(!flag){
-                util.dialog.alert(rs);
+                util.toast.showError(rs);
+                return false;
             }
             util.toast.alert('修改成功');
             KG.user.update();

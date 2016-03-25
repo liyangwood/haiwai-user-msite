@@ -214,7 +214,7 @@ KG.Class.define('HWSiteIndexNewStoreRecommend', {
 				'<a class="hw-one" href="{{one.entityID | toStorePath}}" target="_blank">',
 					'<img src="{{one.logo[0].path | absImage}}" />',
 					'<h4>{{one.name_cn || one.name_en}}</h4>',
-					'<p class="hw-p">{{one | storeFullAddress}}</p>',
+					'<p class="hw-p">{{one.city}} {{one.state}}</p>',
 					'<p class="hw-n">{{one.promotion}}</p>',
 				'</a>',
 				'{{/each}}',
@@ -249,7 +249,12 @@ KG.Class.define('HWSiteIndexNewStoreRecommend', {
 			'</div>'
 		].join('');
 
-		h = template.compile(h)({list : data});
+		var list = _.map(data, function(item){
+
+			return item;
+		});
+
+		h = template.compile(h)({list : list});
 		this.jq.box.html(h);
 		this.jq.box.find('.carousel').carousel({
 			interval: 5000

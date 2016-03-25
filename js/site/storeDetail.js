@@ -699,7 +699,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 		var box = this.elem.find('.js_cmbox'),
 			list = this.commentData;
-
+console.log(this.data.biz.role);
 		h = template.compile(h)({
 			list: list,
 			role : this.data.biz.role
