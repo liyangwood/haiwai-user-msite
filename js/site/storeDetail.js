@@ -23,7 +23,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					'<h4>{{biz.name_cn||biz.name_en}}{{if biz.verified=="yes"}}<i class="icon' +
 					' icon-v">v</i>{{/if}}</h4>',
 					'<div class="hw-star" role="StarRank" data-rank="{{biz.star}}"></div>',
-					'<a href="#hw-id-reply" class="hw-rp">{{biz.comments.length}}条评论</a>',
+					'<a href="#hw-id-reply" class="hw-rp">{{biz.commentnum}}条评论</a>',
 					'<p class="hw-p">地址：{{biz | storeFullAddress}}</p>',
 					'<p class="hw-p">特色：{{biz.tag_name}}</p>',
 					'<p class="hw-p">电话：{{biz.tel}}</p>',
@@ -206,34 +206,37 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 		h = [];
 		console.log(rs.timeinfo)
-		_.each(rs.timeinfo.format, function(v, k){
-			if(!v || !_.isArray(v)) return true;
-			_.each(v, function(x, i){
-				x = x.split(',');
-				var l;
-				if(_.contains(x, '休业')){
-					l = '休息';
-				}
-				else{
-					l = x.join(' - ');
-				}
-
-
-				var t='', tk='';
-				if(true || i<1){
-					t = k.split(' - ');
-					tk = xc[t[0]];
-					if(t[1]){
-						tk += ' - '+xc[t[1]];
+		if(rs.timeinfo){
+			_.each(rs.timeinfo.format, function(v, k){
+				if(!v || !_.isArray(v)) return true;
+				_.each(v, function(x, i){
+					x = x.split(',');
+					var l;
+					if(_.contains(x, '休业')){
+						l = '休息';
 					}
-				}
-				h.push({
-					day : tk,
-					time : l
-				});
-			});
+					else{
+						l = x.join(' - ');
+					}
 
-		});
+
+					var t='', tk='';
+					if(true || i<1){
+						t = k.split(' - ');
+						tk = xc[t[0]];
+						if(t[1]){
+							tk += ' - '+xc[t[1]];
+						}
+					}
+					h.push({
+						day : tk,
+						time : l
+					});
+				});
+
+			});
+		}
+
 		rs.timeinfo_list = h;
 
 
@@ -280,7 +283,6 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			if(flag){
 				var biz = self.makeBizData(rs);
 
-				console.log(biz);
 				next({
 					id : id,
 					biz : biz,
@@ -416,6 +418,12 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		});
 
 		this.elem.on('click', '.hw-renling', function(e){
+			if(!KG.user.get('isLogin')){
+				util.dialog.showLoginBox();
+				return false;
+			}
+
+
 			var h = '<div class="hw-icon"><i class="fa fa-check"></i></div>';
 			util.dialog.show({
 				foot : true,
@@ -502,7 +510,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 				var user = KG.user.get();
 				var sd = {
-					basecode : rs,
+					basecode : rpId,
 					dataID : self.bizId,
 					dataType : '2',
 					datetime : new Date().getTime(),
@@ -515,9 +523,9 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					userinfo : user
 				};
 
-				var tmp = _.find(self.commentData, {id:rpId});
+				var tmp = _.find(self.commentData, {id:rpId.toString()});
 				tmp.reply = sd;
-				tmp.treelevel = '1';
+				tmp.treelevel = '0';
 
 				self.setCommentBoxHtml();
 
@@ -554,12 +562,12 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 				var user = KG.user.get();
 				var sd = {
-					basecode : rs,
+					basecode : rs.toString(),
 					dataID : self.bizId,
 					dataType : '2',
 					datetime : new Date().getTime(),
 					fk_entityID : self.bizId,
-					id : rs,
+					id : rs.toString(),
 					is_report : '0',
 					msg : val,
 					star : rank.getValue(),
@@ -674,7 +682,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				'<span param="{{item.id}}" class="js_jp">举报</span>',
 			'</p>',
 
-			'{{if item.treelevel=="1"}}',
+			'{{if item.reply}}',
 			'<div class="c-rp">',
 				'<img src="{{item.reply.userinfo.avatar_url | absImage}}" />',
 				'<p>{{item.reply.userinfo.nick}}回复：</p>',

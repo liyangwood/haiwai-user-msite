@@ -511,9 +511,14 @@ KG.Class.define('HWSiteCouponDetailComp', {
 
 		var h = [
 			'<div class="">',
-
+				'<img src="{{biz.logo[0].path | absImage}}" />',
+				'<h4>{{biz.name_cn || biz.name_en}}</h4>',
 			'</div>'
 		].join('');
+		h = template.compile(h)({
+			biz : data.bizinfo
+		});
+		this.jq.storeBox.html(h).show();
 
 	},
 	setCouponBoxHtml : function(data){

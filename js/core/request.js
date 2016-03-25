@@ -875,7 +875,8 @@ KG.request = {
             func : 'comment',
             act : 'list',
             bizid : opts.bizId,
-            lastid : opts.lastid
+            lastid : opts.lastid,
+            dataType : 2
         };
         return this.ajax(data, success, error);
     },

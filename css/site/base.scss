@@ -140,7 +140,20 @@
 
     .ca{
         height: 80px;
-        border: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        padding-left: 90px;
+
+        img{
+            width: 56px;
+            height: 56px;
+            position: absolute;
+            top: 8px;
+            left: 30px;
+        }
     }
 
     .cb{
