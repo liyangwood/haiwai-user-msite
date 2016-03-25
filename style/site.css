@@ -367,18 +367,24 @@ a:hover, a:link {
   .hw-footer-comp .container {
     height: 220px; }
     .hw-footer-comp .container .logo {
-      background: url("../image/haiwai1.png");
-      width: 88px;
-      height: 88px;
-      margin: 5px auto 0;
+      background: url("../image/haiwai2.png");
+      width: 49px;
+      height: 51px;
+      margin: 20px auto 0;
       background-size: 100%; }
     .hw-footer-comp .container .smap, .hw-footer-comp .container .cr {
       color: #fff;
-      margin: 25px auto 0;
+      margin: 35px auto 0;
       text-align: center; }
       .hw-footer-comp .container .smap a, .hw-footer-comp .container .cr a {
         color: #ffffff;
-        margin: 0 4px; }
+        margin: 0 4px;
+        font-size: 14px; }
+      .hw-footer-comp .container .smap span, .hw-footer-comp .container .cr span {
+        margin: 0 8px;
+        font-size: 14px;
+        display: inline-block;
+        color: #ffffff; }
     .hw-footer-comp .container .cr {
       margin-top: 40px;
       font-size: 12px; }

@@ -1169,8 +1169,14 @@ $(function(){
         KG.request.oauthLoginWithWeixinCode({
             code : util.url.param('code')
         }, function(flag, rs){
+            util.showPageLoading(false);
             if(flag){
-
+                KG.user.getUserDetailWithToken(rs, function(user){
+                    util.toast.alert('登录成功，请补充资料');
+                    _.delay(function(){
+                        location.href = '../mycount/info.html';
+                    }, 1500);
+                });
             }
             else{
                 util.toast.showError(rs);

@@ -76,25 +76,31 @@
             });
         },
 
+        getUserDetailWithToken : function(opts, success){
+            if(opts.pk_id){
+                user.userid = opts.pk_id;
+                user.token = opts.token;
+                user.email = opts.email;
+
+                KG.request.getUserDetailInfo({}, function(f, json){
+                    if(f){
+                        user.image = KG.config.SiteRoot+json.avatar_url;
+                        user.isLogin = true;
+                        _.extend(user, json);
+
+                        util.storage.set('current-login-user', user);
+
+                        success(user);
+                    }
+
+                });
+            }
+        },
+
         login : function(opts, success, error){
             var successFN = function(flag, rs){
                 if(rs.pk_id){
-                    user.userid = rs.pk_id;
-                    user.token = rs.token;
-                    user.email = rs.email;
-
-                    KG.request.getUserDetailInfo({}, function(f, json){
-                        if(f){
-                            user.image = KG.config.SiteRoot+json.avatar_url;
-                            user.isLogin = true;
-                            _.extend(user, json);
-
-                            util.storage.set('current-login-user', user);
-
-                            success(user);
-                        }
-
-                    });
+                    KG.user.getUserDetailWithToken(rs, success);
                 }
                 else{
                     error(rs.msg?rs.msg:rs);

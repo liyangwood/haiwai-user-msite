@@ -163,21 +163,28 @@
         height: 220px;
 
 		.logo{
-			background: url('../image/haiwai1.png');
-			width: 88px;
-			height: 88px;
-			margin: 5px auto 0;
+			background: url('../image/haiwai2.png');
+			width: 49px;
+			height: 51px;
+			margin: 20px auto 0;
 			background-size:100%;
 		}
 
 		.smap, .cr{
 			color:#fff;
-			margin: 25px auto 0;
+			margin: 35px auto 0;
 			text-align: center;
 			
 			a{
 				color: #ffffff;
 				margin: 0 4px;
+				font-size: 14px;
+			}
+			span{
+				margin: 0 8px;
+				font-size: 14px;
+				display: inline-block;
+				color: #ffffff;
 			}
 		}
 

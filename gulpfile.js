@@ -120,7 +120,7 @@ gulp.task('css', function(){
         .pipe(gulp.dest('style/'));
 });
 
-var dirList = ['mybiz', 'mycount', 'myfav', 'mysys', 'mycoupon', 'site', 'view'];
+var dirList = ['mybiz', 'mycount', 'myfav', 'mysys', 'mycoupon', 'site', 'view', 'help'];
 
 gulp.task('html_dev', function(){
 
