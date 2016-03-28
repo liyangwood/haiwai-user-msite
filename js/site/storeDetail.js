@@ -30,7 +30,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					'{{if biz.events&&biz.events[0]}}<p param="{{biz.events[0].pk_id}}" class="hw-coupon js_coupon_item"><i class="icon"></i>{{biz.events[0].subject}}</p>{{/if}}',
 				'</div>',
 				'<b class="hw-act js_fav" style="left:750px;"><i class="icon fa fa-star-o"></i>收藏</b>',
-				'<b class="hw-act js_reply" style="left: 850px;"><i class="icon fa fa-external-link"></i>评论</b>',
+				'<b class="hw-act js_reply" style="left: 850px;"><i class="icon fa fa-pencil-square-o"></i>评论</b>',
 				'<b class="hw-act js_share" style="left: 950px;"><i class="icon fa fa-wechat"></i>分享</b>',
 			'</div>'
 		].join('');

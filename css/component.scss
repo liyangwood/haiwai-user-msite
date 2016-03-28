@@ -303,6 +303,11 @@
 				color: $color-4a;
 				font-size: 14px;
 				cursor: pointer;
+
+				&[disabled]{
+					background: #f5f5f5;
+					cursor: not-allowed;
+				}
 			}
 		}
 
@@ -344,7 +349,11 @@
 	.icon{
 		font-size: 20px;
 		color: #f4a62a;
-		margin-right: 4px;
+		margin-right: 8px;
+	}
+
+	.icon_empty{
+		color: #d8d8d8 !important;
 	}
 }
 

@@ -265,7 +265,7 @@ KG.Class.define('MybizStoreInputDatepicker', {
             rs.push(tmp);
         });
         self.td = rs;
-console.log(self.td);
+
         self.setBoxHtml();
         self.checkListBox();
     },
@@ -523,6 +523,10 @@ KG.Class.define('MybizStoreInfoFormStep1', {
             }
         });
 
+        if(this.type === 'edit'){
+            this.jq.cat.disable(true);
+        }
+
         if(this.data.biz){
 
             var index = util.map(this.data.catList, function(item){return item.pk_id;});
@@ -697,7 +701,7 @@ KG.Class.define('MybizStoreInfoFormStep2', {
                         console.log(rs);
                         util.toast.alert('修改成功');
                         util.delay(function(){
-                            location.href = '../mybiz/index.html';
+                            //location.href = '../mybiz/index.html';
                         }, 1000);
                     }
                     else{
@@ -1353,7 +1357,7 @@ KG.Class.define('MybizStoreInfoFormStep3', {
                     if(true || flag){
                         util.toast.alert('修改成功');
                         util.delay(function(){
-                            location.href = '../mybiz/index.html';
+                            //location.href = '../mybiz/index.html';
                         }, 1000);
                     }
                     else{

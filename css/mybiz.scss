@@ -509,7 +509,7 @@
 }
 
 .hw-comp-MybizStoreInfoFormStep1{
-	margin-top: 40px;
+	margin-top: 0;
 	padding-bottom: 150px;
 
 	.form-group{
@@ -544,7 +544,7 @@
 	}
 }
 .hw-comp-MybizStoreInfoFormStep2{
-	margin-top: 40px;
+	margin-top: 0;
 	padding-bottom: 150px;
 
 	.form-group{
@@ -580,7 +580,7 @@
 }
 
 .hw-comp-MybizStoreInfoFormStep3{
-	margin-top: 40px;
+	margin-top: 0;
 	padding-bottom: 150px;
 
 	.form-group{
@@ -727,6 +727,7 @@
 		margin: 0 8px 20px;
 		position: relative;
 		vertical-align: top;
+		overflow: hidden;
 	}
 
 	.hw-add{

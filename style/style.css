@@ -465,6 +465,9 @@ a:hover, a:link {
     color: #4a4a4a;
     font-size: 14px;
     cursor: pointer; }
+    .hw-comp-BaseSelectInput .hw-drop button input[disabled] {
+      background: #f5f5f5;
+      cursor: not-allowed; }
 .hw-comp-BaseSelectInput .hw-drop .icon {
   position: absolute;
   top: 12px;
@@ -492,7 +495,9 @@ a:hover, a:link {
   .hw-comp-star .icon {
     font-size: 20px;
     color: #f4a62a;
-    margin-right: 4px; }
+    margin-right: 8px; }
+  .hw-comp-star .icon_empty {
+    color: #d8d8d8 !important; }
 
 .hw-HWSelectRegionLocation .hw-btn {
   height: 32px;
@@ -508,7 +513,7 @@ a:hover, a:link {
     background: #37bccd; }
 
 #kg_modal_dialog .modal-dialog {
-  margin-top: 200px; }
+  margin-top: 150px; }
 #kg_modal_dialog .modal-header {
   height: 50px;
   border-bottom: none; }
@@ -1063,7 +1068,7 @@ a:hover, a:link {
     font-size: 24px; }
 
 .hw-comp-MybizStoreInfoFormStep1 {
-  margin-top: 40px;
+  margin-top: 0;
   padding-bottom: 150px; }
   .hw-comp-MybizStoreInfoFormStep1 .form-group {
     margin-bottom: 30px; }
@@ -1088,7 +1093,7 @@ a:hover, a:link {
       top: -2px; }
 
 .hw-comp-MybizStoreInfoFormStep2 {
-  margin-top: 40px;
+  margin-top: 0;
   padding-bottom: 150px; }
   .hw-comp-MybizStoreInfoFormStep2 .form-group {
     margin-bottom: 30px; }
@@ -1114,7 +1119,7 @@ a:hover, a:link {
         margin-right: 10px; }
 
 .hw-comp-MybizStoreInfoFormStep3 {
-  margin-top: 40px;
+  margin-top: 0;
   padding-bottom: 150px; }
   .hw-comp-MybizStoreInfoFormStep3 .form-group {
     margin-bottom: 30px; }
@@ -1216,7 +1221,8 @@ a:hover, a:link {
     display: inline-block;
     margin: 0 8px 20px;
     position: relative;
-    vertical-align: top; }
+    vertical-align: top;
+    overflow: hidden; }
   .hw-comp-MybizUploadStoreImage .hw-add {
     border: 1px dashed #c5c5c5;
     text-align: center; }

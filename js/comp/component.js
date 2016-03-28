@@ -180,5 +180,17 @@ KG.Class.define('BaseSelectInput', {
 	},
 	setOnlyValue : function(val){
 		this.elem.find('.js_input').val(val);
+	},
+	disable : function(f){
+		f = f || false;
+		if(f){
+			this.elem.find('button').attr('disabled', f);
+			this.elem.find('.js_input').attr('disabled', f);
+		}
+		else{
+			this.elem.find('button').removeAttr('disabled');
+			this.elem.find('.js_input').removeAttr('disabled');
+		}
+
 	}
 });

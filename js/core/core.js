@@ -36,7 +36,7 @@
 
     var user = {
         image : KG.config.root+'/image/user_default.png',
-        defaultImage : KG.config.root+'/image/user_default.png',
+        defaultImage : 'http://www.sinomedianet.com/haiwai2015.3.19/images/default_avatar.png',
         email : 'liyang@chinagate.com',
         userid : 14678,
         tel : '5735769567',

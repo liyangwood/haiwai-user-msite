@@ -1083,11 +1083,11 @@
             var h = [
                 '{{each list as item index}}',
                 '{{if item==="full"}}',
-                '<i index="{{index}}" class="icon fa fa-star"></i>',
+                '<i index="{{index}}" class="icon fa fa-star icon_full"></i>',
                 '{{else if item==="half"}}',
-                '<i index="{{index}}" class="icon fa fa-star-half-o"></i>',
+                '<i index="{{index}}" class="icon fa fa-star-half-o icon_half"></i>',
                 '{{else}}',
-                '<i index="{{index}}" class="icon fa fa-star-o"></i>',
+                '<i index="{{index}}" class="icon fa fa-star icon_empty"></i>',
                 '{{/if}}',
                 '{{/each}}'
             ].join('');
@@ -1111,13 +1111,13 @@
                 this.elem.on('click', 'i.fa', function(e){
                     var o = $(e.target);
                     var i = o.attr('index');
-                    if(o.hasClass('fa-star-o')){
+                    if(o.hasClass('icon_empty')){
                         self.rank = parseFloat(i)+0.5;
                     }
-                    else if(o.hasClass('fa-star')){
+                    else if(o.hasClass('icon_full')){
                         self.rank = parseInt(i, 10);
                     }
-                    else if(o.hasClass('fa-star-half-o')){
+                    else if(o.hasClass('icon_half')){
                         self.rank = parseInt(i, 10)+1;
                     }
 
