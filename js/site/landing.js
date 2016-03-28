@@ -50,7 +50,7 @@
                 '<input type="password" style="margin-top: 15px;" class="hw-input js_pwd" placeholder="密码" />',
                 '<input type="password" style="margin-top: 15px;" class="hw-input js_pwd2" placeholder="确认密码" />',
                 '<a href="javascript:void(0)" style="margin-top: 15px;" class="hw-btn hw-blue-btn js_reg">立即注册，创建店铺</a>',
-                '<em>点击注册表示您同意海外同城的<a href="">使用协议</a>和<a>隐私保护协议</a></em>',
+                '<em>点击注册表示您同意海外同城的<a target="_blank" href="../help/terms.html">使用协议</a>和<a href="../help/privacy.html" target="_blank">隐私保护协议</a></em>',
                 '<p>已有海外帐户？<b class="js_toLogin">直接登录</b></p>'
             ].join('');
             this.jq.box.html(h);

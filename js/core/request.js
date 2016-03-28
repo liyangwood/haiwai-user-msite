@@ -649,18 +649,6 @@ KG.request = {
         return this.ajax(data, success, error);
     },
 
-    /*
-    * func=biz&act=get_article_event&userid=10051&bizid=2025249&token=&lastid_event=&lastid_article=
-    * */
-    getStoreArticleAndCouponList : function(opts, success, error){
-        var data = {
-            func : 'biz',
-            act : 'get_article_event',
-            bizid : opts.bizId
-        };
-        data = util.addUserIdToRequestData(data);
-        return this.ajax(data, success, error);
-    },
 
     /*
     * func=passport&act=get_article_event&userid=10051&token=&lastid_event=&lastid_article=

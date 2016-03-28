@@ -31,7 +31,7 @@
 <div role="HWLandingBigImage"></div>
 
 <div class="container hw-landingBottomBtn">
-    <a href="#xxxaaa" class="hw-btn hw-light-btn">立即注册，创建店铺</a>
+    <a href="#xxxaaa" id="jsbtn" class="hw-btn hw-light-btn">立即注册，创建店铺</a>
 </div>
 
 
@@ -42,5 +42,13 @@
 <script type="text/javascript">
     KG.data.add({
         page : 'site-langding'
+    });
+
+    $(function(){
+        util.delay(function(){
+            if(KG.user.get('isLogin')){
+                $('#jsbtn').attr('href', '../mybiz/createStore.html').html('我是商家，创建店铺');
+            }
+        }, 500);
     });
 </script>

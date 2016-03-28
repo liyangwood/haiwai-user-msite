@@ -60,7 +60,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 		//timeinfo
 		var T4 = [
-			'<div class="c-box">',
+			'<div style="margin-top: 15px;" class="c-box">',
 				'<dt class="c-title"><p>营业时间</p></dt>',
 				'<dd class="c-content">',
 					'{{each biz.timeinfo_list as item}}',
@@ -96,7 +96,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		//image list
 		var T7 = [
 			'{{if biz.files.length > 0}}',
-			'<div class="c-box">',
+			'<div style="margin-top: 15px;" class="c-box">',
 				'<dt class="c-title">',
 					'<p>图片 ({{biz.files.length}})</p>',
 					'<b class="js_showimg hand">全部图片</b>',
@@ -689,7 +689,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			'{{if item.reply}}',
 			'<div class="c-rp">',
 				'<img src="{{item.reply.userinfo.avatar_url | absImage}}" />',
-				'<p>{{item.reply.userinfo.nick}}回复：</p>',
+				'<p>店主回复：</p>',
 				'<p>{{item.reply.msg}}</p>',
 			'</div>',
 			'{{/if}}',

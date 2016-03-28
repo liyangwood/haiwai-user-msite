@@ -726,4 +726,13 @@
     template.helper('toStorePath', function(id){
         return util.path.store(id);
     });
+
+    template.helper('logoPath', function(item){
+        var logo = item.logo[0].path;
+        if(/^http/.test(logo)){
+            return logo;
+        }
+
+        return KG.config.SiteRoot + logo;
+    });
 })();

@@ -33,7 +33,7 @@ KG.Class.define('HWIndexFocesImage', {
 	},
 	initEnd : function(){
 		this.elem.find('.carousel').carousel({
-			interval: 5000
+			interval: 3000
 		});
 	}
 });

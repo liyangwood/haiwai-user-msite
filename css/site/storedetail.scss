@@ -126,6 +126,7 @@
                 line-height: 48px;
                 color: $color-4a;
                 float: left;
+                font-weight: normal;
             }
 
             b{
@@ -165,7 +166,7 @@
     .hw-left-box{
         width : 750px;
         float: left;
-        margin-top: 20px;
+        margin-top: 5px;
 
         .hw-cp{
             padding: 8px 0;
@@ -207,9 +208,9 @@
             border-bottom: 1px solid #ebebeb;
             position: relative;
             min-height: 114px;
-            padding-left: 110px;
+            padding-left: 137px;
             img{
-                width: 90px;
+                width: 122px;
                 height: 90px;
                 position: absolute;
                 top: 12px;
@@ -246,7 +247,7 @@
     .hw-right-box{
         float: right;
         width: 310px;
-        margin-top: 20px;
+        margin-top: 5px;
 
         .hw-brief{
             font-size: 16px;
@@ -427,7 +428,7 @@
 
             .hw-comp-star{
                 .icon{
-                    font-size: 26px;
+                    font-size: 24px;
                 }
             }
         }

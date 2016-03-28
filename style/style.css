@@ -115,7 +115,7 @@ a:hover, a:link {
   font-size: 16px;
   font-weight: 700;
   padding: 0 15px;
-  border-radius: 2px; }
+  border-radius: 3px; }
   .hw-btn:focus {
     outline: none; }
 
@@ -496,8 +496,6 @@ a:hover, a:link {
     font-size: 20px;
     color: #f4a62a;
     margin-right: 8px; }
-  .hw-comp-star .icon_empty {
-    color: #d8d8d8 !important; }
 
 .hw-HWSelectRegionLocation .hw-btn {
   height: 32px;
@@ -827,7 +825,7 @@ a:hover, a:link {
 .hw-comp-store-list .hw-each {
   border-top: 1px solid #c5c5c5;
   height: 98px;
-  padding-left: 106px;
+  padding-left: 168px;
   padding-right: 100px;
   position: relative;
   display: block; }
@@ -839,7 +837,7 @@ a:hover, a:link {
     font-size: 18px;
     color: #4a4a4a; }
   .hw-comp-store-list .hw-each .hw-img {
-    width: 96px;
+    width: 158px;
     height: 96px;
     position: absolute;
     top: 0;
@@ -1178,10 +1176,10 @@ a:hover, a:link {
     display: inline-block;
     position: relative;
     height: 160px;
-    margin: 0 7px; }
+    margin: 0 10px; }
     .hw-comp-MybizStoreInfoFormStep3 .hw-bigimage .c-box {
-      width: 217px;
-      height: 120px;
+      width: 327px;
+      height: 105px;
       position: relative; }
       .hw-comp-MybizStoreInfoFormStep3 .hw-bigimage .c-box img {
         width: 100%;
@@ -1195,8 +1193,8 @@ a:hover, a:link {
         position: absolute;
         z-index: 2;
         font-size: 78px;
-        top: 20px;
-        left: 76px; }
+        top: 16px;
+        left: 124px; }
       .hw-comp-MybizStoreInfoFormStep3 .hw-bigimage .c-box.active {
         outline: 3px solid #37bccd; }
         .hw-comp-MybizStoreInfoFormStep3 .hw-bigimage .c-box.active .fa {
@@ -1204,7 +1202,7 @@ a:hover, a:link {
     .hw-comp-MybizStoreInfoFormStep3 .hw-bigimage a {
       position: absolute;
       width: 100%;
-      top: 130px;
+      top: 115px;
       left: 0;
       text-align: center;
       color: #4a4a4a;

@@ -519,7 +519,7 @@
                 '<div class="hw-comp-store-list">',
                 '{{each list as item}}',
                 '<div param="item.pk_id" class="hw-each js_each">',
-                '<img class="hw-img" src="{{item.pic | absImage}}" />',
+                '<img class="hw-img" src="{{item | logoPath}}" />',
                 '<h4 style="margin-top: 20px;">{{item.subject}}</h4>',
                 '<p style="color: #9b9b9b;font-size: 14px;margin-top:15px;">{{item.count}}人已经领取</p>',
 
@@ -600,7 +600,7 @@
                 '<div class="hw-comp-store-list">',
                 '{{each list as item}}',
                 '<div class="hw-each">',
-                '<img class="hw-img" src="{{item.pic | absImage}}" />',
+                '<img class="hw-img" src="{{item | logoPath}}" />',
                 '<h4 style="margin-top: 10px;height:20px;">{{item.subject}}</h4>',
                 '<p style="color: #9b9b9b;font-size: 14px;margin-top:10px;">{{item.count}}人已经领取</p>',
                 '<p style="color: #9b9b9b;font-size: 14px;margin-top:5px;">{{item.startTime}} 至 {{item.endTime}}</p>',
@@ -701,7 +701,7 @@
                     '{{each list as item}}',
                     '<div class="hw-each">',
                     '{{if item.logo}}',
-                    '<img class="hw-img" src="{{item.logo | absImage}}" />',
+                    '<img class="hw-img" src="{{item | logoPath}}" />',
                     '{{else}}',
                     '<img class="hw-img" src="',KG.user.get().defaultImage,'" />',
                     '{{/if}}',
@@ -1087,7 +1087,7 @@
                 '{{else if item==="half"}}',
                 '<i index="{{index}}" class="icon fa fa-star-half-o icon_half"></i>',
                 '{{else}}',
-                '<i index="{{index}}" class="icon fa fa-star icon_empty"></i>',
+                '<i index="{{index}}" class="icon fa fa-star-o icon_empty"></i>',
                 '{{/if}}',
                 '{{/each}}'
             ].join('');

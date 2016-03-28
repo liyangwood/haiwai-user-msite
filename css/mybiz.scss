@@ -167,7 +167,7 @@
     .hw-each{
         border-top: 1px solid $border-color;
         height: 98px;
-        padding-left: 106px;
+        padding-left: 168px;
         padding-right: 100px;
         position: relative;
 		display: block;
@@ -188,7 +188,7 @@
 		}
 
         .hw-img{
-            width: 96px;
+            width: 158px;
             height: 96px;
             position: absolute;
             top: 0;
@@ -662,11 +662,11 @@
         display: inline-block;
         position: relative;
         height: 160px;
-        margin: 0 7px;
+        margin: 0 10px;
 
         .c-box{
-            width: 217px;
-            height: 120px;
+            width: 327px;
+            height: 105px;
             //border: 3px solid transparent;
             position: relative;
             
@@ -684,8 +684,8 @@
                 position: absolute;
                 z-index: 2;
                 font-size: 78px;
-                top: 20px;
-                left: 76px;
+                top: 16px;
+                left: 124px;
             }
 
             &.active{
@@ -704,7 +704,7 @@
         a{
             position: absolute;
             width: 100%;
-            top: 130px;
+            top: 115px;
             left: 0;
             text-align: center;
             color: $color-4a;
