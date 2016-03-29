@@ -349,3 +349,18 @@ a:hover, a:link{
         }
     }
 }
+
+.hw-center-image{
+    overflow: hidden;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+
+    img{
+        width: 100%;
+        max-height: inherit;
+    }
+}

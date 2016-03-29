@@ -250,6 +250,18 @@ a:hover, a:link {
         color: #37bccd;
         cursor: pointer; }
 
+.hw-center-image {
+  overflow: hidden;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  -webkit-justify-content: center; }
+  .hw-center-image img {
+    width: 100%;
+    max-height: inherit; }
+
 .icon {
   display: inline-block; }
 
@@ -352,7 +364,7 @@ a:hover, a:link {
         color: #ffffff; }
 
 .kg-header-nav-comp {
-  background: #37bccd;
+  background: #00a7bc;
   height: 40px; }
   .kg-header-nav-comp .nav {
     width: 128px;
@@ -362,6 +374,11 @@ a:hover, a:link {
     font-size: 16px;
     display: inline-block; }
   .kg-header-nav-comp .nav.active, .kg-header-nav-comp .nav:hover {
+    background: #37bccd; }
+
+.kg-site-header-nav-comp {
+  background: #37bccd; }
+  .kg-site-header-nav-comp .nav.active .nav:hover {
     background: #00a7bc; }
 
 .hw-footer-comp {
@@ -1369,7 +1386,9 @@ body {
     position: absolute;
     width: 100%;
     left: 0;
-    bottom: 36px; }
+    top: 228px;
+    padding: 0 15px;
+    margin: 0; }
 .hw-HWSiteCouponListPage .hw-cpage {
   margin-top: 24px;
   background: #ffffff;
@@ -1646,7 +1665,7 @@ body {
     margin-top: -1px;
     cursor: pointer;
     display: block; }
-    .hw-HWSiteArticleListPage .hw-one img {
+    .hw-HWSiteArticleListPage .hw-one .hw-img {
       position: absolute;
       width: 148px;
       height: 108px;
@@ -1787,7 +1806,8 @@ body {
       font-size: 12px;
       margin-top: 4px; }
   .hw-SiteArticleDetailPage .hw-article {
-    padding: 36px 0 60px; }
+    padding: 36px 0 60px;
+    line-height: 22px; }
     .hw-SiteArticleDetailPage .hw-article p {
       font-size: 14px;
       line-height: 22px;

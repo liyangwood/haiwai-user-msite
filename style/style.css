@@ -251,6 +251,18 @@ a:hover, a:link {
         color: #37bccd;
         cursor: pointer; }
 
+.hw-center-image {
+  overflow: hidden;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  -webkit-justify-content: center; }
+  .hw-center-image img {
+    width: 100%;
+    max-height: inherit; }
+
 .icon {
   display: inline-block; }
 
@@ -353,7 +365,7 @@ a:hover, a:link {
         color: #ffffff; }
 
 .kg-header-nav-comp {
-  background: #37bccd;
+  background: #00a7bc;
   height: 40px; }
   .kg-header-nav-comp .nav {
     width: 128px;
@@ -363,6 +375,11 @@ a:hover, a:link {
     font-size: 16px;
     display: inline-block; }
   .kg-header-nav-comp .nav.active, .kg-header-nav-comp .nav:hover {
+    background: #37bccd; }
+
+.kg-site-header-nav-comp {
+  background: #37bccd; }
+  .kg-site-header-nav-comp .nav.active .nav:hover {
     background: #00a7bc; }
 
 .hw-footer-comp {
@@ -1076,6 +1093,20 @@ a:hover, a:link {
     width: 185px;
     display: inline-block;
     margin-left: 22px; }
+    .hw-comp-MybizStoreInfoFormStep1 .hw-inline select {
+      width: 100%;
+      display: inline-block;
+      line-height: 40px;
+      height: 40px;
+      padding-left: 8px;
+      border: 1px solid #ccc;
+      background: url(../image/arrow_down.png) right no-repeat #fff;
+      -webkit-appearance: none;
+      border-radius: 0;
+      margin: 2px 0 0 0;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
   .hw-comp-MybizStoreInfoFormStep1 .hw-tagbox label {
     width: 120px;
     font-size: 14px;

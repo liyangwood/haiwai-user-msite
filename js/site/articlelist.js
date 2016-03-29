@@ -120,7 +120,7 @@ KG.Class.define('HWSiteArticleListPage', {
         return [
             '{{each list as item}}',
             '<a target="_blank" href="../view/article.html?id={{item.id}}" class="hw-one">',
-            '<img src="{{item.pic | absImage}}" />',
+            '<div class="hw-img hw-center-image"><img src="{{item | logoPath}}" /></div>',
             '<h4>{{item.title}}</h4>',
             '<h6>{{item.description}}</h6>',
             '<p>',

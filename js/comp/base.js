@@ -700,14 +700,13 @@
                     '<div class="hw-comp-store-list panel-body">',
                     '{{each list as item}}',
                     '<div style="padding-left:145px;" class="hw-each">',
-                    '{{if item.logo}}',
-                    '<img style="width:130px;" class="hw-img" src="{{item | logoPath}}" />',
-                    '{{else}}',
-                    '<img class="hw-img" src="',KG.user.get().defaultImage,'" />',
-                    '{{/if}}',
+
+                    '<div class="hw-img hw-center-image" style="width:130px;"><img src="{{item | logoPath}}"/></div>',
+
                     '<a class="hw-link" target="_blank" style="margin-top:20px;"' +
                     ' href="{{item.link}}">{{item.title}}</a>',
-                    '<p style="color: #9b9b9b;font-size: 14px;margin-top:20px;">发表于{{item.dateline | formatDate}}</p>',
+                    '<p style="color: #9b9b9b;font-size: 14px;margin-top:20px;">发表于{{item.dateline |' +
+                    ' formatDate:"yy年mm月dd日"}}</p>',
 
                     '<div class="r">',
                         '<a class="hw-a" href="editArticle.html?id={{item.id}}">编辑</a>',

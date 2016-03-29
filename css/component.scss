@@ -144,7 +144,7 @@
 }
 
 .kg-header-nav-comp{
-	background : #37bccd;
+	background : #00a7bc;
 	height: 40px;
 
 	.nav{
@@ -156,7 +156,14 @@
 		display: inline-block;
 	}
 	.nav.active, .nav:hover{
-		background: #00a7bc;
+		background: #37bccd;
+	}
+}
+.kg-site-header-nav-comp{
+	background: #37bccd;
+
+	.nav.active .nav:hover{
+		background : #00a7bc;
 	}
 }
 

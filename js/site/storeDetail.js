@@ -678,7 +678,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				'<div role="StarRank" data-rank={{item.star}}></div>',
 				'<span>{{item.datetime | formatDate:"mm/dd/yy"}}</span>',
 			'</div>',
-			'<p class="r hw-msg">{{item.msg}}</p>',
+			'<p class="r hw-msg">{{item.msgbody}}</p>',
 			'<p class="r hw-action">',
 				'{{if role=="admin"}}<span param="{{item.id}}" nick="{{item.userinfo.nick}}"' +
 				' class="js_rp">回复</span>{{/if}}',
@@ -690,7 +690,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			'<div class="c-rp">',
 				'<img src="{{item.reply.userinfo.avatar_url | absImage}}" />',
 				'<p>店主回复：</p>',
-				'<p>{{item.reply.msg}}</p>',
+				'<p>{{item.reply.msgbody}}</p>',
 			'</div>',
 			'{{/if}}',
 

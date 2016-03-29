@@ -14,7 +14,7 @@
                         '海外最大的媒体平台帮你直达400万华人',
                     '</p>',
 
-                    '{{if isLogin}}',
+                    '{{if false}}',
                     '<img src="{{user.image}}" class="hw-img" />',
                     '{{else}}',
                     '<img src="../../image/haiwai1.png" class="hw-img" />',
@@ -161,6 +161,58 @@
                     '</div></div>',
                 '</div>'
             ].join('');
+        }
+    });
+
+    KG.Class.define('HWLandingPageHeader', {
+        ParentClass : 'BaseComponent',
+        getTemplate : function(){
+            return [
+                '<nav class="kg-header-comp">',
+                    '<div class="container" id="js_header_comp">',
+
+                    '<a class="logo" href="/"></a>',
+
+                    '<h1 style="font-weight:400;font-size: 36px;color: #f4a62a;line-height: 50px;margin-left:' +
+                    ' 120px;">商家中心</h1>',
+
+                '{{if user.isLogin}}',
+                '<div class="right">',
+
+                '<div class="dropdown" style="margin-right: 40px;">',
+                '<button id="js_right_dd_1" type="button" data-toggle="dropdown" aria-haspopup="true"' +
+                ' aria-expanded="false">',
+                '<img src="../../image/aa.png" />',
+                '</button>',
+                '<div class="dropdown-menu" aria-labelledby="js_right_dd_1">',
+                '<a href="../mybiz/index.html">我的店铺</a>',
+                '<a href="../mybiz/coupon.html">店铺优惠</a>',
+                '<a href="../mybiz/article.html">店铺文章</a>',
+                '</div>',
+                '</div>',
+
+                '<div class="dropdown">',
+                '<button id="js_right_dd_2" class="c2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
+                '<img src="{{user.image}}" />',
+                '</button>',
+                '<div class="dropdown-menu" aria-labelledby="js_right_dd_2">',
+                '<a href="../myfav/list.html">我的收藏</a>',
+                '<a href="../mycoupon/list.html">我的优惠</a>',
+                '<a href="../mysys/index.html">系统消息</a>',
+                '<a href="../mycount/info.html">账户设置</a>',
+                //'<a class="js_logout" href="javascript:void(0)">退出登录</a>',
+                '</div>',
+                '</div>',
+                '{{/if}}',
+
+                    '</div><!-- /.container-fluid -->',
+                '</nav>'
+            ].join('');
+        },
+        getData : function(box, data, next){
+            next({
+                user : KG.user.get()
+            });
         }
     });
 

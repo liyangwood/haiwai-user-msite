@@ -26,7 +26,7 @@
 
                     '{{if bizInfo}}',
                     '<a class="hw-biz" href="{{bizInfo.entityID | toStorePath}}" style="display: block;">',
-                        '<img src="{{bizInfo.logo | absImage}}" />',
+                        '<img src="{{bizInfo | logoPath}}" />',
                         '<h6>{{bizInfo.name_cn}}</h6>',
                         '<p class="hw-p">{{bizInfo | storeFullAddress}}</p>',
                     '</a>',

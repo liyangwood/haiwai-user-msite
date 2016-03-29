@@ -521,6 +521,22 @@
 		width: 185px;
 		display: inline-block;
 		margin-left: 22px;
+
+		select{
+			width: 100%;
+			display: inline-block;
+			line-height: 40px;
+			height: 40px;
+			padding-left: 8px;
+			border: 1px solid #ccc;
+			background: url(../image/arrow_down.png) right no-repeat #fff;
+			-webkit-appearance: none;
+			border-radius: 0;
+			margin: 2px 0 0 0;
+			-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+			-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+			box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+		}
 	}
 
 	.hw-tagbox{

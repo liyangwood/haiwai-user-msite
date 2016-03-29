@@ -315,7 +315,17 @@ KG.Class.define('MybizStoreInfoFormStep1', {
 
             '<div {{if biz}}data-value="{{biz.zip}}"{{/if}} style="margin-left: 0;" class="js_zip hw-inline" role="BaseInput" data-require="true" data-label="邮编" placeholder="e.g. 94536"></div>',
             '<div {{if biz}}data-value="{{biz.city}}"{{/if}} class="js_city hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="城市"></div>',
-            '<div {{if biz}}data-value="{{biz.state}}"{{/if}} class="js_state hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="州/省"></div>',
+            //'<div {{if biz}}data-value="{{biz.state}}"{{/if}} class="js_state hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="州/省"></div>',
+
+            '<div class="hw-inline form-group">',
+                '<label class="require">州/省</label>',
+                '<select class="js_state hw-inline">',
+                '{{each stateList as item}}',
+                '<option value="{{item}}">{{item}}</option>',
+                '{{/each}}',
+                '</select>',
+            '</div>',
+
 
             '<div class="js_wktime" role="MybizStoreInputDatepicker"></div>',
 
@@ -364,7 +374,8 @@ KG.Class.define('MybizStoreInfoFormStep1', {
                 catList : catList,
                 biz : bizInfo || false,
                 type : self.type,
-                btnText : self.type==='create'?'下一步':'保存'
+                btnText : self.type==='create'?'下一步':'保存',
+                stateList : self.stateList
             });
         });
 
@@ -376,6 +387,17 @@ KG.Class.define('MybizStoreInfoFormStep1', {
         };
     },
 
+    initStart : function(){
+        this.stateList = [
+            'AB', "BC", "MB" ,"NB" ,"NL", "NS", "NT",
+            "NU", "ON", "PE", "QC","SK","YT","AL","AK","AZ","AR","CA","CO","CT",
+            "DE","DC","FL","GA","HI","ID","IL","IN","IA","KS",
+            "KY","LA","ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH",
+            "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI",
+            "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"
+        ];
+    },
+
     getElemObj : function(){
         return {
             name : KG.component.getObj(this.elem.find('.js_name')),
@@ -383,7 +405,7 @@ KG.Class.define('MybizStoreInfoFormStep1', {
             address : KG.component.getObj(this.elem.find('.js_address')),
             zip : KG.component.getObj(this.elem.find('.js_zip')),
             city : KG.component.getObj(this.elem.find('.js_city')),
-            state : KG.component.getObj(this.elem.find('.js_state')),
+            state : this.elem.find('.js_state'),
             timeinfo : KG.component.getObj(this.elem.find('.js_wktime'))
         };
     },
@@ -397,7 +419,7 @@ KG.Class.define('MybizStoreInfoFormStep1', {
             zip : jq.zip.getValue(),
             address : jq.address.getValue(),
             city : jq.city.getValue(),
-            state : jq.state.getValue(),
+            state : jq.state.val().toUpperCase(),
             tags : this.getTagBoxValue()
         };
 
@@ -462,14 +484,6 @@ KG.Class.define('MybizStoreInfoFormStep1', {
             jq.city.showError();
         }
 
-        if(!data.state){
-            jq.state.showError('请输入州省');
-            jq.state.focus();
-            return false;
-        }
-        else{
-            jq.state.showError();
-        }
 
         return true;
     },
@@ -545,6 +559,8 @@ KG.Class.define('MybizStoreInfoFormStep1', {
                     self.jq.tagBox.find('[uid="'+one.pk_id+'"]').attr('checked', true);
                 });
             });
+
+            this.elem.find('.js_state').val(this.data.biz.state.toUpperCase());
 
 
             this.getElemObj().timeinfo.setValue(this.data.biz.timeinfo.unformat);
