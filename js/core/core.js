@@ -31,7 +31,9 @@
 
     KG.default = {
         BizBigBgPic : '../../image/default_bg_pic.png',
-        articleImage : 'http://beta.haiwai.com/images/lifetools_default_article.png'
+        articleImage : KG.config.SiteRoot+'/images/lifetools_default_article.png',
+        couponImage : KG.config.SiteRoot+'/images/default_event_logo.png',
+        storeImage : '../../image/image/store_default.png'
     };
 
     var user = {

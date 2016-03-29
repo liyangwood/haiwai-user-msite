@@ -888,17 +888,19 @@ a:hover, a:link {
       width: 60%;
       height: 60%;
       margin: 20%; }
+  .hw-MybizCreateNewStore .hw-img.article {
+    width: 130px; }
+    .hw-MybizCreateNewStore .hw-img.article img {
+      width: 100%;
+      height: 100%;
+      margin: 0; }
   .hw-MybizCreateNewStore .hw-img.coupon {
     width: 158px;
     text-align: center; }
     .hw-MybizCreateNewStore .hw-img.coupon img {
-      width: 46px;
-      height: 46px;
-      margin: 25px auto; }
-  .hw-MybizCreateNewStore .hw-img.article img {
-    width: 50%;
-    height: 50%;
-    margin: 25%; }
+      width: 100%;
+      height: 100%;
+      margin: 0; }
   .hw-MybizCreateNewStore i {
     font-size: 80px;
     color: #7d7d7d;

@@ -668,16 +668,16 @@
         ParentClass : 'BaseComponent',
         getTemplate : function(){
             var info = {
-                'store' : ['添加新店铺', 'store_default.png', 'createStore.html'],
-                'coupon' : ['添加新优惠', 'coupon_default.png', 'createCoupon.html'],
-                'article' : ['添加新文章', 'article_default.png' ,'createArticle.html']
+                'store' : ['添加新店铺', KG.default.storeImage, 'createStore.html'],
+                'coupon' : ['添加新优惠', KG.default.couponImage, 'createCoupon.html'],
+                'article' : ['添加新文章', KG.default.articleImage, 'createArticle.html']
             };
 
             var type = this.box.data('type');
 
             return [
                 '<a class="hw-MybizCreateNewStore" href="'+info[type][2]+'">',
-                    '<div class="hw-img '+type+'"><img src="../../image/'+info[type][1]+'" /></div>',
+                    '<div class="hw-img '+type+'"><img src="'+info[type][1]+'" /></div>',
 
                     '<i class="icon">＋</i>',
                     '<b>',info[type][0],'</b>',
@@ -699,9 +699,9 @@
                     '</div>',
                     '<div class="hw-comp-store-list panel-body">',
                     '{{each list as item}}',
-                    '<div class="hw-each">',
+                    '<div style="padding-left:145px;" class="hw-each">',
                     '{{if item.logo}}',
-                    '<img class="hw-img" src="{{item | logoPath}}" />',
+                    '<img style="width:130px;" class="hw-img" src="{{item | logoPath}}" />',
                     '{{else}}',
                     '<img class="hw-img" src="',KG.user.get().defaultImage,'" />',
                     '{{/if}}',
