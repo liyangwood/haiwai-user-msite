@@ -622,16 +622,11 @@ a:hover, a:link {
   margin-right: 8px;
   cursor: pointer;
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
   background: #f7f7f7;
   vertical-align: top;
   text-align: center;
   overflow: hidden;
   margin-bottom: 8px; }
-  .hw-dialog-imglist .img-item img {
-    max-width: 100%;
-    margin: auto; }
 
 .hw-carousel .modal-dialog {
   width: 742px; }

@@ -1307,7 +1307,7 @@ KG.Class.define('MybizStoreInfoFormStep3', {
             '<div class="hw-upload js_logo" data-biztype="tmp" init-self="true" data-bizid="{{tmpId}}"' +
             ' role="UploadStoreImage"></div>',
             '{{else}}',
-            '<div class="hw-upload js_logo" init-self="true" data-image="{{logo}}" data-biztype="biz" data-bizid="{{bizId}}" role="UploadStoreImage"></div>',
+            '<div class="hw-upload js_logo" init-self="true" data-image="{{biz | logoPath}}" data-biztype="biz" data-bizid="{{bizId}}" role="UploadStoreImage"></div>',
             '{{/if}}',
             '</div>',
 
@@ -1368,10 +1368,7 @@ KG.Class.define('MybizStoreInfoFormStep3', {
             KG.request.getBizDetailById({
                 bizId : KG.data.get('id')
             }, function(flag, json){
-                var logo = null;
-                if(json.logo){
-                    logo = KG.config.SiteRoot+json.logo.path;
-                }
+
 
                 KG.request.getStoreBigBackgroundPic({
                     mainTagId : json.fk_main_tag_id
@@ -1390,7 +1387,6 @@ KG.Class.define('MybizStoreInfoFormStep3', {
                         backLink : null,
                         tagId : tagId,
                         biz : json,
-                        logo : logo,
                         btnText : '保存'
                     });
                 });

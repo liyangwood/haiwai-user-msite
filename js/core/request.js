@@ -656,8 +656,10 @@ KG.request = {
     getUserArticleAndCouponList : function(opts, success, error){
         var data = {
             func : 'passport',
-            act : 'get_article_event'
+            act : 'get_article_event',
+            lastid_article : opts.lastid_article
         };
+
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
     },

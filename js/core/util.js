@@ -359,7 +359,7 @@
             var h = [
                 '<div class="js_box">',
                     '{{each list as item index}}',
-                    '<div param="{{index}}" class="img-item"><img src="{{item}}" /></div>',
+                    '<div role="BaseLoadingImageBox" param="{{index}}" data-url="{{item}}" class="img-item"></div>',
                     '{{/each}}',
                 '</div>'
             ].join('');
@@ -375,6 +375,7 @@
 
 
             var obj = util.dialog.get();
+            KG.component.init(obj.find('.js_box'));
             obj.find('.js_box').on('click', '.img-item', function(){
                 var index = $(this).attr('param');
                 clickFn(index);

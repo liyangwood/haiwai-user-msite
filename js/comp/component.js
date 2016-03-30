@@ -153,6 +153,99 @@ KG.Class.define('BaseUploadImage', {
 	}
 });
 
+KG.Class.define('StarRank', {
+	ParentClass : 'BaseComponent',
+	getTemplate : function(){
+		return [
+			'<div class="hw-comp-star">',
+
+			'</div>'
+		].join('');
+	},
+	initStart : function(){
+		this.rank = 0;
+		this.enableClick = false;
+	},
+	getData : function(box, data, next){
+		this.rank = parseFloat(box.data('rank')) || 0;
+		if(box.data('enable')){
+			this.enableClick = true;
+		}
+		next({});
+	},
+
+	render : function(){
+		var rank = this.rank;
+
+		var list = [];
+		for(var i= 1; i<6; i++){
+			if(i<rank){
+				list.push('full');
+			}
+			else if(i === rank){
+				list.push('full');
+			}
+			else{
+				if(i === rank+0.5){
+					list.push('half');
+				}
+				else{
+					list.push('empty');
+				}
+
+			}
+		}
+
+		var h = [
+			'{{each list as item index}}',
+			'{{if item==="full"}}',
+			'<i index="{{index}}" class="icon fa fa-star icon_full"></i>',
+			'{{else if item==="half"}}',
+			'<i index="{{index}}" class="icon fa fa-star-half-o icon_half"></i>',
+			'{{else}}',
+			'<i index="{{index}}" class="icon fa fa-star-o icon_empty"></i>',
+			'{{/if}}',
+			'{{/each}}'
+		].join('');
+		h = template.compile(h)({list : list});
+		this.elem.html(h);
+	},
+	setValue : function(v){
+		this.rank = v;
+		this.render();
+	},
+
+	getValue : function(){
+		return this.rank;
+	},
+	initEnd : function(){
+		this.render();
+	},
+	initEvent : function(){
+		var self = this;
+		if(this.enableClick){
+			this.elem.on('click', 'i.fa', function(e){
+				var o = $(e.target);
+				var i = o.attr('index');
+				if(o.hasClass('icon_empty')){
+					self.rank = parseFloat(i)+0.5;
+				}
+				else if(o.hasClass('icon_full')){
+					self.rank = parseInt(i, 10);
+				}
+				else if(o.hasClass('icon_half')){
+					self.rank = parseInt(i, 10)+1;
+				}
+
+				if(self.rank === 0){
+					self.rank = 0.5;
+				}
+
+				self.render();
+			}).addClass('hand');
+		}
+	}
+});
 
 KG.Class.define('BaseSelectInput', {
 	ParentClass : 'BaseInput',

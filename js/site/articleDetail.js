@@ -116,11 +116,11 @@ console.log(rs.view.msgbody)
             var h = [
                 '{{each list as item}}',
                 '<a class="hw-one" style="display: block" href="article.html?id={{item.id}}">',
-                '<img src="{{item.pic | absImage}}" />',
+                '<div class="hw-img" role="BaseLoadingImageBox" data-url="{{item.pic | absImage}}"></div>',
                 '<h4>{{item.title}}</h4>',
 
                 '<div param="{{bizInfo.entityID | toStorePath}}" class="hw-biz">',
-                '<img src="{{bizInfo.logo | absImage}}" />',
+                '<img src="{{bizInfo | logoPath}}" />',
                 '<h6>{{bizInfo.name_cn}}</h6>',
                 '<p class="hw-p">{{bizInfo | storeFullAddress}}</p>',
                 '</div>',
@@ -143,6 +143,7 @@ console.log(rs.view.msgbody)
             });
 
             this.elem.find('.js_box').html(h);
+            KG.component.init(this.elem.find('.js_box'));
 
             if(list.length > 0){
                 this.elem.removeClass('no_dis');

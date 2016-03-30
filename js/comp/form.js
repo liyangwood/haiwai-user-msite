@@ -255,6 +255,11 @@ KG.Class.define('MybizArticleForm', {
 
 
         c.title.setValue(data.title);
+
+        try{
+            data.msgbody = decodeURIComponent(data.msgbody);
+        }catch(e){}
+
         this.ck.setData(data.msgbody);
     }
 });
@@ -353,6 +358,7 @@ KG.Class.define('MybizUploadCouponImage', {
     },
 
     deleteImage : function(o){
+        var self = this;
         var img = o.closest('.js_img');
         var len;
         if(this.type === 'create'){
@@ -369,9 +375,9 @@ KG.Class.define('MybizUploadCouponImage', {
             }, function(flag, rs){
                 if(flag){
                     img.remove();
-                    len = this.getImageList().length;
+                    len = self.getImageList().length;
                     if(len < 3){
-                        this.jq.add.show();
+                        self.jq.add.show();
                     }
                 }
             });
@@ -401,8 +407,8 @@ KG.Class.define('MybizUploadCouponImage', {
                 id : util.url.param('id')
             }, function(flag, rs){
                 if(flag){
-                    var url = KG.config.SiteRoot+rs.path;
-                    callback(url, rs.pk_id||rs);
+                    var url = KG.config.SiteRoot+rs[0].path;
+                    callback(url, rs[0].file_id);
                 }
             });
         });
