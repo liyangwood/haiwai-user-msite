@@ -273,6 +273,7 @@ KG.Class.define('BaseLoadingImageBox', {
 		}
 		this.elem.empty();
 		var h = '<img style="'+sy+'" src="'+url+'" />';
-		this.elem.html(h).addClass('hw-flex-start-image');
+		//this.elem.html(h).addClass('hw-flex-start-image');
+		this.elem.html(h);
 	}
 });

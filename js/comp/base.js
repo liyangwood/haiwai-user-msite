@@ -515,12 +515,15 @@
 
     KG.Class.define('MybizRunningCouponList', {
         ParentClass : 'BaseComponent',
+        initStart : function(){
+            this.lastid = null;
+        },
         getTemplate : function(){
             return [
                 '<div class="hw-comp-store-list">',
                 '{{each list as item}}',
                 '<div param="item.pk_id" class="hw-each js_each">',
-                '<img class="hw-img" src="{{item | logoPath}}" />',
+                '<div class="hw-center-image hw-img"><img style="height:auto;" src="{{item | logoPath}}" /></div>',
                 '<h4 style="margin-top: 20px;">{{item.subject}}</h4>',
                 '<p style="color: #9b9b9b;font-size: 14px;margin-top:15px;">{{item.count}}人已经领取</p>',
 
@@ -559,18 +562,18 @@
                     list = rs;
                 }
 
-                var runningList = [],
-                    stopList = [];
-                util.each(list, function(item){
-                    if(item.visible === '1'){
-                        runningList.push(item);
-                    }
-                    else{
-                        stopList.push(item);
-                    }
-                });
+                //var runningList = [],
+                //    stopList = [];
+                //util.each(list, function(item){
+                //    if(item.visible === '1'){
+                //        runningList.push(item);
+                //    }
+                //    else{
+                //        stopList.push(item);
+                //    }
+                //});
 
-                if(runningList.length < 1){
+                if(list.length < 1){
                     util.dialog.confirm1({
                         msg : '您还没有创建店铺，请先建店！',
                         YesText : '立即建店',
@@ -601,7 +604,7 @@
                 '<div class="hw-comp-store-list">',
                 '{{each list as item}}',
                 '<div class="hw-each">',
-                '<img class="hw-img" src="{{item | logoPath}}" />',
+                '<div class="hw-center-image hw-img"><img style="height:auto;" src="{{item | logoPath}}" /></div>',
                 '<h4 style="margin-top: 10px;height:20px;">{{item.subject}}</h4>',
                 '<p style="color: #9b9b9b;font-size: 14px;margin-top:10px;">{{item.count}}人已经领取</p>',
                 '<p style="color: #9b9b9b;font-size: 14px;margin-top:5px;">{{item.startTime}} 至 {{item.endTime}}</p>',
