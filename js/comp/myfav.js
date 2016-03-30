@@ -11,11 +11,15 @@
         getTemplate : function(){
 
             return [
-                '<div style="height: 200px;" class="hw-MybizLeftUserNav">',
-                '<a class="hw-img" href=""><img src="{{user.image}}" /></a>',
-                '<span class="hw-email">{{user.email}}</span>',
+                '<div style="height: auto;" class="hw-MybizLeftUserNav">',
+                '<a class="hw-img" href="javascript:void(0)"><img src="{{user.image}}" /></a>',
+                '<span class="hw-email">{{user.email}}<a href="../mycount/info.html">[账户设置]</a></span>',
 
-                '<a href="javascript:void(0)" class="hw-a js_{{page}}" style="margin-top: 24px;">{{dir}}</a>',
+
+                //'<a href="javascript:void(0)" class="hw-a js_{{page}}" style="margin-top: 24px;">{{dir}}</a>',
+                '<a href="../myfav/list.html" class="hw-a js_myfav" style="margin-top:24px;">我的收藏</a>',
+                '<a href="../mycoupon/list.html" class="hw-a js_mycoupon">我的领取</a>',
+                '<a href="../mysys/index.html" class="hw-a js_mysys">系统消息</a>',
                 '</div>'
             ].join('');
         },
@@ -23,19 +27,13 @@
             var user = KG.user.get();
 
             var page = KG.data.get('page').split('-');
-            var p1 = page[0];
 
-            page = page[1] || '';
+            page = page[0] || '';
 
-            p1 = {
-                myfav : '收藏店铺',
-                mycoupon : '我的优惠',
-                mysys : '系统消息'
-            }[p1];
+
             callback({
                 user : user,
-                page : page,
-                dir : p1
+                page : page
             });
         },
 

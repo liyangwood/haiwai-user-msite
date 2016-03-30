@@ -91,13 +91,13 @@ KG.Class.define('MybizLeftUserNav', {
     getTemplate : function(){
 
         return [
-            '<div class="hw-MybizLeftUserNav">',
-            '<a class="hw-img" href=""><img src="{{user.image}}" /></a>',
-            '<span class="hw-email">{{user.email}}</span>',
+            '<div class="hw-MybizLeftUserNav" style="height: auto;">',
+            //'<a class="hw-img" href=""><img src="{{user.image}}" /></a>',
+            //'<span class="hw-email">{{user.email}}</span>',
 
-            '<a href="index.html" class="hw-a js_index" style="margin-top: 24px;">我的店铺</a>',
-            '<a href="coupon.html" class="hw-a js_coupon">店铺优惠</a>',
-            '<a href="article.html" class="hw-a js_article">店铺文章</a>',
+                '<a href="index.html" class="hw-a js_index">管理店铺</a>',
+                '<a href="coupon.html" class="hw-a js_coupon">发布优惠</a>',
+                '<a href="article.html" class="hw-a js_article">发布文章</a>',
             '</div>'
         ].join('');
     },

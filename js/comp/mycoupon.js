@@ -43,8 +43,8 @@
                     '{{if !item.active_time}}',
                         '<b class="hw-a js_del" param="{{item.pk_id}}" style="margin-top: 48px;">删除</b>',
                     '{{else}}',
-                        '<b class="hw-a js_sendphone" param="{{item.pk_id}}" style="margin-top: 18px;">发送短信至手机</b>',
-                        '<b class="hw-a js_share" param="{{item.pk_id}}">分享</b>',
+                        //'<b class="hw-a js_sendphone" param="{{item.pk_id}}" style="margin-top: 18px;">发送短信至手机</b>',
+                        '<b style="margin-top:35px;" class="hw-a js_share" param="{{item.pk_id}}">分享</b>',
                         '<b class="hw-a js_del" param="{{item.pk_id}}">删除</b>',
 
                     '{{/if}}',

@@ -554,16 +554,16 @@ KG.Class.define('MybizCouponForm', {
             c.title.showError();
         }
 
-        if(this.prop.type === 'create'){
-            if(data.startDate && moment(data.startDate).isBefore(moment(new Date()), 'day')){
-                this.jq.startDate.parent('div.form-group').addClass('has-error').find('.hw-err').html('开始时间不能早于当前时间');
-                this.jq.startDate.focus();
-                return false;
-            }
-            else{
-                this.jq.startDate.parent('div.form-group').removeClass('has-error').find('.hw-err').html('');
-            }
+
+        if(!data.startDate){
+            this.jq.startDate.parent('div.form-group').addClass('has-error').find('.hw-err').html('请选择开始时间');
+            this.jq.startDate.focus();
+            return false;
         }
+        else{
+            this.jq.startDate.parent('div.form-group').removeClass('has-error').find('.hw-err').html('');
+        }
+
 
 
         if(!data.endDate){
@@ -581,9 +581,16 @@ KG.Class.define('MybizCouponForm', {
             this.jq.endDate.focus();
             return false;
         }
+        else if(data.endDate!=='unlimit'&&moment(data.endDate).isBefore(moment(new Date()), 'day')){
+            this.jq.endDate.parent('div.form-group').addClass('has-error').find('.hw-err').html('结束时间不能早于当前时间');
+            this.jq.endDate.focus();
+            return false;
+        }
         else{
             this.jq.endDate.parent('div.form-group').removeClass('has-error').find('.hw-err').html('');
         }
+
+
 
 
         if(!data.description){

@@ -308,7 +308,8 @@ KG.request = {
     getMycouponList : function(opts, success, error){
         var data = {
             func : 'event',
-            act : 'bookmark'
+            act : 'bookmark',
+            is_active : '1'
         };
         util.addUserIdToRequestData(data);
 
@@ -670,9 +671,11 @@ KG.request = {
         var data = {
             func : 'event',
             act : 'list',
-            lastid : opts.lastid,
-            is_active : opts.is_active || 'all'
+            lastid : opts.lastid
         };
+        if(opts.is_active){
+            data.is_active = opts.is_active;
+        }
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
     },

@@ -550,6 +550,10 @@ $(function(){
             util.showPageLoading(false);
             if(flag){
                 KG.user.getUserDetailWithToken(rs, function(user){
+                    if(user.email){
+                        location.href = '../site/index.html';
+                        return false;
+                    }
                     util.toast.alert('登录成功，请补充资料');
                     _.delay(function(){
                         location.href = '../mycount/info.html';

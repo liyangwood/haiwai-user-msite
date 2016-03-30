@@ -762,8 +762,9 @@ a:hover, a:link {
     padding-top: 15px;
     font-weight: 700;
     height: 80px; }
-  .hw-mybiz-index .hw-panel .panel-heading, .hw-mybiz-coupon .hw-panel .panel-heading {
-    border-bottom: 1px solid #c5c5c5; }
+
+.hw-panel .panel-heading {
+  border-bottom: 1px solid #c5c5c5; }
 
 /* biz comp */
 .hw-MybizLeftUserNav {
@@ -782,7 +783,15 @@ a:hover, a:link {
     display: block;
     line-height: 16px;
     font-size: 12px;
-    margin: 10px auto; }
+    margin: 10px auto;
+    padding: 0 15px; }
+    .hw-MybizLeftUserNav .hw-email a {
+      display: inline;
+      font-size: 12px;
+      color: #7d7d7d;
+      margin-left: 5px; }
+      .hw-MybizLeftUserNav .hw-email a:hover {
+        color: #37bccd; }
   .hw-MybizLeftUserNav .hw-a {
     display: block;
     height: 50px;
@@ -791,7 +800,7 @@ a:hover, a:link {
     font-size: 18px;
     color: #777;
     border-left: 4px solid #f7f7f7;
-    font-weight: 700; }
+    font-weight: 400; }
     .hw-MybizLeftUserNav .hw-a.active {
       border-left: 4px solid #37bccd;
       color: #37bccd; }
