@@ -17,6 +17,12 @@
         font-weight: 700;
         height: 80px;
     }
+
+	.hw-panel{
+		.panel-heading{
+			border-bottom: 1px solid $border-color;
+		}
+	}
 }
 
 
@@ -165,12 +171,13 @@
 .hw-comp-store-list{
 
     .hw-each{
-        border-top: 1px solid $border-color;
+        border-bottom: 1px solid $border-color;
         height: 98px;
         padding-left: 168px;
         padding-right: 100px;
         position: relative;
 		display: block;
+
 
 		&:hover{
 			

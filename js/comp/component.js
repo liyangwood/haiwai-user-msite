@@ -240,7 +240,7 @@ KG.Class.define('BaseSelectInput', {
 });
 
 KG.Class.define('BaseLoadingImageBox', {
-	ParentClass : 'BaseInput',
+	ParentClass : 'BaseComponent',
 	getTemplate : function(){
 		return [
 			'<div class="hw-comp-BaseLoadingImageBox hw-center-image">',
@@ -275,5 +275,51 @@ KG.Class.define('BaseLoadingImageBox', {
 		var h = '<img style="'+sy+'" src="'+url+'" />';
 		//this.elem.html(h).addClass('hw-flex-start-image');
 		this.elem.html(h);
+	}
+});
+
+KG.Class.define('BaseLoadingMoreStatusBar', {
+	ParentClass : 'BaseComponent',
+	getTemplate : function(){
+		return [
+			'<nav class="hw-comp-BaseLoadingMoreStatusBar">',
+				'<i class="loading" style="display: none;"></i>',
+				'<b class="js_more">加载更多</b>',
+			'</nav>'
+		].join('');
+	},
+	setJqVar : function(){
+		return {
+			loading : this.elem.find('.loading'),
+			b : this.elem.find('.js_more')
+		}
+	},
+
+	setState : function(status){
+		if(status === 'loading'){
+			this.jq.loading.show();
+			this.jq.b.hide();
+		}
+		else if(status === 'loaded'){
+			this.jq.loading.hide();
+			this.jq.b.show();
+		}
+		else if('hide' === status){
+			this.elem.hide();
+		}
+	},
+
+	setEvent : function(callback){
+		var self = this;
+		this.jq.b.unbind('click').bind('click', function(e){
+
+			self.setState('loading');
+			callback(function(){
+				self.setState('loaded');
+			}, self);
+		});
+	},
+	trigger : function(){
+		this.jq.b.trigger('click');
 	}
 });

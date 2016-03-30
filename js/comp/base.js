@@ -517,61 +517,25 @@
         ParentClass : 'BaseComponent',
         initStart : function(){
             this.lastid = null;
+            this.list = [];
         },
         getTemplate : function(){
             return [
                 '<div class="hw-comp-store-list">',
-                '{{each list as item}}',
-                '<div param="item.pk_id" class="hw-each js_each">',
-                '<div class="hw-center-image hw-img"><img style="height:auto;" src="{{item | logoPath}}" /></div>',
-                '<h4 style="margin-top: 20px;">{{item.subject}}</h4>',
-                '<p style="color: #9b9b9b;font-size: 14px;margin-top:15px;">{{item.count}}人已经领取</p>',
-
-                '<div class="r">',
-                '<a class="hw-a" href="editCoupon.html?id={{item.pk_id}}">管理优惠</a>',
-                '<a class="hw-a js_share" param="{{item.pk_id}}" href="javascript:void(0)">分享</a>',
-                '</div>',
-                '</div>',
-                '{{/each}}',
+                    '<div class="js_box"></div>',
+                    '<div class="js_more" role="BaseLoadingMoreStatusBar"></div>',
                 '</div>'
             ].join('');
         },
         getData : function(box, data, next){
             var self = this;
-            KG.request.getUserCouponList({
-                is_active : '1'
-            }, function(flag, rs){
-                if(flag){
-                    var list = [];
-                    util.each(rs, function(item){
-                        list.push(item);
-                    });
-                    next({
-                        list : list
-                    });
 
-                    if(list.length > 0){
-                        self.elem.parent('.hw-panel').removeClass('no_dis');
-                    }
-                }
-            });
 
             KG.request.getBizList({}, function(flag, rs){
                 var list = [];
                 if(flag){
                     list = rs;
                 }
-
-                //var runningList = [],
-                //    stopList = [];
-                //util.each(list, function(item){
-                //    if(item.visible === '1'){
-                //        runningList.push(item);
-                //    }
-                //    else{
-                //        stopList.push(item);
-                //    }
-                //});
 
                 if(list.length < 1){
                     util.dialog.confirm1({
@@ -583,6 +547,8 @@
                     });
                 }
             });
+
+            next({});
         },
         initEvent : function(){
             this.elem.on('click', '.js_share', function(e){
@@ -594,6 +560,71 @@
                 var id = $(this).attr('param');
                 util.dialog.showCouponDetail(id);
             });
+        },
+
+        initEnd : function(){
+            var self = this;
+            var more = KG.component.getObj(this.elem.find('.js_more'));
+            more.setEvent(function(fn){
+                self.getListData(function(flag){
+                    if(flag){
+                        fn();
+                    }
+                    else{
+                        more.setState('hide');
+                    }
+
+                });
+            });
+
+            more.trigger();
+        },
+
+        getListData : function(callback){
+            var self = this;
+            KG.request.getUserCouponList({
+                is_active : '1',
+                lastid : this.lastid
+            }, function(flag, rs){
+                if(flag){
+                    self.list = self.list.concat(rs);
+                    self.setListHtml();
+                    self.lastid = _.last(rs).pk_id;
+
+                    if(rs.length > 0){
+                        self.elem.parent('.hw-panel').removeClass('no_dis');
+                    }
+
+                    callback(true);
+                }
+                else{
+                    callback(false);
+                }
+            });
+        },
+
+        setListHtml : function(){
+            var list = this.list;
+            var h = [
+                '{{each list as item}}',
+                '<div param="item.pk_id" class="hw-each js_each">',
+                '<div class="hw-center-image hw-img"><img style="height:auto;" src="{{item | logoPath}}" /></div>',
+                '<h4 style="margin-top: 0;padding-top:20px;">{{item.subject}}</h4>',
+                '<p style="color: #9b9b9b;font-size: 14px;margin-top:15px;">{{item.count}}人已经领取</p>',
+
+                '<div class="r">',
+                '<a class="hw-a" href="editCoupon.html?id={{item.pk_id}}">管理优惠</a>',
+                '<a class="hw-a js_share" param="{{item.pk_id}}" href="javascript:void(0)">分享</a>',
+                '</div>',
+                '</div>',
+                '{{/each}}'
+            ].join('');
+
+            h = template.compile(h)({
+                list : list
+            });
+
+            this.elem.find('.js_box').html(h);
         }
     });
 
@@ -602,47 +633,15 @@
         getTemplate : function(){
             return [
                 '<div class="hw-comp-store-list">',
-                '{{each list as item}}',
-                '<div class="hw-each">',
-                '<div class="hw-center-image hw-img"><img style="height:auto;" src="{{item | logoPath}}" /></div>',
-                '<h4 style="margin-top: 10px;height:20px;">{{item.subject}}</h4>',
-                '<p style="color: #9b9b9b;font-size: 14px;margin-top:10px;">{{item.count}}人已经领取</p>',
-                '<p style="color: #9b9b9b;font-size: 14px;margin-top:5px;">{{item.startTime}} 至 {{item.endTime}}</p>',
+                    '<div class="js_box"></div>',
+                    '<div class="js_more" role="BaseLoadingMoreStatusBar"></div>',
 
-                '<div class="r">',
-                '<a class="hw-a js_del" param="{{item.pk_id}}" style="margin-top: 30px;"' +
-                ' href="javascript:void(0)">删除</a>',
-                '</div>',
-                '</div>',
-                '{{/each}}',
                 '</div>'
             ].join('');
         },
-        getData : function(box, data, next){
-            var self = this;
-            KG.request.getUserCouponList({
-                is_active : '0'
-            }, function(flag, rs){
-                if(flag){
-                    var list = [];
-                    util.each(rs, function(item){
-                        //item.startTime =
-                        // item.top_start_time>10?moment(item.top_start_time*1000).format('YYYY-MM-DD'):'';
-                        item.startTime = item.top_start_time;
-                        //item.endTime = item.top_end_time>10?moment(item.top_end_time*1000).format('YYYY-MM-DD'):'';
-                        item.endTime = item.top_end_time;
-
-                        list.push(item);
-                    });
-                    next({
-                        list : list
-                    });
-
-                    if(list.length > 0){
-                        self.elem.parent('.hw-panel').removeClass('no_dis');
-                    }
-                }
-            });
+        initStart : function(){
+            this.lastid = null;
+            this.list = [];
         },
         initEvent : function(){
             this.elem.on('click', '.js_del', function(e){
@@ -668,6 +667,79 @@
                     }
                 });
             });
+        },
+        setListHtml : function(){
+            var list = this.list;
+            var h = [
+                '{{each list as item}}',
+                '<div class="hw-each">',
+                '<div class="hw-center-image hw-img"><img style="height:auto;" src="{{item | logoPath}}" /></div>',
+                '<h4 style="margin-top: 0;padding-top:10px;height:30px;">{{item.subject}}</h4>',
+                '<p style="color: #9b9b9b;font-size: 14px;margin-top:10px;">{{item.count}}人已经领取</p>',
+                '<p style="color: #9b9b9b;font-size: 14px;margin-top:5px;">{{item.startTime}} 至 {{item.endTime}}</p>',
+
+                '<div class="r">',
+                '<a class="hw-a js_del" param="{{item.pk_id}}" style="margin-top: 30px;"' +
+                ' href="javascript:void(0)">删除</a>',
+                '</div>',
+                '</div>',
+                '{{/each}}',
+            ].join('');
+
+            h = template.compile(h)({
+                list : list
+            });
+
+            this.elem.find('.js_box').html(h);
+        },
+        getListData : function(callback){
+            var self = this;
+            KG.request.getUserCouponList({
+                is_active : '0',
+                lastid : this.lastid
+            }, function(flag, rs){
+                if(flag){
+                    var list = [];
+                    util.each(rs, function(item){
+                        //item.startTime =
+                        // item.top_start_time>10?moment(item.top_start_time*1000).format('YYYY-MM-DD'):'';
+                        item.startTime = item.top_start_time;
+                        //item.endTime = item.top_end_time>10?moment(item.top_end_time*1000).format('YYYY-MM-DD'):'';
+                        item.endTime = item.top_end_time;
+
+                        list.push(item);
+                    });
+                    self.list = self.list.concat(list);
+                    self.setListHtml();
+                    self.lastid = _.last(list).pk_id;
+
+                    if(list.length > 0){
+                        self.elem.parent('.hw-panel').removeClass('no_dis');
+                    }
+
+                    callback(true);
+                }
+                else{
+                    callback(false);
+                }
+            });
+        },
+        initEnd : function(){
+            var self = this;
+            var more = KG.component.getObj(this.elem.find('.js_more'));
+            more.setEvent(function(fn){
+                self.getListData(function(flag){
+                    if(flag){
+                        fn();
+                    }
+                    else{
+                        more.setState('hide');
+                    }
+
+                });
+            });
+
+            more.trigger();
         }
     });
 

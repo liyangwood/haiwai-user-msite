@@ -546,6 +546,22 @@ a:hover, a:link {
     width: 32px;
     height: 32px; }
 
+.hw-comp-BaseLoadingMoreStatusBar {
+  width: 100%;
+  padding: 12px 0;
+  text-align: center; }
+  .hw-comp-BaseLoadingMoreStatusBar i.loading {
+    background: url("../image/loading.gif");
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin: 0 auto; }
+  .hw-comp-BaseLoadingMoreStatusBar b {
+    font-size: 14px;
+    color: #4a4a4a;
+    font-weight: 400;
+    cursor: pointer; }
+
 #kg_modal_dialog .modal-dialog {
   margin-top: 150px; }
 #kg_modal_dialog .modal-header {
@@ -751,6 +767,8 @@ a:hover, a:link {
     padding-top: 15px;
     font-weight: 700;
     height: 80px; }
+  .hw-mybiz-index .hw-panel .panel-heading, .hw-mybiz-coupon .hw-panel .panel-heading {
+    border-bottom: 1px solid #c5c5c5; }
 
 /* biz comp */
 .hw-MybizLeftUserNav {
@@ -859,7 +877,7 @@ a:hover, a:link {
       float: right; }
 
 .hw-comp-store-list .hw-each {
-  border-top: 1px solid #c5c5c5;
+  border-bottom: 1px solid #c5c5c5;
   height: 98px;
   padding-left: 168px;
   padding-right: 100px;

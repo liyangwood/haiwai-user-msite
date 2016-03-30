@@ -665,6 +665,7 @@ KG.request = {
         var data = {
             func : 'event',
             act : 'list',
+            lastid : opts.lastid,
             is_active : opts.is_active || 'all'
         };
         data = util.addUserIdToRequestData(data);
