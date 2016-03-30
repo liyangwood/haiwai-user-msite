@@ -258,10 +258,21 @@ a:hover, a:link {
   align-items: center;
   -webkit-align-items: center;
   justify-content: center;
-  -webkit-justify-content: center; }
+  -webkit-justify-content: center;
+  vertical-align: middle; }
   .hw-center-image img {
     width: 100%;
     max-height: inherit; }
+
+.hw-flex-start-image {
+  overflow: hidden;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: flex-start !important;
+  -webkit-justify-content: flex-start !important;
+  -webkit-align-items: flex-start !important;
+  align-items: flex-start !important;
+  vertical-align: middle; }
 
 .icon {
   display: inline-block; }
@@ -378,9 +389,9 @@ a:hover, a:link {
     background: #37bccd; }
 
 .kg-site-header-nav-comp {
-  background: #37bccd; }
-  .kg-site-header-nav-comp .nav.active .nav:hover {
-    background: #00a7bc; }
+  background: #37bccd !important; }
+  .kg-site-header-nav-comp .nav.active, .kg-site-header-nav-comp .nav:hover {
+    background: #00a7bc !important; }
 
 .hw-footer-comp {
   background: #37bccd;
@@ -526,6 +537,14 @@ a:hover, a:link {
   .hw-HWSelectRegionLocation .hw-btn.active {
     color: #ffffff;
     background: #37bccd; }
+
+.hw-comp-BaseLoadingImageBox {
+  background: transparent; }
+  .hw-comp-BaseLoadingImageBox .icon-loading {
+    display: block;
+    background: url(../image/loading.gif);
+    width: 32px;
+    height: 32px; }
 
 #kg_modal_dialog .modal-dialog {
   margin-top: 150px; }
@@ -1103,7 +1122,7 @@ a:hover, a:link {
       background: url(../image/arrow_down.png) right no-repeat #fff;
       -webkit-appearance: none;
       border-radius: 0;
-      margin: 2px 0 0 0;
+      margin: 0;
       -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
       -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
       box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
@@ -1129,7 +1148,7 @@ a:hover, a:link {
   .hw-comp-MybizStoreInfoFormStep2 .form-group {
     margin-bottom: 30px; }
   .hw-comp-MybizStoreInfoFormStep2 .hw-dym {
-    margin-bottom: 15px; }
+    margin-bottom: 30px; }
     .hw-comp-MybizStoreInfoFormStep2 .hw-dym span {
       font-size: 14px;
       color: #4a4a4a;

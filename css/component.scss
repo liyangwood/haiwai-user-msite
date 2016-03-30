@@ -160,10 +160,10 @@
 	}
 }
 .kg-site-header-nav-comp{
-	background: #37bccd;
+	background: #37bccd !important;
 
-	.nav.active .nav:hover{
-		background : #00a7bc;
+	.nav.active, .nav:hover{
+		background : #00a7bc !important;
 	}
 }
 
@@ -377,5 +377,16 @@
 			color: #ffffff;
 			background: $blue-color;
 		}
+	}
+}
+
+.hw-comp-BaseLoadingImageBox{
+	background: transparent;
+
+	.icon-loading{
+		display: block;
+		background: url(../image/loading.gif);
+		width: 32px;
+		height: 32px;
 	}
 }

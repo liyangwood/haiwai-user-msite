@@ -362,8 +362,7 @@ KG.request = {
             //method : 'post'
         };
 
-        //util.addUserIdToRequestData(data);
-
+        util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
     },
 
@@ -519,7 +518,8 @@ KG.request = {
         var data = {
             func : 'biz',
             act : 'get_biz_dynamic_fields',
-            bizid : opts.bizId
+            bizid : opts.bizId,
+            main_tagid : opts.tagid
         };
         return this.ajax(data, success, error);
     },
@@ -622,7 +622,7 @@ KG.request = {
     },
 
     /*
-    * func=event&act=post&userid=10051&subject=%E6%B5%8B%E8%AF%95%E5%BA%97%E9%93%BA%E6%B4%BB%E5%8A%A8&description=%E6%B5%8B%E8%AF%95%E5%BA%97%E9%93%BA%E6%B4%BB%E5%8A%A8%E6%8F%8F%E8%BF%B0&fk_entityID=2025265,2024981&start_date=2015/10/30&end_date=2015/12/30&id=129400&uploadfield[]=data:image/png;base64,iVBORw0KGgoAAAAN&uploadfield[]=data:image/png;base64,iVBORw0KGgoAAAAN&token=
+    * func=event&act=post
     *
     * */
     createStoreCouponEvent : function(opts, success, error){
@@ -638,7 +638,7 @@ KG.request = {
         };
 
         util.each(opts.imageList||[], function(one, i){
-            data['uploadfield['+i+']'] = one;
+            data['files['+i+']'] = one;
         });
 
         if(opts.id){
@@ -657,6 +657,15 @@ KG.request = {
         var data = {
             func : 'passport',
             act : 'get_article_event'
+        };
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+    getUserCouponList : function(opts, success, error){
+        var data = {
+            func : 'event',
+            act : 'list',
+            is_active : opts.is_active || 'all'
         };
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
@@ -878,8 +887,9 @@ KG.request = {
         var data = {
             func : 'comment',
             act : 'post',
+            method : 'post',
             bizid : opts.bizId,
-            msg : opts.msg,
+            msgbody : opts.msg,
             dataType : 2,
             dataID : opts.bizId,
             star : opts.star
@@ -1098,6 +1108,20 @@ KG.request = {
             act : 'verified',
             bizid : opts.bizId,
             tel_tmp : opts.tel
+        };
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=event&act=delfile&fileid=233288&eventID=129400&token=
+    * */
+    deleteCouponImage : function(opts, success, error){
+        var data = {
+            func : 'event',
+            act : 'delfile',
+            fileid : opts.fileid,
+            eventID : opts.id
         };
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);

@@ -294,7 +294,8 @@ KG.Class.define('HWSiteCouponListPage', {
         return [
             '{{each list as item}}',
             '<div param="{{item.pk_id}}" class="hw-one">',
-            '<div class="hw-logo"><img src="{{item.pic | absImage}}" /></div>',
+            //'<div class="hw-logo"><img src="{{item.pic | absImage}}" /></div>',
+            '<div role="BaseLoadingImageBox" data-url="{{item.pic | absImage}}" class="hw-logo"></div>',
 
             '<a href="{{item.bizinfo.entityID | toStorePath}}"><h4>{{item.bizinfo.name_cn || item.bizinfo.name_en}}</h4></a>',
             '<div class="hw-address">{{item.bizinfo.city}} {{item.bizinfo.state}}</div>',
@@ -318,24 +319,24 @@ KG.Class.define('HWSiteCouponListPage', {
     },
 
     // list style
-    getItemTemplate1 : function(){
-        return [
-            '{{each list as item}}',
-            '<a href="{{item.entityID_i | toStorePath}}" target="_blank" class="hw-one1">',
-            '<div class="hw-logo"><img src="{{item.logo | absImage}}" /></div>',
-
-            '<div class="right">',
-            '<h4>{{item.name_cn_cntmw}}</h4>',
-            '<div class="ca">',
-            '<div class="hw-star" role="StarRank" data-rank="3"></div>',
-
-            '</div>',
-            '<div class="hw-address">{{item | storeFullAddress1}}</div>',
-            '</div>',
-            '</a>',
-            '{{/each}}'
-        ].join('');
-    },
+    //getItemTemplate1 : function(){
+    //    return [
+    //        '{{each list as item}}',
+    //        '<a href="{{item.entityID_i | toStorePath}}" target="_blank" class="hw-one1">',
+    //        '<div class="hw-logo"><img src="{{item.logo | absImage}}" /></div>',
+    //
+    //        '<div class="right">',
+    //        '<h4>{{item.name_cn_cntmw}}</h4>',
+    //        '<div class="ca">',
+    //        '<div class="hw-star" role="StarRank" data-rank="3"></div>',
+    //
+    //        '</div>',
+    //        '<div class="hw-address">{{item | storeFullAddress1}}</div>',
+    //        '</div>',
+    //        '</a>',
+    //        '{{/each}}'
+    //    ].join('');
+    //},
 
     setBoxHtml : function(list, isAppend){
         isAppend = isAppend || false;

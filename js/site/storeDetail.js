@@ -12,6 +12,128 @@ KG.Class.define('HWSiteStoreBigBackgroundImage', {
 	}
 });
 
+KG.Class.define('UploadStoreCommentImage', {
+	ParentClass : 'BaseUploadImage',
+	getTemplate : function(){
+		return [
+			'<div class="hw-UploadStoreCommentImage">',
+			'<div class="hw-add js_add">',
+			'<i class="icon fa fa-plus-square-o"></i>',
+			'<p>上传图片</p>',
+			'<input class="js_input" type="file" />',
+			'</div>',
+			'</div>'
+		].join('');
+	},
+	defineProperty : function(){
+		return {
+			image : {}
+		};
+	},
+	getData : function(box, data, next){
+		next({
+			image : this.prop.image
+		});
+	},
+
+	setAddStatus : function(f){
+		var r;
+		if(f){
+			r = '上传中...';
+		}
+		else{
+			r = '上传图片';
+		}
+		this.jq.add.find('p').html(r);
+	},
+
+	setJqVar : function(){
+		return {
+			add : this.elem.find('.js_add'),
+			fileInput : this.elem.find('input[type="file"]')
+		};
+	},
+	initEvent : function(){
+		var self = this;
+
+		this.jq.fileInput.change(function(){
+			var file = this.files[0];
+
+			self.setAddStatus(true);
+			self.uploadImageFn(file, function(url, json){
+				self.addNewImage(url);
+
+				self.check();
+				self.setAddStatus(false);
+			});
+
+			$(this).val('');
+
+		});
+
+		this.elem.on('click', '.js_del', function(){
+			var o = $(this);
+			util.dialog.confirm1({
+				YesText : '删除',
+				msg : '您确定要删除这张照片吗？',
+				YesFn : function(callback){
+
+					o.parent('.js_img').remove();
+					self.check();
+
+					callback();
+				}
+			});
+			return false;
+		});
+
+	},
+
+	check : function(){
+		var list = this.getValue();
+		if(list.length > 4){
+			this.jq.add.hide();
+		}
+		else{
+			this.jq.add.show();
+		}
+	},
+
+	getValue : function(){
+		var list = this.elem.find('.js_img');
+		return _.map(list, function(elem){
+			return $(elem).find('img').attr('src');
+		});
+	},
+
+	getEachHtml : function(url){
+		var h = [
+			'<div class="hw-one js_img">',
+			'<img src="{{url}}" />',
+			'<b class="js_del">删除</b>',
+			'</div>'
+		].join('');
+		return template.compile(h)({url : url});
+	},
+	addNewImage : function(src){
+		var h = this.getEachHtml(src);
+		this.jq.add.after(h);
+	},
+	uploadImageFn : function(file, callback){
+		var self = this;
+		util.uploadImage(file, function(url){
+			var url = KG.config.SiteRoot+url;
+
+
+			callback(url);
+		});
+	},
+	reset : function(){
+		this.elem.find('.js_img').remove();
+		this.check();
+	}
+});
+
 KG.Class.define('HWSiteStoreDetailPage', {
 	ParentClass : 'BaseComponent',
 	getTemplate : function(){
@@ -158,6 +280,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 						'</div>',
 						'<div class="r hw-ta nodis">',
 							'<textarea class="form-control" placeholder="请写下您的评论~"></textarea>',
+							'<div class="js_comment_img" role="UploadStoreCommentImage"></div>',
 							'<button data-loading-text="发表中..." class="hw-btn hw-blue-btn">发表评论</button>',
 						'</div>',
 
@@ -273,6 +396,8 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		this.commentData = [];
 		this.lastCommentId = null;
 		this.rpId = null;
+
+		this.commentImage = null;
 	},
 	getData : function(box, data, next){
 		var self = this;
@@ -476,6 +601,16 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			var id = $(this).attr('param');
 			util.dialog.showCouponDetail(id);
 		});
+
+		this.elem.on('click', '.js_showCommentBidImage', function(e){
+			var o = $(this);
+			var list = o.parents('.hw-rpimgbox').find('img');
+			list = _.map(list, function(one){
+				return $(one).attr('src');
+			});
+
+			util.dialog.showFocusImage(o.attr('param'), list);
+		});
 	},
 	showReplyTextarea : function(val){
 		var box = this.elem.find('.js_cmbox .db'),
@@ -520,7 +655,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					fk_entityID : self.bizId,
 					id : rs,
 					is_report : '0',
-					msg : val,
+					msgbody : val,
 					treelevel : '0',
 					userID : user.userid,
 					userinfo : user
@@ -552,6 +687,11 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		}
 		var rank = KG.component.getObj(this.elem.find('.js_rank'));
 
+		var commentImageList = this.commentImage.getValue();
+		val += _.map(commentImageList, function(url){
+			return '<img src="'+url+'" />';
+		}).join('');
+
 		btnObj.button('loading');
 		KG.request.sendStoreComment({
 			bizId : self.bizId,
@@ -572,12 +712,13 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					fk_entityID : self.bizId,
 					id : rs.toString(),
 					is_report : '0',
-					msg : val,
+					msgbody : val,
 					star : rank.getValue(),
 					treelevel : '0',
 					userID : user.userid,
 					userinfo : user,
-					buzz : 0
+					buzz : 0,
+					pic : commentImageList
 				};
 
 				self.commentData = [sd].concat(self.commentData);
@@ -585,6 +726,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 				rank.setValue(0);
 				ta.val('');
+				self.commentImage.reset();
 				self.rpId = null;
 				self.elem.find('.js_cmbox .db .hw-ta').addClass('nodis');
 			}
@@ -616,6 +758,8 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				location.href = location.hash;
 			}, 1000);
 		}
+
+		this.commentImage = KG.component.getObj(this.elem.find('.js_comment_img'));
 	},
 
 	getCommentRpHtml : function(replyId){
@@ -679,7 +823,17 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				'<span>{{item.datetime | formatDate:"mm/dd/yy"}}</span>',
 			'</div>',
 			'<p class="r hw-msg">{{item.msgbody}}</p>',
-			'<p class="r hw-action">',
+
+			'{{if item.pic}}',
+			'<div style="margin-top: 10px;" class="hw-rpimgbox">',
+				'{{each item.pic as url index}}',
+				'<div class="hw-center-image"><img class="js_showCommentBidImage hand" param="{{index}}"' +
+				' src="{{url}}" /></div>',
+				'{{/each}}',
+			'</div>',
+			'{{/if}}',
+
+			'<p style="margin-top:10px;" class="r hw-action">',
 				'{{if role=="admin"}}<span param="{{item.id}}" nick="{{item.userinfo.nick}}"' +
 				' class="js_rp">回复</span>{{/if}}',
 				'<span param="{{item.id}}" class="js_like">赞({{item.buzz}})</span>',
@@ -700,7 +854,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 		var box = this.elem.find('.js_cmbox'),
 			list = this.commentData;
-console.log(this.data.biz.role);
+
 		h = template.compile(h)({
 			list: list,
 			role : this.data.biz.role
@@ -743,7 +897,7 @@ console.log(this.data.biz.role);
 		var h = [
 			'{{each list as item}}',
 			'<a href="../view/article.html?id={{item.id}}" target="_blank" style="display: block;" class="hw-item hw-art">',
-			'<img src="{{item.image}}" />',
+			'<img src="{{item | logoPath}}" />',
 			'<h4>{{item.title}}</h4>',
 			'<p class="hw-time">{{item.dateline | formatDate:"mm/dd/yy"}}</p>',
 			'<p class="hw-lt">{{item.msgbody | htmlToText}}</p>',
@@ -792,7 +946,7 @@ console.log(this.data.biz.role);
 		var h = [
 			'{{each list as item}}',
 			'<div class="hw-item hw-cp js_coupon_item" param="{{item.pk_id}}" style="cursor: pointer">',
-			'<img src="{{item.pic | absImage}}" />',
+			'<img src="{{item | logoPath}}" />',
 			'<h4>{{item.subject}}</h4>',
 			'<p class="hw-lt">{{item.count}}人已领取</p>',
 			'<button class="hw-btn hw-blue-btn">立即领取</button>',

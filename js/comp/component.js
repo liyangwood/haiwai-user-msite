@@ -109,6 +109,50 @@ KG.Class.define('BaseInput', {
 	}
 });
 
+KG.Class.define('BaseUploadImage', {
+	ParentClass : 'BaseComponent',
+
+	setJqVar : function(){
+		return {
+			img : this.elem.find('.js_img'),
+			btn : this.elem.find('.js_btn'),
+			fileInput : this.elem.find('input[type="file"]')
+		}
+	},
+	defineProperty : function(){
+		return {
+			image : {}
+		}
+	},
+
+	initEvent : function(){
+		var btn = this.jq.btn,
+			img = this.jq.img;
+
+		var self = this;
+		this.jq.fileInput.bind('change', function(e){
+			var file = this.files[0];
+
+			btn.button('loading');
+
+			self.uploadImageFn(file, function(){
+				btn.button('reset');
+			});
+		});
+
+	},
+	uploadImageFn : function(file, callback){
+		var self = this;
+		util.uploadImage(file, function(url){
+			var url = KG.config.SiteRoot+url;
+
+			self.jq.img.attr('src', url);
+
+			callback();
+		});
+	}
+});
+
 
 KG.Class.define('BaseSelectInput', {
 	ParentClass : 'BaseInput',
@@ -192,5 +236,43 @@ KG.Class.define('BaseSelectInput', {
 			this.elem.find('.js_input').removeAttr('disabled');
 		}
 
+	}
+});
+
+KG.Class.define('BaseLoadingImageBox', {
+	ParentClass : 'BaseInput',
+	getTemplate : function(){
+		return [
+			'<div class="hw-comp-BaseLoadingImageBox hw-center-image">',
+				'<i class="icon icon-loading"></i>',
+			'</div>'
+		].join('');
+	},
+	defineProperty : function(){
+		return {
+			url : {}
+		};
+	},
+	initEnd : function(){
+		var self = this;
+		var url = this.prop.url,
+			img = new Image();
+		img.src = url;
+		console.log(url);
+		$(img).load(function(e){
+			self.renderImage($(this)[0], url);
+		});
+	},
+	renderImage : function(img, url){
+		var sy = '';
+		if(img.width > img.height){
+			sy = 'width:100%;height:auto;';
+		}
+		else{
+			sy = 'width:100%;height:auto;';
+		}
+		this.elem.empty();
+		var h = '<img style="'+sy+'" src="'+url+'" />';
+		this.elem.html(h).addClass('hw-flex-start-image');
 	}
 });

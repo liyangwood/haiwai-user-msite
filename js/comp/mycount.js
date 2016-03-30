@@ -358,7 +358,7 @@ KG.Class.define('MycountChangeInfoForm', {
         return [
             '<div>',
             '<div class="js_username" data-value="{{user.nick}}" data-label="用户名" data-require="true" role="BaseInput"></div>',
-            '<div class="js_regemail" data-value="{{user.contact_email}}" data-label="注册邮箱" data-require="true" data-type="email" role="BaseInput"></div>',
+            '<div class="js_regemail" data-value="{{user.email}}" data-label="注册邮箱" data-require="true" data-type="email" role="BaseInput"></div>',
             //'<div class="js_pwd2" data-label="确认新密码" data-require="true" data-type="password" role="BaseInput"></div>',
             '<div class="form-group">',
             '<label class="lab">头像</label>',
@@ -429,7 +429,7 @@ KG.Class.define('MycountChangeInfoForm', {
 
         var data = {
             nickname : jq.nick.getValue(),
-            contact_email : jq.email.getValue(),
+            email : jq.email.getValue(),
             tel : jq.tel.getValue(),
             wechat : jq.wechat.getValue(),
             region : jq.region.getValue(),

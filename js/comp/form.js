@@ -185,6 +185,9 @@
                 toolbar : [
                     ['Bold','Italic','Underline','-', 'Image']
                 ],
+                extraPlugins : 'autogrow',
+                autoGrow_minHeight : 280,
+                height : 280,
                 removeButtons : 'Subscript,Superscript',
                 removePlugins : 'elementspath',
                 resize_enabled : false,
@@ -284,6 +287,8 @@
 
         getData : function(box, data, next){
             var list = data.list;
+
+            this.type = util.url.param('id') ? 'edit' : 'create';
             next({
                 list : list
             });
@@ -351,24 +356,31 @@
 
         deleteImage : function(o){
             var img = o.closest('.js_img');
-            img.remove();
-
-            var len = this.getImageList().length;
-            if(len < 3){
-                this.jq.add.show();
+            var len;
+            if(this.type === 'create'){
+                img.remove();
+                len = this.getImageList().length;
+                if(len < 3){
+                    this.jq.add.show();
+                }
             }
+            else{
+
+            }
+
+
+
         },
 
-        getEachHtml : function(url, id){
+        getEachHtml : function(url){
             var h = [
                 '<div class="hw-one js_img">',
                 '<img src="{{url}}" />',
-                '<b param="{{id}}" class="js_del">删除</b>',
+                '<b class="js_del">删除</b>',
                 '</div>'
             ].join('');
             return template.compile(h)({
-                url : url,
-                id : id
+                url : url
             });
         },
 
@@ -381,19 +393,20 @@
                     id : util.url.param('id')
                 }, function(flag, rs){
                     if(flag){
-                        console.log(rs);
+                        var url = KG.config.SiteRoot+rs[0];
+                        callback(url);
                     }
                 });
             });
         },
 
-        addNewImage : function(url, id){
+        addNewImage : function(url){
             var len = this.getImageList().length;
             if(len === 2){
                 this.jq.add.hide();
             }
 
-            var h = this.getEachHtml(url, id);
+            var h = this.getEachHtml(url);
             this.jq.add.after(h);
         },
 
@@ -402,7 +415,14 @@
             var list = this.data.list;
             console.log(list);
             util.each(list, function(item){
-                self.addNewImage(KG.config.SiteRoot+item.path, item.pk_id);
+                var url = item.path;
+                if(/^http/.test(url)){
+                    self.addNewImage(url);
+                }
+                else{
+                    self.addNewImage(KG.config.SiteRoot+url);
+                }
+
             });
         }
 
@@ -626,7 +646,7 @@
                             if(self.prop.type === 'edit'){
                                 util.toast.alert('修改成功');
                                 util.delay(function(){
-                                    location.href = '../mybiz/coupon.html';
+                                    //location.href = '../mybiz/coupon.html';
                                 }, 1000);
                                 return false;
                             }
@@ -700,7 +720,7 @@
                 list : imageList
             });
 
-            if(this.data.couponData){
+            if(this.prop.type === 'edit'){
                 this.setFormValue(this.data.couponData);
             }
         },
@@ -713,22 +733,19 @@
             }));
             c.title.setValue(data.subject);
             this.jq.desc.val(data.description);
-            this.jq.startDate.val(moment(data.top_start_time*1000).format('MM/DD/YYYY'));
+
+            this.jq.startDate.datepicker('setDate', moment(data.top_start_time*1000).format('MM/DD/YYYY'));
 
             if(!data.top_end_time || parseInt(data.top_end_time)<1 || data.top_end_time==='unlimit'){
                 this.elem.find('.js_endlimit').prop('checked', true);
                 this.jq.endDate.attr('disabled', true);
             }
             else{
-                this.jq.endDate.val(moment(data.top_end_time*1000).format('MM/DD/YYYY'));
+                this.jq.endDate.datepicker('setDate', moment(data.top_end_time*1000).format('MM/DD/YYYY'));
             }
 
 
-            if(data.files.length > 0){
-                _.each(data.files, function(item){
-                    self.image.addNewImage(KG.config.SiteRoot+item.path);
-                });
-            }
+
 
         }
     });
@@ -738,49 +755,7 @@
 
 
 
-    KG.Class.define('BaseUploadImage', {
-        ParentClass : 'BaseComponent',
 
-        setJqVar : function(){
-            return {
-                img : this.elem.find('.js_img'),
-                btn : this.elem.find('.js_btn'),
-                fileInput : this.elem.find('input[type="file"]')
-            }
-        },
-        defineProperty : function(){
-            return {
-                image : {}
-            }
-        },
-
-        initEvent : function(){
-            var btn = this.jq.btn,
-                img = this.jq.img;
-
-            var self = this;
-            this.jq.fileInput.bind('change', function(e){
-                var file = this.files[0];
-
-                btn.button('loading');
-
-                self.uploadImageFn(file, function(){
-                    btn.button('reset');
-                });
-            });
-
-        },
-        uploadImageFn : function(file, callback){
-            var self = this;
-            util.uploadImage(file, function(url){
-                var url = KG.config.SiteRoot+url;
-
-                self.jq.img.attr('src', url);
-
-                callback();
-            });
-        }
-    });
 
 
 

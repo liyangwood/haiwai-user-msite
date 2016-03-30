@@ -358,9 +358,21 @@ a:hover, a:link{
     -webkit-align-items: center;
     justify-content: center;
     -webkit-justify-content: center;
+    vertical-align: middle;
 
     img{
         width: 100%;
         max-height: inherit;
     }
+}
+
+.hw-flex-start-image{
+    overflow: hidden;
+    display: flex;
+    display: -webkit-flex;
+    justify-content : flex-start !important;
+    -webkit-justify-content: flex-start !important;
+    -webkit-align-items : flex-start !important;
+    align-items: flex-start !important;
+    vertical-align: middle;
 }

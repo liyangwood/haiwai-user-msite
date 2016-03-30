@@ -775,20 +775,21 @@ KG.Class.define('MybizStoreInfoFormStep2', {
                     bizId : self.id
                 });
             };
-            var fn2 = function(){
-                return KG.request.getStoreDynamicField({
-                    bizId : self.id
-                });
-            };
 
-            KG.request.defer([fn1, fn2], function(bizInfo, dy){
-                console.log(bizInfo, dy);
-
-                next({
-                    dynamic : dy,
-                    backLink : backLink,
-                    biz : bizInfo
+            KG.request.defer([fn1], function(bizInfo){
+                console.log(bizInfo);
+                KG.request.getStoreDynamicField({
+                    bizId : self.id,
+                    tagid : bizInfo.fk_main_tag_id
+                }, function(flag, rs){
+                    next({
+                        dynamic : rs,
+                        backLink : backLink,
+                        biz : bizInfo
+                    });
                 });
+
+
             });
         }
 
@@ -909,6 +910,10 @@ KG.Class.define('MybizStoreInfoFormStep2', {
                         return r;
                     }
                 };
+
+                if(item.value){
+                    box.find('input[type="radio"]').filter('[value="'+item.value+'"]').prop('checked', true);
+                }
 
                 break;
             case '7':

@@ -360,8 +360,9 @@
             return [
                 '<div class="hw-comp-store-list">',
                 '{{each list as item}}',
-                '<div class="hw-each">',
-                '<img class="hw-img" src="{{item.logo[0].path | absImage}}" />',
+                '<div class="hw-each" style="padding-left:112px;">',
+                //'<div class="hw-img hw-center-image" style="width:96px;"><img src="{{item.logo[0].path | absImage}}"/></div>',
+                '<img class="hw-img" style="width:96px;" src="{{item.logo[0].path | absImage}}"/>',
                 '<a class="h4" href="{{item.entityID | toStorePath}}">{{item.name_cn}}</a>',
                 '<p>{{item | storeFullAddress}}</p>',
                 '<em>{{item.commentnum}}条新评论</em>',
@@ -431,8 +432,8 @@
             return [
                 '<div class="hw-comp-store-list">',
                 '{{each list as item}}',
-                '<div class="hw-each">',
-                '<img class="hw-img" src="{{item.logo[0].path | absImage}}" />',
+                '<div class="hw-each" style="padding-left:112px;">',
+                '<img class="hw-img" style="width:96px;" src="{{item.logo[0].path | absImage}}"/>',
                 '<h4>{{item.name_cn}}</h4>',
                 '<p>{{item.address}}, {{item.city}}, {{item.state}}, {{item.zip}}</p>',
                 '<em>{{item.commentnum}}条新评论</em>',
@@ -534,13 +535,13 @@
         },
         getData : function(box, data, next){
             var self = this;
-            KG.request.getUserArticleAndCouponList({}, function(flag, rs){
+            KG.request.getUserCouponList({
+                is_active : '1'
+            }, function(flag, rs){
                 if(flag){
                     var list = [];
-                    util.each(rs.event, function(item){
-                        if(item.active_time == '1'){
-                            list.push(item);
-                        }
+                    util.each(rs, function(item){
+                        list.push(item);
                     });
                     next({
                         list : list
@@ -616,16 +617,19 @@
         },
         getData : function(box, data, next){
             var self = this;
-            KG.request.getUserArticleAndCouponList({}, function(flag, rs){
+            KG.request.getUserCouponList({
+                is_active : '0'
+            }, function(flag, rs){
                 if(flag){
                     var list = [];
-                    util.each(rs.event, function(item){
-                        if(item.active_time == '0'){
-                            item.startTime = item.top_start_time>10?moment(item.top_start_time*1000).format('YYYY-MM-DD'):'';
-                            item.endTime = item.top_end_time>10?moment(item.top_end_time*1000).format('YYYY-MM-DD'):'';
+                    util.each(rs, function(item){
+                        //item.startTime =
+                        // item.top_start_time>10?moment(item.top_start_time*1000).format('YYYY-MM-DD'):'';
+                        item.startTime = item.top_start_time;
+                        //item.endTime = item.top_end_time>10?moment(item.top_end_time*1000).format('YYYY-MM-DD'):'';
+                        item.endTime = item.top_end_time;
 
-                            list.push(item);
-                        }
+                        list.push(item);
                     });
                     next({
                         list : list
