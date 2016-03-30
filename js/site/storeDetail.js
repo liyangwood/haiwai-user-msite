@@ -897,7 +897,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		var h = [
 			'{{each list as item}}',
 			'<a href="../view/article.html?id={{item.id}}" target="_blank" style="display: block;" class="hw-item hw-art">',
-			'<img src="{{item | logoPath}}" />',
+			'<div class="hw-center-image"><img src="{{item | logoPath}}" /></div>',
 			'<h4>{{item.title}}</h4>',
 			'<p class="hw-time">{{item.dateline | formatDate:"mm/dd/yy"}}</p>',
 			'<p class="hw-lt">{{item.msgbody | htmlToText}}</p>',
