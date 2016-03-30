@@ -263,7 +263,12 @@ KG.request = {
             func : 'biz',
             act : 'bookmark'
         };
-
+        if(opts.is_active){
+            data.is_active = '1';
+        }
+        if(opts.not_open){
+            data.visible = '-1';
+        }
 
         data = util.addUserIdToRequestData(data);
 
@@ -308,9 +313,14 @@ KG.request = {
     getMycouponList : function(opts, success, error){
         var data = {
             func : 'event',
-            act : 'bookmark',
-            is_active : '1'
+            act : 'bookmark'
         };
+        if(opts.is_active){
+            data.is_active = '1';
+        }
+        if(opts.not_active){
+            data.not_active = '1';
+        }
         util.addUserIdToRequestData(data);
 
         return this.ajax(data, success, error);

@@ -78,15 +78,15 @@
                         '<i class="icon fa fa-caret-down"></i>',
                     '</button>',
                     '<ul class="dropdown-menu" aria-labelledby="dp_aaa">',
-                        '<li data-type="all" class="js_a">全部收藏店铺({{list.length}})</li>',
-                        '<li data-type="deal" class="js_a">正在优惠店铺({{dealList.length}})</li>',
-                        '<li data-type="pause" class="js_a">暂停营业店铺({{pauseList.length}})</li>',
+                        '<li data-type="all" class="js_a"></li>',
+                        '<li data-type="deal" class="js_a"></li>',
+                        '<li data-type="pause" class="js_a"></li>',
                     '</ul>',
                 '</div>'
             ].join('');
         },
         getBodyTemplate : function(){
-            return '';
+            return '<div class="js_box"></div>';
         },
 
         setListHtml : function(data, type){
@@ -131,42 +131,50 @@
                 }
             });
 
-            this.jq.panelBody.html(h);
+            this.jq.panelBody.find('.js_box').html(h);
             KG.component.init(this.jq.panelBody);
         },
-        getData : function(box, data, next){
 
-            var list = [],
-                pauseList = [],
-                dealList = [];
+        initStart : function(){
+            this.type = '';
+        },
 
-            KG.request.getMyfavStoreList({}, function(flag, rs){
+        getListData : function(type, callback){
+            var self = this;
+            var data = {};
+            if(type === 'pause'){
+                data.not_open = true;
+            }
+            else if(type === 'deal'){
+                data.is_active = true;
+            }
+
+            KG.request.getMyfavStoreList(data, function(flag, rs){
                 console.log(flag, rs);
                 if(flag){
-                    list = rs;
+                    self.setCount(rs.count);
+
+                    var list = _.map(rs.list, function(item){
+                        item.bizType = type;
+                        return item;
+                    });
+
+                    self.setListHtml(list, type);
+                    callback();
                 }
 
 
-
-                util.each(list, function(item){
-                    if(item.visible.toString() === '-1'){
-                        item.bizType = 'pause';
-                        pauseList.push(item);
-                    }
-                    else if(item.is_promote.toString() === '1'){
-                        item.bizType = 'deal';
-                        dealList.push(item);
-                    }
-                });
-
-                next({
-                    list : list,
-                    pauseList : pauseList,
-                    dealList : dealList
-                });
             });
+        },
+        getData : function(box, data, next){
 
-
+            next({});
+        },
+        setCount : function(json){
+            var li = this.elem.find('.js_a');
+            li.eq(0).html('全部收藏店铺('+json.all+')');
+            li.eq(1).html('正在优惠店铺('+json.is_active+')');
+            li.eq(2).html('暂停营业店铺('+json.not_open+')');
         },
         initEvent : function(){
             var self = this;
@@ -177,19 +185,15 @@
                 txt.val(o.text());
 
                 var type = o.data('type');
-                var list;
-                if(type === 'all'){
-                    list = self.data.list;
+                if(self.type === type){
+                    return false;
                 }
-                else if(type === 'deal'){
-                    list = self.data.dealList;
+                else{
+                    self.type = type;
                 }
-                else if(type === 'pause'){
-                    list = self.data.pauseList;
-                }
-
-
-                self.setListHtml(list);
+                self.getListData(type, function(){
+                    o.trigger('click');
+                });
             });
 
             this.elem.on('click', '.js_del', function(e){

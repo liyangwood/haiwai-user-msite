@@ -13,9 +13,9 @@
                 '<i class="icon fa fa-caret-down"></i>',
                 '</button>',
                 '<ul class="dropdown-menu" aria-labelledby="dp_aaa">',
-                '<li class="js_a" param="0">全部优惠（{{listLen}}）</li>',
-                '<li class="js_a" param="1">正在优惠（{{runningLen}}）</li>',
-                '<li class="js_a" param="2">过期优惠（{{stopLen}}）</li>',
+                '<li class="js_a" param="0"></li>',
+                '<li class="js_a" param="1"></li>',
+                '<li class="js_a" param="2"></li>',
                 '</ul>',
                 '</div>'
             ].join('');
@@ -23,6 +23,11 @@
         getBodyTemplate : function(){
             return '';
         },
+
+        initStart : function(){
+            this.type = '';
+        },
+
         getListTemplate : function(){
             return [
                 '{{each list as item}}',
@@ -62,43 +67,29 @@
             KG.component.init(this.jq.panelBody);
         },
 
-        getData : function(box, data, next){
-            KG.request.getMycouponList({}, function(flag, rs){
-                var allList = rs,
-                    runningList = [],
-                    stopList = [];
-                if(!flag){
-                    allList = [];
+        setCount : function(json){
+            var li = this.elem.find('.js_a');
+            li.eq(0).html('全部优惠（'+json.all+'）');
+            li.eq(1).html('正在优惠（'+json.is_active+'）');
+            li.eq(2).html('过期优惠（'+json.not_active+'）');
+        },
+
+        getListData : function(type, callback){
+            var self = this;
+            var data = {};
+            if(type === 1){
+                data.is_active = true;
+            }
+            else if(type === 2){
+                data.not_active = true;
+            }
+
+            KG.request.getMycouponList(data, function(flag, rs){
+                if(flag){
+                    self.setCount(rs.count);
+                    self.setListHtml(rs.list);
+                    callback();
                 }
-
-                util.each(allList, function(item){
-                    var duaring = '';
-                    if(item.top_end_time === 'unlimit'){
-                        duaring = '不限时间';
-                    }
-                    else{
-                        duaring = item.top_start_time + ' 至 ' + item.top_end_time;
-                    }
-
-                    item.duaring = duaring;
-
-                    if(item.active_time){
-                        runningList.push(item);
-                    }
-                    else{
-                        stopList.push(item);
-                    }
-                });
-
-
-                next({
-                    list : allList,
-                    runningList : runningList,
-                    stopList : stopList,
-                    stopLen : stopList.length,
-                    runningLen : runningList.length,
-                    listLen : allList.length
-                });
             });
         },
         initEvent : function(){
@@ -108,20 +99,17 @@
                 var o = $(this);
                 txt.val(o.text());
 
-                var type = o.attr('param'),
-                    list = null;
-                switch(type){
-                    case '0':
-                        list = self.data.list;
-                        break;
-                    case '1':
-                        list = self.data.runningList;
-                        break;
-                    case '2':
-                        list = self.data.stopList;
-                        break;
+                var type = o.attr('param');
+                if(self.type === type){
+                    return false;
                 }
-                self.setListHtml(list);
+                else{
+                    self.type = type;
+                }
+
+                self.getListData(parseInt(type, 0), function(){
+                    o.trigger('click');
+                });
             });
 
             this.jq.panelBody.on('click', '.js_coupon', function(){
