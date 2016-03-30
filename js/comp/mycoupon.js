@@ -27,17 +27,17 @@
             return [
                 '{{each list as item}}',
                 '<div class="hw-each">',
-                '<img class="hw-img" src="{{item.logo | absImage}}" />',
+                '<div class="hw-img" data-url="{{item.logo.path | absImage}}" role="BaseLoadingImageBox"></div>',
 
                 '{{if !item.active_time}}',
                 '<div class="mask">已过期</div>',
                 '{{/if}}',
 
-                '<div style="margin-top: 10px;" class="h4">',
+                '<div style="margin-top: 10px;" class="h4 js_coupon hand" param={{item.pk_id}}>',
                     '<b>{{item.subject}}</b>',
                 '</div>',
 
-                '<p style="font-size: 16px;margin-top:20px;">{{item.top_start_time}} 至 {{item.top_end_time}}</p>',
+                '<p style="font-size: 16px;margin-top:20px;">{{item.duaring}}</p>',
 
                 '<div class="r">',
                     '{{if !item.active_time}}',
@@ -59,6 +59,7 @@
                 list : data
             });
             this.jq.panelBody.html(h);
+            KG.component.init(this.jq.panelBody);
         },
 
         getData : function(box, data, next){
@@ -71,6 +72,16 @@
                 }
 
                 util.each(allList, function(item){
+                    var duaring = '';
+                    if(item.top_end_time === 'unlimit'){
+                        duaring = '不限时间';
+                    }
+                    else{
+                        duaring = item.top_start_time + ' 至 ' + item.top_end_time;
+                    }
+
+                    item.duaring = duaring;
+
                     if(item.active_time){
                         runningList.push(item);
                     }
@@ -111,6 +122,12 @@
                         break;
                 }
                 self.setListHtml(list);
+            });
+
+            this.jq.panelBody.on('click', '.js_coupon', function(){
+                var id = $(this).attr('param');
+                util.dialog.showCouponDetail(id);
+                return false;
             });
 
             //delete btn

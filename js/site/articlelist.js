@@ -120,9 +120,9 @@ KG.Class.define('HWSiteArticleListPage', {
         return [
             '{{each list as item}}',
             '<a target="_blank" href="../view/article.html?id={{item.id}}" class="hw-one">',
-            '<div class="hw-img hw-center-image"><img src="{{item | logoPath}}" /></div>',
+            '<div class="hw-img" role="BaseLoadingImageBox" data-url="{{item | logoPath}}"></div>',
             '<h4>{{item.title}}</h4>',
-            '<h6>{{item.description}}</h6>',
+            '<h6>{{item.description | decode}}</h6>',
             '<p>',
             '<span class="hw-time">{{item.dateline | formatDate:"yy年mm月dd日"}}</span>',
 
@@ -148,6 +148,7 @@ KG.Class.define('HWSiteArticleListPage', {
         });
 
         this.elem.find('.js_box').append(h);
+        KG.component.init(this.elem.find('.js_box'));
     },
 
     initVar : function(){

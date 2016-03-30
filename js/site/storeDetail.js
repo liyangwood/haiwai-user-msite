@@ -897,7 +897,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		var h = [
 			'{{each list as item}}',
 			'<a href="../view/article.html?id={{item.id}}" target="_blank" style="display: block;" class="hw-item hw-art">',
-			'<div class="hw-center-image"><img src="{{item | logoPath}}" /></div>',
+			'<div class="hw-img" data-url="{{item | logoPath}}" role="BaseLoadingImageBox"></div>',
 			'<h4>{{item.title}}</h4>',
 			'<p class="hw-time">{{item.dateline | formatDate:"mm/dd/yy"}}</p>',
 			'<p class="hw-lt">{{item.msgbody | htmlToText}}</p>',
@@ -912,6 +912,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		});
 
 		box.html(h);
+		KG.component.init(box);
 	},
 
 	initCouponBox : function(){
@@ -946,7 +947,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		var h = [
 			'{{each list as item}}',
 			'<div class="hw-item hw-cp js_coupon_item" param="{{item.pk_id}}" style="cursor: pointer">',
-			'<img src="{{item | logoPath}}" />',
+			'<div class="hw-img" data-url="{{item | logoPath}}" role="BaseLoadingImageBox"></div>',
 			'<h4>{{item.subject}}</h4>',
 			'<p class="hw-lt">{{item.count}}人已领取</p>',
 			'<button class="hw-btn hw-blue-btn">立即领取</button>',
@@ -961,6 +962,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		});
 
 		box.html(h);
+		KG.component.init(box);
 	},
 
 

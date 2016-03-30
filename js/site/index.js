@@ -156,7 +156,7 @@ KG.Class.define('HWSiteIndexHotCoupon', {
 		var h = [
 			'{{each list as item}}',
 			'<div param="{{item.pk_id}}" class="hw-each">',
-				'<div class="hw-logo"><img src="{{item.files[0].path | absImage}}" /></div>',
+				'<div role="BaseLoadingImageBox" data-url="{{item.files[0].path | absImage}}" class="hw-logo"></div>',
 				'<h4>{{item.bizinfo.name_cn || item.bizinfo.name_en}}</h4>',
 				'<span class="hw-address">{{item.bizinfo.city}} {{item.bizinfo.state}}</span>',
 				'<h3>{{item.subject}}</h3>',
@@ -166,6 +166,7 @@ KG.Class.define('HWSiteIndexHotCoupon', {
 		h = template.compile(h)({list : data});
 
 		this.jq.box.html(h);
+		KG.component.init(this.jq.box);
 	},
 	registerMessage : function(e, data){
 		this.setListHtml(data);

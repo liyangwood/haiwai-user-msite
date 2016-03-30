@@ -95,14 +95,14 @@
             var h = [
                 '{{each list as item}}',
                 '<div class="hw-each">',
-                    '<img class="hw-img" src="{{item.logo[0].path | absImage}}" />',
+                    '<img class="hw-img" src="{{item | logoPath}}" />',
 
                     '{{if item.bizType==="pause"}}',
                     '<div class="mask">暂停营业</div>',
                     '{{/if}}',
 
                     '<div class="h4">',
-                        '<a class="h4" href="{{item.entityID | toStorePath}}">{{item.name_cn}}</a>',
+                        '<a class="h4" target="_blank" href="{{item.entityID | toStorePath}}">{{item.name_cn}}</a>',
                         '{{if item.verified&&item.verified==="yes"}}<i class="icon icon-v">v</i>{{/if}}',
 
                         '{{if item.event_info}}',

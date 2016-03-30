@@ -608,7 +608,7 @@
             var h = [
                 '{{each list as item}}',
                 '<div param="item.pk_id" class="hw-each js_each">',
-                '<div class="hw-center-image hw-img"><img style="height:auto;" src="{{item | logoPath}}" /></div>',
+                '<div class="hw-img" role="BaseLoadingImageBox" data-url="{{item | logoPath}}"></div>',
                 '<h4 style="margin-top: 0;padding-top:20px;">{{item.subject}}</h4>',
                 '<p style="color: #9b9b9b;font-size: 14px;margin-top:15px;">{{item.count}}人已经领取</p>',
 
@@ -625,6 +625,7 @@
             });
 
             this.elem.find('.js_box').html(h);
+            KG.component.init(this.elem.find('.js_box'));
         }
     });
 
@@ -673,7 +674,7 @@
             var h = [
                 '{{each list as item}}',
                 '<div class="hw-each">',
-                '<div class="hw-center-image hw-img"><img style="height:auto;" src="{{item | logoPath}}" /></div>',
+                '<div class="hw-img" role="BaseLoadingImageBox" data-url="{{item | logoPath}}"></div>',
                 '<h4 style="margin-top: 0;padding-top:10px;height:30px;">{{item.subject}}</h4>',
                 '<p style="color: #9b9b9b;font-size: 14px;margin-top:10px;">{{item.count}}人已经领取</p>',
                 '<p style="color: #9b9b9b;font-size: 14px;margin-top:5px;">{{item.startTime}} 至 {{item.endTime}}</p>',
@@ -691,6 +692,7 @@
             });
 
             this.elem.find('.js_box').html(h);
+            KG.component.init(this.elem.find('.js_box'));
         },
         getListData : function(callback){
             var self = this;
@@ -780,7 +782,7 @@
                     '{{each list as item}}',
                     '<div style="padding-left:145px;" class="hw-each">',
 
-                    '<div class="hw-img hw-center-image" style="width:130px;"><img src="{{item | logoPath}}"/></div>',
+                    '<div class="hw-img" role="BaseLoadingImageBox" data-url="{{item | logoPath}}" style="width:130px;"></div>',
 
                     '<a class="hw-link" target="_blank" style="margin-top:20px;"' +
                     ' href="{{item.link}}">{{item.title}}</a>',

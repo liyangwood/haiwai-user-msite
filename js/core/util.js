@@ -708,7 +708,13 @@
     });
     template.helper('decode', function(str){
         if(!str) return '';
-        return decodeURIComponent(str);
+        var rs;
+        try{
+            rs = decodeURIComponent(str);
+        }catch(e){
+            rs = str;
+        }
+        return rs;
     });
     template.helper('htmlToText', function(html){
         var h = '';

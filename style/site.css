@@ -2228,7 +2228,7 @@ body {
       position: relative;
       height: 114px;
       padding-left: 170px; }
-      .hw-HWSiteStoreDetailPage .hw-left-box .hw-cp img {
+      .hw-HWSiteStoreDetailPage .hw-left-box .hw-cp .hw-img {
         width: 160px;
         height: 98px;
         position: absolute;
@@ -2256,7 +2256,7 @@ body {
       position: relative;
       min-height: 114px;
       padding-left: 137px; }
-      .hw-HWSiteStoreDetailPage .hw-left-box .hw-art img {
+      .hw-HWSiteStoreDetailPage .hw-left-box .hw-art .hw-img {
         width: 122px;
         height: 90px;
         position: absolute;

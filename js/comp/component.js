@@ -264,17 +264,26 @@ KG.Class.define('BaseLoadingImageBox', {
 		});
 	},
 	renderImage : function(img, url){
-		var sy = '';
-		if(img.width > img.height){
-			sy = 'width:100%;height:auto;';
+		var sy = '',
+			f = 'width';
+		var w = this.elem.width(),
+			h = this.elem.height();
+		if(img.width/img.height >= w/h){
+			sy = 'width:auto;height:100%;';
 		}
 		else{
 			sy = 'width:100%;height:auto;';
+			f = 'height';
 		}
 		this.elem.empty();
 		var h = '<img style="'+sy+'" src="'+url+'" />';
-		//this.elem.html(h).addClass('hw-flex-start-image');
-		this.elem.html(h);
+
+		if(f === 'width'){
+			this.elem.html(h);
+		}
+		else{
+			this.elem.html(h).addClass('hw-flex-start-image');
+		}
 	}
 });
 
