@@ -538,6 +538,9 @@ KG.request = {
             biz_tmpid : opts.bizTmpId||'',
             background_pic : opts.bgPic
         };
+        if(opts.logo){
+            data.logo = opts.logo;
+        }
 
         util.each(opts.imageList||[], function(one, i){
             data['uploadfield['+i+']'] = one;

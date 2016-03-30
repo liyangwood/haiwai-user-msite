@@ -130,6 +130,10 @@
             });
         },
 
+        removeHtmlTag : function(html){
+            return html.replace(/<([^>]*)>/g, '');
+        },
+
         getLatAndLongWithAddress : function(address, callback){
             var url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+address+'&key='+KG.config.GoogleMapApiKey;
             $.getJSON(url, {}, function(rs){

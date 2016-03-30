@@ -374,7 +374,6 @@ KG.Class.define('MybizRunningCouponList', {
         this.elem.on('click', '.js_each', function(){
             var id = $(this).attr('param');
             util.dialog.showCouponDetail(id);
-            return false;
         });
     },
 

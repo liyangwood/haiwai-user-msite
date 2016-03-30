@@ -713,7 +713,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					fk_entityID : self.bizId,
 					id : rs.toString(),
 					is_report : '0',
-					msgbody : val,
+					msgbody : util.removeHtmlTag(val),
 					star : rank.getValue(),
 					treelevel : '0',
 					userID : user.userid,
@@ -1001,7 +1001,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					msgbody : box.find('textarea').val()
 				}, function(flag, rs){
 					if(flag){
-						util.toast.alert('评论成功，感谢您的参与！');
+						util.toast.alert('举报成功，感谢您的参与！');
 					}
 					else{
 						util.toast.showError(rs);

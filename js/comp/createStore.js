@@ -38,6 +38,7 @@ KG.Class.define('MybizStoreInputDatepicker', {
         return [
             '<div class="form-group hw-MybizStoreInputDatepicker">',
                 '<label>营业时间</label>',
+                '<label class="control-label hw-err"></label>',
 
                 '<div class="cb js_b2">',
 
@@ -195,13 +196,34 @@ KG.Class.define('MybizStoreInputDatepicker', {
         return false;
     },
 
+    showError : function(str){
+        if(str){
+            this.elem.addClass('has-error').find('.hw-err').html(str);
+        }
+        else{
+            this.elem.removeClass('has-error').find('.hw-err').html('');
+        }
+    },
+
     initEvent : function(){
         var self = this;
         this.elem.on('click', '.js_add', function(){
             var data = self.getAddData();
+
             if(!self.checkDayTime([data.start, data.end])){
-                util.toast.showError('时间格式错误');
+                self.showError('时间格式错误');
                 return false;
+            }
+            else{
+                self.showError();
+            }
+
+            if(data.week.length < 1){
+                self.showError('请选择适用于周几');
+                return false;
+            }
+            else{
+                self.showError();
             }
 
             self.td.push(data);
@@ -1096,6 +1118,9 @@ KG.Class.define('UploadStoreImage', {
     },
     initEnd : function(){
 
+    },
+    getImageUrl : function(){
+        return this.jq.img.attr('src');
     }
 });
 
@@ -1421,6 +1446,10 @@ KG.Class.define('MybizStoreInfoFormStep3', {
             console.log(data);
 
             if(self.type === 'create'){
+                var src = self.jq.logo.getImageUrl();
+                if(src){
+                    data.logo = src;
+                }
                 KG.request.createStoreByStep3(data, function(flag, rs){
                     if(flag){
                         //location.href = 'http://beta.haiwai.com/biz/view.php?id='+rs;
@@ -1482,7 +1511,7 @@ KG.Class.define('MybizStoreInfoFormStep3', {
         }
         this.elem.find('.js_bigimage1').eq(index).trigger('click');
 
-        KG.component.initWithElement(this.elem.find('.js_logo'), {});
+        this.jq.logo = KG.component.initWithElement(this.elem.find('.js_logo'), {});
     },
 
     getFormValue : function(){
