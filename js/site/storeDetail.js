@@ -287,8 +287,8 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 					'</div>',
 					'<div class="df js_rpcat">',
-						'<b class="active">全部评论(30)</b>',
-						'<b>图片评论(13)</b>',
+						'<b class="">全部评论</b>',
+						'<b>图片评论</b>',
 					'</div>',
 					'<div class="dp"></div>',
 					'<nav class="hw-loadingmore-bar"><i class="loading" style="display: none;"></i><b class="js_more">加载更多</b></nav>',
@@ -399,7 +399,10 @@ KG.Class.define('HWSiteStoreDetailPage', {
 	initStart : function(){
 		this.bizId = KG.data.get('id');
 		this.commentData = [];
+		this.commentData_pic = [];
+		this.lastCommentId_pic = null;
 		this.lastCommentId = null;
+		this.commentType = 'all';  //all, pic
 		this.rpId = null;
 
 		this.commentImage = null;
@@ -423,7 +426,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				util.message.publish('HWSiteStoreBigBackgroundImage', bg_pic);
 
 				//init comment
-				self.getCommentData();
+				//self.getCommentData();
 			}
 			else{
 				util.toast.showError(rs);
@@ -505,10 +508,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			self.sendComment($(this));
 		});
 
-		this.elem.find('.js_cmbox').on('click', '.js_more', function(e){
-			self.lastCommentId = _.last(self.commentData).id;
-			self.getCommentData();
-		});
+
 
 		this.elem.find('.js_cmbox').on('click', '.js_rp', function(e){
 
@@ -539,7 +539,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 			self.showJuBaoReplyDialog({
 				toName : name,
-				id : id,
+				id : id
 			});
 		});
 
@@ -617,6 +617,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			util.dialog.showFocusImage(o.attr('param'), list);
 		});
 
+		//TODO
 		var catb = this.elem.find('.js_rpcat').find('b');
 		catb.eq(0).click(function(){
 			var o = $(this);
@@ -625,6 +626,13 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			}
 			o.addClass('active');
 			catb.eq(1).removeClass('active');
+
+			self.commentType = 'all';
+			self.commentData = [];
+			self.getCommentData(function(json){
+				catb.eq(0).html('全部评论('+json.all+')');
+				catb.eq(1).html('图片评论('+json.has_pic+')');
+			});
 		});
 		catb.eq(1).click(function(){
 			var o = $(this);
@@ -633,6 +641,23 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			}
 			o.addClass('active');
 			catb.eq(0).removeClass('active');
+
+			self.commentType = 'pic';
+			self.commentData_pic = [];
+			self.getCommentData(function(json){
+				catb.eq(0).html('全部评论('+json.all+')');
+				catb.eq(1).html('图片评论('+json.has_pic+')');
+			});
+		});
+
+		this.elem.find('.js_cmbox').on('click', '.js_more', function(e){
+			if(self.commentType === 'pic'){
+				self.lastCommentId_pic = _.last(self.commentData_pic).id;
+			}
+			else{
+				self.lastCommentId = _.last(self.commentData).id;
+			}
+			self.getCommentData();
 		});
 
 	},
@@ -712,16 +737,20 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		var rank = KG.component.getObj(this.elem.find('.js_rank'));
 
 		var commentImageList = this.commentImage.getValue();
+		var param = {
+			bizId : self.bizId,
+			star : rank.getValue()
+		};
+		if(commentImageList.length > 0){
+			param.has_pic = true;
+		}
 		val += _.map(commentImageList, function(url){
 			return '<img src="'+url+'" />';
 		}).join('');
+		param.msg = val;
 
 		btnObj.button('loading');
-		KG.request.sendStoreComment({
-			bizId : self.bizId,
-			msg : val,
-			star : rank.getValue()
-		}, function(flag, rs){
+		KG.request.sendStoreComment(param, function(flag, rs){
 			btnObj.button('reset');
 
 			if(flag){
@@ -745,7 +774,15 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					pic : commentImageList
 				};
 
-				self.commentData = [sd].concat(self.commentData);
+				if(self.commentType === 'pic' && param.has_pic){
+					self.commentData_pic = [sd].concat(self.commentData_pic);
+					self.setCommentBoxHtml();
+				}
+				else if(self.commentType === 'all'){
+					self.commentData = [sd].concat(self.commentData);
+					self.setCommentBoxHtml();
+				}
+
 				self.setCommentBoxHtml();
 
 				rank.setValue(0);
@@ -783,6 +820,8 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			}, 1000);
 		}
 
+		this.elem.find('.js_rpcat').find('b').eq(0).trigger('click');
+
 		this.commentImage = KG.component.getObj(this.elem.find('.js_comment_img'));
 	},
 
@@ -802,20 +841,33 @@ KG.Class.define('HWSiteStoreDetailPage', {
 	getCommentData : function(callback){
 		callback = callback || util.noop;
 		var self = this;
-		var id = this.bizId,
-			lastid = this.lastCommentId;
+
+		this.elem.find('.js_cmbox').find('.c-content .dp').html('');
 		var m = this.elem.find('.js_cmbox .hw-loadingmore-bar'),
 			m1 = m.find('.loading'),
 			m2 = m.find('.js_more');
 
 		m1.show();
 		m2.hide();
-		KG.request.getStoreCommentData({
-			bizId : id,
-			lastid : lastid
-		}, function(flag, rs){
+		m.show();
+
+		var param = {
+			bizId : this.bizId
+		};
+		if(this.commentType === 'all'){
+			param.lastid = this.lastCommentId;
+		}
+		else if(this.commentType === 'pic'){
+			param.has_pic = true;
+			param.lastid = this.lastCommentId_pic;
+		}
+
+
+		KG.request.getStoreCommentData(param, function(flag, rs){
 			if(flag){
 				console.log(rs);
+				var count = rs.count;
+				rs = rs.list;
 				if(rs.length > 20){
 					m1.hide();
 					m2.show();
@@ -824,9 +876,15 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					m.hide();
 				}
 
-				self.commentData = self.commentData.concat(rs);
+				if(self.commentType === 'all'){
+					self.commentData = self.commentData.concat(rs);
+				}
+				else if(self.commentType === 'pic'){
+					self.commentData_pic = self.commentData_pic.concat(rs);
+				}
+
 				self.setCommentBoxHtml();
-				callback(rs);
+				callback(count);
 			}
 			else{
 				m.hide();
@@ -879,12 +937,17 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		var box = this.elem.find('.js_cmbox'),
 			list = this.commentData;
 
+		if(this.commentType === 'pic'){
+			list = this.commentData_pic;
+		}
+
 		h = template.compile(h)({
 			list: list,
 			role : this.data.biz.role
 		});
-		box.find('.c-title p').html('评论（' + list.length + '）');
+		box.find('.c-title p').html('评论（' + this.commentData.length + '）');
 		box.find('.c-content .dp').html(h);
+
 
 		KG.component.init(box.find('.c-content .dp'));
 	},

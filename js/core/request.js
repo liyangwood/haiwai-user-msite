@@ -896,6 +896,9 @@ KG.request = {
             lastid : opts.lastid,
             dataType : 2
         };
+        if(opts.has_pic){
+            data.has_pic = 1;
+        }
         return this.ajax(data, success, error);
     },
 
@@ -916,6 +919,9 @@ KG.request = {
         if(opts.id){
             data.replyid = opts.id;
             data.act = 'reply';
+        }
+        if(opts.has_pic){
+            data.has_pic = '1';
         }
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
