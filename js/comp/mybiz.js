@@ -819,11 +819,6 @@ KG.Class.define('HWMybizCrateAdsFormUploadImage', {
             '</div>'
         ].join('');
     },
-    defineProperty : function(){
-        return {
-            image : {}
-        };
-    },
     getData : function(box, data, next){
 
         next({
@@ -835,8 +830,21 @@ KG.Class.define('HWMybizCrateAdsFormUploadImage', {
         return {};
     },
     initEvent : function(){
-        //this.callParent('initEvent');
+        var btn = this.jq.btn,
+            img = this.jq.img;
 
+        var self = this;
+        this.jq.fileInput.bind('change', function(e){
+            var file = this.files[0];
+
+            btn.button('loading');
+
+            self.uploadImageFn(file, function(){
+                btn.button('reset');
+
+                self.elem.trigger('change_end');
+            });
+        });
 
     },
 
@@ -897,6 +905,23 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
             '</div>'
         ].join('');
     },
+    getData : function(box, data, next){
+        util.loading(true);
+        KG.request.getBizList({}, function(flag, rs){
+            util.loading(false);
+            if(true){
+
+                next({});
+            }
+            else{
+                //util.toast.showError('还没有创建店铺');
+                //util.delay(function(){
+                //    location.href = '../mybiz/createStore.html';
+                //}, 2000);
+            }
+        });
+
+    },
     initVar : function(){
         this.tpl = '';
         this.logo = '';
@@ -932,9 +957,21 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
 
             self.toPreviewAD();
         });
+
+        var tm = null;
+        this.elem.find('.s-form').on('keyup', 'input', function(e){
+            if(tm){
+                window.clearTimeout(tm);
+            }
+            tm = window.setTimeout(function(){
+                self.toPreviewAD();
+            }, 200);
+
+        });
     },
     initEnd : function(){
         this.jq.logo = KG.component.getObj(this.elem.find('.s-img'));
+        this.jq.logo.elem.bind('change_end', this.toPreviewAD.bind(this));
 
         this.setImageTemplate();
     },

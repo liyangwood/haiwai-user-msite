@@ -3,17 +3,130 @@
     width: 198px;
     height: 112px;
     margin: 0 auto;
+    position: relative;
+
+    p{
+        margin: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
 }
 .hw-ad-common1{
     border: 1px solid #00a7bc;
 
     .hw-logo{
-
+        position: absolute;
+        background-color: #c5c5c5;
+        width: 90px;
+        height: 112px;
+        top: 0;
+        left: 0;
     }
 
     .hw-name{
-
+        font-size: 21px;
+        color: #00a7bc;
+        top: 6px;
+        position: absolute;
+        width: 100px;
+        left: 95px;
+        text-align: left;
+        font-weight: 700;
     }
 
+    .hw-ad1{
+        font-size: 15px;
+        position: absolute;
+        color: #4a4a4a;
+        left: 95px;
+        width: 100px;
+        text-align: left;
+        top: 36px;
+    }
+
+    .hw-ad2{
+        margin: 0;
+        position: absolute;
+        left: 95px;
+        width: 100px;
+        font-size: 12px;
+        color: #4a4a4a;
+        text-align: left;
+        top: 60px;
+    }
+
+    .hw-tel{
+        position: absolute;
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        background: rgba(0,167,188, 0.65);
+        left: 0;
+        font-size: 16px;
+        bottom: 0;
+        margin: 0;
+        color: #fff;
+        text-align: center;
+    }
+
+}
+
+.hw-ad-common2{
+    border: 1px solid #c5c5c5;
+
+    .hw-logo{
+        position: absolute;
+        background-color: #c5c5c5;
+        width: 90px;
+        height: 112px;
+        top: 0;
+        right: 0;
+    }
+
+    .hw-name{
+        font-family: STKaiti-SC-Regular;
+        font-size: 22px;
+        color: #000;
+        top: 32px;
+        position: absolute;
+        width: 100px;
+        left: 5px;
+        text-align: left;
+        font-weight: 700;
+    }
+
+    .hw-ad1{
+        font-family: PingFangSC-Regular;
+        font-size: 12px;
+        position: absolute;
+        color: #4a4a4a;
+        left: 5px;
+        width: 100px;
+        text-align: left;
+        top: 10px;
+    }
+
+    .hw-ad2{
+        font-family: PingFangSC-Regular;
+        margin: 0;
+        position: absolute;
+        left: 5px;
+        width: 100px;
+        font-size: 12px;
+        color: #4a4a4a;
+        text-align: left;
+        top: 70px;
+    }
+
+    .hw-tel{
+        font-family: PingFangSC-Regular;
+        position: absolute;
+        left: 5px;
+        font-size: 12px;
+        top: 88px;
+        color: #4a4a4a;
+        text-align: left;
+    }
 
 }
