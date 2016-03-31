@@ -174,7 +174,7 @@
             var li = this.elem.find('.js_a');
             li.eq(0).html('全部收藏店铺('+json.all+')');
             li.eq(1).html('正在优惠店铺('+json.is_active+')');
-            li.eq(2).html('暂停营业店铺('+json.not_open+')');
+            li.eq(2).html('暂停营业店铺('+json.is_closed+')');
         },
         initEvent : function(){
             var self = this;

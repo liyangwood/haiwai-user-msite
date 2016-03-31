@@ -127,7 +127,7 @@
                         '<input type="text" class="form-control" placeholder="搜索店铺，专家服务...">',
                     '</div>',
 
-                '{{if user.isLogin}}',
+                '{{if user.isLogin && user.has_biz}}',
                 '<div class="right">',
 
                     '<div class="dropdown" style="margin-right: 40px;">',
@@ -143,6 +143,23 @@
                     '</div>',
 
                     '<div class="dropdown">',
+                    '<button id="js_right_dd_2" class="c2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
+                    '<img src="{{user.image}}" />',
+                    '</button>',
+                    '<div class="dropdown-menu" aria-labelledby="js_right_dd_2">',
+                    '<a href="../myfav/list.html">我的收藏</a>',
+                    '<a href="../mycoupon/list.html">我的优惠</a>',
+                    '<a href="../mysys/index.html">系统消息</a>',
+                    '<a href="../mycount/info.html">账户设置</a>',
+                    '<a class="js_logout" href="javascript:void(0)">退出登录</a>',
+                    '</div>',
+                '</div>',
+                '{{else if user.isLogin && !user.has_biz}}',
+                '<div class="right">',
+
+                    '<a style="float: left;margin-right: 20px;" class="hw-light-btn hw-btn" href="../site/landing.html">我是商家</a>',
+
+                    '<div style="top:3px;" class="dropdown">',
                     '<button id="js_right_dd_2" class="c2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
                     '<img src="{{user.image}}" />',
                     '</button>',

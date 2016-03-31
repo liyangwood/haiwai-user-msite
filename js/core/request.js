@@ -319,7 +319,7 @@ KG.request = {
             data.is_active = '1';
         }
         if(opts.not_active){
-            data.not_active = '1';
+            data.is_active = '0';
         }
         util.addUserIdToRequestData(data);
 
