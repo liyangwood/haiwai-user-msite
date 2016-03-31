@@ -228,17 +228,17 @@ KG.Class.define('StarRank', {
 				var o = $(e.target);
 				var i = o.attr('index');
 				if(o.hasClass('icon_empty')){
-					self.rank = parseFloat(i)+0.5;
+					self.rank = parseFloat(i)+1;
 				}
 				else if(o.hasClass('icon_full')){
 					self.rank = parseInt(i, 10);
 				}
-				else if(o.hasClass('icon_half')){
-					self.rank = parseInt(i, 10)+1;
-				}
+				//else if(o.hasClass('icon_half')){
+				//	self.rank = parseInt(i, 10)+1;
+				//}
 
 				if(self.rank === 0){
-					self.rank = 0.5;
+					self.rank = 1;
 				}
 
 				self.render();

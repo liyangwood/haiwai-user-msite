@@ -501,7 +501,11 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				return false;
 			}
 
-			self.showReplyTextarea();
+			var rank = KG.component.getObj(self.elem.find('.js_rank'));
+			console.log(rank.getValue());
+			if(parseFloat(rank.getValue()) > 0){
+				self.showReplyTextarea();
+			}
 		});
 
 		this.elem.find('.js_cmbox .db .hw-ta').find('.hw-btn').click(function(){
