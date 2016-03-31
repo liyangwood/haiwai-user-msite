@@ -1476,7 +1476,7 @@ label.require:after {
   min-height: inherit; }
   .hw-page-createAds .hw-left-box {
     width: 750px;
-    padding: 0 44px 0; }
+    padding-left: 44px; }
   .hw-page-createAds .hw-right-box {
     position: absolute;
     top: 25px;
@@ -1491,7 +1491,8 @@ label.require:after {
       color: #4a4a4a;
       font-weight: normal; }
     .hw-page-createAds .hw-right-box .hw-preview {
-      margin: 40px auto; }
+      margin-top: 30px;
+      text-align: center; }
 
 .hw-HWMybizCreateAdsPageForm .hw-label {
   font-size: 20px;
@@ -1500,6 +1501,16 @@ label.require:after {
   font-weight: normal; }
 .hw-HWMybizCreateAdsPageForm .s-tpl {
   margin-top: 30px; }
+  .hw-HWMybizCreateAdsPageForm .s-tpl img {
+    width: 198px;
+    height: 111px;
+    box-sizing: initial;
+    border: 12px solid transparent;
+    border-radius: 6px;
+    cursor: pointer; }
+    .hw-HWMybizCreateAdsPageForm .s-tpl img.active {
+      border: 12px solid rgba(55, 188, 205, 0.2);
+      cursor: default; }
 .hw-HWMybizCreateAdsPageForm .s-img {
   margin-top: 20px;
   height: 140px;
@@ -1994,5 +2005,13 @@ label.require:after {
       line-height: 36px;
       font-size: 14px;
       margin-top: 15px; }
+
+.hw-ad {
+  width: 198px;
+  height: 112px;
+  margin: 0 auto; }
+
+.hw-ad-common1 {
+  border: 1px solid #00a7bc; }
 
 /*# sourceMappingURL=style.css.map */

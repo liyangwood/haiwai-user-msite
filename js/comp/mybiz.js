@@ -896,6 +896,68 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
 
             '</div>'
         ].join('');
+    },
+    initVar : function(){
+        this.tpl = '';
+        this.logo = '';
+        this.name = '';
+        this.ad1 = '';
+        this.ad2 = '';
+        this.tel = '';
+    },
+    setJqVar : function(){
+        return {
+            name : this.elem.find('.js_name'),
+            ad1 : this.elem.find('.js_ad1'),
+            ad2 : this.elem.find('.js_ad2'),
+            tel : this.elem.find('.js_tel')
+        };
+    },
+    setImageTemplate : function(){
+        var list = [
+            'common1', 'common2', 'canyinmeishi'
+        ];
+        var h = _.map(list, function(one){
+            return '<img class="js_tpl" param="'+one+'" src="../../image/createad/'+one+'.png" />';
+        });
+        this.elem.find('.s-tpl').html(h.join('')).find('img').eq(0).addClass('active');
+    },
+    initEvent : function(){
+        var self = this;
+        this.elem.find('.s-tpl').on('click', 'img', function(){
+            var o = $(this);
+            if(o.hasClass('active')) return false;
+            o.parent().find('img').removeClass('active');
+            o.addClass('active');
+
+            self.toPreviewAD();
+        });
+    },
+    initEnd : function(){
+        this.jq.logo = KG.component.getObj(this.elem.find('.s-img'));
+
+        this.setImageTemplate();
+    },
+    getFormValue : function(){
+        this.tpl = this.elem.find('.js_tpl').filter('.active').attr('param');
+        this.logo = this.jq.logo.getImageUrl();
+        this.name = this.jq.name.val();
+        this.ad1 = this.jq.ad1.val();
+        this.ad2 = this.jq.ad2.val();
+        this.tel = this.jq.tel.val();
+
+        return {
+            template : this.tpl,
+            logo : this.logo,
+            bizName : this.name,
+            bizAd1 : this.ad1,
+            bizAd2 : this.ad2,
+            bizTel : this.tel
+        };
+    },
+    toPreviewAD : function(){
+        var data = this.getFormValue();
+        util.message.publish('HWMybizCreateAdsPagePreivew', data);
     }
 });
 
@@ -909,9 +971,26 @@ KG.Class.define('HWMybizCreateAdsPagePreivew', {
             '</div>'
         ].join('');
     },
+    registerMessage : function(e, data){
+        this.setPreivewHtml(data);
+    },
     setJqVar : function(){
         return {
             box : this.elem.find('.hw-preview')
         };
+    },
+    setPreivewHtml : function(data){
+        var h = [
+            '<div class="hw-ad hw-ad-{{template}}">',
+            '<img class="hw-logo" src="{{logo}}"/>',
+            '<p class="hw-name">{{bizName}}</p>',
+            '<p class="hw-ad1">{{bizAd1}}</p>',
+            '<p class="hw-ad2">{{bizAd2}}</p>',
+            '<p class="hw-tel">{{bizTel}}</p>',
+            '</div>'
+        ].join('');
+        h = template.compile(h)(data);
+
+        this.jq.box.html(h);
     }
 });

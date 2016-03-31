@@ -1010,7 +1010,7 @@
 	min-height: inherit;
 	.hw-left-box{
 		width: 750px;
-		padding: 0 44px 0;
+		padding-left: 44px;
 
 	}
 	
@@ -1030,7 +1030,8 @@
 			font-weight: normal;
 		}
 		.hw-preview{
-			margin: 40px auto;
+			margin-top: 30px;
+			text-align: center;
 		}
 	}
 }
@@ -1043,6 +1044,20 @@
 	}
 	.s-tpl{
 		margin-top: 30px;
+
+		img{
+			width: 198px;
+			height: 111px;
+			box-sizing: initial;
+			border: 12px solid transparent;
+			border-radius: 6px;
+			cursor: pointer;
+
+			&.active{
+				border: 12px solid rgba(55,188,205,0.2);
+				cursor: default;
+			}
+		}
 	}
 
 	.s-img{

@@ -33,16 +33,16 @@
         BizBigBgPic : '../../image/default_bg_pic.png',
         articleImage : KG.config.SiteRoot+'/images/lifetools_default_article.png',
         couponImage : KG.config.SiteRoot+'/images/default_event_logo.png',
-        storeImage : '../../image/image/store_default.png'
+        storeImage : '../../image/store_default.png'
     };
 
     var user = {
-        image : KG.config.root+'/image/user_default.png',
-        defaultImage : 'http://www.sinomedianet.com/haiwai2015.3.19/images/default_avatar.png',
-        email : 'liyang@chinagate.com',
+        image : 'http://www.sinomedianet.com/haiwai2015.3.19/images/default_avatar.png',
+        //defaultImage : 'http://www.sinomedianet.com/haiwai2015.3.19/images/default_avatar.png',
+        email : '',
         userid : 14678,
-        tel : '5735769567',
-        token : '5847ac0c8efb8552d1b7c42a4c3f2418',
+        tel : '',
+        token : '',
         isLogin : true
     };
     KG.user = {
@@ -136,7 +136,8 @@
                 _.extend(user, u);
                 KG.request.checkLogin({}, function(flag, rs){
                     if(flag){
-                        user.userid = rs;
+                        user.image = KG.config.SiteRoot+rs.avatar_url;
+                        _.extend(user, rs);
                         user.isLogin = true;
                         next();
                     }
