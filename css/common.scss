@@ -147,6 +147,14 @@ a:hover, a:link{
     }
 
 }
+label.require:after{
+    content : '*';
+    color: #ff0000;
+    position: relative;
+    left: 4px;
+    top: 5px;
+    font-size: 16px;
+}
 
 
 .hw-btn{

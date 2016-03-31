@@ -179,6 +179,7 @@
                 '{{if user.isLogin}}',
                 '<div class="right">',
 
+                '{{if user.has_biz}}',
                 '<div class="dropdown" style="margin-right: 40px;">',
                 '<button id="js_right_dd_1" type="button" data-toggle="dropdown" aria-haspopup="true"' +
                 ' aria-expanded="false">',
@@ -190,6 +191,7 @@
                 '<a href="../mybiz/article.html">店铺文章</a>',
                 '</div>',
                 '</div>',
+                '{{/if}}',
 
                 '<div class="dropdown">',
                 '<button id="js_right_dd_2" class="c2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',

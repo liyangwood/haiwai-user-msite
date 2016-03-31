@@ -106,6 +106,14 @@ a:hover, a:link {
     cursor: pointer;
     color: #4a4a4a; }
 
+label.require:after {
+  content: '*';
+  color: #ff0000;
+  position: relative;
+  left: 4px;
+  top: 5px;
+  font-size: 16px; }
+
 .hw-btn {
   display: inline-block;
   line-height: 40px;

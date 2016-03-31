@@ -1059,7 +1059,7 @@ KG.Class.define('UploadStoreImage', {
         };
     },
     getData : function(box, data, next){
-        console.log(this.prop)
+
         next({
             image : this.prop.image
         });

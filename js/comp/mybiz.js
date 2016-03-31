@@ -803,3 +803,115 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
         next({});
     }
 });
+
+KG.Class.define('HWMybizCrateAdsFormUploadImage', {
+    ParentClass : 'BaseUploadImage',
+    getTemplate : function(){
+        return [
+            '<div>',
+            '<div class="hw-img-box">',
+            '<img class="js_img" src="{{image}}" />',
+            '</div>',
+
+
+            '<button data-loading-text="正在上传..." class="hw-btn js_btn">从电脑上传图片</button>',
+            '<input type="file" />',
+            '</div>'
+        ].join('');
+    },
+    defineProperty : function(){
+        return {
+            image : {}
+        };
+    },
+    getData : function(box, data, next){
+
+        next({
+            image : this.prop.image
+        });
+    },
+
+    setJqVar : function(){
+        return {};
+    },
+    initEvent : function(){
+        //this.callParent('initEvent');
+
+
+    },
+
+    getImageUrl : function(){
+        return this.jq.img.attr('src');
+    }
+});
+KG.Class.define('HWMybizCreateAdsPageForm', {
+    ParentClass : 'BaseComponent',
+    getTemplate : function(){
+        return [
+            '<div class="hw-HWMybizCreateAdsPageForm">',
+                '<label class="require hw-label">1.选择模版</label>',
+                '<dd class="s-tpl"><dd>',
+
+                '<label class="require hw-label">2.选择图片</label>',
+                '<div class="s-img" role="HWMybizCrateAdsFormUploadImage"></div>',
+
+                '<label class="hw-label require">3.填写内容</label>',
+                '<form class="form-horizontal s-form">',
+                    '<div class="form-group">',
+                        '<label class="col-sm-2 control-label require">店铺名称</label>',
+                        '<div class="col-sm-8">',
+                            '<input type="text" class="form-control js_name" placeholder="">',
+                            '<span class="hw-tip">请使用尽量少的文字，以避免显示不全</span>',
+                        '</div>',
+                    '</div>',
+
+                    '<div class="form-group">',
+                    '<label class="col-sm-2 control-label require">广告语</label>',
+                    '<div class="col-sm-8">',
+                    '<input type="text" class="form-control js_ad1" placeholder="职位名称或营业特色">',
+                    '</div>',
+                    '</div>',
+
+                    '<div class="form-group">',
+                    '<label class="col-sm-2 control-label require">广告语</label>',
+                    '<div class="col-sm-8">',
+                    '<input type="text" class="form-control js_ad2" placeholder="广告宣传语">',
+                    '</div>',
+                    '</div>',
+
+                    '<div class="form-group">',
+                    '<label class="col-sm-2 control-label require">联系电话</label>',
+                    '<div class="col-sm-8">',
+                    '<input type="text" class="form-control js_tel" placeholder="">',
+                    '</div>',
+                    '</div>',
+
+                    '<div class="s-btn">',
+                        '<a href="../mybiz/index.html" class="hw-btn hw-light-btn hw-back">取消</a>',
+
+                        '<button class="hw-btn hw-blue-btn hw-sub js_btn">创建广告</button>',
+                    '</div>',
+
+                '</form>',
+
+            '</div>'
+        ].join('');
+    }
+});
+
+KG.Class.define('HWMybizCreateAdsPagePreivew', {
+    ParentClass : 'BaseComponent',
+    getTemplate : function(){
+        return [
+            '<div class="hw-right-box">',
+                '<h4 class="hw-title">广告预览</h4>',
+                '<div class="hw-preview"></div>',
+            '</div>'
+        ].join('');
+    },
+    setJqVar : function(){
+        return {
+            box : this.elem.find('.hw-preview')
+        };
+    }
+});

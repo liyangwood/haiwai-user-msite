@@ -107,6 +107,14 @@ a:hover, a:link {
     cursor: pointer;
     color: #4a4a4a; }
 
+label.require:after {
+  content: '*';
+  color: #ff0000;
+  position: relative;
+  left: 4px;
+  top: 5px;
+  font-size: 16px; }
+
 .hw-btn {
   display: inline-block;
   line-height: 40px;
@@ -1461,6 +1469,90 @@ a:hover, a:link {
   line-height: 36px;
   font-size: 14px;
   margin-top: 10px; }
+
+.hw-page-createAds {
+  background: #f5f5f5;
+  margin-bottom: 24px;
+  min-height: inherit; }
+  .hw-page-createAds .hw-left-box {
+    width: 750px;
+    padding: 0 44px 0; }
+  .hw-page-createAds .hw-right-box {
+    position: absolute;
+    top: 25px;
+    right: 44px;
+    width: 280px;
+    height: 400px;
+    background: #ffffff;
+    text-align: center; }
+    .hw-page-createAds .hw-right-box .hw-title {
+      font-size: 20px;
+      margin-top: 20px;
+      color: #4a4a4a;
+      font-weight: normal; }
+    .hw-page-createAds .hw-right-box .hw-preview {
+      margin: 40px auto; }
+
+.hw-HWMybizCreateAdsPageForm .hw-label {
+  font-size: 20px;
+  color: #4a4a4a;
+  margin-top: 25px;
+  font-weight: normal; }
+.hw-HWMybizCreateAdsPageForm .s-tpl {
+  margin-top: 30px; }
+.hw-HWMybizCreateAdsPageForm .s-img {
+  margin-top: 20px;
+  height: 140px;
+  position: relative; }
+  .hw-HWMybizCreateAdsPageForm .s-img .hw-img-box {
+    height: 134px;
+    width: 106px;
+    float: left;
+    background: #eeeeee;
+    position: relative; }
+    .hw-HWMybizCreateAdsPageForm .s-img .hw-img-box img {
+      width: 100%;
+      height: 100%; }
+  .hw-HWMybizCreateAdsPageForm .s-img input, .hw-HWMybizCreateAdsPageForm .s-img .hw-btn {
+    width: 140px;
+    height: 36px;
+    position: absolute;
+    left: 140px;
+    top: 98px; }
+  .hw-HWMybizCreateAdsPageForm .s-img input {
+    opacity: 0;
+    z-index: 1;
+    cursor: pointer; }
+  .hw-HWMybizCreateAdsPageForm .s-img .hw-btn {
+    color: #4a4a4a;
+    border: 1px solid #4a4a4a;
+    line-height: 36px;
+    font-size: 14px;
+    background: transparent; }
+.hw-HWMybizCreateAdsPageForm .s-form {
+  margin-top: 8px; }
+  .hw-HWMybizCreateAdsPageForm .s-form .control-label {
+    text-align: left;
+    font-size: 14px;
+    font-weight: normal;
+    color: #4a4a4a; }
+  .hw-HWMybizCreateAdsPageForm .s-form .form-control {
+    width: 176px;
+    display: inline-block; }
+  .hw-HWMybizCreateAdsPageForm .s-form .hw-tip {
+    margin-left: 12px;
+    color: #7d7d7d; }
+.hw-HWMybizCreateAdsPageForm .s-btn {
+  margin-top: 30px; }
+  .hw-HWMybizCreateAdsPageForm .s-btn .hw-back {
+    float: left;
+    border-color: #777777;
+    font-size: 14px;
+    color: #777777; }
+  .hw-HWMybizCreateAdsPageForm .s-btn .hw-sub {
+    float: right;
+    font-weight: normal;
+    font-size: 14px; }
 
 .hw-myfav-list {
   margin-top: 24px;
