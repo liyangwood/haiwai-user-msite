@@ -286,6 +286,10 @@ KG.Class.define('HWSiteStoreDetailPage', {
 						'</div>',
 
 					'</div>',
+					'<div class="df js_rpcat">',
+						'<b class="active">全部评论(30)</b>',
+						'<b>图片评论(13)</b>',
+					'</div>',
 					'<div class="dp"></div>',
 					'<nav class="hw-loadingmore-bar"><i class="loading" style="display: none;"></i><b class="js_more">加载更多</b></nav>',
 				'</dd>',
@@ -612,6 +616,25 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 			util.dialog.showFocusImage(o.attr('param'), list);
 		});
+
+		var catb = this.elem.find('.js_rpcat').find('b');
+		catb.eq(0).click(function(){
+			var o = $(this);
+			if(o.hasClass('active')){
+				return false;
+			}
+			o.addClass('active');
+			catb.eq(1).removeClass('active');
+		});
+		catb.eq(1).click(function(){
+			var o = $(this);
+			if(o.hasClass('active')){
+				return false;
+			}
+			o.addClass('active');
+			catb.eq(0).removeClass('active');
+		});
+
 	},
 	showReplyTextarea : function(val){
 		var box = this.elem.find('.js_cmbox .db'),

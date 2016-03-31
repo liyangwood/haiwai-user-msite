@@ -292,6 +292,26 @@
         }
     }
 
+    .df{
+        border-bottom: 1px solid #ebebeb;
+
+        b{
+            font-size: 15px;
+            line-height: 22px;
+            padding: 8px 28px 5px;
+            color: $color-4a;
+            font-weight: normal;
+            display: inline-block;
+            cursor: pointer;
+
+            &.active{
+                color: $yellow-color;
+                border-bottom: 3px solid $yellow-color;
+                cursor: default;
+            }
+        }
+    }
+
     .hw-rpeach{
         position: relative;
         min-height: 110px;

@@ -2309,6 +2309,20 @@ body {
       top: -4px; }
       .hw-HWSiteStoreDetailPage .hw-imglist .item .img-item img {
         width: 100%; }
+  .hw-HWSiteStoreDetailPage .df {
+    border-bottom: 1px solid #ebebeb; }
+    .hw-HWSiteStoreDetailPage .df b {
+      font-size: 15px;
+      line-height: 22px;
+      padding: 8px 28px 5px;
+      color: #4a4a4a;
+      font-weight: normal;
+      display: inline-block;
+      cursor: pointer; }
+      .hw-HWSiteStoreDetailPage .df b.active {
+        color: #f4a62a;
+        border-bottom: 3px solid #f4a62a;
+        cursor: default; }
   .hw-HWSiteStoreDetailPage .hw-rpeach {
     position: relative;
     min-height: 110px;
