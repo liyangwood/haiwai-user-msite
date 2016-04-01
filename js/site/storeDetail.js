@@ -317,7 +317,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		h = _.map(rs.dyfields, function(one){
 			return {
 				title : one.field_name,
-				value : one.value
+				value : _.isArray(one.value) ? one.value.join('，') : one.value
 			};
 		});
 		rs.dynamic_list = h;
