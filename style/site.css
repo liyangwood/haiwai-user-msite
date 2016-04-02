@@ -296,23 +296,25 @@ label.require:after {
     background: #ffffff; }
   .kg-header-comp .logo {
     display: block;
-    width: 120px;
-    height: 44px;
+    width: 140px;
+    height: 38px;
     position: absolute;
     left: 0;
     top: 22px;
-    background: url("../image/haiwai.png") 0 0 no-repeat; }
+    background: url("../image/newlogo@2x-1.png") 0 0 no-repeat;
+    background-size: 100%; }
   .kg-header-comp .hw-loc {
     position: absolute;
-    top: 34px;
-    left: 120px;
+    top: 33px;
+    left: 145px;
     cursor: pointer; }
     .kg-header-comp .hw-loc span {
-      font-size: 16px;
-      color: #4a4a4a; }
+      font-size: 12px;
+      color: #9b9b9b; }
     .kg-header-comp .hw-loc .icon {
       margin-left: 5px;
-      font-size: 18px; }
+      font-size: 14px;
+      color: #9b9b9b; }
   .kg-header-comp .search {
     width: 520px;
     height: 40px;
@@ -1244,7 +1246,7 @@ body {
     list-style: none;
     width: 314px;
     margin: 0 0 12px 0;
-    height: auto;
+    height: 58px;
     font-size: 14px;
     line-height: 24px;
     padding: 4px 0 10px 0; }
@@ -1293,7 +1295,10 @@ body {
     border-radius: 15px; }
     .hw-HWSiteIndexHotArticle .roundb span {
       color: #ffffff;
-      font-size: 20px; }
+      font-size: 20px;
+      position: relative;
+      top: 1px;
+      left: 1px; }
 
 .hw-HWSiteIndexAppBanner1 {
   background-color: #fff;
@@ -2207,7 +2212,7 @@ body {
         font-size: 16px;
         float: right; }
     .hw-HWSiteStoreDetailPage .c-box .c-content {
-      padding: 12px 15px 20px; }
+      padding: 12px 15px 0; }
       .hw-HWSiteStoreDetailPage .c-box .c-content p {
         margin: 0; }
       .hw-HWSiteStoreDetailPage .c-box .c-content .hw-la {
@@ -2215,6 +2220,8 @@ body {
         border-bottom: 1px solid #ebebeb;
         font-size: 17px;
         color: #7d7d7d; }
+      .hw-HWSiteStoreDetailPage .c-box .c-content .hw-la:last-child {
+        border-bottom: none; }
     .hw-HWSiteStoreDetailPage .c-box .hw-more {
       margin: 0;
       padding: 8px 0;
@@ -2291,7 +2298,8 @@ body {
     .hw-HWSiteStoreDetailPage .hw-right-box .hw-brief {
       font-size: 16px;
       color: #7d7d7d;
-      line-height: 22px; }
+      line-height: 22px;
+      padding-bottom: 20px; }
   .hw-HWSiteStoreDetailPage .hw-imglist .carousel-control {
     width: 24px;
     background: none; }

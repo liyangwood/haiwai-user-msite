@@ -174,7 +174,9 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				'<div style="width:100%;height: 300px;" class="js_map"></div>',
 				'<dd class="c-content">',
 					'{{each biz.dynamic_list as item}}',
+					'{{if item.value}}',
 					'<p class="hw-la">{{item.title}} : {{item.value}}</p>',
+					'{{/if}}',
 					'{{/each}}',
 				'</dd>',
 			'</div>'
@@ -491,8 +493,14 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				}
 			});
 		}).on('click', '.js_reply', function(){
-			self.rpId = null;
-			self.showReplyTextarea();
+
+			if(KG.user.get('isLogin')){
+				self.rpId = null;
+				self.showReplyTextarea();
+			}
+			else{
+				util.dialog.showLoginBox()
+			}
 		});
 
 		this.elem.find('.js_rank').click(function(){

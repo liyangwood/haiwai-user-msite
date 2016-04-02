@@ -131,8 +131,8 @@
                 '<div class="right">',
 
                     '<div class="dropdown" style="margin-right: 40px;">',
-                    '<button id="js_right_dd_1" type="button" data-toggle="dropdown" aria-haspopup="true"' +
-                    ' aria-expanded="false">',
+                    '<button data-href="../mybiz/index.html" id="js_right_dd_1" type="button" data-toggle="dropdown"' +
+                    ' data-hover="dropdown" aria-haspopup="true" aria-expanded="false">',
                     '<img src="../../image/aa.png" />',
                     '</button>',
                     '<div class="dropdown-menu" aria-labelledby="js_right_dd_1">',
@@ -143,12 +143,12 @@
                     '</div>',
 
                     '<div class="dropdown">',
-                    '<button id="js_right_dd_2" class="c2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
+                    '<button data-href="../myfav/list.html" id="js_right_dd_2" class="c2" type="button" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">',
                     '<img src="{{user.image}}" />',
                     '</button>',
                     '<div class="dropdown-menu" aria-labelledby="js_right_dd_2">',
                     '<a href="../myfav/list.html">我的收藏</a>',
-                    '<a href="../mycoupon/list.html">我的优惠</a>',
+                    '<a href="../mycoupon/list.html">我的领取</a>',
                     '<a href="../mysys/index.html">系统消息</a>',
                     '<a href="../mycount/info.html">账户设置</a>',
                     '<a class="js_logout" href="javascript:void(0)">退出登录</a>',
@@ -160,12 +160,12 @@
                     '<a style="float: left;margin-right: 20px;" class="hw-light-btn hw-btn" href="../site/landing.html">我是商家</a>',
 
                     '<div style="top:3px;" class="dropdown">',
-                    '<button id="js_right_dd_2" class="c2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
+                    '<button data-href="../myfav/list.html" id="js_right_dd_2" class="c2" type="button" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">',
                     '<img src="{{user.image}}" />',
                     '</button>',
                     '<div class="dropdown-menu" aria-labelledby="js_right_dd_2">',
                     '<a href="../myfav/list.html">我的收藏</a>',
-                    '<a href="../mycoupon/list.html">我的优惠</a>',
+                    '<a href="../mycoupon/list.html">我的领取</a>',
                     '<a href="../mysys/index.html">系统消息</a>',
                     '<a href="../mycount/info.html">账户设置</a>',
                     '<a class="js_logout" href="javascript:void(0)">退出登录</a>',
@@ -228,6 +228,12 @@
             this.elem.find('.js_loc').click(function(){
                 util.dialog.showSelectLocationRegion();
             });
+
+            this.elem.find('button[data-href]').click(function(){
+                var href = $(this).data('href');
+                location.href = href;
+                return false;
+            });
         },
 
         initEventByAfterLogin : function(){
@@ -253,6 +259,8 @@
 
             var regionName = util.cookie.get('region_cn') || '旧金山湾区';
             this.elem.find('.js_loc').show().find('span').html(regionName);
+
+            this.elem.find('[data-hover="dropdown"]').dropdownHover();
         }
     });
 

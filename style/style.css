@@ -297,23 +297,25 @@ label.require:after {
     background: #ffffff; }
   .kg-header-comp .logo {
     display: block;
-    width: 120px;
-    height: 44px;
+    width: 140px;
+    height: 38px;
     position: absolute;
     left: 0;
     top: 22px;
-    background: url("../image/haiwai.png") 0 0 no-repeat; }
+    background: url("../image/newlogo@2x-1.png") 0 0 no-repeat;
+    background-size: 100%; }
   .kg-header-comp .hw-loc {
     position: absolute;
-    top: 34px;
-    left: 120px;
+    top: 33px;
+    left: 145px;
     cursor: pointer; }
     .kg-header-comp .hw-loc span {
-      font-size: 16px;
-      color: #4a4a4a; }
+      font-size: 12px;
+      color: #9b9b9b; }
     .kg-header-comp .hw-loc .icon {
       margin-left: 5px;
-      font-size: 18px; }
+      font-size: 14px;
+      color: #9b9b9b; }
   .kg-header-comp .search {
     width: 520px;
     height: 40px;
@@ -1178,13 +1180,18 @@ label.require:after {
   .hw-comp-MybizStoreInfoFormStep2 .form-group {
     margin-bottom: 30px; }
   .hw-comp-MybizStoreInfoFormStep2 .hw-dym {
-    margin-bottom: 30px; }
+    margin-bottom: 30px;
+    padding-left: 100px;
+    position: relative; }
     .hw-comp-MybizStoreInfoFormStep2 .hw-dym span {
       font-size: 14px;
       color: #4a4a4a;
       display: inline-block;
       font-weight: 700;
-      width: 100px; }
+      width: 100px;
+      position: absolute;
+      top: 0;
+      left: 0; }
     .hw-comp-MybizStoreInfoFormStep2 .hw-dym label {
       display: inline-block;
       margin-left: 30px;

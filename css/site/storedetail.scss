@@ -137,7 +137,8 @@
         }
 
         .c-content{
-            padding: 12px 15px 20px;
+            padding: 12px 15px 0;
+
 
             p{
                 margin: 0;
@@ -148,6 +149,10 @@
                 border-bottom: 1px solid #ebebeb;
                 font-size: 17px;
                 color: $color-7d;
+            }
+
+            .hw-la:last-child{
+                border-bottom: none;
             }
 
         }
@@ -251,6 +256,7 @@
             font-size: 16px;
             color: $color-7d;
             line-height: 22px;
+            padding-bottom: 20px;
         }
     }
 

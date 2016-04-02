@@ -11,27 +11,29 @@
 
 	.logo{
 		display: block;
-		width: 120px;
-		height: 44px;
+		width: 140px;
+		height: 38px;
 		position: absolute;
 		left: 0;
 		top: 22px;
-		background: url('../image/haiwai.png') 0 0 no-repeat;
+		background: url('../image/newlogo@2x-1.png') 0 0 no-repeat;
+		background-size: 100%;
 	}
 
 	.hw-loc{
 		position: absolute;
-		top: 34px;
-		left: 120px;
+		top: 33px;
+		left: 145px;
 		cursor: pointer;
 
 		span{
-			font-size: 16px;
-			color: $color-4a;
+			font-size: 12px;
+			color: #9b9b9b;
 		}
 		.icon{
 			margin-left: 5px;
-			font-size: 18px;
+			font-size: 14px;
+			color: #9b9b9b;
 		}
 	}
 

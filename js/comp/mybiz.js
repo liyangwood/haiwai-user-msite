@@ -180,7 +180,7 @@ KG.Class.define('MybizRunningStoreList', {
             '<img class="hw-img" style="width:96px;" src="{{item.logo[0].path | absImage}}"/>',
             '<a class="h4" href="{{item.entityID | toStorePath}}">{{item.name_cn}}</a>',
             '<p>{{item | storeFullAddress}}</p>',
-            '<em>{{item.commentnum}}条新评论</em>',
+            '<em>{{item.commentnum}}条评论</em>',
 
             '<div class="r">',
             '<a class="hw-a" href="editStore.html?id={{item.entityID}}">管理店铺</a>',
@@ -251,7 +251,7 @@ KG.Class.define('MybizStopStoreList', {
             '<img class="hw-img" style="width:96px;" src="{{item.logo[0].path | absImage}}"/>',
             '<h4>{{item.name_cn}}</h4>',
             '<p>{{item.address}}, {{item.city}}, {{item.state}}, {{item.zip}}</p>',
-            '<em>{{item.commentnum}}条新评论</em>',
+            '<em>{{item.commentnum}}新评论</em>',
 
             '<div class="r">',
             '<a class="hw-a js_restart" param="{{item.entityID}}" href="javascript:void(0)">重新营业</a>',
@@ -384,6 +384,10 @@ KG.Class.define('MybizRunningCouponList', {
             self.getListData(function(flag){
                 if(flag){
                     fn();
+
+                    if(self.list.length < 6){
+                        more.setState('hide');
+                    }
                 }
                 else{
                     more.setState('hide');
@@ -548,6 +552,10 @@ KG.Class.define('MybizStopCouponList', {
             self.getListData(function(flag){
                 if(flag){
                     fn();
+
+                    if(self.list.length < 6){
+                        more.setState('hide');
+                    }
                 }
                 else{
                     more.setState('hide');

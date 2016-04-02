@@ -563,7 +563,7 @@ KG.Class.define('HWSiteCouponDetailComp', {
 		var h = [
 			'<div style="width:400px;margin: 0 auto;" class="js_tel" role="BaseInput" placeholder="请输入手机号"></div>',
 			//TODO verify code
-			'<button class="hw-btn hw-blue-btn js_getCoupon">获取优惠</button>'
+			'<button class="hw-btn hw-blue-btn js_getCoupon">领取优惠</button>'
 		].join('');
 
 		h = template.compile(h)({

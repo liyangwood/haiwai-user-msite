@@ -32,17 +32,25 @@
             return [
                 '{{each list as item}}',
                 '<div class="hw-each">',
+                '{{if item.logo}}',
                 '<div class="hw-img" data-url="{{item.logo.path | absImage}}" role="BaseLoadingImageBox"></div>',
+                '{{/if}}',
 
-                '{{if !item.active_time}}',
+                '{{if item.is_active==="0"}}',
                 '<div class="mask">已过期</div>',
                 '{{/if}}',
 
-                '<div style="margin-top: 10px;" class="h4 js_coupon hand" param={{item.pk_id}}>',
-                    '<b>{{item.subject}}</b>',
+                '{{if item.is_active==="0"}}',
+                '<div style="margin-top: 10px;" class="h4">',
+                '<b style="color:#9b9b9b;">{{item.subject}}</b>',
                 '</div>',
+                '{{else}}',
+                '<div style="margin-top: 10px;" class="h4 js_coupon hand" param={{item.pk_id}}>',
+                '<b>{{item.subject}}</b>',
+                '</div>',
+                '{{/if}}',
 
-                '<p style="font-size: 16px;margin-top:20px;">{{item.duaring}}</p>',
+                '<p style="font-size: 16px;margin-top:20px;">{{item.top_start_time}} 至 {{item.top_end_time}}</p>',
 
                 '<div class="r">',
                     '{{if !item.active_time}}',
@@ -60,6 +68,8 @@
         },
 
         setListHtml : function(data){
+
+
             var h = template.compile(this.getListTemplate())({
                 list : data
             });
@@ -88,6 +98,15 @@
                 if(flag){
                     self.setCount(rs.count);
                     self.setListHtml(rs.list);
+                    callback();
+                }
+                else{
+                    self.setCount({
+                        all : '0',
+                        is_active : '0',
+                        not_active : '0'
+                    });
+                    self.setListHtml([]);
                     callback();
                 }
             });
@@ -130,7 +149,7 @@
                         KG.request.deleteMyFavCoupon({id : id}, function(flag, rs){
                             console.log(flag, rs);
                             if(flag){
-                                location.reload(true);
+                                //location.reload(true);
                             }
                         });
                     }

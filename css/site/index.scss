@@ -370,7 +370,7 @@
     .toptext { float: left; width: 523px; height: 56px; font-size: 14px; line-height: 28px;overflow:hidden; color: #9b9b9b;}
     .rig { width: 345px; height: 542px; }
     .rig .list ul.l_ul1 li { list-style: none; width: 314px;
-        margin: 0 0 12px 0; height:auto; font-size: 14px; line-height: 24px;
+        margin: 0 0 12px 0; height:58px; font-size: 14px; line-height: 24px;
         padding: 4px 0 10px 0;}
     .rig .list ul.l_ul1 li:last-child { border-bottom: none; }
     .rig .list ul.l_ul1 li a {
@@ -413,6 +413,9 @@
         span{
             color: #ffffff;
             font-size: 20px;
+            position: relative;
+            top: 1px;
+            left: 1px;
         }
     }
 }

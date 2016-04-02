@@ -1022,6 +1022,12 @@ KG.Class.define('MybizStoreInfoFormStep2', {
                     }
                 };
 
+                if(item.value){
+                    _.each(item.value, function(one){
+                        box.find('input[type="checkbox"]').filter('[value="'+one+'"]').prop('checked', true);
+                    });
+                }
+
             default :
                 break;
         }
