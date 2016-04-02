@@ -111,11 +111,12 @@ KG.Class.define('MybizStoreInputDatepicker', {
     },
 
     setBoxHtml : function(){
+        var xiuye = this.timelist[0];
         var h = [
             '{{each list as item index}}',
 
-            '{{if item.start==="休业"}}',
-            '<div><span class="ml">{{item.weekString}}</span> <span class="ml">{{item.start}}</span>' +
+            '{{if item.start==="'+xiuye+'"||item.end==="'+xiuye+'"}}',
+            '<div><span class="ml">{{item.weekString}}</span> <span class="ml">'+xiuye+'</span>' +
             ' <span param="{{index}}" class="js_del bn">删除</span></div>',
             '{{else}}',
             '<div><span class="ml">{{item.weekString}}</span> <span>{{item.start}}</span> －' +
