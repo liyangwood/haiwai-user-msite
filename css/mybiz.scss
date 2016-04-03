@@ -1127,6 +1127,16 @@
 			margin-left: 12px;
 			color: $color-7d;
 		}
+
+		.form-group.disable{
+			.control-label{
+				color: $color-7d;
+
+				&.require:after{
+					color: $color-7d !important;
+				}
+			}
+		}
 	}
 
 	.s-btn{
@@ -1141,6 +1151,50 @@
 
 		.hw-sub{
 			float: right;
+			font-weight: normal;
+			font-size: 14px;
+		}
+	}
+}
+
+.hw-ads-bizlist{
+	margin-top: 24px;
+	border-bottom: 1px solid $border-color;
+
+	.hw-each{
+		border: 1px solid $border-color;
+		border-bottom: 0;
+		height: 96px;
+		position: relative;
+		padding: 0 120px 0 106px;
+
+		img{
+			width: 96px;
+			height: 96px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		h4{
+			font-size: 18px;
+			color: $color-4a
+
+		}
+
+		.hw-address{
+			font-size: 12px;
+			color: $color-4a;
+		}
+		.hw-tel{
+			font-size: 12px;
+			color: $color-4a;
+		}
+
+		.hw-btn{
+			position: absolute;
+			top: 28px;
+			right: 20px;
 			font-weight: normal;
 			font-size: 14px;
 		}

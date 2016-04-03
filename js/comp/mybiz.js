@@ -789,7 +789,7 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
                     '<div class="cf">',
                         '新用户可获得免费文学城首页的广告位，用于推广您的店铺，<a href="http://www.wenxuecity.com" target="_blank">去文学城首页查看已有广告</a>',
                     '</div>',
-                    '<a class="hw-btn hw-blue-btn" href="#">免费创建广告</a>',
+                    '<a class="hw-btn hw-blue-btn" href="../mybiz/createAds.html">免费创建广告</a>',
                 '</div>'
 
             ].join('');
@@ -869,7 +869,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
                 '<dd class="s-tpl"><dd>',
 
                 '<label class="require hw-label">2.选择图片</label>',
-                '<div class="s-img" role="HWMybizCrateAdsFormUploadImage"></div>',
+                '<div class="s-img" init-self="true" role="HWMybizCrateAdsFormUploadImage"></div>',
 
                 '<label class="hw-label require">3.填写内容</label>',
                 '<form class="form-horizontal s-form">',
@@ -905,7 +905,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
                     '<div class="s-btn">',
                         '<a href="../mybiz/index.html" class="hw-btn hw-light-btn hw-back">取消</a>',
 
-                        '<button class="hw-btn hw-blue-btn hw-sub js_btn">创建广告</button>',
+                        '<button class="hw-btn hw-blue-btn hw-sub js_sub">'+(this.postid?"保存":"创建广告")+'</button>',
                     '</div>',
 
                 '</form>',
@@ -914,29 +914,147 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
         ].join('');
     },
     getData : function(box, data, next){
+        var self = this;
+        self.postid = KG.data.get('id');
         util.loading(true);
-        KG.request.getBizList({}, function(flag, rs){
-            util.loading(false);
-            if(true){
 
-                next({});
-            }
-            else{
-                //util.toast.showError('还没有创建店铺');
-                //util.delay(function(){
-                //    location.href = '../mybiz/createStore.html';
-                //}, 2000);
-            }
-        });
+        if(self.postid){
+            KG.request.getAdsDetail({
+                id : self.postid
+            }, function(flag, rs){
+                util.loading(false);
+                if(flag){
+                    self.bizId = rs.fk_entityID;
+                    self.bizData = rs.bizinfo;
+                    self.logo = rs.pic;
+                    self.name = rs.title;
+                    self.ad1 = rs.ad1;
+                    self.ad2 = rs.ad2;
+                    self.tel = rs.tel;
+
+                    if(rs.type === 3){
+                        self.tpl = 3;
+                    }
+                    else{
+                        self.tpl = 'common'+rs.type;
+                    }
+
+                    next({});
+                }
+                else{
+                    //TODO
+                }
+            });
+        }
+        else{
+            KG.request.getBizList({}, function(flag, rs){
+                util.loading(false);
+                if(flag && rs.length > 0){
+                    if(rs.length > 1){
+                        //show select biz dialog
+                        self.showSelectBizDialog(rs, function(){
+                            self.logo = KG.config.SiteRoot+self.bizData.logo[0].path;
+                            self.tpl = 'common1';
+                            self.tel = self.bizData.tel;
+
+                            next({});
+                        });
+                    }
+                    else{
+                        self.bizData = rs[0];
+                        self.bizId = self.bizData.entityID;
+                        self.logo = KG.config.SiteRoot+self.bizData.logo[0].path;
+                        self.tpl = 'common1';
+                        self.tel = self.bizData.tel;
+
+                        next({});
+                    }
+
+
+                }
+                else{
+                    util.toast.showError('还没有创建店铺');
+                    util.delay(function(){
+                        location.href = '../mybiz/createStore.html';
+                    }, 2000);
+                }
+            });
+        }
+
 
     },
-    initVar : function(){
+
+
+    showSelectBizDialog : function(list, callback){
+        var self = this;
+        var h = [
+            '<div class="hw-ads-bizlist">',
+                '{{each list as item index}}',
+                '<div class="hw-each">',
+                    '<img src="{{item | logoPath}}" />',
+                    '<h4>{{item.name_cn || item.name_en}}</h4>',
+                    '<p class="hw-adress">{{item | storeFullAddress}}</p>',
+                    '<p class="hw-tel">{{item.tel}}</p>',
+                    '<button param="{{index}}" class="hw-btn hw-blue-btn js_select">选择</button>',
+                '</div>',
+                '{{/each}}',
+            '</div>'
+        ].join('');
+
+        h = template.compile(h)({
+            list : list
+        });
+
+        var param = {
+            foot : false,
+            title : '请选择您要推广的店铺',
+            body : h,
+            'class' : 'hw-dialog-selectBizForAds',
+            beforeShowFn : function(){
+                var o = this;
+                o.modal({
+                    keyboard : false,
+                    backdrop : 'static'
+                });
+
+                o.find('.hw-ads-bizlist').on('click', '.js_select', function(){
+                    var index = $(this).attr('param');
+                    self.bizData = list[index];
+                    self.bizId = self.bizData.entityID;
+
+                    util.dialog.hide();
+                    callback();
+                });
+            }
+        };
+
+        util.dialog.show(param);
+    },
+
+    initStart : function(){
+        this.bizId = null;
+        this.bizData = null;
         this.tpl = '';
         this.logo = '';
         this.name = '';
         this.ad1 = '';
         this.ad2 = '';
         this.tel = '';
+
+        this.tagList = {
+            '27' : 'canyinmeishi',
+            '131' : 'canyinmeishi',
+            '41' : 'jiazhuangqingjie',
+            '214' : 'kehoufudao',
+            '366' : 'kuijibaoxian',
+            '383' : 'kuijibaoxian',
+            '195' : 'qicheweixiu',
+            '643' : 'sijiaxiaodian',
+            '294' : 'zhongyiyayi',
+            '297' : 'zhongyiyayi',
+            '345' : 'zhongyiyayi',
+            '479' : 'xiuxianmeirong'
+        };
     },
     setJqVar : function(){
         return {
@@ -947,13 +1065,30 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
         };
     },
     setImageTemplate : function(){
-        var list = [
-            'common1', 'common2', 'canyinmeishi'
-        ];
+        var list = ['common1', 'common2'];
+        var tag = this.bizData.fk_main_tag_id;
+        if(this.tagList[tag]){
+            list.push(this.tagList[tag]);
+        }
+        else{
+            list.push('canyinmeishi');
+        }
+
+
         var h = _.map(list, function(one){
             return '<img class="js_tpl" param="'+one+'" src="../../image/createad/'+one+'.png" />';
         });
-        this.elem.find('.s-tpl').html(h.join('')).find('img').eq(0).addClass('active');
+        var box = this.elem.find('.s-tpl');
+        box.html(h.join(''));
+        if(this.tpl === 'common1'){
+            box.find('img').eq(0).addClass('active');
+        }
+        else if(this.tpl === 'common2'){
+            box.find('img').eq(1).addClass('active');
+        }
+        else{
+            box.find('img').eq(2).addClass('active');
+        }
     },
     initEvent : function(){
         var self = this;
@@ -962,6 +1097,13 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
             if(o.hasClass('active')) return false;
             o.parent().find('img').removeClass('active');
             o.addClass('active');
+
+            if(self.elem.find('.s-tpl img').index(o) === 2){
+                self.jq.ad2.attr('disabled', true).parents('.form-group').addClass('disable');
+            }
+            else{
+                self.jq.ad2.removeAttr('disabled').parents('.form-group').removeClass('disable');
+            }
 
             self.toPreviewAD();
         });
@@ -976,12 +1118,46 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
             }, 200);
 
         });
+
+        self.elem.find('.s-btn .js_sub').click(function(){
+            var data = self.getSubmitData();
+            var m = '创建成功';
+            if(self.postid){
+                data.id = self.postid;
+                m = '修改成功';
+            }
+            console.log(data);
+            KG.request.createAds(data, function(flag, rs){
+                if(flag){
+                    util.toast.alert(m);
+                    util.delay(function(){
+                        location.href = '../mybiz/index.html';
+                    }, 1000);
+                }
+                else{
+                    util.toast.showError(rs);
+                }
+            });
+
+            return false;
+        });
     },
     initEnd : function(){
-        this.jq.logo = KG.component.getObj(this.elem.find('.s-img'));
+        var self = this;
+        this.elem.find('.s-img').attr('data-image', this.logo);
+        this.jq.logo = KG.component.initWithElement(this.elem.find('.s-img'));
         this.jq.logo.elem.bind('change_end', this.toPreviewAD.bind(this));
 
         this.setImageTemplate();
+
+        this.jq.name.val(this.name);
+        this.jq.ad1.val(this.ad1);
+        this.jq.ad2.val(this.ad2);
+        this.jq.tel.val(this.tel);
+
+        util.delay(function(){
+            self.toPreviewAD();
+        }, 100);
     },
     getFormValue : function(){
         this.tpl = this.elem.find('.js_tpl').filter('.active').attr('param');
@@ -1000,9 +1176,38 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
             bizTel : this.tel
         };
     },
+
     toPreviewAD : function(){
         var data = this.getFormValue();
         util.message.publish('HWMybizCreateAdsPagePreivew', data);
+    },
+
+    getSubmitData : function(){
+        this.getFormValue();
+        var data = {
+            title : this.name,
+            ad1 : this.ad1,
+            ad2 : this.ad2,
+            tel : this.tel,
+            bizId : this.bizId,
+            tag : this.bizData.fk_main_tag_id,
+            logo : this.logo
+        };
+
+        if(this.tpl === 'common1'){
+            data.type = 1;
+        }
+        else if(this.tpl === 'common2'){
+            data.type = 2;
+        }
+        else{
+            data.type = 3;
+        }
+
+        data.html = $('.hw-right-box .hw-preview').html();
+
+
+        return data;
     }
 });
 
@@ -1025,8 +1230,15 @@ KG.Class.define('HWMybizCreateAdsPagePreivew', {
         };
     },
     setPreivewHtml : function(data){
+        var x;
+        if(data.template === 'common1' || data.template === 'common2'){
+            x = 'hw-ad-'+data.template;
+        }
+        else{
+            x = 'hw-ad-t3 hw-ad-'+data.template;
+        }
         var h = [
-            '<div class="hw-ad hw-ad-{{template}}">',
+            '<div class="hw-ad '+x+'">',
             '<img class="hw-logo" src="{{logo}}"/>',
             '<p class="hw-name">{{bizName}}</p>',
             '<p class="hw-ad1">{{bizAd1}}</p>',

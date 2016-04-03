@@ -328,3 +328,27 @@
 
     }
 }
+
+.hw-dialog-selectBizForAds{
+    .modal-dialog{
+        width : 690px !important;
+        .modal-header{
+            display: none !important;
+        }
+        .modal-body{
+            padding: 32px !important;
+            .hw-body{
+                padding: 0 !important;
+
+            }
+        }
+        .hw-title{
+            b{
+                font-size: 18px;
+                color: $blue-color;
+                font-weight: normal;
+            }
+        }
+
+    }
+}

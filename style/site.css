@@ -756,6 +756,19 @@ label.require:after {
       color: #37bccd;
       font-weight: normal; }
 
+.hw-dialog-selectBizForAds .modal-dialog {
+  width: 690px !important; }
+  .hw-dialog-selectBizForAds .modal-dialog .modal-header {
+    display: none !important; }
+  .hw-dialog-selectBizForAds .modal-dialog .modal-body {
+    padding: 32px !important; }
+    .hw-dialog-selectBizForAds .modal-dialog .modal-body .hw-body {
+      padding: 0 !important; }
+  .hw-dialog-selectBizForAds .modal-dialog .hw-title b {
+    font-size: 18px;
+    color: #37bccd;
+    font-weight: normal; }
+
 body {
   background: #f7f7f7; }
 

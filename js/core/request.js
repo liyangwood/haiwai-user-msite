@@ -1150,5 +1150,43 @@ KG.request = {
         };
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=ads_view&postid=1&token=3aa9f8052b5e8707e7c264f5e9118fcc
+    * */
+    getAdsDetail : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'ads_view',
+            postid : opts.id
+        };
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=ads_post&postid=1&fk_entityID=2024902&fk_main_tag_id=131&title=%E6%B2%B8%E8%85%BE%E9%B1%BC%E4%B9%A1%E5%BC%80%E5%BC%A0%E5%95%A6!&ad1=%E6%B0%B4%E7%85%AE%E9%B1%BC%2015$%20%E8%B5%B7!&ad2=%E5%8F%A3%E6%B0%B4%E8%9B%99%20%E5%8D%8A%E6%8A%98&tel=5735769567&pic=http://beta.haiwai.com/upload/classifiedinfo/28/95/13/289513236be214108254151e1dd7ecdd.jpg&type=1&share=%3Cdiv%3E%3C/div%3E&token=
+    * */
+    createAds : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            method : 'post',
+            act : 'ads_post',
+            fk_entityID : opts.bizId,
+            fk_main_tag_id : opts.tag,
+            title : opts.title,
+            ad1 : opts.ad1,
+            ad2 : opts.ad2,
+            tel : opts.tel,
+            pic : opts.logo,
+            type : opts.type,
+            share : encodeURIComponent(opts.html)
+        };
+        if(opts.id){
+            data.postid = opts.id;
+        }
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
     }
 };
