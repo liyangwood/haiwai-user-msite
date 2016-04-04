@@ -117,7 +117,7 @@
                     '<div class="r">',
                         '<b class="hw-a js_share" param="{{item.entityID}}" style="margin-top: 18px;">分享</b>',
                         '<a class="hw-a" href="{{item.entityID | toStorePath}}#hw-id-reply">评论</a>',
-                        '<b param="{{item.bookmarkid}}" class="hw-a js_del">取消收藏</b>',
+                        '<b param="{{item.entityID}}" class="hw-a js_del">取消收藏</b>',
                     '</div>',
                 '</div>',
                 '{{/each}}'
@@ -203,7 +203,7 @@
                     msg : '确认取消收藏此店铺么？',
                     YesFn : function(callback){
                         KG.request.deleteMyFavStore({
-                            id : id
+                            bizId : id
                         }, function(flag, rs){
                             callback();
                             if(flag){

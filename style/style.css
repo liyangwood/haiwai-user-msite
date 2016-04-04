@@ -2077,11 +2077,14 @@ label.require:after {
   border: 1px solid #00a7bc; }
   .hw-ad-common1 .hw-logo {
     position: absolute;
-    background-color: #c5c5c5;
     width: 90px;
     height: 112px;
     top: 0;
-    left: 0; }
+    left: 0;
+    overflow: hidden;
+    background: #ffffff; }
+    .hw-ad-common1 .hw-logo img {
+      height: 100%; }
   .hw-ad-common1 .hw-name {
     font-size: 21px;
     color: #00a7bc;
@@ -2125,11 +2128,14 @@ label.require:after {
   border: 1px solid #c5c5c5; }
   .hw-ad-common2 .hw-logo {
     position: absolute;
-    background-color: #c5c5c5;
+    background-color: #ffffff;
     width: 90px;
     height: 112px;
     top: 0;
-    right: 0; }
+    right: 0;
+    overflow: hidden; }
+    .hw-ad-common2 .hw-logo img {
+      height: 100%; }
   .hw-ad-common2 .hw-name {
     font-family: STKaiti-SC-Regular;
     font-size: 22px;
@@ -2179,11 +2185,11 @@ label.require:after {
   .hw-ad-t3 .hw-name {
     font-family: STKaiti-SC-Black;
     font-size: 28px;
-    margin-top: 10px; }
+    margin-top: 12px; }
   .hw-ad-t3 .hw-ad1 {
     font-size: 16px;
     font-family: PingFangSC-Semi;
-    margin-top: -2px; }
+    margin-top: 2px; }
   .hw-ad-t3 .hw-tel {
     position: absolute;
     font-size: 15px;
@@ -2195,97 +2201,125 @@ label.require:after {
     width: 100%; }
 
 .hw-ad-sijiaxiaodian {
-  border-color: #eb596b; }
+  border-color: #ed5769; }
   .hw-ad-sijiaxiaodian .hw-name {
-    color: #eb596b; }
+    color: #eb596b;
+    font-size: 21px; }
   .hw-ad-sijiaxiaodian .hw-ad1 {
-    color: #45010a; }
+    font-family: PingFangSC-Semibold;
+    color: #460008;
+    font-size: 21px; }
   .hw-ad-sijiaxiaodian .hw-tel {
-    background: #eb596b; }
+    background: #ed5769; }
 
 .hw-ad-canyinmeishi {
-  border-color: #e86129; }
+  border-color: #ea611a; }
   .hw-ad-canyinmeishi .hw-name {
-    color: #662306;
-    font-size: 28px; }
+    font-family: MicrosoftYaHei;
+    color: #672300;
+    font-size: 26px;
+    font-weight: bold; }
   .hw-ad-canyinmeishi .hw-ad1 {
+    font-family: MicrosoftYaHei;
     color: #ffffff;
     position: absolute;
     font-size: 15px;
     height: 30px;
-    line-height: 34px;
+    line-height: 32px;
     left: 0;
     bottom: 0;
     width: 100%;
-    background: #ec8155;
+    background: #ea611a;
     font-weight: normal; }
   .hw-ad-canyinmeishi .hw-tel {
-    color: #e86129;
-    margin-top: -3px;
+    font-family: MicrosoftYaHei;
+    color: #ea611a;
+    margin-top: -2px;
     position: static;
-    background: none; }
+    background: none;
+    font-size: 15px; }
 
 .hw-ad-jiazhuangqingjie {
-  border-color: #9dac45; }
+  border-color: #9dad3d; }
   .hw-ad-jiazhuangqingjie .hw-name {
-    color: #2f3604; }
+    color: #565b30;
+    font-family: MicrosoftYaHei;
+    font-weight: bold; }
   .hw-ad-jiazhuangqingjie .hw-ad1 {
-    color: #9dac45; }
+    color: #515f00;
+    font-family: MicrosoftYaHei;
+    position: relative;
+    top: -6px; }
   .hw-ad-jiazhuangqingjie .hw-tel {
-    background: #9dac45; }
+    background: #9dad3d; }
 
 .hw-ad-kehoufudao {
-  border-color: #f2a53a; }
+  border-color: #f4a62a; }
   .hw-ad-kehoufudao .hw-name {
-    color: #6d430b; }
+    font-family: MicrosoftYaHei;
+    font-weight: bold;
+    color: #6e4300;
+    font-size: 26px; }
   .hw-ad-kehoufudao .hw-ad1 {
-    color: #f2a53a; }
+    font-family: MicrosoftYaHei;
+    color: #f4a62a;
+    font-size: 15px;
+    margin-top: 0; }
   .hw-ad-kehoufudao .hw-tel {
-    background: #f2a53a; }
+    background: #f4a62a; }
 
 .hw-ad-kuijibaoxian {
-  border-color: #865494; }
+  border-color: #875296; }
   .hw-ad-kuijibaoxian .hw-name {
-    color: #865494;
-    font-size: 24px; }
+    color: #875296;
+    font-size: 21px;
+    position: relative;
+    top: -2px; }
   .hw-ad-kuijibaoxian .hw-ad1 {
-    color: #290334;
-    font-size: 18px;
     font-family: PingFangSC-SemiBold;
-    margin-top: 0; }
+    color: #290135;
+    font-size: 20px; }
   .hw-ad-kuijibaoxian .hw-tel {
-    background: #865494; }
+    background: #875296; }
 
 .hw-ad-qicheweixiu {
   border-color: #38383b; }
   .hw-ad-qicheweixiu .hw-name {
-    color: #4a4a4a; }
+    color: #4a4a4a;
+    font-family: MicrosoftYaHei;
+    font-weight: bold; }
   .hw-ad-qicheweixiu .hw-ad1 {
-    color: #4e4e4e; }
+    color: #4a4a4a;
+    font-family: MicrosoftYaHei;
+    position: relative;
+    top: -6px; }
   .hw-ad-qicheweixiu .hw-tel {
     background: #38383b; }
 
 .hw-ad-zhongyiyayi {
   border-color: #eb596b; }
   .hw-ad-zhongyiyayi .hw-name {
-    color: #45010a; }
+    color: #45010a;
+    font-family: MicrosoftYaHei;
+    font-weight: bold;
+    font-size: 26px; }
   .hw-ad-zhongyiyayi .hw-ad1 {
     color: #eb596b;
-    margin-top: 0; }
+    font-family: MicrosoftYaHei; }
   .hw-ad-zhongyiyayi .hw-tel {
     background: #eb596b; }
 
 .hw-ad-xiuxianmeirong {
-  border-color: #1aa7ba; }
+  border-color: #37bccd; }
   .hw-ad-xiuxianmeirong .hw-name {
     color: #40bccc;
-    font-size: 22px; }
+    font-size: 21px; }
   .hw-ad-xiuxianmeirong .hw-ad1 {
-    color: #04383e;
+    color: #00383f;
     font-size: 20px;
     font-family: PingFangSC-SemiBold;
     margin-top: 2px; }
   .hw-ad-xiuxianmeirong .hw-tel {
-    background: #1aa7ba; }
+    background: #37bccd; }
 
 /*# sourceMappingURL=style.css.map */

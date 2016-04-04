@@ -151,7 +151,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					'<p class="hw-p">电话：{{biz.tel}}</p>',
 					'{{if biz.events&&biz.events[0]}}<p param="{{biz.events[0].pk_id}}" class="hw-coupon js_coupon_item"><i class="icon"></i>{{biz.events[0].subject}}</p>{{/if}}',
 				'</div>',
-				'<b class="hw-act js_fav" style="left:750px;"><i class="icon fa fa-star-o"></i>收藏</b>',
+				'<b class="hw-act js_fav" style="left:750px;"><i class="icon fa fa-heart-o"></i>收藏</b>',
 				'<b class="hw-act js_reply" style="left: 850px;"><i class="icon fa fa-pencil-square-o"></i>评论</b>',
 				'<b class="hw-act js_share" style="left: 950px;"><i class="icon fa fa-wechat"></i>分享</b>',
 			'</div>'
@@ -473,7 +473,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					bizId : self.data.id
 				}, function(flag, rs){
 					if(flag){
-						o.html('<i class="icon fa fa-star"></i>已收藏').removeClass('js_fav').addClass('js_fav_on');
+						o.html('<i class="icon fa fa-heart"></i>已收藏').removeClass('js_fav').addClass('js_fav_on');
 					}
 					else{
 						alert(rs);
@@ -486,10 +486,10 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		}).on('click', '.js_fav_on', function(){
 			var o = $(this);
 			KG.request.deleteMyFavStore({
-				id : self.data.id
+				bizId : self.data.id
 			}, function(flag, rs){
 				if(flag){
-					o.html('<i class="icon fa fa-star-o"></i>收藏').removeClass('js_fav_on').addClass('js_fav');
+					o.html('<i class="icon fa fa-heart-o"></i>收藏').removeClass('js_fav_on').addClass('js_fav');
 				}
 			});
 		}).on('click', '.js_reply', function(){

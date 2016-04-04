@@ -284,7 +284,8 @@ KG.request = {
             func : 'biz',
             act : 'delete_bookmark',
             type : 'biz',
-            id : opts.id
+            id : opts.id,
+            entityID : opts.bizId
         };
         data = util.addUserIdToRequestData(data);
 
@@ -345,18 +346,6 @@ KG.request = {
 
     },
 
-    /*
-    * func=view&act=article_view&id=1857
-    * */
-    getSiteArticleDetail : function(opts, success, error){
-        var data = {
-            func : 'view',
-            act : 'article_view',
-            id : opts.id
-        };
-
-        return this.ajax(data, success, error);
-    },
 
     /*
     * func=sms&act=send_event&userid=10051&number=5735769567&biz_name=apptest&event_title=测试店铺活动&entityID=140144
@@ -651,6 +640,9 @@ KG.request = {
             end_date : opts.endDate
         };
 
+        data.start_date = moment.utc(data.start_date).unix();
+        data.end_date = moment.utc(data.end_date).unix();
+
         util.each(opts.imageList||[], function(one, i){
             data['files['+i+']'] = one;
         });
@@ -686,6 +678,19 @@ KG.request = {
         if(opts.is_active){
             data.is_active = opts.is_active;
         }
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=article&act=index&lastid_article=&userid=14678&token=3aa9f8052b5e8707e7c264f5e9118fcc
+    * */
+    getUserArticleList : function(opts, success, error){
+        var data = {
+            func : 'article',
+            act : 'index',
+            lastid : opts.lastid_article
+        };
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
     },
@@ -1161,6 +1166,9 @@ KG.request = {
             act : 'ads_view',
             postid : opts.id
         };
+        if(opts.bizinfo){
+            data.bizinfo = 1;
+        }
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
     },

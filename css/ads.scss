@@ -18,11 +18,16 @@
 
     .hw-logo{
         position: absolute;
-        background-color: #c5c5c5;
         width: 90px;
         height: 112px;
         top: 0;
         left: 0;
+        overflow: hidden;
+        background: #ffffff;
+        
+        img{
+            height: 100%;
+        }
     }
 
     .hw-name{
@@ -78,11 +83,16 @@
 
     .hw-logo{
         position: absolute;
-        background-color: #c5c5c5;
+        background-color: #ffffff;
         width: 90px;
         height: 112px;
         top: 0;
         right: 0;
+        overflow: hidden;
+        
+        img{
+            height: 100%;
+        }
     }
 
     .hw-name{
@@ -147,12 +157,12 @@
     .hw-name{
         font-family: STKaiti-SC-Black;
         font-size: 28px;
-        margin-top: 10px;
+        margin-top: 12px;
     }
     .hw-ad1{
         font-size: 16px;
         font-family: PingFangSC-Semi;
-        margin-top: -2px;
+        margin-top: 2px;
     }
     .hw-tel{
         position: absolute;
@@ -166,120 +176,148 @@
     }
 }
 .hw-ad-sijiaxiaodian{
-    border-color: rgb(235,89,107);
+    border-color: #ed5769;
     .hw-name{
         color: rgb(235,89,107);
+        font-size: 21px;
     }
     .hw-ad1{
-        color: rgb(69,1,10);
+        font-family: PingFangSC-Semibold;
+        color: #460008;
+        font-size: 21px;
     }
     .hw-tel{
-        background: rgb(235,89,107);
+        background: #ed5769;
     }
 }
 .hw-ad-canyinmeishi{
-    border-color: rgb(232,97,41);
+    border-color: #ea611a;
     .hw-name{
-        color: rgb(102,35,6);
-        font-size: 28px;
+        font-family: MicrosoftYaHei;
+        color: #672300;
+        font-size: 26px;
+        font-weight: bold;
     }
     .hw-ad1{
+        font-family: MicrosoftYaHei;
         color: #ffffff;
         position: absolute;
         font-size: 15px;
         height: 30px;
-        line-height: 34px;
+        line-height: 32px;
         left : 0;
         bottom: 0;
         width:100%;
-        background: rgb(236,129,85);
+        background: #ea611a;
         font-weight: normal;
     }
     .hw-tel{
-        color: rgb(232,97,41);
-        margin-top: -3px;
+        font-family: MicrosoftYaHei;
+        color: #ea611a;
+        margin-top: -2px;
         position: static;
         background: none;
+        font-size: 15px;
     }
 }
 .hw-ad-jiazhuangqingjie{
-    border-color: rgb(157,172,69);
+    border-color: #9dad3d;
     .hw-name{
-        color: rgb(47,54,4);
+        color: rgb(86,91,48);
+        font-family: MicrosoftYaHei;
+        font-weight: bold;
     }
     .hw-ad1{
-        color: rgb(157,172,69);
+        color: #515f00;
+        font-family: MicrosoftYaHei;
+        position: relative;
+        top: -6px;
     }
     .hw-tel{
-        background: rgb(157,172,69);
+        background: #9dad3d;
     }
 }
 .hw-ad-kehoufudao{
-    border-color: rgb(242,165,58);
+    border-color: #f4a62a;
     .hw-name{
-        color: rgb(109,67,11);
+        font-family: MicrosoftYaHei;
+        font-weight: bold;
+        color: #6e4300;
+        font-size: 26px;
     }
     .hw-ad1{
-        color: rgb(242,165,58);
-    }
-    .hw-tel{
-        background: rgb(242,165,58);
-    }
-}
-.hw-ad-kuijibaoxian{
-    border-color: rgb(134,84,148);
-    .hw-name{
-        color: rgb(134,84,148);
-        font-size: 24px;
-    }
-    .hw-ad1{
-        color: rgb(41,3,52);
-        font-size: 18px;
-        font-family: PingFangSC-SemiBold;
+        font-family: MicrosoftYaHei;
+        color: #f4a62a;
+        font-size: 15px;
         margin-top: 0;
     }
     .hw-tel{
-        background: rgb(134,84,148);
+        background: #f4a62a;
+    }
+}
+.hw-ad-kuijibaoxian{
+    border-color: #875296;
+    .hw-name{
+        color: #875296;
+        font-size: 21px;
+        position: relative;
+        top: -2px;
+    }
+    .hw-ad1{
+        font-family: PingFangSC-SemiBold;
+        color: #290135;
+        font-size: 20px;
+    }
+    .hw-tel{
+        background: #875296;
     }
 }
 .hw-ad-qicheweixiu{
-    border-color: rgb(56,56,59);
+    border-color: #38383b;
     .hw-name{
-        color: rgb(74,74,74);
+        color: #4a4a4a;
+        font-family: MicrosoftYaHei;
+        font-weight: bold;
     }
     .hw-ad1{
-        color: rgb(78,78,78);
+        color: #4a4a4a;
+        font-family: MicrosoftYaHei;
+        position: relative;
+        top: -6px;
     }
     .hw-tel{
-        background: rgb(56,56,59);
+        background: #38383b;
     }
 }
 .hw-ad-zhongyiyayi{
     border-color: rgb(235,89,107);
     .hw-name{
         color: rgb(69,1,10);
+        font-family: MicrosoftYaHei;
+        font-weight: bold;
+        font-size: 26px;
     }
     .hw-ad1{
         color: rgb(235,89,107);
-        margin-top: 0;
+        font-family: MicrosoftYaHei;
     }
     .hw-tel{
         background: rgb(235,89,107);
     }
 }
 .hw-ad-xiuxianmeirong{
-    border-color: rgb(26,167,186);
+    border-color: #37bccd;
     .hw-name{
         color: rgb(64,188,204);
-        font-size: 22px;
+        font-size: 21px;
     }
     .hw-ad1{
-        color: rgb(4,56,62);
+        color: #00383f;
         font-size: 20px;
         font-family: PingFangSC-SemiBold;
         margin-top: 2px;
     }
     .hw-tel{
-        background: rgb(26,167,186);
+        background: #37bccd;
     }
 }

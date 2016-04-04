@@ -598,6 +598,7 @@ KG.Class.define('MybizArticleList', {
     initStart : function(){
         this.list = [];
         this.lastid = null;
+        this.count = 0;
     },
     getTemplate : function(){
         return [
@@ -648,24 +649,25 @@ KG.Class.define('MybizArticleList', {
 
     getListData : function(callback){
         var self = this;
-        KG.request.getUserArticleAndCouponList({
+        KG.request.getUserArticleList({
             lastid_article : this.lastid
         }, function(flag, rs){
-            if(flag && rs.article.length > 0){
-                var list = _.map(rs.article, function(one){
+            if(flag && rs.list.length > 0){
+                var list = _.map(rs.list, function(one){
                     one.link = util.path.article(one.id);
                     return one;
                 });
                 self.list = self.list.concat(list);
+                self.count = parseInt(rs.count.all, 10);
                 self.setListHtml();
                 self.lastid = _.last(list).id;
 
 
-                if(list.length < 10){
-                    callback(false);
+                if(self.list.length < self.count){
+                    callback(true);
                 }
                 else{
-                    callback(true);
+                    callback(false);
                 }
 
             }
@@ -708,7 +710,7 @@ KG.Class.define('MybizArticleList', {
             list : list
         });
 
-        this.elem.find('.js_len').html('文章 ('+list.length+')');
+        this.elem.find('.js_len').html('文章 ('+this.count+')');
 
         this.elem.find('.js_box').html(h);
         KG.component.init(this.elem.find('.js_box'));
@@ -920,7 +922,8 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
 
         if(self.postid){
             KG.request.getAdsDetail({
-                id : self.postid
+                id : self.postid,
+                bizinfo : true
             }, function(flag, rs){
                 util.loading(false);
                 if(flag){
@@ -1239,7 +1242,7 @@ KG.Class.define('HWMybizCreateAdsPagePreivew', {
         }
         var h = [
             '<div class="hw-ad '+x+'">',
-            '<img class="hw-logo" src="{{logo}}"/>',
+            '<div class="hw-logo"><img src="{{logo}}"/></div>',
             '<p class="hw-name">{{bizName}}</p>',
             '<p class="hw-ad1">{{bizAd1}}</p>',
             '<p class="hw-ad2">{{bizAd2}}</p>',

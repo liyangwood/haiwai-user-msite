@@ -44,7 +44,7 @@
         getData : function(box, data, next){
             var id = KG.data.get('id');
             util.loading(true);
-            KG.request.getSiteArticleDetail({
+            KG.request.getStoreArticleDetail({
                 id : id
             }, function(flag, rs){
                 console.log(rs);
