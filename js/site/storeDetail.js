@@ -820,7 +820,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		});
 
 		if(this.data.biz.is_booked){
-			this.elem.find('.js_fav').html('<i class="icon fa fa-star"></i>已收藏').removeClass('js_fav').addClass('js_fav_on');
+			this.elem.find('.js_fav').html('<i class="icon fa fa-heart"></i>已收藏').removeClass('js_fav').addClass('js_fav_on');
 		}
 
 		self.initArticleBox();
