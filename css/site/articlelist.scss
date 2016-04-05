@@ -63,7 +63,7 @@
             left: 0;
             top: 12px;
         }
-        h4{
+        .hw-h4{
             margin: 0;
             font-size: 18px;
             color: $color-4a;
@@ -74,6 +74,7 @@
             line-height: 22px;
             position: relative;
             top: -2px;
+            font-weight: bold;
         }
         h6{
             font-size: 14px;
@@ -81,7 +82,34 @@
             color: #9b9b9b;
             height: 48px;
             overflow: hidden;
-            margin: 8px 0 12px;
+            margin: 6px 0 10px;
+        }
+
+        .hw-biz{
+            height: 48px;
+            margin: 5px 0 10px;
+            padding-left: 56px;
+            position: relative;
+            display: block;
+
+            img{
+                width: 48px;
+                height: 48px;
+                border-radius: 24px;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            b{
+                color: $color-7d;
+                position: relative;
+                top: 2px;
+            }
+            p{
+                color: $color-7d;
+                margin: 5px 0 0 0;
+            }
         }
 
         .hw-time{
@@ -103,7 +131,7 @@
         }
 
         &:hover{
-            h4{
+            .hw-h4{
                 color: $blue-color;
             }
         }

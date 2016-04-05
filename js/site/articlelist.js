@@ -119,10 +119,21 @@ KG.Class.define('HWSiteArticleListPage', {
     getItemTemplate : function(){
         return [
             '{{each list as item}}',
-            '<a target="_blank" href="../view/article.html?id={{item.id}}" class="hw-one">',
+            '<div  class="hw-one">',
             '<div class="hw-img" role="BaseLoadingImageBox" data-url="{{item | logoPath}}"></div>',
-            '<h4>{{item.title}}</h4>',
+            '<a target="_blank" href="../view/article.html?id={{item.id}}" class="hw-h4">{{item.title}}</a>',
+
+            '{{if item.bizinfo}}',
+            '<a href="../view/store.html?id={{item.bizinfo.entityID}}" target="_blank" class="hw-biz">',
+                '<img src="{{item.bizinfo | logoPath}}" />',
+                '<b>{{item.bizinfo.name_cn || item.bizinfo.name_en}}</b>',
+                '<p>{{item.bizinfo | storeFullAddress}}</p>',
+            '</a>',
+            '{{else}}',
             '<h6>{{item.description | decode}}</h6>',
+            '{{/if}}',
+
+
             '<p>',
             '<span class="hw-time">{{item.dateline | formatDate:"yy年mm月dd日"}}</span>',
 
@@ -131,7 +142,7 @@ KG.Class.define('HWSiteArticleListPage', {
             '{{item.reads}}',
             '</span>',
             '</p>',
-            '</a>',
+            '</div>',
             '{{/each}}'
         ].join('');
     },
