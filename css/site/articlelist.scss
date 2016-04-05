@@ -71,6 +71,9 @@
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
+            line-height: 22px;
+            position: relative;
+            top: -2px;
         }
         h6{
             font-size: 14px;
@@ -78,6 +81,7 @@
             color: #9b9b9b;
             height: 48px;
             overflow: hidden;
+            margin: 8px 0 12px;
         }
 
         .hw-time{

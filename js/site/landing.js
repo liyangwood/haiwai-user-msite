@@ -174,14 +174,16 @@
                     '<a class="logo" href="/"></a>',
 
                     '<h1 style="font-weight:400;font-size: 36px;color: #f4a62a;line-height: 50px;margin-left:' +
-                    ' 120px;">商家中心</h1>',
+                    ' 150px;position:relative;top:-4px;">商家中心</h1>',
 
                 '{{if user.isLogin}}',
                 '<div class="right">',
 
                 '{{if user.has_biz}}',
                 '<div class="dropdown" style="margin-right: 40px;">',
-                '<button id="js_right_dd_1" type="button" data-toggle="dropdown" aria-haspopup="true"' +
+                '<button id="js_right_dd_1" data-href="../mybiz/index.html" data-hover="dropdown" type="button"' +
+                ' data-toggle="dropdown"' +
+                ' aria-haspopup="true"' +
                 ' aria-expanded="false">',
                 '<img src="../../image/aa.png" />',
                 '</button>',
@@ -194,7 +196,7 @@
                 '{{/if}}',
 
                 '<div class="dropdown">',
-                '<button id="js_right_dd_2" class="c2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
+                '<button id="js_right_dd_2" data-href="../myfav/list.html" data-hover="dropdown" class="c2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
                 '<img src="{{user.image}}" />',
                 '</button>',
                 '<div class="dropdown-menu" aria-labelledby="js_right_dd_2">',
@@ -215,6 +217,16 @@
             next({
                 user : KG.user.get()
             });
+        },
+        initEvent : function(){
+            this.elem.find('button[data-href]').click(function(){
+                var href = $(this).data('href');
+                location.href = href;
+                return false;
+            });
+        },
+        initEnd : function(){
+            this.elem.find('[data-hover="dropdown"]').dropdownHover();
         }
     });
 

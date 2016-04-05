@@ -300,7 +300,8 @@ KG.request = {
             func : 'biz',
             act : 'delete_bookmark',
             type : 'classifiedinfo',
-            id : opts.id
+            id : opts.id,
+            entityID : opts.bizId
         };
         data = util.addUserIdToRequestData(data);
 
