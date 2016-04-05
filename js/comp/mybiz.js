@@ -933,28 +933,31 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
                         '<label class="col-sm-2 control-label require">店铺名称</label>',
                         '<div class="col-sm-8">',
                             '<input type="text" class="form-control js_name" placeholder="">',
-                            '<span class="hw-tip">请使用尽量少的文字，以避免显示不全</span>',
+                            '<span class="hw-tip">建议填写店铺名称，或者想要宣传的产品/服务名称</span>',
                         '</div>',
                     '</div>',
 
                     '<div class="form-group">',
                     '<label class="col-sm-2 control-label require">广告语</label>',
-                    '<div class="col-sm-8">',
-                    '<input type="text" class="form-control js_ad1" placeholder="职位名称或营业特色">',
+                    '<div class="col-sm-10">',
+                        '<input type="text" class="form-control js_ad1" placeholder="职位名称或营业特色">',
+                        '<span class="hw-tip">建议填写职位名称，营业特色，电话号码或想要宣传的产品/服务等</span>',
                     '</div>',
                     '</div>',
 
                     '<div class="form-group">',
                     '<label class="col-sm-2 control-label require">广告语</label>',
-                    '<div class="col-sm-8">',
-                    '<input type="text" class="form-control js_ad2" placeholder="广告宣传语">',
+                    '<div class="col-sm-10">',
+                        '<input type="text" class="form-control js_ad2" placeholder="广告宣传语">',
+                        '<span class="hw-tip">建议填写职位名称，营业特色，电话号码或想要宣传的产品/服务等</span>',
                     '</div>',
                     '</div>',
 
                     '<div class="form-group">',
                     '<label class="col-sm-2 control-label require">联系电话</label>',
-                    '<div class="col-sm-8">',
-                    '<input type="text" class="form-control js_tel" placeholder="">',
+                    '<div class="col-sm-10">',
+                        '<input type="text" class="form-control js_tel" placeholder="">',
+                        '<span class="hw-tip">建议填写职位名称，营业特色，电话号码或想要宣传的产品/服务等</span>',
                     '</div>',
                     '</div>',
 
@@ -1068,6 +1071,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
         };
     },
     setImageTemplate : function(){
+        var self = this;
         var list = ['common1', 'common2'];
         var tag = this.bizData.fk_main_tag_id;
         if(this.tagList[tag]){
@@ -1091,6 +1095,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
         }
         else{
             box.find('img').eq(2).addClass('active');
+            self.jq.ad2.attr('disabled', true).parents('.form-group').addClass('disable');
         }
     },
     initEvent : function(){

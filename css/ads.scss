@@ -1,7 +1,7 @@
 
 .hw-ad{
-    width: 198px;
-    height: 112px;
+    width: 160px;
+    height: 90px;
     margin: 0 auto;
     position: relative;
     overflow: hidden;
@@ -18,8 +18,8 @@
 
     .hw-logo{
         position: absolute;
-        width: 90px;
-        height: 112px;
+        width: 70px;
+        height: 90px;
         top: 0;
         left: 0;
         overflow: hidden;
@@ -31,45 +31,45 @@
     }
 
     .hw-name{
-        font-size: 21px;
+        font-size: 17px;
         color: #00a7bc;
         top: 6px;
         position: absolute;
-        width: 100px;
-        left: 95px;
+        width: 85px;
+        left: 73px;
         text-align: left;
         font-weight: 700;
     }
 
     .hw-ad1{
-        font-size: 15px;
+        font-size: 12px;
         position: absolute;
         color: #4a4a4a;
-        left: 95px;
-        width: 100px;
+        left: 73px;
+        width: 85px;
         text-align: left;
-        top: 36px;
+        top: 30px;
     }
 
     .hw-ad2{
         margin: 0;
         position: absolute;
-        left: 95px;
-        width: 100px;
+        left: 73px;
+        width: 85px;
         font-size: 12px;
         color: #4a4a4a;
         text-align: left;
-        top: 60px;
+        top: 46px;
     }
 
     .hw-tel{
         position: absolute;
         width: 100%;
-        height: 30px;
-        line-height: 30px;
+        height: 24px;
+        line-height: 26px;
         background: rgba(0,167,188, 0.65);
         left: 0;
-        font-size: 16px;
+        font-size: 13px;
         bottom: 0;
         margin: 0;
         color: #fff;
@@ -84,8 +84,8 @@
     .hw-logo{
         position: absolute;
         background-color: #ffffff;
-        width: 90px;
-        height: 112px;
+        width: 70px;
+        height: 90px;
         top: 0;
         right: 0;
         overflow: hidden;
@@ -97,12 +97,12 @@
 
     .hw-name{
         font-family: STKaiti-SC-Regular;
-        font-size: 22px;
+        font-size: 19px;
         color: #000;
-        top: 32px;
+        top: 24px;
         position: absolute;
-        width: 100px;
-        left: 5px;
+        width: 85px;
+        left: 3px;
         text-align: left;
         font-weight: 700;
     }
@@ -112,22 +112,22 @@
         font-size: 12px;
         position: absolute;
         color: #4a4a4a;
-        left: 5px;
-        width: 100px;
+        left: 3px;
+        width: 85px;
         text-align: left;
-        top: 10px;
+        top: 6px;
     }
 
     .hw-ad2{
         font-family: PingFangSC-Regular;
         margin: 0;
         position: absolute;
-        left: 5px;
-        width: 100px;
+        left: 3px;
+        width: 85px;
         font-size: 12px;
         color: #4a4a4a;
         text-align: left;
-        top: 70px;
+        top: 52px;
     }
 
     .hw-tel{
@@ -135,7 +135,7 @@
         position: absolute;
         left: 5px;
         font-size: 12px;
-        top: 88px;
+        top: 68px;
         color: #4a4a4a;
         text-align: left;
     }
@@ -156,19 +156,19 @@
 
     .hw-name{
         font-family: STKaiti-SC-Black;
-        font-size: 28px;
-        margin-top: 12px;
+        font-size: 21px;
+        margin-top: 10px;
     }
     .hw-ad1{
-        font-size: 16px;
+        font-size: 12px;
         font-family: PingFangSC-Semi;
         margin-top: 2px;
     }
     .hw-tel{
         position: absolute;
-        font-size: 15px;
-        height: 30px;
-        line-height: 34px;
+        font-size: 12px;
+        height: 24px;
+        line-height: 26px;
         color: #ffffff;
         left : 0;
         bottom: 0;
@@ -179,12 +179,12 @@
     border-color: #ed5769;
     .hw-name{
         color: rgb(235,89,107);
-        font-size: 21px;
+        font-size: 17px;
     }
     .hw-ad1{
         font-family: PingFangSC-Semibold;
         color: #460008;
-        font-size: 21px;
+        font-size: 16px;
     }
     .hw-tel{
         background: #ed5769;
@@ -195,16 +195,14 @@
     .hw-name{
         font-family: MicrosoftYaHei;
         color: #672300;
-        font-size: 26px;
         font-weight: bold;
     }
     .hw-ad1{
         font-family: MicrosoftYaHei;
         color: #ffffff;
         position: absolute;
-        font-size: 15px;
-        height: 30px;
-        line-height: 32px;
+        height: 24px;
+        line-height: 26px;
         left : 0;
         bottom: 0;
         width:100%;
@@ -217,7 +215,6 @@
         margin-top: -2px;
         position: static;
         background: none;
-        font-size: 15px;
     }
 }
 .hw-ad-jiazhuangqingjie{
@@ -231,7 +228,7 @@
         color: #515f00;
         font-family: MicrosoftYaHei;
         position: relative;
-        top: -6px;
+        top: -2px;
     }
     .hw-tel{
         background: #9dad3d;
@@ -243,13 +240,11 @@
         font-family: MicrosoftYaHei;
         font-weight: bold;
         color: #6e4300;
-        font-size: 26px;
     }
     .hw-ad1{
         font-family: MicrosoftYaHei;
         color: #f4a62a;
-        font-size: 15px;
-        margin-top: 0;
+        margin-top: 2px;
     }
     .hw-tel{
         background: #f4a62a;
@@ -259,14 +254,13 @@
     border-color: #875296;
     .hw-name{
         color: #875296;
-        font-size: 21px;
+        font-size: 17px;
         position: relative;
-        top: -2px;
     }
     .hw-ad1{
         font-family: PingFangSC-SemiBold;
         color: #290135;
-        font-size: 20px;
+        font-size: 16px;
     }
     .hw-tel{
         background: #875296;
@@ -283,7 +277,7 @@
         color: #4a4a4a;
         font-family: MicrosoftYaHei;
         position: relative;
-        top: -6px;
+        top: 0;
     }
     .hw-tel{
         background: #38383b;
@@ -295,7 +289,6 @@
         color: rgb(69,1,10);
         font-family: MicrosoftYaHei;
         font-weight: bold;
-        font-size: 26px;
     }
     .hw-ad1{
         color: rgb(235,89,107);
@@ -309,11 +302,11 @@
     border-color: #37bccd;
     .hw-name{
         color: rgb(64,188,204);
-        font-size: 21px;
+        font-size: 17px;
     }
     .hw-ad1{
         color: #00383f;
-        font-size: 20px;
+        font-size: 16px;
         font-family: PingFangSC-SemiBold;
         margin-top: 2px;
     }
