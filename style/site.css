@@ -337,6 +337,8 @@ label.require:after {
         outline: 0;
         border-color: #cccccc;
         box-shadow: none; }
+      .kg-header-comp .search input.blur {
+        color: #9c9c9c; }
   .kg-header-comp .right {
     position: absolute;
     top: 26px;

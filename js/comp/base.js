@@ -124,7 +124,7 @@
 
                     '<div class="input-group search js_search">',
                         '<span class="input-group-addon hand js_tosearch"><i class="icon"></i></span>',
-                        '<input type="text" class="form-control" placeholder="搜索店铺，专家服务...">',
+                        '<input type="text" class="form-control" data-placeholder="搜索店铺，专家服务...">',
                     '</div>',
 
                 '{{if user.isLogin && user.has_biz}}',
@@ -261,6 +261,20 @@
             this.elem.find('.js_loc').show().find('span').html(regionName);
 
             this.elem.find('[data-hover="dropdown"]').dropdownHover();
+
+            this.elem.find('input[data-placeholder]').focus(function(){
+                var o = $(this);
+                if(!o.val() || o.val() === o.data('placeholder')){
+                    o.removeClass('blur').val('');
+                }
+
+            }).blur(function(){
+                var o = $(this);
+                if(!o.val()){
+                    o.addClass('blur').val(o.data('placeholder'));
+                }
+
+            }).blur();
         }
     });
 
