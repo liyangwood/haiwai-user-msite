@@ -1027,15 +1027,17 @@
 		height: 400px;
 		background: #ffffff;
 		text-align: center;
+		min-height: 200px;
+		display: none;
 
 		.hw-title{
 			font-size: 20px;
-			margin-top : 20px;
+			margin-top : 40px;
 			color: $color-4a;
 			font-weight: normal;
 		}
 		.hw-preview{
-			margin-top: 30px;
+			margin-top: 20px;
 			text-align: center;
 		}
 	}

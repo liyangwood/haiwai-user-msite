@@ -1257,5 +1257,10 @@ KG.Class.define('HWMybizCreateAdsPagePreivew', {
         h = template.compile(h)(data);
 
         this.jq.box.html(h);
+
+        this.elem.show();
+    },
+    initEnd : function(){
+
     }
 });

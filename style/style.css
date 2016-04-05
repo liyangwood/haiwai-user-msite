@@ -1506,14 +1506,16 @@ label.require:after {
     width: 280px;
     height: 400px;
     background: #ffffff;
-    text-align: center; }
+    text-align: center;
+    min-height: 200px;
+    display: none; }
     .hw-page-createAds .hw-right-box .hw-title {
       font-size: 20px;
-      margin-top: 20px;
+      margin-top: 40px;
       color: #4a4a4a;
       font-weight: normal; }
     .hw-page-createAds .hw-right-box .hw-preview {
-      margin-top: 30px;
+      margin-top: 20px;
       text-align: center; }
 
 .hw-HWMybizCreateAdsPageForm .hw-label {
