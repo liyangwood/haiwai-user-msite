@@ -465,7 +465,6 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 		this.elem.find('.c-top').on('click', '.js_share', function(){
 			var href = util.path.toMSiteStore(self.bizId);
-			alert(href);
 			util.dialog.showQrCode(href);
 		}).on('click', '.js_fav', function(){
 			var o = $(this);
