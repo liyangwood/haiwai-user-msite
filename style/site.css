@@ -761,9 +761,9 @@ label.require:after {
 .hw-dialog-selectBizForAds .modal-dialog {
   width: 690px !important; }
   .hw-dialog-selectBizForAds .modal-dialog .modal-header {
-    display: none !important; }
+    height: 0 !important; }
   .hw-dialog-selectBizForAds .modal-dialog .modal-body {
-    padding: 32px !important; }
+    padding: 0 32px 32px 32px !important; }
     .hw-dialog-selectBizForAds .modal-dialog .modal-body .hw-body {
       padding: 0 !important; }
   .hw-dialog-selectBizForAds .modal-dialog .hw-title b {

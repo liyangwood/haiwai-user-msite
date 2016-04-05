@@ -218,7 +218,9 @@ KG.Class.define('MybizRunningStoreList', {
                 $('.hw-MybizCreateNewStore').addClass('no_dis');
             }
 
-            KG.component.initWithElement($('div[role="HWMybizIndexStoreAdsBlock"]'), {});
+            KG.component.initWithElement($('div[role="HWMybizIndexStoreAdsBlock"]'), {
+                bizList : runningList
+            });
         });
     },
     initEvent : function(){
@@ -791,7 +793,7 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
                     '<div class="cf">',
                         '新用户可获得免费文学城首页的广告位，用于推广您的店铺，<a href="http://www.wenxuecity.com" target="_blank">去文学城首页查看已有广告</a>',
                     '</div>',
-                    '<a class="hw-btn hw-blue-btn" href="../mybiz/createAds.html">免费创建广告</a>',
+                    '<a class="hw-btn hw-blue-btn js_btn" href="javascript:void(0)">免费创建广告</a>',
                 '</div>'
 
             ].join('');
@@ -806,11 +808,63 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
             '</div>'
         ].join('');
     },
+    showSelectBizDialog : function(list, callback){
+        var self = this;
+        var h = [
+            '<div class="hw-ads-bizlist">',
+            '{{each list as item index}}',
+            '<div class="hw-each">',
+            '<img src="{{item | logoPath}}" />',
+            '<h4>{{item.name_cn || item.name_en}}</h4>',
+            '<p class="hw-adress">{{item | storeFullAddress}}</p>',
+            '<p class="hw-tel">{{item.tel}}</p>',
+            '<button param="{{index}}" class="hw-btn hw-blue-btn js_select">选择</button>',
+            '</div>',
+            '{{/each}}',
+            '</div>'
+        ].join('');
+
+        h = template.compile(h)({
+            list : list
+        });
+
+        var param = {
+            foot : false,
+            title : '请选择您要推广的店铺',
+            body : h,
+            'class' : 'hw-dialog-selectBizForAds',
+            beforeShowFn : function(){
+                var o = this;
+                //o.modal({
+                //    keyboard : false,
+                //    backdrop : 'static'
+                //});
+
+                o.find('.hw-ads-bizlist').on('click', '.js_select', function(){
+                    var index = $(this).attr('param');
+
+                    util.dialog.hide();
+                    callback(list[index]);
+                });
+            }
+        };
+
+        util.dialog.show(param);
+    },
     getData : function(box, data, next){
         data = data || {};
         this.type = data.type || 'create';
+        this.bizList = data.bizList;
 
         next({});
+    },
+    initEvent : function(){
+        var self = this;
+        this.elem.find('.js_btn').click(function(){
+            self.showSelectBizDialog(self.bizList, function(data){
+                location.href = '../mybiz/createAds.html?store='+data.entityID;
+            });
+        });
     }
 });
 
@@ -950,89 +1004,35 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
             });
         }
         else{
-            KG.request.getBizList({}, function(flag, rs){
+            var storeID = util.url.param('store');
+            if(!storeID){
+                util.toast.showError('店铺参数错误');
+                util.delay(function(){
+                    location.href = '../mybiz/createStore.html';
+                }, 2000);
+                return false;
+            }
+
+            KG.request.getStoreDetail({
+                id : storeID
+            }, function(flag, rs){
                 util.loading(false);
-                if(flag && rs.length > 0){
-                    if(rs.length > 1){
-                        //show select biz dialog
-                        self.showSelectBizDialog(rs, function(){
-                            self.logo = KG.config.SiteRoot+self.bizData.logo[0].path;
-                            self.tpl = 'common1';
-                            self.tel = self.bizData.tel;
+                if(flag){
+                    self.bizId = storeID;
+                    self.bizData = rs;
+                    self.logo = KG.config.SiteRoot+self.bizData.logo[0].path;
+                    self.tpl = 'common1';
+                    self.tel = self.bizData.tel;
 
-                            next({});
-                        });
-                    }
-                    else{
-                        self.bizData = rs[0];
-                        self.bizId = self.bizData.entityID;
-                        self.logo = KG.config.SiteRoot+self.bizData.logo[0].path;
-                        self.tpl = 'common1';
-                        self.tel = self.bizData.tel;
-
-                        next({});
-                    }
-
-
-                }
-                else{
-                    util.toast.showError('还没有创建店铺');
-                    util.delay(function(){
-                        location.href = '../mybiz/createStore.html';
-                    }, 2000);
+                    next({});
                 }
             });
+
         }
 
 
     },
 
-
-    showSelectBizDialog : function(list, callback){
-        var self = this;
-        var h = [
-            '<div class="hw-ads-bizlist">',
-                '{{each list as item index}}',
-                '<div class="hw-each">',
-                    '<img src="{{item | logoPath}}" />',
-                    '<h4>{{item.name_cn || item.name_en}}</h4>',
-                    '<p class="hw-adress">{{item | storeFullAddress}}</p>',
-                    '<p class="hw-tel">{{item.tel}}</p>',
-                    '<button param="{{index}}" class="hw-btn hw-blue-btn js_select">选择</button>',
-                '</div>',
-                '{{/each}}',
-            '</div>'
-        ].join('');
-
-        h = template.compile(h)({
-            list : list
-        });
-
-        var param = {
-            foot : false,
-            title : '请选择您要推广的店铺',
-            body : h,
-            'class' : 'hw-dialog-selectBizForAds',
-            beforeShowFn : function(){
-                var o = this;
-                o.modal({
-                    keyboard : false,
-                    backdrop : 'static'
-                });
-
-                o.find('.hw-ads-bizlist').on('click', '.js_select', function(){
-                    var index = $(this).attr('param');
-                    self.bizData = list[index];
-                    self.bizId = self.bizData.entityID;
-
-                    util.dialog.hide();
-                    callback();
-                });
-            }
-        };
-
-        util.dialog.show(param);
-    },
 
     initStart : function(){
         this.bizId = null;

@@ -333,10 +333,10 @@
     .modal-dialog{
         width : 690px !important;
         .modal-header{
-            display: none !important;
+            height: 0 !important;
         }
         .modal-body{
-            padding: 32px !important;
+            padding: 0 32px 32px 32px !important;
             .hw-body{
                 padding: 0 !important;
 

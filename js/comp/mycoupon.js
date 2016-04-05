@@ -62,7 +62,7 @@
                     '{{else}}',
                         //'<b class="hw-a js_sendphone" param="{{item.pk_id}}" style="margin-top: 18px;">发送短信至手机</b>',
                         '<b style="margin-top:35px;" class="hw-a js_share" param="{{item.pk_id}}">分享</b>',
-                        '<b class="hw-a js_del" param="{{item.fk_entityID}}">删除</b>',
+                        '<b class="hw-a js_del" param="{{item.pk_id}}">删除</b>',
 
                     '{{/if}}',
                 '</div>',
@@ -150,7 +150,7 @@
                     YesFn : function(close){
                         close();
 
-                        KG.request.deleteMyFavCoupon({bizId : id}, function(flag, rs){
+                        KG.request.deleteMyFavCoupon({id : id}, function(flag, rs){
                             console.log(flag, rs);
                             if(flag){
                                 location.reload(true);

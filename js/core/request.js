@@ -301,7 +301,7 @@ KG.request = {
             act : 'delete_bookmark',
             type : 'classifiedinfo',
             id : opts.id,
-            entityID : opts.bizId
+            entityID : opts.id
         };
         data = util.addUserIdToRequestData(data);
 
