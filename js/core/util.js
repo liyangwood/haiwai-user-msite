@@ -635,13 +635,13 @@
         },
 
         toMSiteStore : function(id){
-            return 'http://www.haiwai.com/mobile/ionic/store.html?id='+id;
+            return KG.config.SiteRoot+'/mobile/ionic/store.html?id='+id;
         },
         toMSiteArticle : function(id){
-            return 'http://www.haiwai.com/mobile/ionic/article.html?id='+id;
+            return KG.config.SiteRoot+'/mobile/ionic/article.html?id='+id;
         },
         toMSiteCoupon : function(id){
-            return 'http://www.haiwai.com/mobile/ionic/action.html?id='+id;
+            return KG.config.SiteRoot+'/mobile/ionic/action.html?id='+id;
         }
     };
 

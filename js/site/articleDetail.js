@@ -78,8 +78,9 @@ console.log(rs.view.msgbody)
         },
 
         initEvent : function(){
+            var id = this.data.id;
             this.elem.on('click', '.js_share', function(){
-                util.dialog.showQrCode(location.href, '打开微信扫一扫以下二维码即可打开本页面，点击屏幕右上角分享按钮');
+                util.dialog.showQrCode(util.path.toMSiteArticle(id), '打开微信扫一扫以下二维码即可打开本页面，点击屏幕右上角分享按钮');
             });
         }
     });
