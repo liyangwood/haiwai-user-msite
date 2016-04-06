@@ -789,11 +789,14 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
 
         return [
             '<div class="hw-HWMybizIndexStoreAdsBlock">',
-            '<h4>店铺文学城广告位</h4>',
+            '<h4 class="js_title">店铺文学城广告位</h4>',
             '<div class="js_box"></div>',
 
             '</div>'
         ].join('');
+    },
+    setTitle : function(title){
+        this.elem.find('.js_title').html(title);
     },
     showSelectBizDialog : function(list, callback){
         var self = this;
@@ -843,6 +846,7 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
         this.type = null;
         this.ads = null;
         this.bizList = data.bizList;
+        console.log(this.bizList)
         var user = KG.user.get();
         if(user.ads_postid){
             KG.request.getAdsDetail({
@@ -879,14 +883,14 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
         var self = this;
         var h = [
             '<div class="cf">',
-            '新用户可获得免费文学城首页的广告位，用于推广您的店铺，<a href="http://www.wenxuecity.com" target="_blank">去文学城首页查看已有广告</a>',
+            '我们为店主提供<a href="http://www.wenxuecity.com" target="_blank">文学城首页</a>价值$300一个月免费广告服务，地理定向推广您在海外同城的店铺。一分钟即可自助创建160*90的图片广告。无需任何预付费信息，创建成功审核后自动发布。',
             '</div>',
             '<a class="hw-btn hw-blue-btn js_btn" href="javascript:void(0)">免费创建广告</a>'
         ].join('');
 
         this.jq.box.html(h);
         this.elem.find('.js_btn').click(function(){
-            if(true || self.bizList.length < 1){
+            if(self.bizList.length < 1){
                 util.toast.showError('您没有可以创建广告的店铺');
                 return false;
             }
@@ -894,24 +898,28 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
                 location.href = '../mybiz/createAds.html?store='+data.entityID;
             });
         });
+
+        this.setTitle('文学城首页广告位，首月免费');
     },
     showShowingBox : function() {
         var h = decodeURIComponent(this.ads.share);
-        h += '<div class="cf"> 广告正在展示，<a href="http://www.wenxuecity.com" target="_blank">去文学城首页查看</a></div>';
-        h += '<a class="hw-btn hw-blue-btn js_btn" href="../mybiz/createAds.html?id='+this.ads.postid+'">修改内容</a>';
+        h += '<div class="cf"> 您创建的图片广告已在<a href="http://www.wenxuecity.com" target="_blank">文学城首页</a>发布，我们的广告采用轮播的形式，即有其他店主新的广告，您的广告会自动下移，直到轮出广告区域。请随时留意您的广告是否下线，一个月以内可无限次自助上线广告。广告下线我们会在此处提示，请留意。</div>';
+        h += '<a class="hw-btn hw-blue-btn js_btn" href="../mybiz/createAds.html?id='+this.ads.postid+'">修改广告</a>';
         this.jq.box.addClass('hw-showing').html(h);
+        this.setTitle('广告已上线');
 
     },
     showWaitingBox : function(){
         var h = decodeURIComponent(this.ads.share);
-        h += '<div class="cf">广告正在审核中，审核时间 为1-2个工作日</div>';
-        h += '<a class="hw-btn hw-blue-btn js_btn" href="../mybiz/createAds.html?id='+this.ads.postid+'">修改内容</a>';
+        h += '<div class="cf">您的广告已创建，我们需要 1-2个工作日审核发布到<a href="http://www.wenxuecity.com" target="_blank">文学城首页</a></div>';
+        h += '<a class="hw-btn hw-blue-btn js_btn" href="../mybiz/createAds.html?id='+this.ads.postid+'">修改广告</a>';
         this.jq.box.addClass('hw-waiting').html(h);
+        this.setTitle('广告正在审核中');
     },
     showInvisibleBox : function(){
         var self = this;
         var h = decodeURIComponent(this.ads.share);
-        h += '<div class="cf">广告已下线，在一个月之内您的广告再次免费上线</div>';
+        h += '<div class="cf">由于广告过多，您的广告已轮出<a href="http://www.wenxuecity.com" target="_blank">文学城首页</a>，一个月内可自助上线广告。</div>';
         h += '<a class="hw-btn hw-blue-btn js_btn" param="'+this.ads.postid+'" href="javascript:void(0)">重新上线</a>';
         this.jq.box.addClass('hw-waiting').html(h);
 
@@ -919,12 +927,14 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
             var id = $(this).attr('param');
 
         });
+        this.setTitle('广告已下线');
     },
     showClosedBox : function(){
         var h = decodeURIComponent(this.ads.share);
-        h += '<div class="cf">广告已下线，如有疑问，您可以致电文学城广告部</div>';
-        h += '<a class="hw-btn hw-light-btn js_btn" href="javascript:void(0)">408-675-8754</a>';
+        h += '<div class="cf">您的一个月免费广告推广期已过，重新上线请查阅广告服务</div>';
+        //h += '<a class="hw-btn hw-light-btn js_btn" href="javascript:void(0)">408-675-8754</a>';
         this.jq.box.addClass('hw-waiting').html(h);
+        this.setTitle('广告已下线');
     },
     initEnd : function(){
         switch(this.type){
