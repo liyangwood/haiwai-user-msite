@@ -129,7 +129,10 @@
 
                 KG.request.getUserDetailInfo({}, function(f, json){
                     if(f){
-                        user.image = KG.config.SiteRoot+json.avatar_url;
+                        user.image = json.avatar_url;
+                        if(/^http/.test(user.image)){
+                            user.image = KG.config.SiteRoot+user.image;
+                        }
                         user.isLogin = true;
                         _.extend(user, json);
 
@@ -162,7 +165,10 @@
         update : function(){
             KG.request.getUserDetailInfo({}, function(f, json){
                 if(f){
-                    user.image = KG.config.SiteRoot+json.avatar_url;
+                    user.image = json.avatar_url;
+                    if(/^http/.test(user.image)){
+                        user.image = KG.config.SiteRoot+user.image;
+                    }
                     user.isLogin = true;
                     _.extend(user, json);
 

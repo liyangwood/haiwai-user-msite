@@ -928,6 +928,19 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
         this.elem.find('.js_btn').click(function(){
             var id = $(this).attr('param');
 
+            KG.request.resubmitAds({
+                id : id
+            }, function(flag, rs){
+                if(flag){
+                    util.toast.alert('重新上线成功');
+                    _.delay(function(){
+                        location.reload();
+                    }, 2000);
+                }
+                else{
+                    util.toast.showError(rs);
+                }
+            });
         });
         this.setTitle('广告已下线');
     },

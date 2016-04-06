@@ -439,6 +439,23 @@ KG.Class.define('MycountChangeInfoForm', {
         console.log(data);
 
         //TODO validate
+        if(!data.nickname){
+            jq.nick.showError('请输入用户名');
+            jq.nick.focus();
+            return false;
+        }
+        else{
+            jq.nick.showError();
+        }
+
+        if(!data.email){
+            jq.email.showError('请输入注册邮箱');
+            jq.email.focus();
+            return false;
+        }
+        else{
+            jq.email.showError();
+        }
 
         KG.request.modifyUserInfo(data, function(flag, rs){
             if(!flag){

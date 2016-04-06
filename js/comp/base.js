@@ -505,6 +505,11 @@
                 util.dialog.showWeixinLoginQrCode(KG.config.WeixinLoginRedirectUrl);
                 return false;
             });
+            this.elem.on('click', '.hw-fb', function(){
+                util.Facebook.login(function(){
+                    util.dialog.hide();
+                });
+            });
         },
 
         getLoginValue : function(){

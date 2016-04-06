@@ -1,13 +1,5 @@
 
-
 'use strict';
-
-(function(){
-    var debug = true;
-    if(!debug){
-        console.log = function(){};
-    }
-})();
 
 (function(){
     var _uuid = 1;
@@ -664,7 +656,7 @@
 
     //debug
     if(!util.url.param('debug')){
-        console.log = console.error = function(){};
+        //console.log = console.error = function(){};
     }
 })();
 
@@ -753,3 +745,59 @@
         return KG.config.SiteRoot + logo;
     });
 })();
+
+
+$(function(){
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId : '250258495319287',
+            cookie : true,
+            xfbml : true,
+            version : 'v2.5'
+        });
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+
+    var filed = [
+        'email',
+        'first_name',
+        'last_name',
+        'name',
+        'gender',
+        'picture'
+
+    ].join(',');
+    window.util.Facebook = {
+        getTokenWithData : function(data, callback){
+            alert(JSON.stringify(data));
+
+            callback();
+        },
+
+        login : function(callback){
+            FB.login(function(res){
+                console.log(res);
+                if(res.status === 'connected'){
+                    FB.api('/me', function(response) {
+                        console.log(response);
+                        util.Facebook.getTokenWithData(response, callback);
+                    }, {fields : filed});
+                }
+                else{
+                    util.toast.showError('登录失败');
+                    _.delay(function(){
+                        location.reload();
+                    }, 2000);
+                }
+            });
+        }
+    };
+});

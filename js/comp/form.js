@@ -758,14 +758,14 @@ KG.Class.define('MybizCouponForm', {
         c.title.setValue(data.subject);
         this.jq.desc.val(data.description);
 
-        this.jq.startDate.datepicker('setDate', moment(data.top_start_time*1000).format('MM/DD/YYYY'));
+        this.jq.startDate.datepicker('setDate', moment.unix(data.top_start_time).utc().format('MM/DD/YYYY'));
 
         if(!data.top_end_time || parseInt(data.top_end_time)<1 || data.top_end_time==='unlimit'){
             this.elem.find('.js_endlimit').prop('checked', true);
             this.jq.endDate.attr('disabled', true);
         }
         else{
-            this.jq.endDate.datepicker('setDate', moment(data.top_end_time*1000).format('MM/DD/YYYY'));
+            this.jq.endDate.datepicker('setDate', moment.unix(data.top_end_time).utc().format('MM/DD/YYYY'));
         }
 
 

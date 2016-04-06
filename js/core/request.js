@@ -1198,5 +1198,19 @@ KG.request = {
         }
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=ads_updatetime&postid=15&token=
+    * */
+    resubmitAds : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'ads_updatetime',
+            postid : opts.id
+        };
+
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
     }
 };
