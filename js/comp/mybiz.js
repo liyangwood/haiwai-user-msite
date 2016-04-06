@@ -1272,7 +1272,8 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
             bizName : this.name,
             bizAd1 : this.ad1,
             bizAd2 : this.ad2,
-            bizTel : this.tel
+            bizTel : this.tel,
+            bizLink : KG.config.SiteRoot+'/pc/page/view/store.html?id='+this.bizId
         };
     },
 
@@ -1338,13 +1339,13 @@ KG.Class.define('HWMybizCreateAdsPagePreivew', {
             x = 'hw-ad-t3 hw-ad-'+data.template;
         }
         var h = [
-            '<div class="hw-ad '+x+'">',
+            '<a href="{{bizLink}}" target="_blank" class="hw-ad '+x+'">',
             '<div class="hw-logo"><img src="{{logo}}"/></div>',
             '<p class="hw-name">{{bizName}}</p>',
             '<p class="hw-ad1">{{bizAd1}}</p>',
             '<p class="hw-ad2">{{bizAd2}}</p>',
             '<p class="hw-tel">{{bizTel}}</p>',
-            '</div>'
+            '</a>'
         ].join('');
         h = template.compile(h)(data);
 

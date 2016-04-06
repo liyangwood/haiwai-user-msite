@@ -1534,7 +1534,8 @@ label.require:after {
       text-align: center; }
     .hw-page-createAds .hw-right-box > .box.affix {
       position: fixed !important;
-      top: 25px; }
+      top: 25px;
+      z-index: 99; }
 
 .hw-HWMybizCreateAdsPageForm .hw-label {
   font-size: 20px;
