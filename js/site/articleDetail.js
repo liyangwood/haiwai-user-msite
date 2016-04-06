@@ -126,7 +126,7 @@ console.log(rs.view.msgbody)
                 '<p class="hw-p">{{bizInfo | storeFullAddress}}</p>',
                 '</div>',
 
-                '<p style="display: inline-block;">',
+                '<p style="display: block;">',
                 '<span class="hw-time">{{item.msgbody | htmlToText}}</span>',
 
                 '<span class="hw-view">',
@@ -140,7 +140,7 @@ console.log(rs.view.msgbody)
 
             h = template.compile(h)({
                 list : list || [],
-                bizInfo : biz
+                bizInfo : list.length > 0 ? list[0].bizinfo : {}
             });
 
             this.elem.find('.js_box').html(h);

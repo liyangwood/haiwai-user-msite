@@ -121,6 +121,26 @@
 		font-weight: normal;
 		margin: 5px auto 20px;
 	}
+
+	.hw-showing, .hw-waiting{
+		.hw-ad{
+			margin-top: 10px;
+		}
+		.cf{
+			margin-top: 15px;
+		}
+	}
+	.hw-waiting{
+		.cf{
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+		.hw-light-btn{
+			border: none;
+			color: #00a7bc;
+			cursor: default;
+		}
+	}
 }
 
 .hw-MybizRightStoreRank{

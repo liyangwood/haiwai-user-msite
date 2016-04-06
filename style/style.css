@@ -859,6 +859,17 @@ label.require:after {
     font-size: 14px;
     font-weight: normal;
     margin: 5px auto 20px; }
+  .hw-HWMybizIndexStoreAdsBlock .hw-showing .hw-ad, .hw-HWMybizIndexStoreAdsBlock .hw-waiting .hw-ad {
+    margin-top: 10px; }
+  .hw-HWMybizIndexStoreAdsBlock .hw-showing .cf, .hw-HWMybizIndexStoreAdsBlock .hw-waiting .cf {
+    margin-top: 15px; }
+  .hw-HWMybizIndexStoreAdsBlock .hw-waiting .cf {
+    margin-left: 10px;
+    margin-right: 10px; }
+  .hw-HWMybizIndexStoreAdsBlock .hw-waiting .hw-light-btn {
+    border: none;
+    color: #00a7bc;
+    cursor: default; }
 
 .hw-MybizRightStoreRank {
   width: 240px;

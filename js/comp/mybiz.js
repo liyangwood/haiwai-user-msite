@@ -786,25 +786,12 @@ KG.Class.define('MybizEditStoreLeftNav', {
 KG.Class.define('HWMybizIndexStoreAdsBlock', {
     ParentClass : 'BaseComponent',
     getTemplate : function(){
-        if(this.type === 'create'){
-            return [
-                '<div class="hw-HWMybizIndexStoreAdsBlock">',
-                    '<h4>店铺文学城广告位</h4>',
-                    '<div class="cf">',
-                        '新用户可获得免费文学城首页的广告位，用于推广您的店铺，<a href="http://www.wenxuecity.com" target="_blank">去文学城首页查看已有广告</a>',
-                    '</div>',
-                    '<a class="hw-btn hw-blue-btn js_btn" href="javascript:void(0)">免费创建广告</a>',
-                '</div>'
-
-            ].join('');
-        }
 
         return [
             '<div class="hw-HWMybizIndexStoreAdsBlock">',
-                '<h4>店铺文学城广告位</h4>',
-                '<img src="{{image}}" />',
-                '<div class="ca">{{#info}}</div>',
-                '{{#btn}}',
+            '<h4>店铺文学城广告位</h4>',
+            '<div class="js_box"></div>',
+
             '</div>'
         ].join('');
     },
@@ -852,19 +839,108 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
         util.dialog.show(param);
     },
     getData : function(box, data, next){
-        data = data || {};
-        this.type = data.type || 'create';
+        var self = this;
+        this.type = null;
+        this.ads = null;
         this.bizList = data.bizList;
+        var user = KG.user.get();
+        if(user.ads_postid){
+            KG.request.getAdsDetail({
+                id : user.ads_postid
+            }, function(flag, rs){
+                if(flag){
+                    self.type = rs.status;
+                    self.ads = rs;
+                    next({});
+                }
+                else{
+                    util.toast.showError(rs);
+                }
+            });
+        }
+        else{
+            this.type = 'create';
+            next({});
+        }
 
-        next({});
+    },
+
+    setJqVar : function(){
+        return {
+            box : this.elem.find('.js_box')
+        };
     },
     initEvent : function(){
         var self = this;
+
+    },
+
+    showCreateBox : function(){
+        var self = this;
+        var h = [
+            '<div class="cf">',
+            '新用户可获得免费文学城首页的广告位，用于推广您的店铺，<a href="http://www.wenxuecity.com" target="_blank">去文学城首页查看已有广告</a>',
+            '</div>',
+            '<a class="hw-btn hw-blue-btn js_btn" href="javascript:void(0)">免费创建广告</a>'
+        ].join('');
+
+        this.jq.box.html(h);
         this.elem.find('.js_btn').click(function(){
             self.showSelectBizDialog(self.bizList, function(data){
                 location.href = '../mybiz/createAds.html?store='+data.entityID;
             });
         });
+    },
+    showShowingBox : function() {
+        var h = decodeURIComponent(this.ads.share);
+        h += '<div class="cf"> 广告正在展示，<a href="http://www.wenxuecity.com" target="_blank">去文学城首页查看</a></div>';
+        h += '<a class="hw-btn hw-blue-btn js_btn" href="../mybiz/createAds.html?id='+this.ads.postid+'">修改内容</a>';
+        this.jq.box.addClass('hw-showing').html(h);
+
+    },
+    showWaitingBox : function(){
+        var h = decodeURIComponent(this.ads.share);
+        h += '<div class="cf">广告正在审核中，审核时间 为1-2个工作日</div>';
+        h += '<a class="hw-btn hw-blue-btn js_btn" href="../mybiz/createAds.html?id='+this.ads.postid+'">修改内容</a>';
+        this.jq.box.addClass('hw-waiting').html(h);
+    },
+    showInvisibleBox : function(){
+        var self = this;
+        var h = decodeURIComponent(this.ads.share);
+        h += '<div class="cf">广告已下线，在一个月之内您的广告再次免费上线</div>';
+        h += '<a class="hw-btn hw-blue-btn js_btn" param="'+this.ads.postid+'" href="javascript:void(0)">重新上线</a>';
+        this.jq.box.addClass('hw-waiting').html(h);
+
+        this.elem.find('.js_btn').click(function(){
+            var id = $(this).attr('param');
+
+        });
+    },
+    showClosedBox : function(){
+        var h = decodeURIComponent(this.ads.share);
+        h += '<div class="cf">广告已下线，如有疑问，您可以致电文学城广告部</div>';
+        h += '<a class="hw-btn hw-light-btn js_btn" href="javascript:void(0)">408-675-8754</a>';
+        this.jq.box.addClass('hw-waiting').html(h);
+    },
+    initEnd : function(){
+
+        switch(this.type){
+            case 'create':
+                this.showCreateBox();
+                break;
+            case 'showing':
+                this.showShowingBox();
+                break;
+            case 'waiting':
+                this.showWaitingBox();
+                break;
+            case 'invisible':
+                this.showInvisibleBox();
+                break;
+            case 'closed':
+                this.showClosedBox();
+                break;
+        }
     }
 });
 
@@ -1129,10 +1205,10 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
 
         self.elem.find('.s-btn .js_sub').click(function(){
             var data = self.getSubmitData();
-            var m = '创建成功';
+            var m = '广告已提交审核，审核时间为1-2个工作日';
             if(self.postid){
                 data.id = self.postid;
-                m = '修改成功';
+                m = '修改成功，审核时间为1-2个工作日';
             }
             console.log(data);
             KG.request.createAds(data, function(flag, rs){
@@ -1140,7 +1216,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
                     util.toast.alert(m);
                     util.delay(function(){
                         location.href = '../mybiz/index.html';
-                    }, 1000);
+                    }, 2000);
                 }
                 else{
                     util.toast.showError(rs);
