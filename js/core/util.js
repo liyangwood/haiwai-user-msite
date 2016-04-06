@@ -565,8 +565,8 @@
 
     util.toast = {
         showError : function(msg, opts){
-            var h = '<div class="hw-icon" style="border: none;"><i style="color: #ff0000;" class="fa' +
-                '  fa-exclamation-triangle"></i></div>';
+            var h = '<div class="hw-icon" style="border: none;"><i style="color: #f4a62a; top:4px;font-size:' +
+                '32px;" class="fa fa-exclamation-circle"></i></div>';
             util.dialog.alert(h+msg, '');
         },
         alert : function(msg, body){
@@ -660,6 +660,12 @@
 
 
     window.util = KG.util = util;
+
+
+    //debug
+    if(!util.url.param('debug')){
+        console.log = console.error = function(){};
+    }
 })();
 
 

@@ -835,6 +835,8 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		this.elem.find('.js_rpcat').find('b').eq(0).trigger('click');
 
 		this.commentImage = KG.component.getObj(this.elem.find('.js_comment_img'));
+
+		this.showAdsBanner();
 	},
 
 	getCommentRpHtml : function(replyId){
@@ -1117,5 +1119,29 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		};
 
 		util.dialog.show(param);
+	},
+
+	showAdsBanner : function(){
+		if(this.data.biz.role !== 'admin'){
+			return false;
+		}
+		var user = KG.user.get();
+		if(!user || user.ads_postid){
+			return false;
+		}
+
+		var h = [
+			'<div style="display: none;" class="hw-store-bottom-ads">',
+				'<dd>',
+					'<span>新用户专享，免费推广您的店铺到<a target="_blank" href="http://www.wenxuecity.com">文学城</a>首页</span>',
+					'<a href="../mybiz/createAds.html?store='+this.data.id+'" target="_blank" class="hw-btn' +
+					' hw-blue-btn">马上创建</a>',
+				'</dd>',
+			'</div>'
+		].join('');
+
+		util.delay(function(){
+			$(h).appendTo('body').slideDown();
+		}, 2000);
 	}
 });

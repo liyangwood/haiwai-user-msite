@@ -5,7 +5,7 @@ KG.Class.define('SiteStoreFilterComp', {
 	ParentClass : 'BaseComponent',
 	getTemplate : function(){
 		return [
-			'<div class="hw-SiteStoreFilterComp">',
+			'<div style="min-height: 50px;" class="hw-SiteStoreFilterComp">',
 			'<div class="c">',
 				'<label>营业特色</label>',
 				'<p class="js_cat">',
@@ -230,6 +230,7 @@ KG.Class.define('HWSiteStoreListPage', {
 
 		util.loading(true);
 		self.getListData(function(rs){
+			next({});
 			util.message.publish('SiteStoreFilterComp', {
 				catlist : rs.second_tagid,
 				dynamic : rs.dy_fields,
@@ -241,12 +242,9 @@ KG.Class.define('HWSiteStoreListPage', {
 
 			util.loading(false);
 			self.setBoxHtml(rs.list);
+
 		});
 
-
-
-
-		next({});
 	},
 
 

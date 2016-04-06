@@ -886,6 +886,10 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
 
         this.jq.box.html(h);
         this.elem.find('.js_btn').click(function(){
+            if(true || self.bizList.length < 1){
+                util.toast.showError('您没有可以创建广告的店铺');
+                return false;
+            }
             self.showSelectBizDialog(self.bizList, function(data){
                 location.href = '../mybiz/createAds.html?store='+data.entityID;
             });
@@ -923,7 +927,6 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
         this.jq.box.addClass('hw-waiting').html(h);
     },
     initEnd : function(){
-
         switch(this.type){
             case 'create':
                 this.showCreateBox();
@@ -1275,7 +1278,8 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
             tel : this.tel,
             bizId : this.bizId,
             tag : this.bizData.fk_main_tag_id,
-            logo : this.logo
+            logo : this.logo,
+            region : KG.user.get('region')
         };
 
         if(this.tpl === 'common1'){

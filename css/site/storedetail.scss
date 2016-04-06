@@ -604,3 +604,38 @@
         }
     }
 }
+
+.hw-store-bottom-ads{
+    position: fixed;
+    height: 82px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    text-align: center;
+
+    dd{
+        width: 780px;
+        margin: 21px auto;
+        height: 40px;
+
+        span, span>a{
+            color: #ffffff;
+            font-size: 30px;
+            font-family: PingFangSC-Semi;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hw-btn{
+            margin-left: 42px;
+            text-shadow: none;
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+            font-weight: normal;
+            position: relative;
+            top: -6px;
+        }
+    }
+}

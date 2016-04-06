@@ -1190,6 +1190,7 @@ KG.request = {
             tel : opts.tel,
             pic : opts.logo,
             type : opts.type,
+            fk_region_id : opts.region,
             share : encodeURIComponent(opts.html)
         };
         if(opts.id){
