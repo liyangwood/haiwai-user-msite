@@ -225,8 +225,8 @@ KG.Class.define('MybizRunningStoreList', {
     },
     initEvent : function(){
         this.elem.on('click', '.js_share', function(e){
-            //TODO
-            var url = KG.config.SiteRoot+'/biz/view.php?id='+$(e.target).attr('param');
+            var id = $(this).attr('param'),
+                url = util.path.toMSiteStore(id);
             util.dialog.showQrCode(url);
 
             return false;
@@ -369,7 +369,9 @@ KG.Class.define('MybizRunningCouponList', {
     },
     initEvent : function(){
         this.elem.on('click', '.js_share', function(e){
-            var url = KG.config.SiteRoot+'/classifiedinfo/view.php?id='+$(e.target).attr('param');
+            var id = $(this).attr('param'),
+                url = util.path.toMSiteCoupon(id);
+
             util.dialog.showQrCode(url);
             return false;
         });
@@ -1313,10 +1315,10 @@ KG.Class.define('HWMybizCreateAdsPagePreivew', {
     ParentClass : 'BaseComponent',
     getTemplate : function(){
         return [
-            '<div class="hw-right-box">',
+            '<div class="hw-right-box"><div class="box">',
                 '<h4 class="hw-title">广告预览</h4>',
                 '<div class="hw-preview"></div>',
-            '</div>'
+            '</div></div>'
         ].join('');
     },
     registerMessage : function(e, data){
@@ -1348,9 +1350,15 @@ KG.Class.define('HWMybizCreateAdsPagePreivew', {
 
         this.jq.box.html(h);
 
-        this.elem.show();
+        this.elem.find('.box').show();
+        console.log(this.elem.offset())
     },
     initEnd : function(){
 
+        this.elem.find('.box').affix({
+            offset : {
+                top : 177-25
+            }
+        });
     }
 });

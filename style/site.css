@@ -1104,7 +1104,8 @@ body {
         text-align: center;
         width: 100%;
         margin: 0;
-        left: 0; }
+        left: 0;
+        padding: 0 15px; }
 
 .hw-HWSiteIndexNewStoreRecommend {
   width: 100%;
@@ -1126,7 +1127,7 @@ body {
   .hw-HWSiteIndexNewStoreRecommend dd {
     margin-top: 30px; }
     .hw-HWSiteIndexNewStoreRecommend dd .carousel-indicators {
-      bottom: 0; }
+      bottom: -40px; }
       .hw-HWSiteIndexNewStoreRecommend dd .carousel-indicators li {
         margin-right: 10px;
         background: #d8d8d8;
@@ -2258,7 +2259,7 @@ body {
       .hw-HWSiteStoreDetailPage .c-box .c-content .hw-la {
         line-height: 40px;
         border-bottom: 1px solid #ebebeb;
-        font-size: 17px;
+        font-size: 14px;
         color: #7d7d7d; }
       .hw-HWSiteStoreDetailPage .c-box .c-content .hw-la:last-child {
         border-bottom: none; }
@@ -2336,7 +2337,7 @@ body {
     width: 310px;
     margin-top: 5px; }
     .hw-HWSiteStoreDetailPage .hw-right-box .hw-brief {
-      font-size: 16px;
+      font-size: 14px;
       color: #7d7d7d;
       line-height: 22px;
       padding-bottom: 20px; }

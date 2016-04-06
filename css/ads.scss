@@ -157,12 +157,19 @@
     .hw-name{
         font-family: STKaiti-SC-Black;
         font-size: 21px;
-        margin-top: 10px;
+        position: absolute;
+        top: 10px;
+        width: 100%;
+        text-align: center;
     }
     .hw-ad1{
         font-size: 12px;
         font-family: PingFangSC-Semi;
         margin-top: 2px;
+        position: absolute;
+        top: 40px;
+        width: 100%;
+        text-align: center;
     }
     .hw-tel{
         position: absolute;
@@ -185,6 +192,7 @@
         font-family: PingFangSC-Semibold;
         color: #460008;
         font-size: 16px;
+        top: 34px;
     }
     .hw-tel{
         background: #ed5769;
@@ -205,6 +213,7 @@
         line-height: 26px;
         left : 0;
         bottom: 0;
+        top: auto;
         width:100%;
         background: #ea611a;
         font-weight: normal;
@@ -212,8 +221,9 @@
     .hw-tel{
         font-family: MicrosoftYaHei;
         color: #ea611a;
-        margin-top: -2px;
-        position: static;
+        bottom: auto;
+        top: 36px;
+        position: absolute;
         background: none;
     }
 }
@@ -227,8 +237,7 @@
     .hw-ad1{
         color: #515f00;
         font-family: MicrosoftYaHei;
-        position: relative;
-        top: -2px;
+        top: 38px;
     }
     .hw-tel{
         background: #9dad3d;
@@ -244,7 +253,7 @@
     .hw-ad1{
         font-family: MicrosoftYaHei;
         color: #f4a62a;
-        margin-top: 2px;
+        top: 38px;
     }
     .hw-tel{
         background: #f4a62a;
@@ -261,6 +270,7 @@
         font-family: PingFangSC-SemiBold;
         color: #290135;
         font-size: 16px;
+        top: 34px;
     }
     .hw-tel{
         background: #875296;
@@ -276,8 +286,7 @@
     .hw-ad1{
         color: #4a4a4a;
         font-family: MicrosoftYaHei;
-        position: relative;
-        top: 0;
+        top: 38px;
     }
     .hw-tel{
         background: #38383b;
@@ -308,7 +317,7 @@
         color: #00383f;
         font-size: 16px;
         font-family: PingFangSC-SemiBold;
-        margin-top: 2px;
+        top: 34px;
     }
     .hw-tel{
         background: #37bccd;

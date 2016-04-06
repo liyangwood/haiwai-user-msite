@@ -1036,29 +1036,40 @@
 	.hw-left-box{
 		width: 750px;
 		padding-left: 44px;
+		float: left;
 
 	}
-	
+
 	.hw-right-box{
-		position: absolute;
-		top: 25px;
-		right: 44px;
+		float: right;
+		margin: 25px 44px 0 0;
 		width: 280px;
-		height: 400px;
+		position: relative;
+	}
+	
+	.hw-right-box > .box{
+		position: relative;
+		float: left;
+		width: 280px;
 		background: #ffffff;
 		text-align: center;
-		min-height: 200px;
+		min-height: 180px;
 		display: none;
 
 		.hw-title{
 			font-size: 20px;
-			margin-top : 40px;
+			margin-top : 20px;
 			color: $color-4a;
 			font-weight: normal;
 		}
 		.hw-preview{
 			margin-top: 20px;
 			text-align: center;
+		}
+
+		&.affix{
+			position: fixed !important;
+			top: 25px;
 		}
 	}
 }
@@ -1080,7 +1091,7 @@
 			border-radius: 6px;
 			cursor: pointer;
 
-			&.active{
+			&.active, &:hover{
 				border: 12px solid rgba(55,188,205,0.2);
 				cursor: default;
 			}

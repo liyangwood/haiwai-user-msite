@@ -1509,25 +1509,32 @@ label.require:after {
   min-height: inherit; }
   .hw-page-createAds .hw-left-box {
     width: 750px;
-    padding-left: 44px; }
+    padding-left: 44px;
+    float: left; }
   .hw-page-createAds .hw-right-box {
-    position: absolute;
-    top: 25px;
-    right: 44px;
+    float: right;
+    margin: 25px 44px 0 0;
     width: 280px;
-    height: 400px;
+    position: relative; }
+  .hw-page-createAds .hw-right-box > .box {
+    position: relative;
+    float: left;
+    width: 280px;
     background: #ffffff;
     text-align: center;
-    min-height: 200px;
+    min-height: 180px;
     display: none; }
-    .hw-page-createAds .hw-right-box .hw-title {
+    .hw-page-createAds .hw-right-box > .box .hw-title {
       font-size: 20px;
-      margin-top: 40px;
+      margin-top: 20px;
       color: #4a4a4a;
       font-weight: normal; }
-    .hw-page-createAds .hw-right-box .hw-preview {
+    .hw-page-createAds .hw-right-box > .box .hw-preview {
       margin-top: 20px;
       text-align: center; }
+    .hw-page-createAds .hw-right-box > .box.affix {
+      position: fixed !important;
+      top: 25px; }
 
 .hw-HWMybizCreateAdsPageForm .hw-label {
   font-size: 20px;
@@ -1543,7 +1550,7 @@ label.require:after {
     border: 12px solid transparent;
     border-radius: 6px;
     cursor: pointer; }
-    .hw-HWMybizCreateAdsPageForm .s-tpl img.active {
+    .hw-HWMybizCreateAdsPageForm .s-tpl img.active, .hw-HWMybizCreateAdsPageForm .s-tpl img:hover {
       border: 12px solid rgba(55, 188, 205, 0.2);
       cursor: default; }
 .hw-HWMybizCreateAdsPageForm .s-img {
@@ -2201,11 +2208,18 @@ label.require:after {
   .hw-ad-t3 .hw-name {
     font-family: STKaiti-SC-Black;
     font-size: 21px;
-    margin-top: 10px; }
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    text-align: center; }
   .hw-ad-t3 .hw-ad1 {
     font-size: 12px;
     font-family: PingFangSC-Semi;
-    margin-top: 2px; }
+    margin-top: 2px;
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    text-align: center; }
   .hw-ad-t3 .hw-tel {
     position: absolute;
     font-size: 12px;
@@ -2224,7 +2238,8 @@ label.require:after {
   .hw-ad-sijiaxiaodian .hw-ad1 {
     font-family: PingFangSC-Semibold;
     color: #460008;
-    font-size: 16px; }
+    font-size: 16px;
+    top: 34px; }
   .hw-ad-sijiaxiaodian .hw-tel {
     background: #ed5769; }
 
@@ -2242,14 +2257,16 @@ label.require:after {
     line-height: 26px;
     left: 0;
     bottom: 0;
+    top: auto;
     width: 100%;
     background: #ea611a;
     font-weight: normal; }
   .hw-ad-canyinmeishi .hw-tel {
     font-family: MicrosoftYaHei;
     color: #ea611a;
-    margin-top: -2px;
-    position: static;
+    bottom: auto;
+    top: 36px;
+    position: absolute;
     background: none; }
 
 .hw-ad-jiazhuangqingjie {
@@ -2261,8 +2278,7 @@ label.require:after {
   .hw-ad-jiazhuangqingjie .hw-ad1 {
     color: #515f00;
     font-family: MicrosoftYaHei;
-    position: relative;
-    top: -2px; }
+    top: 38px; }
   .hw-ad-jiazhuangqingjie .hw-tel {
     background: #9dad3d; }
 
@@ -2275,7 +2291,7 @@ label.require:after {
   .hw-ad-kehoufudao .hw-ad1 {
     font-family: MicrosoftYaHei;
     color: #f4a62a;
-    margin-top: 2px; }
+    top: 38px; }
   .hw-ad-kehoufudao .hw-tel {
     background: #f4a62a; }
 
@@ -2288,7 +2304,8 @@ label.require:after {
   .hw-ad-kuijibaoxian .hw-ad1 {
     font-family: PingFangSC-SemiBold;
     color: #290135;
-    font-size: 16px; }
+    font-size: 16px;
+    top: 34px; }
   .hw-ad-kuijibaoxian .hw-tel {
     background: #875296; }
 
@@ -2301,8 +2318,7 @@ label.require:after {
   .hw-ad-qicheweixiu .hw-ad1 {
     color: #4a4a4a;
     font-family: MicrosoftYaHei;
-    position: relative;
-    top: 0; }
+    top: 38px; }
   .hw-ad-qicheweixiu .hw-tel {
     background: #38383b; }
 
@@ -2327,7 +2343,7 @@ label.require:after {
     color: #00383f;
     font-size: 16px;
     font-family: PingFangSC-SemiBold;
-    margin-top: 2px; }
+    top: 34px; }
   .hw-ad-xiuxianmeirong .hw-tel {
     background: #37bccd; }
 

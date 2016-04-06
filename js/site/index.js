@@ -200,6 +200,13 @@ KG.Class.define('HWSiteIndexNewStoreRecommend', {
 		var list = data;
 		var rs = [];
 		_.each(list, function(item, index){
+			item.taglist = '';
+			if(item.taginfo){
+				item.taglist = _.map(item.taginfo, function(one){
+					return one.name;
+				}).join('，');
+			}
+
 			if(index%5 === 0){
 				rs[index/5] = [];
 			}
@@ -208,7 +215,7 @@ KG.Class.define('HWSiteIndexNewStoreRecommend', {
 
 		this.setListHtml(rs);
 	},
-	setListHtml : function(data){
+	setListHtml : function(list){
 		var he = [
 			'<div class="item hw-onebox{{if $index<1}} active{{/if}}">',
 				'{{each item as one}}',
@@ -216,7 +223,7 @@ KG.Class.define('HWSiteIndexNewStoreRecommend', {
 					'<img src="{{one.logo[0].path | absImage}}" />',
 					'<h4>{{one.name_cn || one.name_en}}</h4>',
 					'<p class="hw-p">{{one.city}} {{one.state}}</p>',
-					'<p class="hw-n">{{one.promotion}}</p>',
+					'<p class="hw-n">{{one.taglist}}</p>',
 				'</a>',
 				'{{/each}}',
 			'</div>'
@@ -250,10 +257,7 @@ KG.Class.define('HWSiteIndexNewStoreRecommend', {
 			'</div>'
 		].join('');
 
-		var list = _.map(data, function(item){
 
-			return item;
-		});
 
 		h = template.compile(h)({list : list});
 		this.jq.box.html(h);

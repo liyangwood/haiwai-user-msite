@@ -48,7 +48,7 @@ KG.Class.define('SiteAticleListLeftNav', {
             category : self.data.list[index]
         });
 
-        console.log(this.elem.offset())
+
         this.elem.affix({
             offset : {
                 top : this.elem.offset().top
