@@ -121,6 +121,16 @@
             });
         },
 
+        set : function(json){
+            user.image = json.avatar_url;
+            if(!/^http/.test(user.image)){
+                user.image = KG.config.SiteRoot+user.image;
+            }
+            user.isLogin = true;
+            _.extend(user, json);
+            return user;
+        },
+
         getUserDetailWithToken : function(opts, success){
             if(opts.pk_id){
                 user.userid = opts.pk_id;
@@ -129,12 +139,7 @@
 
                 KG.request.getUserDetailInfo({}, function(f, json){
                     if(f){
-                        user.image = json.avatar_url;
-                        if(/^http/.test(user.image)){
-                            user.image = KG.config.SiteRoot+user.image;
-                        }
-                        user.isLogin = true;
-                        _.extend(user, json);
+                        KG.user.set(json);
 
                         util.storage.set('current-login-user', user);
 
@@ -165,12 +170,7 @@
         update : function(){
             KG.request.getUserDetailInfo({}, function(f, json){
                 if(f){
-                    user.image = json.avatar_url;
-                    if(/^http/.test(user.image)){
-                        user.image = KG.config.SiteRoot+user.image;
-                    }
-                    user.isLogin = true;
-                    _.extend(user, json);
+                    KG.user.set(json);
 
                     util.storage.set('current-login-user', user);
 
@@ -185,9 +185,7 @@
                 _.extend(user, u);
                 KG.request.checkLogin({}, function(flag, rs){
                     if(flag){
-                        user.image = KG.config.SiteRoot+rs.avatar_url;
-                        _.extend(user, rs);
-                        user.isLogin = true;
+                        KG.user.set(rs);
                         next();
                     }
                     else{
