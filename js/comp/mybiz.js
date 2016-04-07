@@ -251,7 +251,7 @@ KG.Class.define('MybizStopStoreList', {
             '{{each list as item}}',
             '<div class="hw-each" style="padding-left:112px;">',
             '<img class="hw-img" style="width:96px;" src="{{item.logo[0].path | absImage}}"/>',
-            '<h4>{{item.name_cn}}</h4>',
+            '<h4 style="display: inline-block" class="h4">{{item.name_cn}}</h4>',
             '<p>{{item.address}}, {{item.city}}, {{item.state}}, {{item.zip}}</p>',
             '<em>{{item.commentnum}}新评论</em>',
 
