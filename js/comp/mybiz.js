@@ -69,7 +69,10 @@ KG.Class.define('MybizEditStoreLeftDropdown', {
             status : false
         }, function(flag, rs){
             if(flag){
-                console.log(rs);
+                util.toast.alert('暂停成功');
+                _.delay(function(){
+                    location.href = '../mybiz/index.html';
+                }, 1000);
             }
         });
     },
