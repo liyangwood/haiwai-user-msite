@@ -1308,7 +1308,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
             bizId : this.bizId,
             tag : this.bizData.fk_main_tag_id,
             logo : this.logo,
-            region : KG.user.get('region')
+            region : KG.user.get('subregion_detail').id
         };
 
         if(this.tpl === 'common1'){
