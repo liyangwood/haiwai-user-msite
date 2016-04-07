@@ -628,7 +628,7 @@ $(function(){
             }
             else{
 
-                location.href = '../site/landing.html?redirect_url='+location.href;
+                location.href = '../site/index.html';
             }
         }
         else{

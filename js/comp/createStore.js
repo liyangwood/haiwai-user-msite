@@ -707,7 +707,10 @@ KG.Class.define('MybizStoreInfoFormStep2', {
             '<textarea style="height: 150px;" class="form-control hw-area js_desc"></textarea>',
             '</div>',
 
+            '{{if backLink}}',
             '<a class="hw-btn hw-light-btn" style="border: none;font-weight: 400;padding: 0;text-align: left;" href="{{backLink}}">返回上一步</a>',
+            '{{/if}}',
+
             '<button style="float: right;" class="js_btn hw-btn hw-blue-btn">下一步</button>',
 
             '<div>'
@@ -852,7 +855,7 @@ KG.Class.define('MybizStoreInfoFormStep2', {
             });
         }
         else if(this.type === 'edit'){
-            backLink = 'editStore.html?id='+self.id;
+
             var fn1 = function(){
                 return KG.request.getBizDetailById({
                     bizId : self.id

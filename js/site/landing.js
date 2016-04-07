@@ -109,7 +109,7 @@
                             password : data.password
                         };
                         KG.user.login(sd, function(){
-                            location.href = '../mycount/info.html';
+                            location.href = '../mybiz/createStore.html';
                         }, function(err){
 
                             util.toast.showError(err);
@@ -125,7 +125,7 @@
 
         initEnd : function(){
             if(!this.data.isLogin){
-                this.setLoginBox();
+                this.setRegBox();
                 this.elem.addClass('hw-not-login');
             }
             else{
@@ -204,7 +204,7 @@
                 '<a href="../mycoupon/list.html">我的优惠</a>',
                 '<a href="../mysys/index.html">系统消息</a>',
                 '<a href="../mycount/info.html">账户设置</a>',
-                //'<a class="js_logout" href="javascript:void(0)">退出登录</a>',
+                '<a class="js_logout" href="javascript:void(0)">退出登录</a>',
                 '</div>',
                 '</div>',
                 '{{/if}}',
@@ -223,6 +223,9 @@
                 var href = $(this).data('href');
                 location.href = href;
                 return false;
+            });
+            this.elem.on('click', '.js_logout', function(){
+                KG.user.logout();
             });
         },
         initEnd : function(){

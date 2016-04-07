@@ -57,7 +57,7 @@ KG.Class.define('MybizArticleForm', {
                 id : id,
                 pageTitle : title,
                 bizList : _.isArray(bizList)?bizList:[],
-                articleData : articleData,
+                articleData : articleData.view,
                 type : type,
 
                 btnText : type==='edit'?'保存':'发表'
@@ -250,8 +250,9 @@ KG.Class.define('MybizArticleForm', {
         console.log(data);
         var c = this.getElemObj();
         c.biz.setValue(_.findIndex(this.data.bizList, function(one){
-            return one.fk_entityID === data.entityID;
+            return data.fk_entityID === one.entityID;
         }));
+        c.biz.disable(true);
 
 
         c.title.setValue(data.title);
@@ -752,9 +753,12 @@ KG.Class.define('MybizCouponForm', {
         var self = this;
         console.log(data);
         var c = this.getElemObj();
+
         this.jq.biz.setValue(_.findIndex(this.data.bizList, function(one){
-            return one.fk_entityID === data.entityID;
+            return data.fk_entityID === one.entityID;
         }));
+        this.jq.biz.disable(true);
+
         c.title.setValue(data.subject);
         this.jq.desc.val(data.description);
 
