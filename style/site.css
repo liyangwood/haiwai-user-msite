@@ -1037,6 +1037,8 @@ body {
   .hw-HWSiteIndexAppBanner .appstore {
     width: 133px;
     height: 45px; }
+  .hw-HWSiteIndexAppBanner .appstore img {
+    width: 100%; }
 
 .hw-HWSiteIndexHotCoupon {
   width: 100%;
@@ -1347,6 +1349,8 @@ body {
     margin-top: 8px;
     padding: 0;
     width: 133px; }
+    .hw-HWSiteIndexAppBanner1 .appstore img {
+      width: 100%; }
   .hw-HWSiteIndexAppBanner1 .bw {
     border-bottom: 1px dotted #c5c5c5;
     margin: 5px 10px 10px; }

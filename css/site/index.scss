@@ -110,6 +110,9 @@
     .slogan, .appad, .appstore { margin: 22px auto 0; }
     .appad img { width: 155px; height: 184px; }
     .appstore { width: 133px; height: 45px; }
+    .appstore img{
+        width:100%;
+    }
 }
 
 .hw-HWSiteIndexHotCoupon{
@@ -458,6 +461,9 @@
         margin-top: 8px;
         padding: 0;
         width: 133px;
+        img{
+            width: 100%;
+        }
     }
 
     .bw{
