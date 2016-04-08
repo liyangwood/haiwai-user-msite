@@ -189,10 +189,10 @@ KG.Class.define('SiteHeadingNav', {
 			},
 			{
 				logo : 'loan.png',
-				title : [['房产经纪、', 27], ['贷款', 375]],
+				title : [['房产经纪、', 27], ['贷款', 27, 375]],
 				children : [
 					[
-						['房产经纪', 27, 27],
+						['房产经纪', 27, 0],
 						['贷款服务', 27, 375],
 						['房地产估价', 27, 33],
 						['地产管理', 27, 62]
@@ -317,7 +317,13 @@ KG.Class.define('SiteHeadingNav', {
 					'<img src="../../image/site/'+one.logo+'" />',
 					'<p class="cp">',
 					'{{each list as item}}',
-					'<a href="../site/storelist.html?tag={{item[1]}}">{{item[0]}}</a>',
+
+					'{{if item[2]}}',
+						'<a href="../site/storelist.html?tag={{item[1]}}&subtag={{item[2]}}">{{item[0]}}</a>',
+					'{{else}}',
+						'<a href="../site/storelist.html?tag={{item[1]}}">{{item[0]}}</a>',
+					'{{/if}}',
+
 					'{{/each}}',
 					'</p>',
 				'</div>',

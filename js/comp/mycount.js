@@ -465,6 +465,9 @@ KG.Class.define('MycountChangeInfoForm', {
             util.toast.alert('修改成功');
             KG.user.update();
 
+            _.delay(function(){
+                location.reload();
+            }, 2000);
         });
 
     },
