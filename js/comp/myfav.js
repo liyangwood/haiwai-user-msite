@@ -101,7 +101,7 @@
 
                     '<div class="h4">',
                         '<a class="h4" target="_blank" href="{{item.entityID | toStorePath}}">{{item.name_cn}}</a>',
-                        '{{if item.verified&&item.verified==="yes"}}<i class="icon icon-v">v</i>{{/if}}',
+                        //'{{if item.verified&&item.verified==="yes"}}<i class="icon icon-v">v</i>{{/if}}',
 
                         '{{if item.event_info}}',
                         '<i class="icon icon-coupon"></i>',

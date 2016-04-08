@@ -10,7 +10,7 @@ KG.Class.define('SiteHeadingNav', {
 					'<a href="../site/couponlist.html" class="nav js_couponList">本地优惠</a>',
 					'<a href="../site/articlelist.html?category=hot" class="nav js_articleList">生活指南</a>',
 					//'<a href="../site/articlelist.html?category=11" class="nav js_cat">分类信息</a>',
-					'<a href="http://www.haiwai.com" target="_blank" class="nav js_cat">分类信息</a>',
+					//'<a href="http://www.haiwai.com" target="_blank" class="nav js_cat">分类信息</a>',
 
 				'</div>',
 				'<div class="hw-box container">',

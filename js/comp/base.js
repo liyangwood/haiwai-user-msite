@@ -628,7 +628,12 @@ $(function(){
             }
             else{
 
-                location.href = '../site/index.html';
+                var url = '../site/index.html';
+                if(KG.data.get('needLoginToUrl')){
+                    url = KG.data.get('needLoginToUrl');
+                }
+
+                location.href = url;
             }
         }
         else{

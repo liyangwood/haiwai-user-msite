@@ -54,13 +54,13 @@
                     try{
                         rs.view.msgbody = decodeURIComponent(rs.view.msgbody);
                     }catch(e){}
-console.log(rs.view.msgbody)
+
                     rs.view.msgbody = util.replaceHtmlImgSrcToAbsolute(rs.view.msgbody);
                     next({
                         id : id,
                         data : rs.view,
                         category : rs.category,
-                        bizInfo : rs.biz
+                        bizInfo : rs.view.bizinfo
                     });
 
                     util.message.publish('HWSiteArticleDetailRightMoreCommentComp', {
@@ -127,7 +127,7 @@ console.log(rs.view.msgbody)
                 '</div>',
 
                 '<p style="display: block;">',
-                '<span class="hw-time">{{item.msgbody | htmlToText}}</span>',
+                '<span class="hw-time"></span>',
 
                 '<span class="hw-view">',
                 '<i class="fa fa-eye"></i>',

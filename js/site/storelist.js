@@ -382,7 +382,7 @@ KG.Class.define('HWSiteStoreListPage', {
 
 			'<div class="right">',
 				'<h4>{{item.name_cn || item.name_en}}</h4>',
-				'{{if item.verified_time}}<i class="icon icon-v">v</i>{{/if}}',
+				//'{{if item.verified_time}}<i class="icon icon-v">v</i>{{/if}}',
 				'<div class="ca">',
 					'<div class="hw-star" role="StarRank" data-rank="{{item.star}}"></div>',
 					'<span>{{item.commentnum}}条评论</span>',

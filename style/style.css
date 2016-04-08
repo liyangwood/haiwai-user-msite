@@ -6,7 +6,7 @@ body {
   -webkit-text-size-adjust: none;
   height: 100%;
   position: relative;
-  padding-bottom: 220px; }
+  padding-bottom: 175px; }
 
 * {
   font-family: MicrosoftYaHei, STHeiti, sans-serif;
@@ -412,7 +412,7 @@ label.require:after {
   bottom: 0;
   left: 0; }
   .hw-footer-comp .container {
-    height: 220px; }
+    height: 175px; }
     .hw-footer-comp .container .logo {
       background: url("../image/haiwai2.png");
       width: 49px;

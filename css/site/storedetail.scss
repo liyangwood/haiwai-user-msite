@@ -614,15 +614,32 @@
     background: rgba(0, 0, 0, 0.6);
     text-align: center;
 
+    .hw-close{
+        position: absolute;
+        right: 0;
+        width: 28px;
+        height: 28px;
+        top: -14px;
+        z-index: 9;
+        cursor: pointer;
+        background: #ffffff;
+        border-radius: 14px;
+
+        .icon{
+            font-size: 32px;
+            color: #9b9b9b;
+        }
+    }
+
     dd{
         width: 780px;
-        margin: 21px auto;
+        margin: 28px auto;
         height: 40px;
 
         span, span>a{
             color: #ffffff;
-            font-size: 30px;
-            font-family: PingFangSC-Semi;
+            font-size: 24px;
+            font-family: PingFangSC-Semibold;
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
@@ -635,7 +652,7 @@
             font-size: 14px;
             font-weight: normal;
             position: relative;
-            top: -6px;
+            top: -3px;
         }
     }
 }

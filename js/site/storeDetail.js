@@ -139,11 +139,12 @@ KG.Class.define('HWSiteStoreDetailPage', {
 	getTemplate : function(){
 		var T1 = [
 			'<div class="c-top">',
-				'<img class="hw-logo" src="{{biz.logo[0].path | absImage}}" />',
+				'<div role="BaseLoadingImageBox" class="hw-logo" data-url="{{biz | logoPath}}"></div>',
 				'{{if biz.verified=="unverified"}}<p class="hw-renling">申请认领</p>{{/if}}',
 				'<div class="c-r">',
-					'<h4>{{biz.name_cn||biz.name_en}}{{if biz.verified=="yes"}}<i class="icon' +
-					' icon-v">v</i>{{/if}}</h4>',
+					//'<h4>{{biz.name_cn||biz.name_en}}{{if biz.verified=="yes"}}<i class="icon' +
+					//' icon-v">v</i>{{/if}}</h4>',
+
 					'<div class="hw-star" role="StarRank" data-rank="{{biz.star}}"></div>',
 					'<a href="#hw-id-reply" class="hw-rp">{{biz.commentnum}}条评论</a>',
 					'<p class="hw-p">地址：{{biz | storeFullAddress}}</p>',
@@ -372,6 +373,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 		//image list
 		h = [];
+		rs.files = rs.files.reverse();
 		_.each(rs.files, function(v, i){
 			if(i%4===0){
 				h[Math.floor(i/4)] = [];
@@ -1132,16 +1134,25 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 		var h = [
 			'<div style="display: none;" class="hw-store-bottom-ads">',
+				'<b class="hw-close js_close"><i class="icon fa fa-times-circle"></i></b>',
 				'<dd>',
-					'<span>新用户专享，免费推广您的店铺到<a target="_blank" href="http://www.wenxuecity.com">文学城</a>首页</span>',
+					'<span>一分钟创建广告，免费发布到<a target="_blank" href="http://www.wenxuecity.com">文学城</a>首页一个月</span>',
 					'<a href="../mybiz/createAds.html?store='+this.data.id+'" target="_blank" class="hw-btn' +
 					' hw-blue-btn">马上创建</a>',
 				'</dd>',
 			'</div>'
 		].join('');
 
+		h = $(h);
+
+		h.on('click', '.js_close', function(){
+			h.slideUp(200, function(){
+				h.remove();
+			});
+		});
+
 		util.delay(function(){
-			$(h).appendTo('body').slideDown();
+			h.appendTo('body').slideDown();
 		}, 2000);
 	}
 });
