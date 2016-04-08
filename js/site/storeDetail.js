@@ -142,8 +142,8 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				'<div role="BaseLoadingImageBox" class="hw-logo" data-url="{{biz | logoPath}}"></div>',
 				'{{if biz.verified=="unverified"}}<p class="hw-renling">申请认领</p>{{/if}}',
 				'<div class="c-r">',
-					//'<h4>{{biz.name_cn||biz.name_en}}{{if biz.verified=="yes"}}<i class="icon' +
-					//' icon-v">v</i>{{/if}}</h4>',
+					'<h4>{{biz.name_cn||biz.name_en}}</h4>',
+			//{{if biz.verified=="yes"}}<i class="icon icon-v">v</i>{{/if}}
 
 					'<div class="hw-star" role="StarRank" data-rank="{{biz.star}}"></div>',
 					'<a href="#hw-id-reply" class="hw-rp">{{biz.commentnum}}条评论</a>',

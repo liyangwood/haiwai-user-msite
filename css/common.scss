@@ -72,6 +72,15 @@ a:hover, a:link{
 #fakeLoader1 .spinner7, #fakeLoader .spinner7{
     top: auto !important;
     bottom: 220px !important;
+    padding: 15px 50px;
+    background: rgba(0, 0, 0, 0.3);
+    box-sizing: content-box;
+    border-radius:30px;
+
+    &>div{
+        position: relative;
+        top: 20px;
+    }
 }
 
 .icon-v{

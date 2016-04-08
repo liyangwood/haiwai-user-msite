@@ -419,7 +419,7 @@
                 '<input type="text" class="js_email" placeholder="邮箱" />',
                 '<input type="password" class="js_pwd" placeholder="密码" />',
                 '<button class="hw-btn hw-blue-btn js_loginBtn">登录</button>',
-                '<p>忘记账号或密码？<a href="#">在这里找回</a></p>'
+                '<p>忘记账号或密码？<a href="../mycount/forgetpassword.html">在这里找回</a></p>'
             ].join('');
             this.jq.left.html(h);
 

@@ -568,7 +568,12 @@ KG.Class.define('HWMycountResetPasswordForm', {
             };
             KG.request.resetPassword(data, function(flag, rs){
                 if(flag){
-                    //TODO login
+                    KG.user.login({
+                        username : KG.data.get('email'),
+                        password : pwd
+                    }, function(user){
+                        location.href = '../site/index.html';
+                    });
                 }
                 else{
                     util.toast.showError(rs);
