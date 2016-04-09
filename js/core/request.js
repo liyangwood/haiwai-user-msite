@@ -920,10 +920,14 @@ KG.request = {
             msgbody : opts.msg,
             dataType : 2,
             dataID : opts.bizId,
-            star : opts.star
+            star : opts.star,
+            biz_name : opts.bizName,
+            ownerID : opts.ownerID,
+            username : KG.user.get('nick')
         };
         if(opts.id){
             data.replyid = opts.id;
+            data.comment_userid = opts.comment_userid;
             data.act = 'reply';
         }
         if(opts.has_pic){

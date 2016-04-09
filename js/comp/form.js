@@ -481,6 +481,13 @@ KG.Class.define('MybizCouponForm', {
             '<div class="js_image" role="MybizUploadCouponImage" init-self="true"></div>',
             '</div>',
 
+            '{{if type==="create"}}',
+            '<div class="form-group">',
+                '<label style="font-weight: normal;">领取方式：用户输入手机号，系统会自动将优惠以短信形式发到用户手机。用户出示该条短信即可兑现。</label>',
+                '<label style="font-weight: normal;margin-top:5px;"><input style="height:auto;margin-right:8px;position:relative;top:-1px;" class="js_agree" checked="true" type="checkbox" />我同意用户展示优惠短信，即兑现优惠。</label>',
+            '</div>',
+            '{{/if}}',
+
             '{{if type==="edit"}}<b class="hw-delete js_del_coupon">删除这个优惠</b>{{/if}}',
             '<a href="javascript:void(0)" class="hw-btn hw-blue-btn js_btn">{{btnText}}</a>'
         ].join('');
@@ -592,8 +599,6 @@ KG.Class.define('MybizCouponForm', {
         }
 
 
-
-
         if(!data.description){
             this.jq.desc.parent('div.form-group').addClass('has-error').find('.hw-err').html('请输入优惠描述');
             this.jq.desc.focus();
@@ -603,6 +608,13 @@ KG.Class.define('MybizCouponForm', {
             this.jq.desc.parent('div.form-group').removeClass('has-error').find('.hw-err').html('');
         }
 
+        if(this.prop.type === 'create'){
+            var ag = this.elem.find('.js_agree').prop('checked');
+            if(!ag){
+                util.dialog.alert('请同意优惠领取方式！');
+                return false;
+            }
+        }
 
 
         //TODO validate

@@ -1284,7 +1284,7 @@ body {
     line-height: 20px;
     overflow: hidden;
     color: #4a4a4a;
-    font-size: 14px;
+    font-size: 16px;
     text-rendering: geometricPrecision; }
     .hw-HWSiteIndexHotArticle .rig .list ul.l_ul1 li a:hover {
       color: #37bccd; }
@@ -1621,6 +1621,12 @@ body {
     display: inline-block;
     width: 32px;
     height: 32px; }
+.hw-HWSiteStoreListPage .hw-empty {
+  padding: 46px 86px; }
+  .hw-HWSiteStoreListPage .hw-empty p {
+    font-size: 18px;
+    color: #7d7d7d;
+    line-height: 30px; }
 
 .hw-SiteStoreSearchFilterComp {
   background: #ffffff;
@@ -1835,7 +1841,7 @@ body {
   .hw-SiteArticleDetailPage p {
     margin: 0; }
   .hw-SiteArticleDetailPage .hw-tag {
-    font-size: 12px;
+    font-size: 14px;
     color: #7d7d7d; }
     .hw-SiteArticleDetailPage .hw-tag:hover {
       color: #37bccd; }
@@ -1903,6 +1909,8 @@ body {
   .hw-SiteArticleDetailPage .hw-article {
     padding: 36px 0 60px;
     line-height: 22px; }
+    .hw-SiteArticleDetailPage .hw-article * {
+      font-size: 16px !important; }
     .hw-SiteArticleDetailPage .hw-article p {
       font-size: 14px;
       line-height: 22px;
@@ -2014,7 +2022,7 @@ body {
     .hw-HWSiteArticleDetailRightMoreCommentComp .hw-head label {
       line-height: 40px;
       color: #7d7d7d;
-      font-size: 14px;
+      font-size: 16px;
       margin: 0; }
   .hw-HWSiteArticleDetailRightMoreCommentComp .hw-one {
     padding: 15px 0;
@@ -2025,7 +2033,7 @@ body {
     display: block; }
     .hw-HWSiteArticleDetailRightMoreCommentComp .hw-one h4 {
       margin: 0;
-      font-size: 14px;
+      font-size: 16px;
       line-height: 22px;
       color: #4a4a4a; }
     .hw-HWSiteArticleDetailRightMoreCommentComp .hw-one:hover h4 {
@@ -2243,6 +2251,25 @@ body {
         position: relative;
         top: 2px;
         margin-right: 8px; }
+    .hw-HWSiteStoreDetailPage .c-top .hw-mgstore {
+      width: 172px;
+      height: 52px;
+      line-height: 52px;
+      background: #f4a62a;
+      color: #ffffff;
+      font-size: 22px;
+      position: absolute;
+      right: 24px;
+      top: 24px;
+      font-weight: normal; }
+      .hw-HWSiteStoreDetailPage .c-top .hw-mgstore:hover {
+        background: #DA8C10; }
+      .hw-HWSiteStoreDetailPage .c-top .hw-mgstore .fa {
+        color: #ffffff;
+        font-size: 24px;
+        margin-right: 8px;
+        position: relative;
+        top: 1px; }
   .hw-HWSiteStoreDetailPage .c-box {
     width: 100%;
     background: #ffffff;

@@ -11,6 +11,12 @@
     _.extend(util, _);
 
     util.extend(util, {
+        setPageTitle : function(str){
+            if(str){
+                document.title = str;
+            }
+        },
+
         addUserIdToRequestData : function(data){
             data = data || {};
             data.userid = KG.user.get('userid');
@@ -513,6 +519,7 @@
             util.dialog.show(param);
         },
         alert : function(msg, body){
+            body = body || '';
             util.dialog.show({
                 foot : false,
                 title : msg,

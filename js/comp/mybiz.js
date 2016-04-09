@@ -186,7 +186,7 @@ KG.Class.define('MybizRunningStoreList', {
             '<em>{{item.commentnum}}条评论</em>',
 
             '<div class="r">',
-            '<a class="hw-a" href="editStore.html?id={{item.entityID}}">管理店铺</a>',
+            '<a class="hw-a" href="editStore.html?id={{item.entityID}}">修改店铺</a>',
             '<b class="hw-a js_share" param="{{item.entityID}}">分享</b>',
             '</div>',
             '</div>',
@@ -949,12 +949,13 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
     },
     showClosedBox : function(){
         var h = decodeURIComponent(this.ads.share);
-        h += '<div class="cf">您的一个月免费广告推广期已过，重新上线请查阅广告服务</div>';
+        h += '<div class="cf">您的一个月免费广告推广期已过，重新上线请查阅<a href="../help/ads_help.html" target="_blank">广告服务</a></div>';
         //h += '<a class="hw-btn hw-light-btn js_btn" href="javascript:void(0)">408-675-8754</a>';
         this.jq.box.addClass('hw-waiting').html(h);
         this.setTitle('广告已下线');
     },
     initEnd : function(){
+        this.type = 'closed';
         switch(this.type){
             case 'create':
                 this.showCreateBox();

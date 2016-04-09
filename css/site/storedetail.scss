@@ -107,6 +107,31 @@
                 margin-right: 8px;
             }
         }
+
+        .hw-mgstore{
+            width: 172px;
+            height: 52px;
+            line-height: 52px;
+            background: $yellow-color;
+            color: #ffffff;
+            font-size: 22px;
+            position: absolute;
+            right: 24px;
+            top: 24px;
+            font-weight: normal;
+
+            &:hover{
+                background: #DA8C10;
+            }
+
+            .fa{
+                color: #ffffff;
+                font-size: 24px;
+                margin-right: 8px;
+                position: relative;
+                top: 1px;
+            }
+        }
     }
 
     .c-box{

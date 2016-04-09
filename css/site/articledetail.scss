@@ -11,7 +11,7 @@
     }
 
     .hw-tag{
-        font-size: 12px;
+        font-size: 14px;
         color: $color-7d;
         
         &:hover{
@@ -102,6 +102,10 @@
     .hw-article{
         padding: 36px 0 60px;
         line-height: 22px;
+
+        *{
+            font-size: 16px !important;
+        }
 
         p{
             font-size: 14px;
@@ -252,7 +256,7 @@
         label{
             line-height: 40px;
             color: $color-7d;
-            font-size: 14px;
+            font-size: 16px;
             margin: 0;
         }
     }
@@ -266,7 +270,7 @@
 
         h4{
             margin: 0;
-            font-size: 14px;
+            font-size: 16px;
             line-height: 22px;
             color: $color-4a;
         }

@@ -187,9 +187,9 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		var T4 = [
 			'<div style="margin-top: 15px;" class="c-box">',
 				'<dt class="c-title"><p>营业时间</p></dt>',
-				'<dd class="c-content">',
+				'<dd class="c-content" style="padding-top:8px;">',
 					'{{each biz.timeinfo_list as item}}',
-					'<p class="hw-la">{{item.day}} : {{item.time}}</p>',
+					'<p style="border-bottom:none;height:28px;line-height: 28px;" class="hw-la">{{item.day}} : {{item.time}}</p>',
 					'{{/each}}',
 				'</dd>',
 			'</div>'
@@ -698,9 +698,14 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			return;
 		}
 
+		rpId = rpId.split('_');
+		var comment_userid = rpId[1];
+		rpId = rpId[0];
 
 		KG.request.sendStoreComment({
 			bizId : self.bizId,
+			bizName : self.data.biz.name_cn||self.data.biz.name_en,
+			comment_userid :comment_userid,
 			msg : val,
 			id : rpId
 		}, function(flag, rs){
@@ -750,10 +755,22 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		}
 		var rank = KG.component.getObj(this.elem.find('.js_rank'));
 
+		if(rank.getValue()===0){
+			util.dom.showErrorPopover(rank.elem, '请选择评星', {
+				trigger : 'hover'
+			});
+			return;
+		}
+		else{
+			util.dom.showErrorPopover(rank.elem, false);
+		}
+
 		var commentImageList = this.commentImage.getValue();
 		var param = {
 			bizId : self.bizId,
-			star : rank.getValue()
+			star : rank.getValue(),
+			bizName : self.data.biz.name_cn||self.data.biz.name_en,
+			ownerID : self.data.biz.ownerID
 		};
 		if(commentImageList.length > 0){
 			param.has_pic = true;
@@ -839,6 +856,9 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		this.commentImage = KG.component.getObj(this.elem.find('.js_comment_img'));
 
 		this.showAdsBanner();
+		this.showManagerStoreBlockIfRoleAdmin();
+
+		util.setPageTitle(this.data.biz.name_cn || this.data.biz.name_en);
 	},
 
 	getCommentRpHtml : function(replyId){
@@ -932,7 +952,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			'{{/if}}',
 
 			'<p style="margin-top:10px;" class="r hw-action">',
-				'{{if role=="admin"}}<span param="{{item.id}}" nick="{{item.userinfo.nick}}"' +
+				'{{if role=="admin"}}<span param="{{item.id}}_{{item.userID}}" nick="{{item.userinfo.nick}}"' +
 				' class="js_rp">回复</span>{{/if}}',
 				'<span param="{{item.id}}" class="js_like">赞({{item.buzz}})</span>',
 				'<span param="{{item.id}}" class="js_jp">举报</span>',
@@ -1154,5 +1174,17 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		util.delay(function(){
 			h.appendTo('body').slideDown();
 		}, 2000);
+	},
+
+	showManagerStoreBlockIfRoleAdmin : function(){
+		if(this.data.biz.role !== 'admin'){
+			return false;
+		}
+		if(this.data.biz.visible !== '1'){
+			return false;
+		}
+
+		var h = '<a class="hw-btn hw-mgstore" href="../mybiz/index.html"><i class="icon fa fa-pencil"></i>管理店铺</a>';
+		$(h).appendTo('div.c-top');
 	}
 });
