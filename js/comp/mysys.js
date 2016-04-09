@@ -13,7 +13,7 @@
                 '<i class="icon fa fa-caret-down"></i>',
                 '</button>',
                 '<ul class="dropdown-menu" aria-labelledby="dp_aaa">',
-                '<li class="js_a">全部系统消息</li>',
+                '<li class="js_a"></li>',
                 '</ul>',
                 '</div>'
             ].join('');
@@ -61,7 +61,12 @@
         getData : function(box, data, next){
             KG.request.getSystemMessageList({}, function(flag, rs){
                 next({
-                    list : rs.rs
+                    list : rs.rs,
+                    count : {
+                        read : rs.read,
+                        unread : rs.unread,
+                        all : parseInt(rs.read, 10)+parseInt(rs.unread, 10)
+                    }
                 });
             });
         },
@@ -107,6 +112,7 @@
             });
         },
         initEnd : function(){
+            this.elem.find('.js_a').eq(0).html('全部系统消息（'+this.data.count.all+'）');
             this.elem.find('.js_a').eq(0).trigger('click');
 
             if(this.data.list.length < 1){
@@ -114,6 +120,7 @@
                 var h = '<h2 style="position: absolute;top:50px;left:480px;font-weight: normal;">暂无系统消息</h2>';
                 this.elem.after(h);
             }
+
 
         },
         deleteOneMessage : function(id, callback){

@@ -1908,7 +1908,8 @@ body {
       margin-top: 4px; }
   .hw-SiteArticleDetailPage .hw-article {
     padding: 36px 0 60px;
-    line-height: 22px; }
+    line-height: 22px;
+    font-size: 16px !important; }
     .hw-SiteArticleDetailPage .hw-article * {
       font-size: 16px !important; }
     .hw-SiteArticleDetailPage .hw-article p {
