@@ -30,6 +30,13 @@ KG.request = {
             data : opts,
             dataType : dataType,
             success : function(json){
+                if(json.status === 404){
+
+                    location.href = '../help/404.html';
+
+                    return;
+                }
+
                 if(success){
                     success.call(null, json.status>0, json.return);
                 }
