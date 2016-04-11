@@ -57,7 +57,7 @@ KG.Class.define('MybizArticleForm', {
                 id : id,
                 pageTitle : title,
                 bizList : _.isArray(bizList)?bizList:[],
-                articleData : articleData.view,
+                articleData : articleData?articleData.view:{},
                 type : type,
 
                 btnText : type==='edit'?'保存':'发表'
@@ -639,6 +639,10 @@ KG.Class.define('MybizCouponForm', {
         }
 
         KG.request.defer(list, function(bizList, couponData){
+            if(type === 'create'){
+                bizList = util.helper.getBizListByType(bizList, 'running');
+            }
+
             callback({
                 pageTitle : title,
                 bizList : bizList,

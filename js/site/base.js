@@ -491,8 +491,10 @@ KG.Class.define('HWSiteCouponDetailComp', {
 			'{{#dyHtml}}',
 			'<label>活动详情</label>',
 			'<p>{{#data.description | decode}}</p>',
-			'{{if data.files[0]}}',
-			'<div class="hw-img"><img src="{{data.files[0].path | absImage}}" /></div>',
+			'{{if data.files}}',
+			'{{each data.files as img}}',
+			'<div class="hw-img"><img src="{{img.path | absImage}}" /></div>',
+			'{{/each}}',
 			'{{/if}}'
 		].join('');
 

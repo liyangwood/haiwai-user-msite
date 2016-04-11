@@ -85,6 +85,7 @@
         },
 
         showPageLoading : function(f){
+            return false;
             f = f || false;
             if(f){
                 $('#fakeLoader').show().fakeLoader({
@@ -100,6 +101,7 @@
         },
 
         loading : function(f){
+            return false;
             f = f || false;
             if(f){
                 $('#fakeLoader1').show().fakeLoader({
@@ -653,6 +655,30 @@
         AmericanPhone : function(phone){
             var reg = /^[0-9]{10}$/;
             return reg.test(phone);
+        }
+    };
+
+
+    //和业务逻辑有关的帮助方法
+    util.helper = {
+        getBizListByType : function(data, type){
+            type = type || 'running';
+            var runningList = [],
+                stopList = [];
+            util.each(data, function(item){
+                if(item.visible === '1'){
+                    runningList.push(item);
+                }
+                else{
+                    stopList.push(item);
+                }
+            });
+
+            var rs = runningList;
+            if(type !== 'running'){
+                rs = stopList;
+            }
+            return rs;
         }
     };
 

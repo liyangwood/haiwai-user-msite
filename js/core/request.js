@@ -642,7 +642,11 @@ KG.request = {
         };
 
         data.start_date = moment.utc(data.start_date).unix();
-        data.end_date = moment.utc(data.end_date).unix();
+
+        if(data.end_date !== 'unlimit'){
+            data.end_date = moment.utc(data.end_date).unix();
+        }
+
 
         util.each(opts.imageList||[], function(one, i){
             data['files['+i+']'] = one;
