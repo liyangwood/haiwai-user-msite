@@ -955,7 +955,6 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
         this.setTitle('广告已下线');
     },
     initEnd : function(){
-        this.type = 'closed';
         switch(this.type){
             case 'create':
                 this.showCreateBox();
