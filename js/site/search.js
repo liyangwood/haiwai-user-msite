@@ -61,7 +61,7 @@ KG.Class.define('HWSiteSearchStoreListPage', {
 		this.elem.find('.js_sb1').remove();
 		var h = [
 			'<div class="hw-empty">',
-				'<p style="margin-bottom:20px;">对不起，没有“湾湾”的搜索结果。您可以：</p>',
+				'<p style="margin-bottom:20px;">对不起，没有“'+this.keyword+'”的搜索结果。您可以：</p>',
 				'<p style="margin:0;">1. 试着换换搜索词</p>',
 				'<p>2. 鼠标放到导航栏的本地商家，看看还有哪些分类</p>',
 			'</div>'
