@@ -7,9 +7,13 @@ KG.Class.define('HWIndexFocesImage', {
 
 				'<div id="carousel-11" class="carousel slide" data-ride="carousel">',
 					'<ol class="carousel-indicators">',
+
+						'{{if list.length > 1}}',
 						'{{each list as item}}',
 						'<li data-target="#carousel-11" data-slide-to="{{$index}}" class="{{if $index<1}}active{{/if}}"></li>',
 						'{{/each}}',
+						'{{/if}}',
+
 					'</ol>',
 
 					'<div class="carousel-inner" init-self="true" role="listbox">',
