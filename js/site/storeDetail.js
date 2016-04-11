@@ -142,7 +142,9 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				'<div role="BaseLoadingImageBox" class="hw-logo" data-url="{{biz | logoPath}}"></div>',
 				'{{if biz.verified=="unverified"}}<p class="hw-renling">申请认领</p>{{/if}}',
 				'<div class="c-r">',
-					'<h4>{{biz.name_cn||biz.name_en}}</h4>',
+					'<h4>{{biz.name_cn||biz.name_en}}',
+						'{{if biz.visible==="-1"}}（暂停营业）{{/if}}',
+					'</h4>',
 			//{{if biz.verified=="yes"}}<i class="icon icon-v">v</i>{{/if}}
 
 					'<div class="hw-star" role="StarRank" data-rank="{{biz.star}}"></div>',
@@ -1178,9 +1180,6 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 	showManagerStoreBlockIfRoleAdmin : function(){
 		if(this.data.biz.role !== 'admin'){
-			return false;
-		}
-		if(this.data.biz.visible !== '1'){
 			return false;
 		}
 

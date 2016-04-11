@@ -181,7 +181,7 @@ KG.Class.define('MybizRunningStoreList', {
             '<div class="hw-each" style="padding-left:112px;">',
             //'<div class="hw-img hw-center-image" style="width:96px;"><img src="{{item.logo[0].path | absImage}}"/></div>',
             '<img class="hw-img" style="width:96px;" src="{{item.logo[0].path | absImage}}"/>',
-            '<a class="h4" href="{{item.entityID | toStorePath}}">{{item.name_cn}}</a>',
+            '<a class="h4" href="{{item.entityID | toStorePath}}">{{item.name_cn ||item.name_en}}</a>',
             '<p>{{item | storeFullAddress}}</p>',
             '<em>{{item.commentnum}}条评论</em>',
 
@@ -254,7 +254,8 @@ KG.Class.define('MybizStopStoreList', {
             '{{each list as item}}',
             '<div class="hw-each" style="padding-left:112px;">',
             '<img class="hw-img" style="width:96px;" src="{{item.logo[0].path | absImage}}"/>',
-            '<h4 style="display: inline-block" class="h4">{{item.name_cn}}</h4>',
+            //'<h4 style="display: inline-block" class="h4">{{item.name_cn}}</h4>',
+            '<a class="h4" href="{{item.entityID | toStorePath}}">{{item.name_cn ||item.name_en}}</a>',
             '<p>{{item.address}}, {{item.city}}, {{item.state}}, {{item.zip}}</p>',
             '<em>{{item.commentnum}}新评论</em>',
 
