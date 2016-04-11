@@ -87,6 +87,7 @@
         },
         getBodyTemplate : function(){
             return '<div class="js_box"></div>';
+                //+ '<div class="js_more" role="BaseLoadingMoreStatusBar"></div>';
         },
 
         setListHtml : function(data, type){
@@ -156,6 +157,11 @@
 
                     var list = _.map(rs.list, function(item){
                         item.bizType = type;
+
+                        if(item.visible === '-1'){
+                            item.bizType = 'pause';
+                        }
+
                         return item;
                     });
 
@@ -237,7 +243,7 @@
             this.elem.find('.js_a').eq(0).trigger('click');
 
 
-            KG.component.init(this.elem);
+
         }
     });
 
