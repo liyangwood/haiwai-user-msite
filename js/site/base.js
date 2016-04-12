@@ -6,18 +6,22 @@ KG.Class.define('SiteHeadingNav', {
 			'<nav class="kg-header-nav-comp kg-site-header-nav-comp">',
 				'<div class="container">',
 
-					'<a href="javascript:void(0)" class="nav js_tab">本地商家<i class="icon glyphicon glyphicon-chevron-down"></i></a>',
+					'<a href="javascript:void(0)" class="nav js_tab">本地商家<i class="icon glyphicon glyphicon-chevron-down"></i>',
+
+						'<div class="hw-box container">',
+							'<div class="left nodis"></div>',
+							//'<div class="right"></div>',
+
+						'</div>',
+
+					'</a>',
 					'<a href="../site/couponlist.html" class="nav js_couponList">本地优惠</a>',
 					'<a href="../site/articlelist.html?category=hot" class="nav js_articleList">生活指南</a>',
 					//'<a href="../site/articlelist.html?category=11" class="nav js_cat">分类信息</a>',
 					//'<a href="http://www.haiwai.com" target="_blank" class="nav js_cat">分类信息</a>',
 
 				'</div>',
-				'<div class="hw-box container">',
-					'<div class="left nodis"></div>',
-					//'<div class="right"></div>',
 
-				'</div>',
 			'</nav>'
 		].join('');
 	},
@@ -275,6 +279,7 @@ KG.Class.define('SiteHeadingNav', {
 
 	setJqVar : function(){
 		return {
+			box : this.elem.find('.hw-box'),
 			left : this.elem.find('.hw-box .left')
 		};
 	},
@@ -282,15 +287,27 @@ KG.Class.define('SiteHeadingNav', {
 	initEvent : function(){
 		var left = this.jq.left;
 
+		var during = false;
+
 		if(this.prop.leftshow){
 			//set left show
 			left.removeClass('nodis');
 		}
 		else{
-			this.elem.find('.js_tab').add(left).hover(function(){
-				left.show();
+			this.elem.find('.js_tab').add(this.jq.box).hover(function(){
+				if(during) return false;
+				during = true;
+
+				left.fadeIn(function(){
+					during = false;
+				});
 			}, function(){
-				left.hide();
+				if(during) return false;
+				during = true;
+
+				left.fadeOut(function(){
+					during = false;
+				});
 			});
 		}
 

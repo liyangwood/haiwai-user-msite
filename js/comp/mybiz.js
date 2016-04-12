@@ -416,9 +416,10 @@ KG.Class.define('MybizRunningCouponList', {
             if(flag){
                 self.list = self.list.concat(rs);
                 self.setListHtml();
-                self.lastid = _.last(rs).pk_id;
+
 
                 if(rs.length > 0){
+                    self.lastid = _.last(rs).pk_id;
                     self.elem.parent('.hw-panel').removeClass('no_dis');
                 }
 
@@ -540,9 +541,10 @@ KG.Class.define('MybizStopCouponList', {
                 });
                 self.list = self.list.concat(list);
                 self.setListHtml();
-                self.lastid = _.last(list).pk_id;
+
 
                 if(list.length > 0){
+                    self.lastid = _.last(list).pk_id;
                     self.elem.parent('.hw-panel').removeClass('no_dis');
                 }
 

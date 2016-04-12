@@ -645,7 +645,8 @@ KG.request = {
             description : opts.description,
             fk_entityID : opts.biz,
             start_date : opts.startDate,
-            end_date : opts.endDate
+            end_date : opts.endDate,
+            fk_region_id : opts.region
         };
 
         data.start_date = moment.utc(data.start_date).unix();

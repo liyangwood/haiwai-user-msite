@@ -526,13 +526,15 @@ KG.Class.define('MybizCouponForm', {
 
     getFormValue : function(){
         var c = this.getElemObj();
+        var bd = this.jq.biz.getValue();
         var data = {
-            biz : this.jq.biz.getValue().entityID,
+            biz : bd.entityID,
             subject : c.title.getValue(),
             description : this.jq.desc.val(),
             startDate : this.jq.startDate.val(),
             endDate : this.jq.endDate.val(),
-            imageList : c.image.getValue()
+            imageList : c.image.getValue(),
+            region : bd.fk_subregion_id || bd.fk_region_id
         };
         if(this.jq.endlimit.prop('checked')){
             data.endDate = 'unlimit';
@@ -687,8 +689,8 @@ KG.Class.define('MybizCouponForm', {
                         if(self.prop.type === 'edit'){
                             util.toast.alert('修改成功');
                             util.delay(function(){
-                                //location.href = '../mybiz/coupon.html';
-                            }, 1000);
+                                location.href = '../mybiz/coupon.html';
+                            }, 2000);
                             return false;
                         }
 
