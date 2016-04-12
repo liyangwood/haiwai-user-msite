@@ -437,7 +437,7 @@
                 '<input type="password" class="js_pwd" placeholder="密码" />',
                 '<input type="password" class="js_pwd2" placeholder="确认密码" />',
                 '<button class="hw-btn hw-blue-btn js_regBtn">注册</button>',
-                '<p>点击注册表示您同意海外同城的<a href="#">使用协议</a>和<a href="#">隐私保护协议</a></p>'
+                '<p>点击注册表示您同意海外同城的<a target="_blank" href="../help/terms.html">使用协议</a>和<a target="_blank" href="../help/privacy.html">隐私保护协议</a></p>'
             ].join('');
 
             this.jq.left.html(h);
