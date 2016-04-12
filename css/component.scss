@@ -417,3 +417,39 @@
 		cursor: pointer;
 	}
 }
+
+.hw-HWBaseLoginAddPassword{
+	text-align: center;
+
+	.hw-img{
+		width: 100%;
+		height: 80px;
+		text-align: center;
+
+		img{
+			width: 80px;
+			height: 80px;
+			margin: 0 auto;
+			border-radius: 40px;
+		}
+	}
+	p{
+		color: $color-7d;
+		font-size: 14px;
+		margin-top: 10px;
+	}
+	h4{
+		color: $color-7d;
+		font-size: 16px;
+		margin-top: 15px;
+		margin-bottom: 0;
+	}
+	.form-group{
+		margin: 0;
+	}
+
+	.hw-btn{
+		margin-top: 15px;
+		width: 100%;
+	}
+}

@@ -854,6 +854,19 @@ KG.request = {
     },
 
     /*
+    * func=passport&act=password&userid=10051&password=test12345&token=
+    * */
+    setUserPassword : function(opts, success, error){
+        var data = {
+            func : 'password',
+            act : 'password',
+            password : opts.password
+        };
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
     * func=biz&act=view&userid=10051&bizid=2025591&token=
     *
     * */

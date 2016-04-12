@@ -180,7 +180,16 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					'{{if item.value}}',
 					'<p class="hw-la">{{item.title}} : {{item.value}}</p>',
 					'{{/if}}',
+
 					'{{/each}}',
+
+					'{{if biz.website}}',
+					'<p class="hw-la">网址 : {{biz.website}}</p>',
+					'{{/if}}',
+
+					'{{if biz.wechat}}',
+					'<p class="hw-la">微信号 : {{biz.wechat}}</p>',
+					'{{/if}}',
 				'</dd>',
 			'</div>'
 		].join('');

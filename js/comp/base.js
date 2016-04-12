@@ -374,6 +374,100 @@
         }
     });
 
+    KG.Class.define('HWBaseLoginAddPassword', {
+        ParentClass : 'BaseComponent',
+        getTemplate : function(){
+            return [
+                '<div class="hw-HWBaseLoginAddPassword">',
+                    '<div class="hw-img"><img src="{{user.image}}"/></div>',
+                    '<p>{{user.email}}</p>',
+                    '<h4>欢迎您！<br/>成为商家用户，请设置密码</h4>',
+                    '<div role="BaseInput" data-type="password" class="js_pwd" placeholder="密码"></div>',
+                    '<button class="hw-btn hw-blue-btn js_btn">确定</button>',
+                '</div>'
+            ].join('');
+        },
+        getData : function(box, data, next){
+            var user = KG.user.get();
+            next({
+                user : user
+            });
+        },
+        initEvent : function(){
+            var self = this;
+            this.elem.find('.js_btn').click(function(){
+                var pwd = KG.component.getObj(self.elem.find('.js_pwd')),
+                    val = pwd.getValue();
+                if(!val){
+                    pwd.showError('请输入密码');
+                    pwd.focus();
+                    return false;
+                }
+                else{
+                    pwd.showError();
+                }
+
+                KG.request.setUserPassword({
+                    password : val
+                }, function(flag, rs){
+                    if(flag){
+                        util.toast.alert('设置成功');
+                    }
+                });
+            });
+        }
+    });
+
+    KG.Class.define('HWBaseLoginAddEmailAndPassword', {
+        ParentClass : 'BaseComponent',
+        getTemplate : function(){
+            return [
+                '<div class="hw-HWBaseLoginAddPassword">',
+                '<div class="hw-img"><img src="{{user.image}}"/></div>',
+                '<h4>欢迎您！<br/>成为商家用户，请绑定邮箱，设置密码</h4>',
+                '<div role="BaseInput" class="js_email" placeholder="邮箱"></div>',
+                '<div role="BaseInput" data-type="password" class="js_pwd" placeholder="密码"></div>',
+                '<button class="hw-btn hw-blue-btn js_btn">确定</button>',
+                '</div>'
+            ].join('');
+        },
+        getData : function(box, data, next){
+            var user = KG.user.get();
+            next({
+                user : user
+            });
+        },
+        initEvent : function(){
+            var self = this;
+            this.elem.find('.js_btn').click(function(){
+                var pwd = KG.component.getObj(self.elem.find('.js_pwd')),
+                    val = pwd.getValue();
+
+                var email = KG.component.getObj(self.elem.find('.js_email')),
+                    el = email.getValue();
+
+                if(!el || !util.validate.email(el)){
+                    email.showError('邮箱格式不正确');
+                    email.focus();
+                    return false;
+                }
+                else{
+                    email.showError();
+                }
+
+                if(!val){
+                    pwd.showError('请输入密码');
+                    pwd.focus();
+                    return false;
+                }
+                else{
+                    pwd.showError();
+                }
+
+
+            });
+        }
+    });
 
     KG.Class.define('HWLoginRegBoxComp', {
         ParentClass : 'BaseComponent',
@@ -502,7 +596,7 @@
             });
 
             this.elem.on('click', '.hw-weixin', function(){
-                util.dialog.showWeixinLoginQrCode(KG.config.WeixinLoginRedirectUrl);
+                util.dialog.showWeixinLoginQrCode(location.href);
                 return false;
             });
             this.elem.on('click', '.hw-fb', function(){
@@ -594,8 +688,8 @@ $(function(){
             util.showPageLoading(false);
             if(flag){
                 KG.user.getUserDetailWithToken(rs, function(user){
-                    if(user.email){
-                        location.href = '../site/index.html';
+                    if(true || user.email){
+                        location.href = location.href.replace('&code='+util.url.param('code'), '').replace('&state=aaa', '');
                         return false;
                     }
                     util.toast.alert('登录成功，请补充资料');

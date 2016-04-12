@@ -8,11 +8,7 @@ KG.Class.define('SiteHeadingNav', {
 
 					'<a href="javascript:void(0)" class="nav js_tab">本地商家<i class="icon glyphicon glyphicon-chevron-down"></i>',
 
-						'<div class="hw-box container">',
-							'<div class="left nodis"></div>',
-							//'<div class="right"></div>',
 
-						'</div>',
 
 					'</a>',
 					'<a href="../site/couponlist.html" class="nav js_couponList">本地优惠</a>',
@@ -20,6 +16,12 @@ KG.Class.define('SiteHeadingNav', {
 					//'<a href="../site/articlelist.html?category=11" class="nav js_cat">分类信息</a>',
 					//'<a href="http://www.haiwai.com" target="_blank" class="nav js_cat">分类信息</a>',
 
+
+					'<div class="hw-box container">',
+						'<div class="left nodis"></div>',
+						//'<div class="right"></div>',
+
+					'</div>',
 				'</div>',
 
 			'</nav>'
@@ -285,6 +287,7 @@ KG.Class.define('SiteHeadingNav', {
 	},
 
 	initEvent : function(){
+		var self = this;
 		var left = this.jq.left;
 
 		var during = false;
@@ -292,27 +295,35 @@ KG.Class.define('SiteHeadingNav', {
 		if(this.prop.leftshow){
 			//set left show
 			left.removeClass('nodis');
+
+			this.elem.find('.js_tab').add(left).hover(function(){
+
+			}, function(){
+				self.isOn = false;
+				if(self.removeAll){
+					self.removeAll();
+				}
+			});
 		}
 		else{
-			this.elem.find('.js_tab').add(this.jq.box).hover(function(){
-				if(during) return false;
-				during = true;
+			this.elem.find('.js_tab').add(left).hover(function(){
+				left.show();
 
-				left.fadeIn(function(){
-					during = false;
-				});
 			}, function(){
-				if(during) return false;
-				during = true;
-
-				left.fadeOut(function(){
-					during = false;
-				});
+				left.hide();
+				self.isOn = false;
+				if(self.removeAll){
+					self.removeAll();
+				}
 			});
 		}
 
 
 
+	},
+
+	initVar : function(){
+		this.isOn = false;
 	},
 
 	initEnd : function(){
@@ -354,26 +365,63 @@ KG.Class.define('SiteHeadingNav', {
 		});
 
 		this.jq.left.html(h);
-		this.jq.left.find('.hw-item').hover(function(){
-			$(this).addClass('hover');
-			var next = $(this).next('.hw-item');
+
+		var allRight = this.jq.left.find('.hw-item .right');
+		var tm = null, tm1 = null;
+		function add(o){
+			removeAll();
+
+			o.addClass('hover');
+			var next = o.next('.hw-item');
 			if(next.length === 1){
 				next.addClass('second');
 			}
 
-			var lm = $(this).find('.right');
-			lm.show();
+			var lm = o.find('.right');
 
-		}, function(){
-			$(this).removeClass('hover');
-			var next = $(this).next('.hw-item');
+
+			if(self.isOn){
+				lm.show();
+			}
+			else{
+				lm.fadeIn();
+			}
+
+			self.isOn = true;
+		}
+		function remove(o){
+			o.removeClass('hover');
+			var next = o.next('.hw-item');
 			if(next.length === 1){
 				next.removeClass('second');
 			}
+			var lm = o.find('.right');
 
-			var lm = $(this).find('.right');
 			lm.hide();
+
+		}
+		function removeAll(){
+			if(tm) window.clearTimeout(tm);
+			self.jq.left.find('.hw-item').each(function(){
+				remove($(this));
+			});
+		}
+		self.removeAll = removeAll;
+
+
+		this.jq.left.find('.hw-item').hover(function(){
+
+			var o = $(this);
+			if(tm) window.clearTimeout(tm);
+			tm = window.setTimeout(function(){
+				add(o);
+			}, 300);
+
+
+		}, function(){
+
 		});
+
 	},
 
 	getRightBoxHtml : function(list){

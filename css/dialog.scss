@@ -352,3 +352,22 @@
 
     }
 }
+
+.hw-dialog-logininfo{
+    .modal-dialog{
+        width : 380px !important;
+        .modal-header{
+            height: 0 !important;
+        }
+        .modal-body{
+            padding: 40px 42px 42px 56px !important;
+            .hw-body{
+                padding: 0 !important;
+
+            }
+        }
+        .hw-title{
+            display: none !important;
+        }
+    }
+}

@@ -268,6 +268,7 @@ KG.Class.define('MybizStoreInputDatepicker', {
     initEnd : function(){
         this.checkListBox();
         this.reset();
+
     },
     setValue : function(data){
         var self = this;
@@ -342,6 +343,7 @@ KG.Class.define('MybizStoreInfoFormStep1', {
 
             '<div class="hw-inline form-group">',
                 '<label class="require">州/省</label>',
+            '<label class="control-label hw-err"></label>',
                 '<select class="js_state hw-inline">',
                 this.stateListHtml,
                 '</select>',
@@ -410,6 +412,7 @@ KG.Class.define('MybizStoreInfoFormStep1', {
     initStart : function(){
 
         this.stateListHtml = [
+            '<option value="-1">请选择州/省</option>',
             '<optgroup label="United States">',
             '<option value="AL">Alabama</option>',
             '<option value="AK">Alaska</option>',
@@ -567,6 +570,14 @@ KG.Class.define('MybizStoreInfoFormStep1', {
             jq.city.showError();
         }
 
+        if(data.state === "-1"){
+            jq.state.parent('div.form-group').addClass('has-error').find('.hw-err').html('请选择州/省');
+            return false;
+        }
+        else{
+            jq.state.parent('div.form-group').removeClass('has-error').find('.hw-err').html('');
+        }
+
 
         return true;
     },
@@ -647,6 +658,16 @@ KG.Class.define('MybizStoreInfoFormStep1', {
 
 
             this.getElemObj().timeinfo.setValue(this.data.biz.timeinfo.unformat);
+        }
+
+        if(this.type === 'create'){
+            var user = KG.user.get();
+            if(!user.pwd){
+                util.dialog.showLoginAddPasswordBox();
+            }
+            if(!user.email){
+                util.dialog.showLoginAddEmailAndPasswordBox();
+            }
         }
 
     },

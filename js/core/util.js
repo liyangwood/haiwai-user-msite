@@ -507,6 +507,34 @@
             util.dialog.show(param);
         },
 
+        showLoginAddPasswordBox : function(){
+            var param = {
+                foot : false,
+                'class' : 'hw-dialog-logininfo',
+                body : '<div class="js_role" role="HWBaseLoginAddPassword"></div>',
+
+                beforeShowFn : function(){
+                    var o = this;
+                    KG.component.initWithElement(o.find('.js_role'));
+                }
+            };
+            util.dialog.show(param);
+        },
+
+        showLoginAddEmailAndPasswordBox : function(){
+            var param = {
+                foot : false,
+                'class' : 'hw-dialog-logininfo',
+                body : '<div class="js_role" role="HWBaseLoginAddEmailAndPassword"></div>',
+
+                beforeShowFn : function(){
+                    var o = this;
+                    KG.component.initWithElement(o.find('.js_role'));
+                }
+            };
+            util.dialog.show(param);
+        },
+
         showRegBox : function(opts){
             var param = {
                 foot : false,
