@@ -400,7 +400,7 @@
                     '<div class="carousel-inner" role="listbox">',
                         '{{each list as url}}',
                         '<div class="item {{if index==$index}}active{{/if}}">',
-                            '<img src="{{url}}">',
+                            '<a target="_blank" href="{{url}}"><img src="{{url}}"></a>',
                             //'<div class="carousel-caption">',
                             //'</div>',
                         '</div>',

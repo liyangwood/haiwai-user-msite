@@ -9,7 +9,7 @@ body {
   padding-bottom: 175px; }
 
 * {
-  font-family: MicrosoftYaHei, STHeiti, sans-serif;
+  font-family: MicrosoftYaHei,PingFangSC-Semi, STHeiti, sans-serif;
   font-size: 14px;
   color: #4a4a4a;
   padding: 0; }
@@ -268,12 +268,12 @@ label.require:after {
 
 .hw-center-image {
   overflow: hidden;
+  display: -webkit-box;
   display: flex;
-  display: -webkit-flex;
-  align-items: center;
   -webkit-align-items: center;
-  justify-content: center;
+  align-items: center;
   -webkit-justify-content: center;
+  justify-content: center;
   vertical-align: middle; }
   .hw-center-image img {
     width: 100%;
@@ -558,7 +558,8 @@ label.require:after {
     background: #37bccd; }
 
 .hw-comp-BaseLoadingImageBox {
-  background: transparent; }
+  background: transparent;
+  position: relative; }
   .hw-comp-BaseLoadingImageBox .icon-loading {
     display: block;
     background: url(../image/loading.gif);
@@ -1978,9 +1979,7 @@ label.require:after {
         float: left;
         font-size: 17px;
         color: #4a4a4a;
-        font-weight: 400;
-        text-rendering: geometricPrecision;
-        letter-spacing: -1px; }
+        font-weight: 400; }
         .kg-site-header-nav-comp .hw-box .left .hw-item .cp a:hover {
           color: #37bccd; }
   .kg-site-header-nav-comp .hw-box .left .hw-item.hover {

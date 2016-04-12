@@ -186,7 +186,7 @@ KG.Class.define('MybizRunningStoreList', {
             '<em>{{item.commentnum}}条评论</em>',
 
             '<div class="r">',
-            '<a class="hw-a" href="editStore.html?id={{item.entityID}}">修改店铺</a>',
+            '<a class="hw-a" href="editStore.html?id={{item.entityID}}">修改店铺信息</a>',
             '<b class="hw-a js_share" param="{{item.entityID}}">分享</b>',
             '</div>',
             '</div>',
@@ -729,8 +729,13 @@ KG.Class.define('MybizArticleList', {
         var more = KG.component.getObj(this.elem.find('.js_more'));
         more.setEvent(function(fn){
             self.getListData(function(flag){
+                if(self.list.length < 1){
+                    self.elem.closest('.hw-panel').hide();
+                }
+
                 if(flag){
                     fn();
+
                 }
                 else{
                     more.setState('hide');
@@ -1038,7 +1043,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
                 '<label class="hw-label require">3.填写内容</label>',
                 '<form class="form-horizontal s-form">',
                     '<div class="form-group">',
-                        '<label class="col-sm-2 control-label require">店铺名称</label>',
+                        '<label class="col-sm-2 control-label require">标题</label>',
                         '<div class="col-sm-8">',
                             '<input type="text" class="form-control js_name" placeholder="">',
                             '<span class="hw-tip">建议填写店铺名称，或者想要宣传的产品/服务名称</span>',
@@ -1046,7 +1051,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
                     '</div>',
 
                     '<div class="form-group">',
-                    '<label class="col-sm-2 control-label require">广告语</label>',
+                    '<label class="col-sm-2 control-label require">文字第一行</label>',
                     '<div class="col-sm-10">',
                         '<input type="text" class="form-control js_ad1" placeholder="职位名称或营业特色">',
                         '<span class="hw-tip">建议填写职位名称，营业特色，电话号码或想要宣传的产品/服务等</span>',
@@ -1054,7 +1059,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
                     '</div>',
 
                     '<div class="form-group">',
-                    '<label class="col-sm-2 control-label require">广告语</label>',
+                    '<label class="col-sm-2 control-label require">文字第二行</label>',
                     '<div class="col-sm-10">',
                         '<input type="text" class="form-control js_ad2" placeholder="广告宣传语">',
                         '<span class="hw-tip">建议填写职位名称，营业特色，电话号码或想要宣传的产品/服务等</span>',
@@ -1062,7 +1067,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
                     '</div>',
 
                     '<div class="form-group">',
-                    '<label class="col-sm-2 control-label require">联系电话</label>',
+                    '<label class="col-sm-2 control-label require">文字第三行</label>',
                     '<div class="col-sm-10">',
                         '<input type="text" class="form-control js_tel" placeholder="">',
                         '<span class="hw-tip">建议填写职位名称，营业特色，电话号码或想要宣传的产品/服务等</span>',

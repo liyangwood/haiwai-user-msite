@@ -1500,7 +1500,7 @@ KG.Class.define('MybizStoreInfoFormStep3', {
             },
             YesText : '查看我的店铺',
             NoFn : function(){
-                var href = '../mybiz/editStore.html?id='+id;
+                var href = '../mybiz/index.html';
                 location.href = href;
             },
             NoText : '管理我的店铺'

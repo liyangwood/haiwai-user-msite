@@ -18,7 +18,7 @@ body{
 }
 
 *{
-    font-family:MicrosoftYaHei, STHeiti, sans-serif;
+    font-family:MicrosoftYaHei,PingFangSC-Semi, STHeiti, sans-serif;
     font-size: 14px;
     color: $color-4a;
     padding: 0;
@@ -369,12 +369,17 @@ label.require:after{
 
 .hw-center-image{
     overflow: hidden;
+
+
+    display: -webkit-box;
     display: flex;
-    display: -webkit-flex;
-    align-items: center;
+
+
     -webkit-align-items: center;
-    justify-content: center;
+    align-items: center;
+
     -webkit-justify-content: center;
+    justify-content: center;
     vertical-align: middle;
 
     img{

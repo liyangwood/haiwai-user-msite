@@ -164,7 +164,7 @@ KG.Class.define('SiteStoreAscComp', {
 			'<div class="hw-box">',
 				'<label><input checked="true" type="radio" param="0" name="SiteStoreAscComp" />查看全部</label>',
 				'<label><input type="radio" param="4" name="SiteStoreAscComp" />只看优惠商家</label>',
-				'<label><input type="radio" param="3" name="SiteStoreAscComp" />只看认证商家</label>',
+				//'<label><input type="radio" param="3" name="SiteStoreAscComp" />只看认证商家</label>',
 			'</div>',
 			'</div>'
 		].join('');
@@ -387,7 +387,7 @@ KG.Class.define('HWSiteStoreListPage', {
 					'<div class="hw-star" role="StarRank" data-rank="{{item.star}}"></div>',
 					'<span>{{item.commentnum}}条评论</span>',
 				'</div>',
-				'<div class="hw-address">地址 : {{item | storeFullAddress}}</div>',
+				'<div class="hw-address">地址 : {{item | storeFullAddress}}&nbsp;&nbsp;电话 : {{item.tel}}</div>',
 
 				'{{if item.event}}',
 				'<div param="{{item.event.pk_id}}" class="hw-coupon js_coupon_item">',

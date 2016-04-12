@@ -224,7 +224,7 @@ KG.Class.define('HWSiteIndexNewStoreRecommend', {
 			'<div class="item hw-onebox{{if $index<1}} active{{/if}}">',
 				'{{each item as one}}',
 				'<a class="hw-one" href="{{one.entityID | toStorePath}}" target="_blank">',
-					'<img src="{{one.logo[0].path | absImage}}" />',
+					'<div class="hw-img" role="BaseLoadingImageBox" data-url="{{one.logo[0].path | absImage}}"></div>',
 					'<h4>{{one.name_cn || one.name_en}}</h4>',
 					'<p class="hw-p">{{one.city}} {{one.state}}</p>',
 					'<p class="hw-n">{{one.taglist}}</p>',
@@ -265,6 +265,9 @@ KG.Class.define('HWSiteIndexNewStoreRecommend', {
 
 		h = template.compile(h)({list : list});
 		this.jq.box.html(h);
+
+		KG.component.init(this.jq.box);
+
 		this.jq.box.find('.carousel').carousel({
 			interval: 5000
 		});

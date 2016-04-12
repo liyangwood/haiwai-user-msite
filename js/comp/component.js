@@ -353,30 +353,36 @@ KG.Class.define('BaseLoadingImageBox', {
 		img.src = url;
 		console.log(url);
 		$(img).load(function(e){
-			self.renderImage($(this)[0], url);
+			var o = $(this);
+
+			self.renderImage(o[0], url);
 		});
 	},
 	renderImage : function(img, url){
-		var sy = '',
+		var sy = 'position:absolute;',
 			f = 'width';
 		var w = this.elem.width(),
 			h = this.elem.height();
+		var ww,hh;
 		if(img.width/img.height >= w/h){
-			sy = 'width:auto;height:100%;';
+			ww = Math.ceil(img.width*h/img.height);
+			sy += 'width:'+ww+'px;height:100%;top:0;left:'+((w-ww)/2)+'px';
+
 		}
 		else{
-			sy = 'width:100%;height:auto;';
+			sy += 'width:100%;height:auto;left:0;top:0;';
 			f = 'height';
 		}
 		this.elem.empty();
-		var h = '<img style="'+sy+'" src="'+url+'" />';
+		var hh = '<img style="'+sy+'" src="'+url+'" />';
+		this.elem.html(hh);
 
-		if(f === 'width'){
-			this.elem.html(h);
-		}
-		else{
-			this.elem.html(h).addClass('hw-flex-start-image');
-		}
+		//if(f === 'width'){
+		//	this.elem.html(h);
+		//}
+		//else{
+		//	this.elem.html(h).addClass('hw-flex-start-image');
+		//}
 	}
 });
 

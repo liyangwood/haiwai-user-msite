@@ -277,13 +277,16 @@
                         color: $blue-color;
                     }
                 }
-                
-                img{
+
+                .hw-img{
                     width: 120px;
                     height: 120px;
-                    border-radius: 60px;
                     margin: 0 auto;
+                    border-radius: 60px;
+                    overflow: hidden;
                 }
+                
+
                 h4{
                     font-size: 16px;
                     color: $color-4a;
