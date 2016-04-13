@@ -1243,6 +1243,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
         });
 
         self.elem.find('.s-btn .js_sub').click(function(){
+            var o = $(this);
             var data = self.getSubmitData();
             var m = '广告已提交审核，审核时间为1-2个工作日';
             if(self.postid){
@@ -1250,7 +1251,10 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
                 m = '修改成功，审核时间为1-2个工作日';
             }
             console.log(data);
+
+            util.dom.loadingButton(o, true);
             KG.request.createAds(data, function(flag, rs){
+                util.dom.loadingButton(o, false);
                 if(flag){
                     util.toast.alert(m);
                     util.delay(function(){

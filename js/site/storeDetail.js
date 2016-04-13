@@ -184,7 +184,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					'{{/each}}',
 
 					'{{if biz.website}}',
-					'<p class="hw-la">网址 : {{biz.website}}</p>',
+					'<p class="hw-la">网址 : <a target="_blank" href="{{biz.website}}">{{biz.website}}</a></p>',
 					'{{/if}}',
 
 					'{{if biz.wechat}}',
@@ -280,7 +280,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				'</dt>',
 				'<dd class="c-content" style="padding: 0">',
 					'<div class="db hw-wp">',
-						'<a href="javascript:void(0)" class="hw-img">',
+						'<div class="hw-img">',
 							'{{if user.isLogin}}',
 								'<img src="{{user.image}}" />',
 								'<p>{{user.nick}}</p>',
@@ -289,7 +289,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 								'<p>未登录用户</p>',
 							'{{/if}}',
 
-						'</a>',
+						'</div>',
 						'<div class="r hw-time">',
 							'<div class="js_rank" style="margin-top:2px;" role="StarRank" data-enable="true"' +
 							' data-rank="0"></div>',
@@ -957,10 +957,10 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		var h = [
 			'{{each list as item}}',
 			'<div class="hw-rpeach">',
-			'<a href="javascript:void(0)" class="hw-img">',
+			'<div class="hw-img">',
 				'<img src="{{item.userinfo.avatar_url | absImage}}" />',
 				'<p title="{{item.userinfo.nick}}">{{item.userinfo.nick}}</p>',
-			'</a>',
+			'</div>',
 			'<div class="r hw-time">',
 				'<div role="StarRank" data-rank={{item.star}}></div>',
 				'<span>{{item.datetime | formatDate:"mm/dd/yy"}}</span>',

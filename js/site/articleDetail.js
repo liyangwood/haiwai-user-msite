@@ -6,7 +6,7 @@
         getTemplate : function(){
             return [
                 '<div class="hw-SiteArticleDetailPage">',
-                    '<a class="hw-tag" href="../site/articlelist.html?category=hot">精选内容<a/>{{if category}} <span class="hw-tag">|</span> <a href="../site/articlelist.html?category={{category.category_id}}" class="hw-tag">{{category.name}}</a>{{/if}}',
+                    '<a class="hw-tag" href="../site/articlelist.html?category=hot">精选内容<a/>{{if category}} <span class="hw-tag">&gt;</span> <a href="../site/articlelist.html?category={{category.category_id}}" class="hw-tag">{{category.name}}</a>{{/if}}',
                     '<h3>{{data.title}}</h3>',
 
                     '<p class="hw-st">',
@@ -15,7 +15,7 @@
 
                         '<span class="hw-wx js_share">',
                             '<i class="fa fa-weixin"></i>',
-                            '分享',
+                            '分享文章',
                         '</span>',
                         '<span class="hw-view">',
                             '<i class="fa fa-eye"></i>',
@@ -35,7 +35,7 @@
                     '<div class="hw-article">{{#data.msgbody}}</div>',
 
                     '<div class="hw-share">',
-                        '<b class="js_share"><i class="fa fa-weixin"></i>分享文章到微信</b>',
+                        '<b class="js_share"><i class="fa fa-weixin"></i>分享文章</b>',
                     '</div>',
                 '</div>'
             ].join('');

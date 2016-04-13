@@ -326,10 +326,10 @@ label.require:after {
   .kg-header-comp .hw-loc {
     position: absolute;
     top: 33px;
-    left: 145px;
+    left: 155px;
     cursor: pointer; }
     .kg-header-comp .hw-loc span {
-      font-size: 12px;
+      font-size: 13px;
       color: #9b9b9b; }
     .kg-header-comp .hw-loc .icon {
       margin-left: 5px;
@@ -2105,7 +2105,7 @@ label.require:after {
         float: left;
         display: inline; }
       .kg-site-header-nav-comp .hw-box .left .right dl a {
-        font-size: 14px;
+        font-size: 15px;
         color: #4a4a4a;
         display: inline-block;
         line-height: 28px;

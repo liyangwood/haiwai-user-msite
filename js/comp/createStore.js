@@ -618,6 +618,21 @@ KG.Class.define('MybizStoreInfoFormStep1', {
             }
 
         });
+
+        this.elem.find('.js_tel').on('keydown', 'input', function(e){
+            var obj = KG.component.getObj(self.elem.find('.js_tel')),
+                val = obj.getValue();
+            console.log(e)
+            if(!_.contains([8, 9], e.keyCode)){
+                if(e.keyCode < 48 || e.keyCode > 57){
+                    return false;
+                }
+                if(val.length > 10){
+                    return false;
+                }
+            }
+
+        });
     },
 
     initEnd : function(){
@@ -664,11 +679,12 @@ KG.Class.define('MybizStoreInfoFormStep1', {
 
         if(this.type === 'create'){
             var user = KG.user.get();
-            if(!user.pwd){
-                util.dialog.showLoginAddPasswordBox();
-            }
-            else if(!user.email){
+
+            if(!user.email){
                 util.dialog.showLoginAddEmailAndPasswordBox();
+            }
+            else if(!user.pwd){
+                util.dialog.showLoginAddPasswordBox();
             }
         }
 

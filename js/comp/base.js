@@ -145,7 +145,7 @@
                     '<button data-href="../mybiz/index.html" id="js_right_dd_1" type="button" data-toggle="dropdown"' +
                     ' data-hover="dropdown" aria-haspopup="true" aria-expanded="false">',
                         '<img src="../../image/aa.png" />',
-                        '<span>我的店铺</span>',
+                        '<span>店铺管理</span>',
                     '</button>',
                     '<div class="dropdown-menu" aria-labelledby="js_right_dd_1">',
                     '<a href="../mybiz/index.html">我的店铺</a>',
@@ -157,6 +157,7 @@
                     '<div class="dropdown">',
                     '<button data-href="../myfav/list.html" id="js_right_dd_2" class="c2" type="button" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">',
                     '<img src="{{user.image}}" />',
+                    '<span>帐号管理</span>',
                     '</button>',
                     R,
                     '</div>',
@@ -169,6 +170,7 @@
                     '<div style="top:3px;" class="dropdown">',
                     '<button data-href="../myfav/list.html" id="js_right_dd_2" class="c2" type="button" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">',
                     '<img src="{{user.image}}" />',
+                    '<span>帐号管理</span>',
                     '</button>',
                     R,
                     '</div>',
@@ -259,7 +261,7 @@
                 this.elem.find('.js_search').find('input').val(x);
             }
 
-            var regionName = util.cookie.get('region_cn') || '旧金山湾区';
+            var regionName = util.cookie.get('region_cn') || '其它地区';
             this.elem.find('.js_loc').show().find('span').html(regionName);
 
             this.elem.find('[data-hover="dropdown"]').dropdownHover();
@@ -337,6 +339,11 @@
                         name : key
                     });
                 });
+                list.push({
+                    id : KG.user.get().subregion_detail.id,
+                    cn : '其它地区',
+                    name : 'qita'
+                });
 
                 next({list : list});
             });
@@ -363,14 +370,20 @@
             });
         },
         initEnd : function(){
-            var id = util.cookie.get('regionID');
+            var id = util.cookie.get('regionID') || KG.user.get().subregion_detail.id;
             var index = 0;
             if(id){
                 index = _.findIndex(this.data.list, function(one){
                     return one.id.toString() === id;
                 });
+                if(index < 0){
+                    index = this.data.list.length-1;
+                }
+
                 this.elem.find('.js_one').eq(index).addClass('active');
+
             }
+
 
 
         }

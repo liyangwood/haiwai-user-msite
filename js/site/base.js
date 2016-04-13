@@ -290,7 +290,7 @@ KG.Class.define('SiteHeadingNav', {
 		var self = this;
 		var left = this.jq.left;
 
-		var during = false;
+		var tm = null;
 
 		if(this.prop.leftshow){
 			//set left show
@@ -306,10 +306,28 @@ KG.Class.define('SiteHeadingNav', {
 			});
 		}
 		else{
-			this.elem.find('.js_tab').add(left).hover(function(){
+			this.elem.find('.js_tab').hover(function(){
+				if(tm) window.clearTimeout(tm);
+				tm = window.setTimeout(function(){
+					left.show();
+				}, 300);
+			}, function(){
+				if(tm) window.clearTimeout(tm);
+				left.hide();
+				self.isOn = false;
+				if(self.removeAll){
+					self.removeAll();
+				}
+			});
+
+			left.hover(function(){
+				if(tm) window.clearTimeout(tm);
 				left.show();
 
+
 			}, function(){
+				if(tm) window.clearTimeout(tm);
+
 				left.hide();
 				self.isOn = false;
 				if(self.removeAll){
@@ -331,7 +349,7 @@ KG.Class.define('SiteHeadingNav', {
 		var page = this.data.page;
 		this.elem.find('.js_'+page).addClass('active');
 
-		if(page === 'index'){
+		if(this.prop.leftshow){
 			this.elem.find('.js_tab').addClass('active');
 		}
 	},

@@ -218,7 +218,7 @@
                 ' aria-haspopup="true"' +
                 ' aria-expanded="false">',
                 '<img src="../../image/aa.png" />',
-                '<span>我的店铺</span>',
+                '<span>店铺管理</span>',
                 '</button>',
                 '<div class="dropdown-menu" aria-labelledby="js_right_dd_1">',
                 '<a href="../mybiz/index.html">我的店铺</a>',
@@ -231,6 +231,7 @@
                 '<div class="dropdown">',
                 '<button id="js_right_dd_2" data-href="../myfav/list.html" data-hover="dropdown" class="c2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
                 '<img src="{{user.image}}" />',
+                '<span>帐号管理</span>',
                 '</button>',
                 '<div class="dropdown-menu" aria-labelledby="js_right_dd_2">',
                 '<a style="border-bottom:1px dashed #ebebeb;" href="../mycount/info.html">'+(KG.user.get('nick')||KG.user.get('email'))+'</a>',
