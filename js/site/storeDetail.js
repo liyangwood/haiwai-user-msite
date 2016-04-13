@@ -636,7 +636,11 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			var o = $(this);
 			var list = o.parents('.hw-rpimgbox').find('img');
 			list = _.map(list, function(one){
-				return $(one).attr('src');
+				var src=$(one).attr('src');
+				if(src.indexOf('s_pic0')>0){
+					src = src.replace('s_pic0', 'pic0');
+				}
+				return src;
 			});
 
 			util.dialog.showFocusImage(o.attr('param'), list);
