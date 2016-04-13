@@ -159,6 +159,18 @@
                 font-size: 16px;
                 float: right;
             }
+
+            .hw-blue{
+                color: $blue-color;
+
+                .icon{
+                    color: $blue-color;
+                    font-size: 20px;
+                    margin-right: 5px;
+                    position: relative;
+                    top: 2px;
+                }
+            }
         }
 
         .c-content{

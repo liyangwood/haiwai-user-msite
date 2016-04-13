@@ -206,6 +206,20 @@
                 trigger : opts.trigger || 'click',
                 content : '<span style="color:'+color+'">'+msg+'</span>'
             }).popover('show');
+        },
+
+        loadingButton : function(btn, f){
+
+            if(f){
+                if(!btn.data('loading-text')){
+                    btn.data('loading-text', 'Loading...');
+                }
+
+                btn.addClass('btn-loading').button('loading');
+            }
+            else{
+                btn.removeClass('btn-loading').button('reset');
+            }
         }
     };
 
@@ -691,6 +705,12 @@
         AmericanPhone : function(phone){
             var reg = /^[0-9]{10}$/;
             return reg.test(phone);
+        },
+        password : function(pwd){
+            if(!pwd) return false;
+            if(pwd.length < 6) return false;
+
+            return true;
         }
     };
 

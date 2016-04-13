@@ -77,12 +77,25 @@
             this.elem.on('click', '.js_toLogin', this.setLoginBox.bind(this));
 
             this.elem.on('click', '.js_login', function(e){
+                var o = $(this);
                 var data = {
                     username  : self.jq.box.find('.js_email').val(),
                     password : self.jq.box.find('.js_pwd').val()
                 };
 
+                if(!data.username){
+                    util.toast.showError('请输入邮箱');
+                    return false;
+                }
+                if(!data.password){
+                    util.toast.showError('请输入密码');
+                    return false;
+                }
+
+                util.dom.loadingButton(o, true);
                 KG.user.login(data, function(user){
+                    util.dom.loadingButton(o, false);
+
                     if(util.url.param('redirect_url')){
                         location.href = util.url.param('redirect_url');
                     }
@@ -91,31 +104,50 @@
                     }
 
                 }, function(err){
+                    util.dom.loadingButton(o, false);
                     util.toast.showError(err);
                 });
             });
 
             this.elem.on('click', '.js_reg', function(e){
+                var o = $(this);
                 var data = {
                     email : self.jq.box.find('.js_email').val(),
                     password : self.jq.box.find('.js_pwd').val(),
                     confirm_password : self.jq.box.find('.js_pwd2').val()
                 };
-                console.log(data);
+                if(!data.email){
+                    util.toast.showError('请输入邮箱');
+                    return false;
+                }
+                if(!util.validate.password(data.password)){
+                    util.toast.showError('密码格式不正确');
+                    return false;
+                }
+                if(data.password !== data.confirm_password){
+                    util.toast.showError('二次输入的密码不一致');
+                    return false;
+                }
+
+                util.dom.loadingButton(o, true);
                 KG.user.register(data, function(flag, rs){
+
                     if(flag){
                         var sd = {
                             username : data.email,
                             password : data.password
                         };
                         KG.user.login(sd, function(){
+                            util.dom.loadingButton(o, false);
                             location.href = '../mybiz/createStore.html';
                         }, function(err){
 
+                            util.dom.loadingButton(o, false);
                             util.toast.showError(err);
                         });
                     }
                     else{
+                        util.dom.loadingButton(o, false);
                         util.toast.showError(rs);
                     }
                 });
@@ -200,6 +232,7 @@
                 '<img src="{{user.image}}" />',
                 '</button>',
                 '<div class="dropdown-menu" aria-labelledby="js_right_dd_2">',
+                '<a style="border-bottom:1px dashed #ebebeb;" href="../mycount/info.html">'+(KG.user.get('nick')||KG.user.get('email'))+'</a>',
                 '<a href="../myfav/list.html">我的收藏</a>',
                 '<a href="../mycoupon/list.html">我的优惠</a>',
                 '<a href="../mysys/index.html">系统消息</a>',

@@ -133,6 +133,18 @@ label.require:after {
   border-radius: 3px; }
   .hw-btn:focus {
     outline: none; }
+  .hw-btn.btn-loading {
+    cursor: not-allowed; }
+  .hw-btn.btn-loading:before {
+    content: "";
+    background: url(../image/loading2.gif);
+    background-size: 100%;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+    position: relative;
+    top: 2px; }
 
 .hw-blue-btn {
   color: #fff;
@@ -140,7 +152,7 @@ label.require:after {
   border: 1px solid #37bccd; }
   .hw-blue-btn:hover, .hw-blue-btn:link {
     color: #fff; }
-  .hw-blue-btn:hover {
+  .hw-blue-btn:hover, .hw-blue-btn.btn-loading {
     background: #00a7bc; }
   .hw-blue-btn:visited {
     color: #fff; }
@@ -149,7 +161,7 @@ label.require:after {
   color: #37bccd;
   background: transparent;
   border: 1px solid #37bccd; }
-  .hw-light-btn:hover, .hw-light-btn:link {
+  .hw-light-btn:hover, .hw-light-btn:link, .hw-light-btn.btn-loading {
     color: #37bccd; }
 
 /* login and reg box */
@@ -2013,7 +2025,44 @@ label.require:after {
     .kg-site-header-nav-comp .hw-box .left .hw-item img {
       position: absolute;
       top: 16px;
-      left: 15px; }
+      left: 15px;
+      width: 25px;
+      height: 33px; }
+    .kg-site-header-nav-comp .hw-box .left .hw-item .img-0 {
+      top: 12px; }
+    .kg-site-header-nav-comp .hw-box .left .hw-item .img-1 {
+      width: 33px;
+      height: 18px;
+      top: 18px;
+      left: 12px; }
+    .kg-site-header-nav-comp .hw-box .left .hw-item .img-2 {
+      width: 27px;
+      height: 34px;
+      top: 9px; }
+    .kg-site-header-nav-comp .hw-box .left .hw-item .img-3 {
+      width: 35px;
+      height: 20px;
+      top: 18px;
+      left: 11px; }
+    .kg-site-header-nav-comp .hw-box .left .hw-item .img-4 {
+      width: 26px;
+      height: 21px; }
+    .kg-site-header-nav-comp .hw-box .left .hw-item .img-5 {
+      width: 26px;
+      height: 24px;
+      top: 14px; }
+    .kg-site-header-nav-comp .hw-box .left .hw-item .img-6 {
+      width: 26px;
+      height: 24px; }
+    .kg-site-header-nav-comp .hw-box .left .hw-item .img-7 {
+      width: 26px;
+      height: 26px;
+      top: 13px;
+      left: 16px; }
+    .kg-site-header-nav-comp .hw-box .left .hw-item .img-8 {
+      width: 26px;
+      height: 24px;
+      top: 13px; }
     .kg-site-header-nav-comp .hw-box .left .hw-item .cp {
       margin: 0;
       position: absolute;

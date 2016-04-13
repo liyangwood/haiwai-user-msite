@@ -587,9 +587,24 @@
             this.elem.on('click', '.js_toLogin', this.setLoginBox.bind(this));
 
             this.elem.on('click', '.js_regBtn', function(){
+                var o = $(this);
                 //click reg button
                 var data = self.getRegisterValue();
+                if(!data.email){
+                    self.showError('请输入邮箱');
+                    return false;
+                }
+                if(!util.validate.password(data.password)){
+                    self.showError('密码格式不正确');
+                    return false;
+                }
+                if(data.password !== data.confirm_password){
+                    self.showError('二次输入的密码不一致');
+                    return false;
+                }
                 console.log(data);
+
+                util.dom.loadingButton(o, true);
                 KG.user.register(data, function(flag, rs){
                     if(flag){
                         var sd = {
@@ -597,26 +612,40 @@
                             password : data.password
                         };
                         KG.user.login(sd, function(){
+                            util.dom.loadingButton(o, false);
                             location.reload();
                         }, function(err){
-
-                            alert(err);
+                            util.dom.loadingButton(o, false);
+                            util.toast.showError(err);
                         });
 
                     }
                     else{
+                        util.dom.loadingButton(o, false);
                         self.showError(rs);
                     }
                 });
 
             });
             this.elem.on('click', '.js_loginBtn', function(){
+                var o = $(this);
                 //click login button
                 var data = self.getLoginValue();
+                if(!data.username){
+                    self.showError('请输入邮箱');
+                    return false;
+                }
+                if(!data.password){
+                    self.showError('请输入密码');
+                    return false;
+                }
+
+                util.dom.loadingButton(o, true);
                 KG.user.login(data, function(){
+                    util.dom.loadingButton(o, false);
                     location.reload();
                 }, function(err){
-
+                    util.dom.loadingButton(o, false);
                     self.showError(err);
                 });
             });

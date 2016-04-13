@@ -339,10 +339,10 @@ KG.Class.define('SiteHeadingNav', {
 	setLeftBox : function(){
 		var self = this;
 		var h = '';
-		_.each(this.navData, function(one){
+		_.each(this.navData, function(one, index){
 			var tmp = ['<div class="hw-item">',
 				'<div class="hw-one">',
-					'<img src="../../image/site/'+one.logo+'" />',
+					'<img class="img-'+index+'" src="../../image/site/'+one.logo+'" />',
 					'<p class="cp">',
 					'{{each list as item}}',
 

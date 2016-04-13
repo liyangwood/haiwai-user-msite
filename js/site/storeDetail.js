@@ -276,6 +276,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			'<div id="hw-id-reply" style="margin-top: 15px;" class="c-box js_cmbox">',
 				'<dt class="c-title">',
 					'<p>评论</p>',
+					'<b class="hw-blue hand js_wreply"><i class="icon fa fa-pencil-square-o"></i>写评论</b>',
 				'</dt>',
 				'<dd class="c-content" style="padding: 0">',
 					'<div class="db hw-wp">',
@@ -526,6 +527,15 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			console.log(rank.getValue());
 			if(parseFloat(rank.getValue()) > 0){
 				self.showReplyTextarea();
+			}
+		});
+		this.elem.on('click', '.js_wreply', function(){
+
+			if(KG.user.get('isLogin')){
+				self.showReplyTextarea();
+			}
+			else{
+				util.dialog.showLoginBox()
 			}
 		});
 

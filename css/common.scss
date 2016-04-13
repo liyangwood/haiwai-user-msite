@@ -179,6 +179,23 @@ label.require:after{
     &:focus{
         outline: none;
     }
+
+    &.btn-loading{
+        cursor: not-allowed;
+    }
+    &.btn-loading:before{
+        content:"";
+        background: url(../image/loading2.gif);
+        background-size : 100%;
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        margin-right: 12px;
+        position: relative;
+        top: 2px;
+    }
+
+
 }
 .hw-blue-btn{
     color: #fff;
@@ -188,7 +205,7 @@ label.require:after{
     &:hover, &:link{
         color: #fff;
     }
-    &:hover{
+    &:hover, &.btn-loading{
         background: #00a7bc;
     }
     &:visited{
@@ -200,7 +217,7 @@ label.require:after{
     background: transparent;
     border: 1px solid $blue-color;
 
-    &:hover, &:link{
+    &:hover, &:link, &.btn-loading{
         color: $blue-color;
     }
 }
