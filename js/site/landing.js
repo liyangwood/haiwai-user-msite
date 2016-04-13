@@ -218,6 +218,7 @@
                 ' aria-haspopup="true"' +
                 ' aria-expanded="false">',
                 '<img src="../../image/aa.png" />',
+                '<span>我的店铺</span>',
                 '</button>',
                 '<div class="dropdown-menu" aria-labelledby="js_right_dd_1">',
                 '<a href="../mybiz/index.html">我的店铺</a>',

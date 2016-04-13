@@ -1475,6 +1475,7 @@ KG.Class.define('MybizStoreInfoFormStep3', {
         });
 
         this.jq.btn.click(function(e){
+            var o = $(this);
             var data = self.getFormValue();
             console.log(data);
 
@@ -1483,7 +1484,10 @@ KG.Class.define('MybizStoreInfoFormStep3', {
                 if(src){
                     data.logo = src;
                 }
+
+                util.dom.loadingButton(o, true);
                 KG.request.createStoreByStep3(data, function(flag, rs){
+                    util.dom.loadingButton(o, false);
                     if(flag){
                         //location.href = 'http://beta.haiwai.com/biz/view.php?id='+rs;
                         self.showSuccessDialog(rs);
@@ -1492,7 +1496,10 @@ KG.Class.define('MybizStoreInfoFormStep3', {
             }
             else{
                 data.bizId = self.data.bizId;
+
+                util.dom.loadingButton(o, true);
                 KG.request.updateStoreByStep3(data, function(flag, rs){
+                    util.dom.loadingButton(o, false);
                     if(true || flag){
                         util.toast.alert('修改成功');
                         util.delay(function(){

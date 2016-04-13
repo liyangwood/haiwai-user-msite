@@ -714,6 +714,15 @@
         }
     };
 
+    util.pic = {
+        replaceToBig : function(src){
+            if(src.indexOf('s_pic0')>0){
+                src = src.replace('s_pic0', 'pic0');
+            }
+            return src;
+        }
+    };
+
 
     //和业务逻辑有关的帮助方法
     util.helper = {

@@ -164,7 +164,7 @@
                 '{{else if user.isLogin && !user.has_biz}}',
                 '<div class="right">',
 
-                    '<a style="float: left;margin-right: 20px;" class="hw-light-btn hw-btn" href="../site/landing.html">商家入驻</a>',
+                    '<a style="float: left;margin-right: 20px;" class="hw-light-btn hw-btn" href="../site/landing.html">立即建店</a>',
 
                     '<div style="top:3px;" class="dropdown">',
                     '<button data-href="../myfav/list.html" id="js_right_dd_2" class="c2" type="button" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">',
@@ -175,7 +175,7 @@
                 '</div>',
                 '{{else}}',
                 '<div class="right">',
-                    '<a class="hw-light-btn hw-btn" href="../site/landing.html">商家入驻</a>',
+                    '<a class="hw-light-btn hw-btn" href="../site/landing.html">立即建店</a>',
                     '<a href="javascript:void(0)" class="hw-a js_login">登录</a>',
                     '<a href="javascript:void(0)" class="hw-a js_reg">注册</a>',
 

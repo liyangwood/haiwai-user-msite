@@ -107,12 +107,16 @@ KG.Class.define('MybizArticleForm', {
     initEvent : function(){
         var self = this;
         this.elem.find('.js_btn').click(function(){
+            var o = $(this);
             var data = self.getFormValue();
             if(!self.validate(data)) return false;
 
             if(self.prop.type === 'edit'){
                 data.id = self.data.id;
+
+                util.dom.loadingButton(o, true);
                 KG.request.createStoreArticle(data, function(flag, rs){
+                    util.dom.loadingButton(o, false);
                     if(flag){
                         console.log(rs);
                         util.toast.alert('修改成功');
@@ -123,8 +127,10 @@ KG.Class.define('MybizArticleForm', {
                 });
             }
             else{
+                util.dom.loadingButton(o, true);
                 KG.request.createStoreArticle(data, function(flag, rs){
                     if(flag){
+                        util.dom.loadingButton(o, false);
                         console.log(rs);
                         util.toast.alert('发表成功');
                         util.delay(function(){
@@ -206,6 +212,7 @@ KG.Class.define('MybizArticleForm', {
                 return false;
             }
             util.uploadImage(ff, function(url){
+                url = util.pic.replaceToBig(url);
                 var img = '<img style="max-width:100%;" src="'+KG.config.SiteRoot+url+'" />';
                 ck.insertHtml(img);
             });
@@ -673,6 +680,8 @@ KG.Class.define('MybizCouponForm', {
 
 
         this.jq.btn.click(function(){
+            var o = $(this);
+
             var data = self.getFormValue();
             console.log(data);
             if(!self.validate(data)){
@@ -685,7 +694,9 @@ KG.Class.define('MybizCouponForm', {
 
             if(true){
                 //create btn
+                util.dom.loadingButton(o, true);
                 KG.request.createStoreCouponEvent(data, function(flag, rs){
+                    util.dom.loadingButton(o, false);
                     if(flag){
                         console.log(rs);
                         if(self.prop.type === 'edit'){
