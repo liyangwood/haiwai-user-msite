@@ -665,7 +665,7 @@ KG.Class.define('MybizStoreInfoFormStep1', {
             if(!user.pwd){
                 util.dialog.showLoginAddPasswordBox();
             }
-            if(!user.email){
+            else if(!user.email){
                 util.dialog.showLoginAddEmailAndPasswordBox();
             }
         }

@@ -87,6 +87,13 @@
 				background: transparent;
 				border: none;
 
+				span{
+					color: $blue-color;
+					position: relative;
+					top: 2px;
+				}
+
+
 				&:focus{
 					outline: none;
 				}
@@ -94,6 +101,7 @@
 				img{
 					width: 36px;
 					height: 28px;
+					margin-right: 5px;
 				}
 			}
 
@@ -111,6 +119,8 @@
 			border-radius: 0;
 			border-color: #c5c5c5;
 			width: 190px;
+			left: auto;
+			right: 0;
 
 			a{
 				line-height: 42px;

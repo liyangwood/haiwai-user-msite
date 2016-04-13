@@ -638,3 +638,40 @@ KG.Class.define('HWSiteCouponDetailComp', {
 		});
 	}
 });
+
+KG.Class.define('HWBaseAdsBanner', {
+	ParentClass : 'BaseComponent',
+	getTemplate : function(){
+		return [
+			'<div class="hw-HWBaseAdsBanner">',
+				'<div class="hw-border"></div>',
+				'<div class="cb">',
+					'<a href="../site/landing.html" class="hw-btn hw-blue-btn">商家免费入驻</a>',
+					'<p class="h4">赠送文学城首页广告30天</p>',
+				'</div>',
+				'<div class="cc">',
+					'<p class="pa">如何获得？</p>',
+					'<img src="../../image/adsprofile.png" />',
+					'<p class="pb">1. 免费创建店铺<br/>2. 选择广告模板，3分钟自制广告<br/>3. 广告发布到文学城首页30天</p>',
+				'</div>',
+			'</div>'
+		].join('');
+	}
+});
+KG.Class.define('HWBaseAdsBanner1', {
+	ParentClass : 'BaseComponent',
+	getTemplate : function(){
+		return [
+			'<div class="hw-HWBaseAdsBanner hw-HWBaseAdsBanner1">',
+				'<div class="hw-border"></div>',
+				'<div class="cb">',
+					'<a href="../site/landing.html" class="hw-btn hw-blue-btn">商家免费入驻</a>',
+				'</div>',
+				'<div class="cc">',
+					'<p class="h4">赠送文学城首页广告一个月</p>',
+					'<img src="../../image/adsprofile.png" />',
+				'</div>',
+			'</div>'
+		].join('');
+	}
+});

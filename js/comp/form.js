@@ -209,6 +209,8 @@ KG.Class.define('MybizArticleForm', {
                 var img = '<img style="max-width:100%;" src="'+KG.config.SiteRoot+url+'" />';
                 ck.insertHtml(img);
             });
+
+            file.val('');
         });
 
         this.ck.on('instanceReady', function(){

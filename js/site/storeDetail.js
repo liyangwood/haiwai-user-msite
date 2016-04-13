@@ -151,7 +151,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					'<a href="#hw-id-reply" class="hw-rp">{{biz.commentnum}}条评论</a>',
 					'<p class="hw-p">地址：{{biz | storeFullAddress}}</p>',
 					'<p class="hw-p">特色：{{biz.tag_name}}</p>',
-					'<p class="hw-p">电话：{{biz.tel}}</p>',
+					'<p class="hw-p">电话：{{biz.tel | formatPhone}}</p>',
 					'{{if biz.events&&biz.events[0]}}<p param="{{biz.events[0].pk_id}}" class="hw-coupon js_coupon_item"><i class="icon"></i>{{biz.events[0].subject}}</p>{{/if}}',
 				'</div>',
 				'<b class="hw-act js_fav" style="left:750px;"><i class="icon fa fa-heart-o"></i>收藏</b>',

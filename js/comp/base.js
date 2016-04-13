@@ -112,6 +112,17 @@
     KG.Class.define('Header', {
         ParentClass : 'BaseComponent',
         getTemplate : function(){
+
+            var R = [
+                '<div class="dropdown-menu" aria-labelledby="js_right_dd_2">',
+                '<a style="border-bottom:1px dashed #ebebeb;" href="../mycount/info.html">'+(KG.user.get('nick')||KG.user.get('email'))+'</a>',
+                '<a href="../myfav/list.html">我的收藏</a>',
+                '<a href="../mycoupon/list.html">我的领取</a>',
+                '<a href="../mysys/index.html">系统消息</a>',
+                '<a href="../mycount/info.html">账户设置</a>',
+                '<a class="js_logout" href="javascript:void(0)">退出登录</a>'
+            ].join('');
+
             return [
                 '<nav class="kg-header-comp">',
                     '<div class="container" id="js_header_comp">',
@@ -133,7 +144,8 @@
                     '<div class="dropdown" style="margin-right: 40px;">',
                     '<button data-href="../mybiz/index.html" id="js_right_dd_1" type="button" data-toggle="dropdown"' +
                     ' data-hover="dropdown" aria-haspopup="true" aria-expanded="false">',
-                    '<img src="../../image/aa.png" />',
+                        '<img src="../../image/aa.png" />',
+                        '<span>我的店铺</span>',
                     '</button>',
                     '<div class="dropdown-menu" aria-labelledby="js_right_dd_1">',
                     '<a href="../mybiz/index.html">我的店铺</a>',
@@ -146,34 +158,24 @@
                     '<button data-href="../myfav/list.html" id="js_right_dd_2" class="c2" type="button" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">',
                     '<img src="{{user.image}}" />',
                     '</button>',
-                    '<div class="dropdown-menu" aria-labelledby="js_right_dd_2">',
-                    '<a href="../myfav/list.html">我的收藏</a>',
-                    '<a href="../mycoupon/list.html">我的领取</a>',
-                    '<a href="../mysys/index.html">系统消息</a>',
-                    '<a href="../mycount/info.html">账户设置</a>',
-                    '<a class="js_logout" href="javascript:void(0)">退出登录</a>',
+                    R,
                     '</div>',
                 '</div>',
                 '{{else if user.isLogin && !user.has_biz}}',
                 '<div class="right">',
 
-                    '<a style="float: left;margin-right: 20px;" class="hw-light-btn hw-btn" href="../site/landing.html">我是商家</a>',
+                    '<a style="float: left;margin-right: 20px;" class="hw-light-btn hw-btn" href="../site/landing.html">商家入驻</a>',
 
                     '<div style="top:3px;" class="dropdown">',
                     '<button data-href="../myfav/list.html" id="js_right_dd_2" class="c2" type="button" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">',
                     '<img src="{{user.image}}" />',
                     '</button>',
-                    '<div class="dropdown-menu" aria-labelledby="js_right_dd_2">',
-                    '<a href="../myfav/list.html">我的收藏</a>',
-                    '<a href="../mycoupon/list.html">我的领取</a>',
-                    '<a href="../mysys/index.html">系统消息</a>',
-                    '<a href="../mycount/info.html">账户设置</a>',
-                    '<a class="js_logout" href="javascript:void(0)">退出登录</a>',
+                    R,
                     '</div>',
                 '</div>',
                 '{{else}}',
                 '<div class="right">',
-                    '<a class="hw-light-btn hw-btn" href="../site/landing.html">我是商家</a>',
+                    '<a class="hw-light-btn hw-btn" href="../site/landing.html">商家入驻</a>',
                     '<a href="javascript:void(0)" class="hw-a js_login">登录</a>',
                     '<a href="javascript:void(0)" class="hw-a js_reg">注册</a>',
 
@@ -411,9 +413,17 @@
                     password : val
                 }, function(flag, rs){
                     if(flag){
+                        util.dialog.setHiddenDialogFn(null);
                         util.toast.alert('设置成功');
+                    }else{
+                        alert(rs);
                     }
                 });
+            });
+        },
+        initEnd : function(){
+            util.dialog.setHiddenDialogFn(function(){
+                location.href = '../site/landing.html';
             });
         }
     });
@@ -466,12 +476,21 @@
 
                 KG.request.addUserEmailAndPassword({
                     email : el,
-                    password : pwd
+                    password : val
                 }, function(flag, rs){
+
                     if(flag){
+                        util.dialog.setHiddenDialogFn(null);
                         util.toast.alert('设置成功');
+                    }else{
+                        alert(rs);
                     }
                 });
+            });
+        },
+        initEnd : function(){
+            util.dialog.setHiddenDialogFn(function(){
+                location.href = '../site/landing.html';
             });
         }
     });

@@ -1246,7 +1246,7 @@ KG.request = {
     /*
     * func=passport&act=complete_mobile_login&email=sidazhong@gmail.com&password=123456
     * */
-    addUserEmailAndPassword : function(){
+    addUserEmailAndPassword : function(opts, success, error){
         var data = {
             func : 'passport',
             act : 'complete_mobile_login',

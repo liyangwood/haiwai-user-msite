@@ -356,11 +356,16 @@ label.require:after {
       .kg-header-comp .right .dropdown button {
         background: transparent;
         border: none; }
+        .kg-header-comp .right .dropdown button span {
+          color: #37bccd;
+          position: relative;
+          top: 2px; }
         .kg-header-comp .right .dropdown button:focus {
           outline: none; }
         .kg-header-comp .right .dropdown button img {
           width: 36px;
-          height: 28px; }
+          height: 28px;
+          margin-right: 5px; }
       .kg-header-comp .right .dropdown .c2 img {
         width: 30px;
         height: 30px;
@@ -369,7 +374,9 @@ label.require:after {
       padding: 0;
       border-radius: 0;
       border-color: #c5c5c5;
-      width: 190px; }
+      width: 190px;
+      left: auto;
+      right: 0; }
       .kg-header-comp .right .dropdown-menu a {
         line-height: 42px;
         color: #4a4a4a;
@@ -2127,6 +2134,51 @@ label.require:after {
       line-height: 36px;
       font-size: 14px;
       margin-top: 15px; }
+
+.hw-HWBaseAdsBanner {
+  width: 230px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #ffffff;
+  height: 444px;
+  text-align: center; }
+  .hw-HWBaseAdsBanner .hw-border {
+    background: url("../image/ads_border.png");
+    height: 6px; }
+  .hw-HWBaseAdsBanner .cb {
+    padding: 30px 0;
+    border-bottom: 1px dotted #c5c5c5;
+    margin: 0 8px; }
+  .hw-HWBaseAdsBanner .hw-btn {
+    font-weight: normal;
+    margin: 0 auto;
+    width: 148px; }
+  .hw-HWBaseAdsBanner .h4 {
+    font-size: 18px;
+    color: #37bccd;
+    margin: 25px auto 0; }
+  .hw-HWBaseAdsBanner .cc {
+    padding: 20px 15px; }
+  .hw-HWBaseAdsBanner .pa {
+    font-size: 18px;
+    color: #7d7d7d;
+    margin: 0 auto; }
+  .hw-HWBaseAdsBanner img {
+    margin: 15px auto 25px;
+    width: 160px;
+    height: 90px; }
+  .hw-HWBaseAdsBanner .pb {
+    font-size: 13px;
+    line-height: 21px;
+    color: #7d7d7d;
+    text-align: left; }
+
+.hw-HWBaseAdsBanner1 {
+  width: 280px;
+  height: 275px; }
+  .hw-HWBaseAdsBanner1 .h4 {
+    margin: 0 auto; }
 
 .hw-ad {
   width: 160px;

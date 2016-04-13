@@ -236,7 +236,12 @@
         }
     };
 
+
+    var hiddenDialogFn = null;
     util.dialog = {
+        setHiddenDialogFn : function(fn){
+            hiddenDialogFn = fn;
+        },
         init : function(){
             var html = [
                 '<div class="modal fade" id="kg_modal_dialog" tabindex="-1" role="dialog">',
@@ -256,7 +261,10 @@
 
                 box.empty();
 
-
+                if(hiddenDialogFn){
+                    hiddenDialogFn();
+                    hiddenDialogFn = null;
+                }
             });
 
 
@@ -804,6 +812,12 @@
         }
 
         return KG.config.SiteRoot + logo;
+    });
+    template.helper('formatPhone', function(num){
+        var rs = num.toString().split('');
+        rs.splice(3, 0, '-');
+        rs.splice(7, 0, '-');
+        return rs.join('');
     });
 })();
 
