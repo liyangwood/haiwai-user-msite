@@ -1075,7 +1075,7 @@ KG.request = {
             func : 'passport',
             act : 'modify_password',
             email : opts.email,
-            checkpassword : opts.check,
+            check_password : opts.check,
             password : opts.password
         };
 
@@ -1239,6 +1239,20 @@ KG.request = {
             postid : opts.id
         };
 
+        data = util.addUserIdToRequestData(data);
+        return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=passport&act=complete_mobile_login&email=sidazhong@gmail.com&password=123456
+    * */
+    addUserEmailAndPassword : function(){
+        var data = {
+            func : 'passport',
+            act : 'complete_mobile_login',
+            email : opts.email,
+            password : opts.password
+        };
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
     }

@@ -464,7 +464,14 @@
                     pwd.showError();
                 }
 
-
+                KG.request.addUserEmailAndPassword({
+                    email : el,
+                    password : pwd
+                }, function(flag, rs){
+                    if(flag){
+                        util.toast.alert('设置成功');
+                    }
+                });
             });
         }
     });
