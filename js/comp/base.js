@@ -124,8 +124,8 @@
             ].join('');
 
             return [
-                '<nav class="kg-header-comp">',
-                    '<div class="container" id="js_header_comp">',
+                '<nav class="kg-header-comp" id="js_header_comp">',
+                    '<div class="container">',
 
                     '<a class="logo" href="/"></a>',
                     '<div class="hw-loc js_loc" style="display: none;">',
@@ -279,6 +279,13 @@
                 }
 
             }).blur();
+        },
+
+        getCurrentLocation : function(){
+            var name = this.elem.find('.js_loc').find('span').html();
+            return {
+                name : name
+            };
         }
     });
 

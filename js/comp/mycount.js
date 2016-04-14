@@ -18,6 +18,17 @@ KG.Class.define('MycountLeftNav', {
         });
     },
 
+    initEvent : function(){
+
+        this.elem.find('.js_password').click(function(){
+            if(!KG.user.get('email')){
+                util.toast.showError('请先设置注册邮箱！');
+                return false;
+            }
+
+        });
+    },
+
     initEnd : function(){
         this.elem.find('.js_'+this.data.page).addClass('active');
     }

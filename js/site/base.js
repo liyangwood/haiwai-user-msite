@@ -686,7 +686,7 @@ KG.Class.define('HWBaseAdsBanner1', {
 					'<a href="../site/landing.html" class="hw-btn hw-blue-btn">商家免费入驻</a>',
 				'</div>',
 				'<div class="cc">',
-					'<p class="h4">赠送文学城首页广告一个月</p>',
+					'<p class="h4">赠送文学城首页广告30天</p>',
 					'<img src="../../image/adsprofile.png" />',
 				'</div>',
 			'</div>'

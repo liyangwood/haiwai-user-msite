@@ -824,6 +824,7 @@
         }catch(e){
             h = html.replace(/<([^>]*)>/g, '');
         }
+        h = h.replace(/\n/g, '<br/>');
         return h;
     });
 

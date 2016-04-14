@@ -152,6 +152,11 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					'<p class="hw-p">地址：{{biz | storeFullAddress}}</p>',
 					'<p class="hw-p">特色：{{biz.tag_name}}</p>',
 					'<p class="hw-p">电话：{{biz.tel | formatPhone}}</p>',
+
+					'{{if biz.wechat}}',
+					'<p class="hw-p">微信号 : {{biz.wechat}}</p>',
+					'{{/if}}',
+
 					'{{if biz.events&&biz.events[0]}}<p param="{{biz.events[0].pk_id}}" class="hw-coupon js_coupon_item"><i class="icon"></i>{{biz.events[0].subject}}</p>{{/if}}',
 				'</div>',
 				'<b class="hw-act js_fav" style="left:750px;"><i class="icon fa fa-heart-o"></i>收藏</b>',
@@ -165,7 +170,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			'<div style="margin-top: 16px;" class="c-box">',
 				'<dt class="c-title"><p>简介</p></dt>',
 				'<dd class="c-content hw-brief">',
-					'{{biz.briefintro | htmlToText}}',
+					'{{#biz.briefintro | htmlToText}}',
 				'</dd>',
 			'</div>'
 		].join('');
@@ -187,9 +192,6 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					'<p class="hw-la">网址 : <a target="_blank" href="{{biz.website}}">{{biz.website}}</a></p>',
 					'{{/if}}',
 
-					'{{if biz.wechat}}',
-					'<p class="hw-la">微信号 : {{biz.wechat}}</p>',
-					'{{/if}}',
 				'</dd>',
 			'</div>'
 		].join('');
@@ -1181,7 +1183,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			'<div style="display: none;" class="hw-store-bottom-ads">',
 				'<b class="hw-close js_close"><i class="icon fa fa-times-circle"></i></b>',
 				'<dd>',
-					'<span>一分钟创建广告，免费发布到<a target="_blank" href="http://www.wenxuecity.com">文学城</a>首页一个月</span>',
+					'<span>3分钟创建广告，免费发布到<a target="_blank" href="http://www.wenxuecity.com">文学城</a>首页30天</span>',
 					'<a href="../mybiz/createAds.html?store='+this.data.id+'" target="_blank" class="hw-btn' +
 					' hw-blue-btn">马上创建</a>',
 				'</dd>',
