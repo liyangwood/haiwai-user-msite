@@ -904,10 +904,44 @@ label.require:after {
     margin: 0 8px;
     text-align: center;
     font-weight: normal;
-    font-size: 12px;
-    color: #9b9b9b;
+    font-size: 16px;
+    color: #4a4a4a;
     line-height: 36px;
     border-bottom: 1px solid #ebebeb; }
+  .hw-HWMybizIndexStoreAdsBlock .cg {
+    position: relative;
+    padding: 132px 12px 25px 12px;
+    font-size: 12px;
+    color: #4a4a4a;
+    text-align: left; }
+    .hw-HWMybizIndexStoreAdsBlock .cg img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 240px;
+      height: 108px; }
+    .hw-HWMybizIndexStoreAdsBlock .cg a {
+      color: #37bccd;
+      font-size: 12px;
+      display: inline; }
+    .hw-HWMybizIndexStoreAdsBlock .cg .hw-btn {
+      background: #f4a62a;
+      display: block;
+      font-size: 14px;
+      width: 120px;
+      height: 40px;
+      line-height: 40px;
+      color: #ffffff;
+      font-weight: normal;
+      margin: 25px auto 0; }
+      .hw-HWMybizIndexStoreAdsBlock .cg .hw-btn:hover {
+        background: #e4a62a; }
+  .hw-HWMybizIndexStoreAdsBlock .hw-btn {
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 5px auto 20px; }
   .hw-HWMybizIndexStoreAdsBlock .cf {
     margin: 18px 10px 15px;
     font-size: 12px;
@@ -917,12 +951,6 @@ label.require:after {
       color: #37bccd;
       font-size: 12px;
       display: inline; }
-  .hw-HWMybizIndexStoreAdsBlock .hw-btn {
-    height: 28px;
-    line-height: 28px;
-    font-size: 14px;
-    font-weight: normal;
-    margin: 5px auto 20px; }
   .hw-HWMybizIndexStoreAdsBlock .hw-showing .hw-ad, .hw-HWMybizIndexStoreAdsBlock .hw-waiting .hw-ad {
     margin-top: 10px; }
   .hw-HWMybizIndexStoreAdsBlock .hw-showing .cf, .hw-HWMybizIndexStoreAdsBlock .hw-waiting .cf {
@@ -2214,7 +2242,7 @@ label.require:after {
     color: #7d7d7d;
     margin: 0 auto; }
   .hw-HWBaseAdsBanner img {
-    margin: 15px auto 25px;
+    margin: 20px auto 25px;
     width: 160px;
     height: 90px; }
   .hw-HWBaseAdsBanner .pb {
@@ -2222,6 +2250,15 @@ label.require:after {
     line-height: 21px;
     color: #7d7d7d;
     text-align: left; }
+  .hw-HWBaseAdsBanner .pb1 {
+    font-family: PingFangSC-Semi;
+    color: #f4a62a;
+    font-size: 22px;
+    line-height: 34px;
+    margin-bottom: 0;
+    font-weight: 700; }
+  .hw-HWBaseAdsBanner .pb2 {
+    font-size: 26px; }
 
 .hw-HWBaseAdsBanner1 {
   width: 280px;

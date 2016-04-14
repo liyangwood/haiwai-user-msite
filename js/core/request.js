@@ -1255,5 +1255,16 @@ KG.request = {
         };
         data = util.addUserIdToRequestData(data);
         return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=passport&act=get_ip_region
+    * */
+    getCurrentRegionByIP : function(opts, success, error){
+        var data = {
+            func : 'passport',
+            act : 'get_ip_region'
+        };
+        return this.ajax(data, success, error);
     }
 };

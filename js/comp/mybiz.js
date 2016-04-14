@@ -809,7 +809,13 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
         ].join('');
     },
     setTitle : function(title){
-        this.elem.find('.js_title').html(title);
+        if(title){
+            this.elem.find('.js_title').html(title).show();
+        }
+        else{
+            this.elem.find('.js_title').hide();
+        }
+
     },
     showSelectBizDialog : function(list, callback){
         var self = this;
@@ -895,10 +901,13 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
     showCreateBox : function(){
         var self = this;
         var h = [
-            '<div class="cf">',
+            '<div class="cg">',
+            '<img src="../../image/adsbanner1.png" />',
             '我们为店主提供<a href="http://www.wenxuecity.com" target="_blank">文学城首页</a>价值$300一个月免费广告服务，地理定向推广您在海外同城的店铺。一分钟即可自助创建160*90的图片广告。无需任何预付费信息，创建成功审核后自动发布。',
+
+                '<a class="hw-btn js_btn" href="javascript:void(0)">免费创建广告</a>',
             '</div>',
-            '<a class="hw-btn hw-blue-btn js_btn" href="javascript:void(0)">免费创建广告</a>'
+
         ].join('');
 
         this.jq.box.html(h);
@@ -912,7 +921,11 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
             });
         });
 
-        this.setTitle('文学城首页广告位，首月免费');
+        this.setTitle();
+        this.elem.css({
+            border : '1px solid #f4a62a',
+            'border-radius' : '2px'
+        });
     },
     showShowingBox : function() {
         var h = decodeURIComponent(this.ads.share);

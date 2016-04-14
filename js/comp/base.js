@@ -261,7 +261,10 @@
                 this.elem.find('.js_search').find('input').val(x);
             }
 
-            var regionName = util.cookie.get('region_cn') || '其它地区';
+            var regionName = util.cookie.get('region_cn');
+            if(!regionName){
+                regionName = '旧金山湾区';
+            }
             this.elem.find('.js_loc').show().find('span').html(regionName);
 
             this.elem.find('[data-hover="dropdown"]').dropdownHover();
@@ -346,13 +349,46 @@
                         name : key
                     });
                 });
-                list.push({
-                    id : KG.user.get().subregion_detail.id,
-                    cn : '其它地区',
-                    name : 'qita'
-                });
 
-                next({list : list});
+                var rid = util.cookie.get('region_IP_ID');
+                if(KG.user.get('isLogin')){
+                    if(!rid || KG.user.get().subregion_detail.id !== rid){
+                        rid = KG.user.get().subregion_detail.id
+                        util.cookie.set('region_IP_ID', rid);
+                    }
+
+                    list.push({
+                        id : rid,
+                        cn : '其它地区',
+                        name : 'qita'
+                    });
+
+                    next({list : list});
+                }
+                else{
+
+                    if(rid){
+                        list.push({
+                            id : rid,
+                            cn : '其它地区',
+                            name : 'qita'
+                        });
+                        next({list : list});
+                    }
+                    else{
+                        KG.request.getCurrentRegionByIP({}, function(flag, rs){
+                            util.cookie.set('region_IP_ID', rs);
+                            list.push({
+                                id : rs,
+                                cn : '其它地区',
+                                name : 'qita'
+                            });
+                            next({list : list});
+                        });
+                    }
+
+                }
+
             });
 
 
@@ -377,19 +413,24 @@
             });
         },
         initEnd : function(){
-            var id = util.cookie.get('regionID') || KG.user.get().subregion_detail.id;
+            //var id = util.cookie.get('regionID');
+            //
+            //if(!id){
+            //    id = util.cookie.get('region_IP_ID');
+            //}
+
+            var name = KG.component.getObj($('#js_header_comp')).getCurrentLocation().name;
+
             var index = 0;
-            if(id){
+            if(name){
                 index = _.findIndex(this.data.list, function(one){
-                    return one.id.toString() === id;
+                    return one.cn.toString() === name;
                 });
                 if(index < 0){
                     index = this.data.list.length-1;
                 }
-
-                this.elem.find('.js_one').eq(index).addClass('active');
-
             }
+            this.elem.find('.js_one').eq(index).addClass('active');
 
 
 

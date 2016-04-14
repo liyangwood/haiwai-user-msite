@@ -77,16 +77,26 @@
             .hw-coupon{
                 margin-top: 12px;
                 color: #f4a62a;
-                font-size: 20px;
+                font-size: 14px;
+                line-height: 28px;
                 cursor: pointer;
+                background: #ffffff;
+                border: 1px dashed $yellow-color;
+                display: inline-block;
+                height: 28px;
+                padding: 0 12px 0 24px;
+                position: relative;
+                left: 18px;
+                border-radius: 3px;
 
                 .icon{
                     background: url('../image/store_coupon.png');
-                    width: 30px;
-                    height: 30px;
                     background-size: 100%;
-                    margin-right: 8px;
-                    vertical-align: middle;
+                    width: 32px;
+                    height: 33px;
+                    position: absolute;
+                    top: -5px;
+                    left: -18px;
                 }
             }
         }

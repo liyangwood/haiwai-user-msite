@@ -474,7 +474,7 @@ KG.Class.define('MybizCouponForm', {
             '<label class="require">优惠结束时间</label>',
             '<label style="right:190px;" class="control-label hw-err"></label>',
             '<input style="width: 410px;display: block;" type="text" class="form-control js_endDate" readonly="true" placeholder="'+moment().add(14, 'days').format("MM/DD/YYYY")+'">',
-            '<label style="vertical-align: top;position: absolute;top: 14px;left:425px;">不限结束时间<input style="position: relative; top: 13px;left:8px;" class="js_endlimit" type="checkbox" /></label>',
+            '<label style="vertical-align: top;position: absolute;top: 14px;left:425px;"><input style="position: relative; top: 13px;margin-right:8px;" class="js_endlimit" type="checkbox" />不限结束时间</label>',
             //'<input style="width: 140px;display: inline-block;margin-left: 50px;" type="text" class="form-control js_endTime" placeholder="8:30AM">',
             '</div>',
 

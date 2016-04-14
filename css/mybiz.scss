@@ -96,12 +96,57 @@
 		margin: 0 8px;
 		text-align: center;
 		font-weight: normal;
-		font-size: 12px;
-		color: #9b9b9b;
+		font-size: 16px;
+		color: $color-4a;
 		line-height: 36px;
 		border-bottom: 1px solid #ebebeb;
 	}
 
+	.cg{
+		position: relative;
+		padding: 132px 12px 25px 12px;
+		font-size: 12px;
+		color: $color-4a;
+		text-align: left;
+
+		img{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 240px;
+			height: 108px;
+		}
+
+		a{
+			color: $blue-color;
+			font-size: 12px;
+			display: inline;
+		}
+
+		.hw-btn{
+			background: $yellow-color;
+			display: block;
+			font-size: 14px;
+			width: 120px;
+			height: 40px;
+			line-height: 40px;
+			color: #ffffff;
+			font-weight: normal;
+			margin: 25px auto 0;
+
+			&:hover{
+				background: #e4a62a;
+			}
+		}
+	}
+
+	.hw-btn{
+		height: 36px;
+		line-height: 36px;
+		font-size: 14px;
+		font-weight: normal;
+		margin: 5px auto 20px;
+	}
 	.cf{
 		margin: 18px 10px 15px;
 		font-size: 12px;
@@ -113,14 +158,10 @@
 			font-size: 12px;
 			display: inline;
 		}
+
+
 	}
-	.hw-btn{
-		height: 28px;
-		line-height: 28px;
-		font-size: 14px;
-		font-weight: normal;
-		margin: 5px auto 20px;
-	}
+
 
 	.hw-showing, .hw-waiting{
 		.hw-ad{

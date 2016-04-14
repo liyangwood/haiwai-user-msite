@@ -310,7 +310,7 @@
         margin: 0 auto;
     }
     img{
-        margin: 15px auto 25px;
+        margin: 20px auto 25px;
         width: 160px;
         height: 90px;
     }
@@ -319,6 +319,18 @@
         line-height: 21px;
         color: $color-7d;
         text-align: left;
+    }
+
+    .pb1{
+        font-family: PingFangSC-Semi;
+        color: $yellow-color;
+        font-size: 22px;
+        line-height: 34px;
+        margin-bottom: 0;
+        font-weight: 700;
+    }
+    .pb2{
+        font-size: 26px;
     }
 }
 .hw-HWBaseAdsBanner1{
