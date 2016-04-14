@@ -573,7 +573,8 @@
                     '<div class="c-right">',
                         '<h4>用以下账号直接登录</h4>',
                         '<a href="javascript:void(0)" class="hw-btn hw-weixin"><i class="icon"></i>微信扫一扫登录</a>',
-                        '<a href="javascript:void(0)" class="hw-btn hw-fb"><i class="icon"></i>facebook登录</a>',
+                        '<a href="javascript:void(0)" data-loading-text="正在登录..." class="hw-btn hw-fb"><i' +
+                        ' class="icon"></i>facebook登录</a>',
                     '</div>',
 
                     '<div class="c-btm">',
@@ -716,7 +717,11 @@
                 return false;
             });
             this.elem.on('click', '.hw-fb', function(){
+                var o = $(this);
+
+                o.button('loading');
                 util.Facebook.login(function(){
+                    o.button('reset');
                     util.dialog.hide();
                 });
             });

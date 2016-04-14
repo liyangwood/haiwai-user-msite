@@ -1130,6 +1130,18 @@ KG.request = {
         };
         return this.ajax(data, success, error);
     },
+    oauthLoginWithFacebook : function(opts, success, error){
+        var data = {
+            func : 'passport',
+            act : 'mobile_login',
+            login_type : 'facebook',
+            code : opts.openID,
+            email : opts.email,
+            nick : opts.nick,
+            image : opts.image
+        };
+        return this.ajax(data, success, error);
+    },
 
     /*
     * func=event&act=upload&uploadfield[]=data:image/png;base64,iVBORw0KGgoAAAAN&uploadfield[]=data:image/png;base64,iVBORw0KGgoAAAAN&token=&eventID=129400&userid=10051

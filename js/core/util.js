@@ -882,14 +882,24 @@ $(function(){
     ].join(',');
     window.util.Facebook = {
         getTokenWithData : function(data, callback){
-            alert(JSON.stringify(data));
+            //alert(JSON.stringify(data));
+            KG.request.oauthLoginWithFacebook({
+                openID : data.id,
+                email : data.email,
+                nick : data.name,
+                image : data.picture.data.url
+            }, function(flag, rs){
+                console.log(flag, rs);
+                callback();
+            });
 
-            callback();
+
         },
 
         login : function(callback){
-            FB.login(function(res){
-                console.log(res);
+
+
+            FB.getLoginStatus(function(res){
                 if(res.status === 'connected'){
                     FB.api('/me', function(response) {
                         console.log(response);
@@ -897,12 +907,26 @@ $(function(){
                     }, {fields : filed});
                 }
                 else{
-                    util.toast.showError('登录失败');
-                    _.delay(function(){
-                        location.reload();
-                    }, 2000);
+                    FB.login(function(res){
+                        console.log(res);
+                        if(res.status === 'connected'){
+                            FB.api('/me', function(response) {
+                                console.log(response);
+                                util.Facebook.getTokenWithData(response, callback);
+                            }, {fields : filed});
+                        }
+                        else{
+                            util.toast.showError('登录失败');
+                            callback(false);
+                            _.delay(function(){
+                                location.reload();
+                            }, 2000);
+                        }
+                    });
                 }
             });
+
+
         }
     };
 });
