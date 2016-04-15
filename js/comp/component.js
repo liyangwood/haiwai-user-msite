@@ -69,7 +69,7 @@ KG.Class.define('BaseInput', {
 	setBlurEvent : function(fn){
 		var self = this;
 		this.elem.find('input').blur(function(){
-			var val = $(this).val();
+			var val = self.getValue();
 			fn.call(self, val);
 		});
 	},
@@ -96,10 +96,12 @@ KG.Class.define('BaseInput', {
 	},
 
 	getValue : function(){
-		return this.elem.find('input').val();
+		var o = this.elem.find('input');
+
+		return o.val();
 	},
 	setValue : function(v){
-		this.elem.find('input').val(v).removeClass('blur');
+		this.elem.find('input').val(v);
 	},
 	showError : function(msg){
 		if(msg){

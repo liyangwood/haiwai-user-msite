@@ -33,25 +33,19 @@
         doProcessPlaceholder : function(){
             this.elem.find('input[placeholder]').add(this.elem.find('textarea[placeholder]')).each(function(){
                 var o = $(this);
-                if(o.attr('type') === 'password'){
-                    return;
-                }
+                var tmp = o.attr('placeholder');
+                o.focus(function(){
+                    var val = o.val();
+                    if(!val){
+                        o.removeAttr('placeholder');
+                    }
+                }).blur(function(){
+                    var val = o.val();
+                    if(!val){
+                        o.attr('placeholder', tmp);
+                    }
+                });
 
-                if(!o.attr('action-placeholder')){
-                    var h = o.attr('placeholder');
-                    o.focus(function(){
-                        var val = o.val();
-                        if(val === h){
-                            o.removeClass('blur').val('');
-                        }
-                    }).blur(function(){
-                        var val = o.val();
-                        if(!val){
-                            o.addClass('blur').val(h);
-                        }
-                    }).removeAttr('placeholder').attr('action-placeholder', 1).blur();
-
-                }
             });
         },
         getTemplate : function(){},
