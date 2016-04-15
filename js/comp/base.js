@@ -653,6 +653,7 @@
 
             var h = [
                 '<h4>登录海外同城</h4>',
+                '<div class="c-error"></div>',
                 '<div role="BaseInput" data-type="text" class="js_email" placeholder="邮箱" ></div>',
                 '<div role="BaseInput" data-type="password" class="js_pwd" placeholder="密码" ></div>',
                 '<button class="hw-btn hw-blue-btn js_loginBtn">登录</button>',
@@ -699,6 +700,7 @@
 
         setRegBox : function(){
             var h = [
+                '<div class="c-error"></div>',
                 '<div role="BaseInput" data-type="text" class="js_email" placeholder="邮箱" ></div>',
                 '<div role="BaseInput" data-type="password" class="js_pwd" placeholder="密码" ></div>',
                 '<div role="BaseInput" data-type="password" class="js_pwd2" placeholder="确认密码" ></div>',
@@ -886,6 +888,18 @@
                     }
                 });
             });
+        },
+
+        showError : function(error){
+            var obj = null;
+            if(error.indexOf('密码') !== -1){
+                obj = KG.component.getObj(this.jq.left.find('.js_pwd'));
+            }
+            else{
+                obj = KG.component.getObj(this.jq.left.find('.js_email'));
+            }
+
+            obj.showError(error);
         },
 
         getLoginObj : function(){

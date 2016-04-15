@@ -615,6 +615,7 @@ KG.Class.define('MybizStoreInfoFormStep1', {
             else{
                 jq.zip.showError();
             }
+
         });
 
         jq.city.setBlurEvent(function(val){
@@ -684,6 +685,26 @@ KG.Class.define('MybizStoreInfoFormStep1', {
                 }
             }
 
+        });
+
+        var jq = this.getElemObj();
+        jq.zip.elem.find('input').keyup(function(){
+            var val = jq.zip.getValue();
+            if(val.length === 5){
+                KG.request.getRegionInfoByZipcode({
+                    zip : val
+                }, function(flag, rs){
+                    if(flag){
+                        console.log(rs);
+                        if(rs.city){
+                            jq.city.setValue(rs.city);
+                        }
+                        if(rs.state){
+                            jq.state.val(rs.state);
+                        }
+                    }
+                });
+            }
         });
 
         this.initBlurEvent();

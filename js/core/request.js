@@ -1278,5 +1278,17 @@ KG.request = {
             act : 'get_ip_region'
         };
         return this.ajax(data, success, error);
+    },
+
+    /*
+    * func=biz&act=get_region_by_zipcode&zipcode=95035
+    * */
+    getRegionInfoByZipcode : function(opts, success, error){
+        var data = {
+            func : 'biz',
+            act : 'get_region_by_zipcode',
+            zipcode : opts.zip
+        };
+        return this.ajax(data, success, error);
     }
 };

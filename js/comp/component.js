@@ -99,7 +99,7 @@ KG.Class.define('BaseInput', {
 		return this.elem.find('input').val();
 	},
 	setValue : function(v){
-		this.elem.find('input').val(v);
+		this.elem.find('input').val(v).removeClass('blur');
 	},
 	showError : function(msg){
 		if(msg){
