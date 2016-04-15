@@ -431,11 +431,11 @@
                     '</div>',
 
                     '<a class="left carousel-control" href="#cb_cccc" role="button" data-slide="prev">',
-                        '<span class="glyphicon glyphicon-chevron-left glyphicon-menu-left" aria-hidden="true"></span>',
+                        '<span style="top:128px;" class="icon fa fa-angle-left" aria-hidden="true"></span>',
                         '<span class="sr-only">Previous</span>',
                     '</a>',
                     '<a class="right carousel-control" href="#cb_cccc" role="button" data-slide="next">',
-                        '<span class="glyphicon glyphicon-chevron-right glyphicon-menu-right" aria-hidden="true"></span>',
+                        '<span style="top:128px;" class="icon fa fa-angle-right" aria-hidden="true"></span>',
                         '<span class="sr-only">Next</span>',
                     '</a>',
                 '</div>'
@@ -745,6 +745,13 @@
             }
             return rs;
         }
+    };
+
+    util.const = {
+        InputEmail : '请输入邮箱',
+        InputEmailFormatError : '输入邮箱格式不正确',
+        InputPassword : '请输入密码',
+        PasswordNotEqual : '二次输入的密码不一致'
     };
 
 

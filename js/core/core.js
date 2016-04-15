@@ -215,6 +215,29 @@
     };
 
 
+    KG.validate = {
+        email : function(val){
+            if(!val){
+                return [false, util.const.InputEmail];
+            }
+            if(!util.validate.email(val)){
+                return [false, util.const.InputEmailFormatError];
+            }
+
+            return [true];
+        },
+        password : function(val){
+            if(!val){
+                return [false, '请输入密码'];
+            }
+            if(val.length < 6){
+                return [false, '密码长度不能少于6位'];
+            }
+
+            return [true];
+        }
+    };
+
 })();
 
 

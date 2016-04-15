@@ -35,6 +35,9 @@ a:hover, a:link {
 .hand {
   cursor: pointer !important; }
 
+input.blur, textarea.blur {
+  color: #9c9c9c !important; }
+
 .hw-loadingmore-bar {
   padding: 12px 0;
   text-align: center; }
@@ -122,6 +125,13 @@ label.require:after {
   top: 5px;
   font-size: 16px; }
 
+.icon.hw-icon-plus {
+  background: url(../image/plus_upload.png);
+  background-size: 100%;
+  display: inline-block;
+  width: 112px;
+  height: 112px; }
+
 .hw-btn {
   display: inline-block;
   line-height: 40px;
@@ -203,23 +213,26 @@ label.require:after {
       text-align: right;
       width: 288px;
       margin: 5px auto; }
+    .hw-loginRegBoxComp .c-left .hw-comp-BaseInput {
+      width: 288px;
+      margin: 0 auto; }
     .hw-loginRegBoxComp .c-left input {
       width: 288px;
       height: 42px;
       line-height: 42px;
       font-size: 16px;
       color: #7d7d7d;
-      margin-bottom: 20px;
       border: 1px solid #c5c5c5;
       border-radius: 3px;
       padding-left: 10px; }
     .hw-loginRegBoxComp .c-left .hw-btn {
+      margin-top: 15px;
       width: 288px;
       font-size: 16px; }
     .hw-loginRegBoxComp .c-left p {
       font-size: 12px;
       color: #9b9b9b;
-      margin-top: 20px; }
+      margin-top: 5px; }
       .hw-loginRegBoxComp .c-left p a {
         color: #37bccd;
         font-size: 12px; }
@@ -301,6 +314,15 @@ label.require:after {
   align-items: flex-start !important;
   vertical-align: middle; }
 
+.carousel-control {
+  width: 20px;
+  background: 0 0 !important; }
+  .carousel-control .fa {
+    font-size: 48px;
+    color: #787878;
+    position: relative;
+    top: 88px; }
+
 .icon {
   display: inline-block; }
 
@@ -361,7 +383,7 @@ label.require:after {
         color: #9c9c9c; }
   .kg-header-comp .right {
     position: absolute;
-    top: 26px;
+    top: 30px;
     right: 0; }
     .kg-header-comp .right .dropdown {
       float: left; }
@@ -1131,6 +1153,14 @@ label.require:after {
       height: 40px;
       border-radius: 0;
       margin-top: 2px; }
+    .hw-comp-bform .form-group .before_input_icon {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      font-size: 28px;
+      top: 28px;
+      left: 0;
+      color: #787878; }
     .hw-comp-bform .form-group .hw-drop {
       background: transparent;
       border: none;
@@ -1543,8 +1573,7 @@ label.require:after {
 
 .hw-MybizStoreInputDatepicker .ca {
   margin-top: 10px;
-  padding: 5px 0;
-  border-top: 1px dashed #9b9b9b; }
+  padding: 5px 0; }
   .hw-MybizStoreInputDatepicker .ca span {
     font-size: 14px;
     color: #4a4a4a; }
@@ -1553,6 +1582,11 @@ label.require:after {
   .hw-MybizStoreInputDatepicker .ca span.bn {
     color: #37bccd;
     cursor: pointer; }
+.hw-MybizStoreInputDatepicker .cbbox {
+  padding: 15px 0 12px 15px;
+  border: 1px dashed #979797;
+  border-radius: 3px;
+  height: 160px; }
 .hw-MybizStoreInputDatepicker .cb b {
   display: inline-block;
   color: #4a4a4a;
@@ -1576,7 +1610,7 @@ label.require:after {
   .hw-MybizStoreInputDatepicker .cc b {
     width: 64px;
     display: inline-block;
-    margin-right: 12px;
+    margin-right: 10px;
     height: 32px;
     line-height: 32px;
     color: #7d7d7d;
@@ -1593,7 +1627,9 @@ label.require:after {
   height: 36px;
   line-height: 36px;
   font-size: 14px;
-  margin-top: 10px; }
+  margin-top: 15px;
+  float: right;
+  margin-right: 14px; }
 
 .hw-page-createAds {
   background: #f5f5f5;
@@ -2045,7 +2081,7 @@ label.require:after {
   .kg-site-header-nav-comp .hw-box .left .hw-item {
     line-height: 42px;
     height: 52px;
-    border-top: 1px solid #c5c5c5;
+    border-top: 1px solid #e3e3e3;
     border-left: 1px solid #37bccd;
     border-right: 1px solid #37bccd; }
     .kg-site-header-nav-comp .hw-box .left .hw-item .hw-one {

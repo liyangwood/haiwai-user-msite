@@ -48,6 +48,9 @@ a:hover, a:link{
 .hand{
     cursor: pointer !important;
 }
+input.blur, textarea.blur{
+    color: #9c9c9c !important;
+}
 .hw-loadingmore-bar{
     padding: 12px 0;
     text-align: center;
@@ -165,6 +168,14 @@ label.require:after{
     font-size: 16px;
 }
 
+.icon.hw-icon-plus{
+    background: url(../image/plus_upload.png);
+    background-size: 100%;
+    display: inline-block;
+    width: 112px;
+    height: 112px;
+}
+
 
 .hw-btn{
     display: inline-block;
@@ -275,6 +286,11 @@ label.require:after{
             width: 288px;
             margin: 5px auto;
         }
+        
+        .hw-comp-BaseInput{
+            width: 288px;
+            margin: 0 auto;
+        }
 
         input{
             width: 288px;
@@ -282,13 +298,14 @@ label.require:after{
             line-height: 42px;
             font-size: 16px;
             color: $color-7d;
-            margin-bottom: 20px;
+            //margin-bottom: 20px;
             border: 1px solid $border-color;
             border-radius: 3px;
             padding-left: 10px;
         }
 
         .hw-btn{
+            margin-top:15px;
             width: 288px;
             font-size: 16px;
         }
@@ -296,7 +313,7 @@ label.require:after{
         p{
             font-size: 12px;
             color: #9b9b9b;
-            margin-top: 20px;
+            margin-top: 5px;
             
             a{
                 color: $blue-color;
@@ -415,3 +432,16 @@ label.require:after{
     align-items: flex-start !important;
     vertical-align: middle;
 }
+
+.carousel-control{
+    width:20px;
+    background: 0 0 !important;
+
+    .fa{
+        font-size: 48px;
+        color: #787878;
+        position: relative;
+        top: 88px;
+    }
+}
+

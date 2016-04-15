@@ -36,24 +36,103 @@
 
         setLoginBox : function(){
             var h = [
-                '<input style="margin-top: 55px;" type="text" class="hw-input js_email" placeholder="邮箱" />',
-                '<input type="password" style="margin-top: 25px;" class="hw-input js_pwd" placeholder="密码" />',
+                '<div role="BaseInput" data-type="text" class="js_email" placeholder="邮箱"></div>',
+                //'<input style="margin-top: 55px;" type="text" class="hw-input js_email" placeholder="邮箱" />',
+                '<div role="BaseInput" data-type="password" class="js_pwd" placeholder="密码"></div>',
+                //'<input type="password" style="margin-top: 25px;" class="hw-input js_pwd" placeholder="密码" />',
                 '<a href="javascript:void(0)" class="hw-btn hw-blue-btn js_login">立即登录，创建店铺</a>',
                 '<p>还没有海外帐户？<b class="js_toReg">注册</b></p>'
             ].join('');
-            this.jq.box.html(h);
+            this.jq.box.html(h).css({
+                'padding-top' : '50px'
+            });
+
+            this.initLoginBox();
+
+        },
+
+        initLoginBox : function(){
+            KG.component.init(this.jq.box);
+            var x = KG.component.getObj(this.jq.box.find('.js_email'));
+            x.elem.find('input').addClass('hw-input');
+            x.setBlurEvent(function(val){
+                if(!val){
+                    x.showError(util.const.InputEmail);
+                }
+                else if(!util.validate.email(val)){
+                    x.showError(util.const.InputEmailFormatError);
+                }
+                else{
+                    x.showError();
+                }
+            });
+
+            var x1 = KG.component.getObj(this.jq.box.find('.js_pwd'));
+            x1.elem.find('input').addClass('hw-input');
+            x1.setBlurEvent(function(val){
+                if(!val){
+                    this.showError(util.const.InputPassword);
+                }
+                else{
+                    this.showError();
+                }
+            });
         },
 
         setRegBox : function(){
             var h = [
-                '<input style="margin-top: 10px;" type="text" class="hw-input js_email" placeholder="邮箱" />',
-                '<input type="password" style="margin-top: 15px;" class="hw-input js_pwd" placeholder="密码" />',
-                '<input type="password" style="margin-top: 15px;" class="hw-input js_pwd2" placeholder="确认密码" />',
+                '<div role="BaseInput" style="margin-top:-10px;" data-type="text" class="js_email" placeholder="邮箱"' +
+                ' ></div>',
+                '<div role="BaseInput" data-type="password" style="" class="js_pwd" placeholder="密码"' +
+                ' ></div>',
+                '<div role="BaseInput" data-type="password" style="" class="js_pwd2" placeholder="确认密码" ></div>',
                 '<a href="javascript:void(0)" style="margin-top: 15px;" class="hw-btn hw-blue-btn js_reg">立即注册，创建店铺</a>',
                 '<em>点击注册表示您同意海外同城的<a target="_blank" href="../help/terms.html">使用协议</a>和<a href="../help/privacy.html" target="_blank">隐私保护协议</a></em>',
                 '<p>已有海外帐户？<b class="js_toLogin">直接登录</b></p>'
             ].join('');
             this.jq.box.html(h);
+            this.initRegBox();
+        },
+
+        initRegBox : function(){
+            KG.component.init(this.jq.box);
+            var email = KG.component.getObj(this.jq.box.find('.js_email')),
+                pwd = KG.component.getObj(this.jq.box.find('.js_pwd')),
+                pwd2 = KG.component.getObj(this.jq.box.find('.js_pwd2'));
+
+            email.elem.find('input').addClass('hw-input');
+            pwd.elem.find('input').addClass('hw-input');
+            pwd2.elem.find('input').addClass('hw-input');
+
+            email.setBlurEvent(function(val){
+                if(!val){
+                    this.showError(util.const.InputEmail);
+                }
+                else if(!util.validate.email(val)){
+                    this.showError(util.const.InputEmailFormatError);
+                }
+                else{
+                    this.showError();
+                }
+            });
+
+            pwd.setBlurEvent(function(val){
+                if(!val){
+                    this.showError(util.const.InputPassword);
+                }
+                else{
+                    this.showError();
+                }
+            });
+
+            pwd2.setBlurEvent(function(val){
+                if(val!==pwd.getValue()){
+                    this.showError(util.const.PasswordNotEqual);
+                }
+                else{
+                    this.showError();
+                }
+            });
         },
 
         setAfterLoginBox : function(){
@@ -78,18 +157,37 @@
 
             this.elem.on('click', '.js_login', function(e){
                 var o = $(this);
+
+                var obj = {
+                    email : KG.component.getObj(self.jq.box.find('.js_email')),
+                    pwd : KG.component.getObj(self.jq.box.find('.js_pwd'))
+                };
                 var data = {
-                    username  : self.jq.box.find('.js_email').val(),
-                    password : self.jq.box.find('.js_pwd').val()
+                    username  : obj.email.getValue(),
+                    password : obj.pwd.getValue()
                 };
 
                 if(!data.username){
-                    util.toast.showError('请输入邮箱');
+                    obj.email.showError(util.const.InputEmail);
+                    obj.email.focus();
                     return false;
                 }
-                if(!data.password){
-                    util.toast.showError('请输入密码');
+                else if(!util.validate.email(data.username)){
+                    obj.email.showError(util.const.InputEmailFormatError);
+                    obj.email.focus();
                     return false;
+                }
+                else{
+                    obj.email.showError();
+                }
+
+                if(!data.password){
+                    obj.pwd.showError(util.const.InputPassword);
+                    obj.pwd.focus();
+                    return false;
+                }
+                else{
+                    obj.pwd.showError();
                 }
 
                 util.dom.loadingButton(o, true);
@@ -111,23 +209,47 @@
 
             this.elem.on('click', '.js_reg', function(e){
                 var o = $(this);
-                var data = {
-                    email : self.jq.box.find('.js_email').val(),
-                    password : self.jq.box.find('.js_pwd').val(),
-                    confirm_password : self.jq.box.find('.js_pwd2').val()
+                var obj = {
+                    email : KG.component.getObj(self.jq.box.find('.js_email')),
+                    pwd : KG.component.getObj(self.jq.box.find('.js_pwd')),
+                    pwd2 : KG.component.getObj(self.jq.box.find('.js_pwd2'))
                 };
+                var data = {
+                    email : obj.email.getValue(),
+                    password : obj.pwd.getValue(),
+                    confirm_password : obj.pwd2.getValue()
+                };
+
                 if(!data.email){
-                    util.toast.showError('请输入邮箱');
+                    obj.email.showError(util.const.InputEmail);
+                    obj.email.focus();
                     return false;
                 }
-                if(!util.validate.password(data.password)){
-                    util.toast.showError('密码格式不正确');
+                else if(!util.validate.email(data.email)){
+                    obj.email.showError(util.const.InputEmailFormatError);
+                    obj.email.focus();
                     return false;
                 }
-                if(data.password !== data.confirm_password){
-                    util.toast.showError('二次输入的密码不一致');
+                else{
+                    obj.email.showError();
+                }
+                if(!data.password){
+                    obj.pwd.showError(util.const.InputPassword);
+                    obj.pwd.focus();
                     return false;
                 }
+                else{
+                    obj.pwd.showError();
+                }
+                if(data.confirm_password !== data.password){
+                    obj.pwd2.showError(util.const.PasswordNotEqual);
+                    obj.pwd2.focus();
+                    return false;
+                }
+                else{
+                    obj.pwd2.showError();
+                }
+
 
                 util.dom.loadingButton(o, true);
                 KG.user.register(data, function(flag, rs){
@@ -203,10 +325,10 @@
                 '<nav class="kg-header-comp">',
                     '<div class="container" id="js_header_comp">',
 
-                    '<a class="logo" href="/"></a>',
+                    '<a style="top:26px;" class="logo" href="/"></a>',
 
                     '<h1 style="font-weight:400;font-size: 36px;color: #f4a62a;line-height: 50px;margin-left:' +
-                    ' 150px;position:relative;top:-4px;">商家中心</h1>',
+                    ' 150px;position:relative;top:0;">商家中心</h1>',
 
                 '{{if user.isLogin}}',
                 '<div class="right">',

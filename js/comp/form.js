@@ -104,6 +104,19 @@ KG.Class.define('MybizArticleForm', {
         return true;
     },
 
+    initBlurEvent : function(){
+        var jq = this.getElemObj();
+        jq.title.setBlurEvent(function(v){
+            if(!v){
+                jq.title.showError('请输入文章标题');
+            }
+            else{
+                this.showError();
+            }
+        });
+
+    },
+
     initEvent : function(){
         var self = this;
         this.elem.find('.js_btn').click(function(){
@@ -163,7 +176,7 @@ KG.Class.define('MybizArticleForm', {
             });
         }
 
-
+        this.initBlurEvent();
     },
 
     getElemObj : function(){
@@ -254,6 +267,9 @@ KG.Class.define('MybizArticleForm', {
         if(this.prop.type === 'edit'){
             this.setFormValue(this.data.articleData);
         }
+        else{
+            this.setDefaultValue();
+        }
     },
     setFormValue : function(data){
         console.log(data);
@@ -271,6 +287,12 @@ KG.Class.define('MybizArticleForm', {
         }catch(e){}
 
         this.ck.setData(data.msgbody);
+    },
+    setDefaultValue : function(){
+        var c = this.getElemObj();
+        if(this.data.bizList.length === 1){
+            c.biz.setValue(0);
+        }
     }
 });
 
@@ -281,7 +303,7 @@ KG.Class.define('MybizUploadCouponImage', {
         return [
             '<div class="hw-comp-MybizUploadStoreImage hw-coupon-uploadimage">',
             '<div class="hw-add js_add">',
-            '<i class="icon fa fa-plus-square-o"></i>',
+            '<i class="icon hw-icon-plus"></i>',
             '<p>添加新图片</p>',
             '<input class="js_input" type="file" />',
             '</div>',
@@ -464,17 +486,19 @@ KG.Class.define('MybizCouponForm', {
             '<div class="js_title" role="BaseInput" data-label="优惠标题" data-require="true" placeholder="e.g. 美食府金秋品尝会，邀您免费试吃"></div>',
 
             '<div class="form-group">',
-            '<label class="">优惠开始时间</label>',
-            '<label style="right:190px;" class="control-label hw-err"></label>',
-            '<input style="width: 410px;display: block;" type="text" class="form-control js_startDate" readonly="true" placeholder="'+moment().format("MM/DD/YYYY")+'">',
+            '<label class="require">优惠开始时间</label>',
+            '<label style="right:150px;" class="control-label hw-err"></label>',
+            '<i class="before_input_icon icon fa fa-calendar-o js_cal_icon"></i>',
+            '<input style="width: 410px;display: block;left:40px;position:relative;" type="text" class="form-control js_startDate" readonly="true" placeholder="'+moment().format("MM/DD/YYYY")+'">',
             //'<input style="width: 140px;display: inline-block;margin-left: 50px;" type="text" class="form-control js_startTime" placeholder="8:30AM">',
             '</div>',
 
             '<div class="form-group">',
             '<label class="require">优惠结束时间</label>',
-            '<label style="right:190px;" class="control-label hw-err"></label>',
-            '<input style="width: 410px;display: block;" type="text" class="form-control js_endDate" readonly="true" placeholder="'+moment().add(14, 'days').format("MM/DD/YYYY")+'">',
-            '<label style="vertical-align: top;position: absolute;top: 14px;left:425px;"><input style="position: relative; top: 13px;margin-right:8px;" class="js_endlimit" type="checkbox" />不限结束时间</label>',
+            '<label style="right:150px;" class="control-label hw-err"></label>',
+            '<i class="before_input_icon icon fa fa-calendar-o js_cal_icon"></i>',
+            '<input style="width: 410px;display: block;left:40px;position:relative;" type="text" class="form-control js_endDate" readonly="true" placeholder="'+moment().add(14, 'days').format("MM/DD/YYYY")+'">',
+            '<label style="vertical-align: top;position: absolute;top: 14px;left:465px;"><input style="position: relative; top: 13px;margin-right:8px;" class="js_endlimit" type="checkbox" />不限结束时间</label>',
             //'<input style="width: 140px;display: inline-block;margin-left: 50px;" type="text" class="form-control js_endTime" placeholder="8:30AM">',
             '</div>',
 
@@ -549,6 +573,40 @@ KG.Class.define('MybizCouponForm', {
             data.endDate = 'unlimit';
         }
         return data;
+    },
+
+    initBlurEvent : function(){
+        var self = this;
+        var c = this.getElemObj();
+        c.title.setBlurEvent(function(val){
+            if(!val){
+                c.title.showError('请输入优惠标题');
+            }
+            else{
+                c.title.showError();
+            }
+        });_
+
+
+        this.jq.endDate.blur(function(){
+            var val = $(this).val();
+            if(!val){
+                self.jq.endDate.parent('div.form-group').addClass('has-error').find('.hw-err').html('请选择开始时间');
+            }
+            else{
+                self.jq.endDate.parent('div.form-group').removeClass('has-error').find('.hw-err').html('');
+            }
+        });
+
+        this.jq.desc.blur(function(){
+            var val = $(this).val();
+            if(!val){
+                self.jq.desc.parent('div.form-group').addClass('has-error').find('.hw-err').html('请输入优惠描述');
+            }
+            else{
+                self.jq.desc.parent('div.form-group').removeClass('has-error').find('.hw-err').html('');
+            }
+        });
     },
 
     validate : function(data){
@@ -753,6 +811,13 @@ KG.Class.define('MybizCouponForm', {
                 })
             });
         }
+
+        this.elem.find('.js_cal_icon').click(function(){
+            var o = $(this);
+            o.next('input').trigger('focus');
+        });
+
+        this.initBlurEvent();
     },
 
     initEnd : function(){
@@ -778,6 +843,9 @@ KG.Class.define('MybizCouponForm', {
 
         if(this.prop.type === 'edit'){
             this.setFormValue(this.data.couponData);
+        }
+        else{
+            this.setDefaultValue();
         }
     },
     setFormValue : function(data){
@@ -806,5 +874,12 @@ KG.Class.define('MybizCouponForm', {
 
 
 
+    },
+    setDefaultValue : function(){
+        var self = this;
+        if(this.data.bizList.length === 1){
+            this.jq.biz.setValue(0);
+        }
+        this.jq.startDate.datepicker('setDate', moment().format('MM/DD/YYYY'));
     }
 });

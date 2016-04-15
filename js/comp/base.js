@@ -20,10 +20,39 @@
 
                 self._initEvent();
                 self._initEnd();
+
+
+                //处理input的placeholder属性为focus blur的交互方式
+                //TODO 去掉这种处理方式
+                self.doProcessPlaceholder();
             });
 
 
 
+        },
+        doProcessPlaceholder : function(){
+            this.elem.find('input[placeholder]').add(this.elem.find('textarea[placeholder]')).each(function(){
+                var o = $(this);
+                if(o.attr('type') === 'password'){
+                    return;
+                }
+
+                if(!o.attr('action-placeholder')){
+                    var h = o.attr('placeholder');
+                    o.focus(function(){
+                        var val = o.val();
+                        if(val === h){
+                            o.removeClass('blur').val('');
+                        }
+                    }).blur(function(){
+                        var val = o.val();
+                        if(!val){
+                            o.addClass('blur').val(h);
+                        }
+                    }).removeAttr('placeholder').attr('action-placeholder', 1).blur();
+
+                }
+            });
         },
         getTemplate : function(){},
         initVar : function(){},
@@ -486,6 +515,7 @@
             util.dialog.setHiddenDialogFn(function(){
                 location.href = '../site/landing.html';
             });
+
         }
     });
 
@@ -517,8 +547,9 @@
                 var email = KG.component.getObj(self.elem.find('.js_email')),
                     el = email.getValue();
 
-                if(!el || !util.validate.email(el)){
-                    email.showError('邮箱格式不正确');
+                var vu = KG.validate.email(el);
+                if(!vu[0]){
+                    email.showError(vu[1]);
                     email.focus();
                     return false;
                 }
@@ -553,6 +584,31 @@
             util.dialog.setHiddenDialogFn(function(){
                 location.href = '../site/landing.html';
             });
+
+            var self = this;
+            var email = KG.component.getObj(self.elem.find('.js_email')),
+                pwd = KG.component.getObj(self.elem.find('.js_pwd'));
+
+            email.setBlurEvent(function(val){
+                var v = KG.validate.email(val);
+                if(!v[0]){
+                    this.showError(v[1]);
+                }
+                else{
+                    this.showError();
+                }
+            });
+
+            pwd.setBlurEvent(function(val){
+                var v = KG.validate.password(val);
+                if(!v[0]){
+                    this.showError(v[1]);
+                }
+                else{
+                    this.showError();
+                }
+            });
+
         }
     });
 
@@ -597,9 +653,8 @@
 
             var h = [
                 '<h4>登录海外同城</h4>',
-                '<div class="c-error"></div>',
-                '<input type="text" class="js_email" placeholder="邮箱" />',
-                '<input type="password" class="js_pwd" placeholder="密码" />',
+                '<div role="BaseInput" data-type="text" class="js_email" placeholder="邮箱" ></div>',
+                '<div role="BaseInput" data-type="password" class="js_pwd" placeholder="密码" ></div>',
                 '<button class="hw-btn hw-blue-btn js_loginBtn">登录</button>',
                 '<p>忘记账号或密码？<a href="../mycount/forgetpassword.html">在这里找回</a></p>'
             ].join('');
@@ -610,14 +665,43 @@
             ].join('');
 
             this.jq.btm.html(h1);
+            this.initLoginBox();
+        },
+        initLoginBox : function(){
+            KG.component.init(this.jq.left);
+
+            var obj = {
+                email : KG.component.getObj(this.jq.left.find('.js_email')),
+                pwd : KG.component.getObj(this.jq.left.find('.js_pwd'))
+            };
+
+            obj.email.setBlurEvent(function(val){
+                if(!val){
+                    this.showError(util.const.InputEmail);
+                }
+                else if(!util.validate.email(val)){
+                    this.showError(util.const.InputEmailFormatError);
+                }
+                else{
+                    this.showError();
+                }
+            });
+
+            obj.pwd.setBlurEvent(function(val){
+                if(!val){
+                    this.showError(util.const.InputPassword);
+                }
+                else{
+                    this.showError();
+                }
+            });
         },
 
         setRegBox : function(){
             var h = [
-                '<div class="c-error"></div>',
-                '<input type="text" class="js_email" placeholder="邮箱" />',
-                '<input type="password" class="js_pwd" placeholder="密码" />',
-                '<input type="password" class="js_pwd2" placeholder="确认密码" />',
+                '<div role="BaseInput" data-type="text" class="js_email" placeholder="邮箱" ></div>',
+                '<div role="BaseInput" data-type="password" class="js_pwd" placeholder="密码" ></div>',
+                '<div role="BaseInput" data-type="password" class="js_pwd2" placeholder="确认密码" ></div>',
                 '<button class="hw-btn hw-blue-btn js_regBtn">注册</button>',
                 '<p>点击注册表示您同意海外同城的<a target="_blank" href="../help/terms.html">使用协议</a>和<a target="_blank" href="../help/privacy.html">隐私保护协议</a></p>'
             ].join('');
@@ -630,6 +714,42 @@
                 '<h6>已有海外帐户？<a href="javascript:void(0)" class="js_toLogin">直接登录</a></h6>'
             ].join('');
             this.jq.btm.html(h1);
+
+            this.initRegBox();
+        },
+
+        initRegBox : function(){
+            KG.component.init(this.jq.left);
+            var obj = this.getRegisterObj();
+
+            obj.email.setBlurEvent(function(val){
+                var v = KG.validate.email(val);
+                if(!v[0]){
+                    this.showError(v[1]);
+                }
+                else{
+                    this.showError();
+                }
+            });
+
+            obj.pwd.setBlurEvent(function(val){
+                var v = KG.validate.password(val);
+                if(!v[0]){
+                    this.showError(v[1]);
+                }
+                else{
+                    this.showError();
+                }
+            });
+
+            obj.pwd2.setBlurEvent(function(val){
+                if(val !== obj.pwd.getValue()){
+                    this.showError(util.const.PasswordNotEqual);
+                }
+                else{
+                    this.showError();
+                }
+            });
         },
 
         defineProperty : function(){
@@ -638,9 +758,6 @@
                     defaultValue : 'reg'
                 }
             };
-        },
-        showError : function(err){
-            this.elem.find('.c-error').html(err);
         },
 
         initEvent : function(){
@@ -651,19 +768,39 @@
             this.elem.on('click', '.js_regBtn', function(){
                 var o = $(this);
                 //click reg button
+                var obj = self.getRegisterObj();
                 var data = self.getRegisterValue();
-                if(!data.email){
-                    self.showError('请输入邮箱');
+
+                var ve = KG.validate.email(data.email);
+                if(!ve[0]){
+                    obj.email.showError(ve[1]);
+                    obj.email.focus();
                     return false;
                 }
-                if(!util.validate.password(data.password)){
-                    self.showError('密码格式不正确');
+                else{
+                    obj.email.showError();
+                }
+
+                var vp = KG.validate.password(data.password);
+                if(!vp[0]){
+                    obj.pwd.showError(vp[1]);
+                    obj.pwd.focus();
                     return false;
                 }
+                else{
+                    obj.pwd.showError();
+                }
+
                 if(data.password !== data.confirm_password){
-                    self.showError('二次输入的密码不一致');
+                    obj.pwd2.showError(util.const.PasswordNotEqual);
+                    obj.pwd2.focus();
                     return false;
                 }
+                else{
+                    obj.pwd2.focus();
+                }
+
+
                 console.log(data);
 
                 util.dom.loadingButton(o, true);
@@ -692,14 +829,27 @@
             this.elem.on('click', '.js_loginBtn', function(){
                 var o = $(this);
                 //click login button
+                var obj = self.getLoginObj();
                 var data = self.getLoginValue();
-                if(!data.username){
-                    self.showError('请输入邮箱');
+
+                var vu = KG.validate.email(data.username);
+                if(!vu[0]){
+                    obj.email.showError(vu[1]);
+                    obj.email.focus();
                     return false;
                 }
-                if(!data.password){
-                    self.showError('请输入密码');
+                else{
+                    obj.email.showError();
+                }
+
+                var vp = KG.validate.password(data.password);
+                if(!vp[0]){
+                    obj.pwd.showError(vp[1]);
+                    obj.pwd.focus();
                     return false;
+                }
+                else{
+                    obj.pwd.showError();
                 }
 
                 util.dom.loadingButton(o, true);
@@ -737,18 +887,37 @@
             });
         },
 
+        getLoginObj : function(){
+            var obj = {
+                email : KG.component.getObj(this.jq.left.find('.js_email')),
+                pwd : KG.component.getObj(this.jq.left.find('.js_pwd'))
+            };
+            return obj;
+        },
+
         getLoginValue : function(){
+            var obj = this.getLoginObj();
             var data = {
-                username : this.jq.left.find('.js_email').val(),
-                password : this.jq.left.find('.js_pwd').val()
+                username : obj.email.getValue(),
+                password : obj.pwd.getValue()
             };
             return data;
         },
-        getRegisterValue : function(){
+
+        getRegisterObj : function(){
             return {
-                email : this.jq.left.find('.js_email').val(),
-                password : this.jq.left.find('.js_pwd').val(),
-                confirm_password : this.jq.left.find('.js_pwd2').val()
+                email : KG.component.getObj(this.jq.left.find('.js_email')),
+                pwd : KG.component.getObj(this.jq.left.find('.js_pwd')),
+                pwd2 : KG.component.getObj(this.jq.left.find('.js_pwd2'))
+            };
+        },
+
+        getRegisterValue : function(){
+            var obj = this.getRegisterObj();
+            return {
+                email : obj.email.getValue(),
+                password : obj.pwd.getValue(),
+                confirm_password : obj.pwd2.getValue()
             };
         },
 

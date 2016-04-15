@@ -50,7 +50,38 @@ KG.Class.define('MycountChangePasswordForm', {
 
 
     initEvent : function(){
+        var self = this;
         this.elem.find('.hw-btn').click(this.submit.bind(this));
+
+        this.jq.oldObj.setBlurEvent(function(val){
+            if(!val){
+                this.showError('请输入旧密码');
+            }
+            else{
+                this.showError();
+            }
+        });
+
+        this.jq.pwdObj.setBlurEvent(function(val){
+            if(!val){
+                this.showError('请输入新密码');
+            }
+            else if(val.length < 6){
+                this.showError('密码长度不能小于6位');
+            }
+            else{
+                this.showError();
+            }
+        });
+
+        this.jq.pwd2Obj.setBlurEvent(function(val){
+            if(val !== self.jq.pwdObj.getValue()){
+                this.showError(util.const.PasswordNotEqual);
+            }
+            else{
+                this.showError();
+            }
+        });
     },
 
     setJqVar : function(){
@@ -429,10 +460,31 @@ KG.Class.define('MycountChangeInfoForm', {
             });
         });
 
+    },
+    initBlurEvent : function(){
+        var obj = this.getElemObj();
+        obj.nick.setBlurEvent(function(val){
+            if(!val){
+                this.showError('请输入用户名');
+            }
+            else{
+                this.showError();
+            }
+        });
 
+        obj.email.setBlurEvent(function(val){
+            var v = KG.validate.email(val);
+            if(!v[0]){
+                this.showError(v[1]);
+            }
+            else{
+                this.showError();
+            }
+        });
     },
     initEvent : function(){
         this.jq.btn.click(this.submit.bind(this));
+        this.initBlurEvent();
     },
     submit : function(){
 

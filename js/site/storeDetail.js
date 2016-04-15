@@ -18,7 +18,7 @@ KG.Class.define('UploadStoreCommentImage', {
 		return [
 			'<div class="hw-UploadStoreCommentImage">',
 			'<div class="hw-add js_add">',
-			'<i class="icon fa fa-plus-square-o"></i>',
+			'<i style="width:50px;height:50px;position: relative;top:5px;" class="icon hw-icon-plus"></i>',
 			'<p>上传图片</p>',
 			'<input class="js_input" type="file" />',
 			'</div>',
@@ -179,8 +179,8 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		var T3 = [
 
 			'<div style="margin-top: 16px;" class="c-box">',
-				'<div style="width:100%;height: 300px;" class="js_map"></div>',
-				'<dd class="c-content">',
+				'<div style="width:100%;height: 190px;" class="js_map"></div>',
+				'<dd class="c-content" style="padding-top:0;">',
 					'{{each biz.dynamic_list as item}}',
 					'{{if item.value}}',
 					'<p class="hw-la">{{item.title}} : {{item.value}}</p>',
@@ -200,10 +200,15 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		var T4 = [
 			'<div style="margin-top: 15px;" class="c-box">',
 				'<dt class="c-title"><p>营业时间</p></dt>',
-				'<dd class="c-content" style="padding-top:8px;">',
+				'<dd class="c-content" style="padding-top:10px;padding-bottom:10px;">',
 					'{{each biz.timeinfo_list as item}}',
 					'<p style="border-bottom:none;height:28px;line-height: 28px;" class="hw-la">{{item.day}} : {{item.time}}</p>',
 					'{{/each}}',
+
+					'{{if biz.timeinfo_list.length < 1}}',
+					'<p style="border-bottom:none;height:28px;line-height: 28px;" class="hw-la">还没有设置营业时间</p>',
+					'{{/if}}',
+
 				'</dd>',
 			'</div>'
 		].join('');
@@ -257,14 +262,12 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 						'<a class="left carousel-control" href="#carousel-11" init-self="true" role="button"' +
 						' data-slide="prev">',
-							'<span class="glyphicon glyphicon-chevron-left glyphicon-menu-left"' +
-							' aria-hidden="true"></span>',
+							'<span style="left:-5px;" class="icon fa fa-angle-left" aria-hidden="true"></span>',
 
 						'</a>',
 						'<a class="right carousel-control" href="#carousel-11" init-self="true" role="button"' +
 						' data-slide="next">',
-							'<span class="glyphicon glyphicon-chevron-right glyphicon-menu-right"' +
-							' aria-hidden="true"></span>',
+							'<span style="left:5px;" class="icon fa fa-angle-right" aria-hidden="true"></span>',
 						'</a>',
 					'</div>',
 					'{{/if}}',

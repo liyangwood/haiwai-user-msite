@@ -40,6 +40,7 @@ KG.Class.define('MybizStoreInputDatepicker', {
                 '<label>营业时间</label>',
                 '<label class="control-label hw-err"></label>',
 
+                '<div class="cbbox">',
                 '<div class="cb js_b2">',
 
                     '<select class="js_start">',
@@ -63,7 +64,8 @@ KG.Class.define('MybizStoreInputDatepicker', {
                     '<b class="js_day">{{item}}</b>',
                     '{{/each}}',
                 '</div>',
-                '<button class="hw-btn hw-light-btn js_add">添加营业时间</button>',
+                '<button class="hw-btn hw-light-btn js_add">确定</button>',
+                '</div>',
 
                 '<div class="ca js_b1" style="display: none;">',
 
@@ -532,11 +534,7 @@ KG.Class.define('MybizStoreInfoFormStep1', {
             jq.tel.focus();
             return false;
         }
-        else{
-            jq.tel.showError();
-        }
-
-        if(!/^[0-9]{10,11}$/g.test(data.bizTel)){
+        else if(!util.validate.AmericanPhone(data.bizTel)){
             jq.tel.showError('店铺电话格式不对');
             jq.tel.focus();
             return false;
@@ -581,7 +579,61 @@ KG.Class.define('MybizStoreInfoFormStep1', {
         }
 
 
+
         return true;
+    },
+
+    initBlurEvent : function(){
+        var jq = this.getElemObj();
+
+        jq.name.setBlurEvent(function(val){
+            if(!val){
+                this.showError('店铺名称不能为空');
+            }
+            else{
+                this.showError();
+            }
+        });
+
+        jq.tel.setBlurEvent(function(val){
+            if(!val){
+                this.showError('店铺电话不能为空');
+
+            }
+            else if(!util.validate.AmericanPhone(val)){
+                this.showError('店铺电话格式不对');
+            }
+            else{
+               this.showError();
+            }
+        });
+
+        jq.zip.setBlurEvent(function(val){
+            if(!val){
+                jq.zip.showError('请输入邮编');
+            }
+            else{
+                jq.zip.showError();
+            }
+        });
+
+        jq.city.setBlurEvent(function(val){
+            if(!val){
+                jq.city.showError('请输入城市');
+            }
+            else{
+                jq.city.showError();
+            }
+        });
+
+        jq.state.blur(function(){
+            if(jq.state.val() === "-1"){
+                jq.state.parent('div.form-group').addClass('has-error').find('.hw-err').html('请选择州/省');
+            }
+            else{
+                jq.state.parent('div.form-group').removeClass('has-error').find('.hw-err').html('');
+            }
+        });
     },
 
     initEvent : function(){
@@ -627,12 +679,14 @@ KG.Class.define('MybizStoreInfoFormStep1', {
                 if(e.keyCode < 48 || e.keyCode > 57){
                     return false;
                 }
-                if(val.length > 10){
+                if(val.length > 9){
                     return false;
                 }
             }
 
         });
+
+        this.initBlurEvent();
     },
 
     initEnd : function(){
@@ -1122,8 +1176,14 @@ KG.Class.define('UploadStoreImage', {
     initEvent : function(){
         this.callParent('initEvent');
 
+        var self = this;
+
         var b = this.elem.find('.js_del');
         this.elem.find('.hw-img-box').hover(function(){
+            var val = self.getImageUrl();
+            if(!val){
+                return false;
+            }
             b.slideDown(200);
         }, function(){
             b.slideUp(200);
@@ -1180,7 +1240,7 @@ KG.Class.define('MybizUploadStoreImage', {
         return [
             '<div class="hw-comp-MybizUploadStoreImage">',
             '<div class="hw-add js_add">',
-            '<i class="icon fa fa-plus-square-o"></i>',
+            '<i style="width:90px;height:90px;" class="icon hw-icon-plus"></i>',
             '<p>添加新图片</p>',
             '<input class="js_input" type="file" />',
             '</div>',
@@ -1358,7 +1418,7 @@ KG.Class.define('MybizStoreInfoFormStep3', {
 
             '{{if bigBgImageList}}',
             '<div class="form-group">',
-            '<label class="lab">选择店铺背景图片</label>',
+            '<label class="lab">选择背景图片，体现店铺风格、基调</label>',
             '<div style="width: 700px;margin-left: -7px;">',
             '{{each bigBgImageList as item}}',
             '<div class="hw-bigimage">',
@@ -1375,8 +1435,8 @@ KG.Class.define('MybizStoreInfoFormStep3', {
             '{{/if}}',
 
             '<div class="form-group">',
-            '<label class="lab">店铺Logo</label>',
-            '<p class="hw-img-p">店铺／专属页Logo图片是重要的品牌识别标识，建议您上传店铺Logo或职业头像，以增加专业性。该Logo也将用于您的店铺／专属页与用户互动的头像，如回复评论、发布文章、活动。 </p>',
+            '<label class="lab">店铺头像</label>',
+            '<p class="hw-img-p">店铺头像是您店铺的重要识别，建议采用店铺标识、职业头像或者主要产品的图片。</p>',
             '{{if tmpId}}',
             '<div class="hw-upload js_logo" data-biztype="tmp" init-self="true" data-bizid="{{tmpId}}"' +
             ' role="UploadStoreImage"></div>',
@@ -1389,7 +1449,7 @@ KG.Class.define('MybizStoreInfoFormStep3', {
             '<div class="hw-line"></div>',
 
             '<div class="form-group">',
-            '<label class="lab">店铺图片</label>',
+            '<label class="lab">上传更多图片，让大家更全面了解您的环境、产品、成功案例</label>',
             '<div class="js_image" data-type="'+this.type+'" role="MybizUploadStoreImage"' +
             ' init-self="true"></div>',
 

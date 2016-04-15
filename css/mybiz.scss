@@ -412,6 +412,16 @@
 			margin-top: 2px;
 		}
 
+		.before_input_icon{
+			width: 40px;
+			height: 40px;
+			position: absolute;
+			font-size: 28px;
+			top: 28px;
+			left: 0;
+			color: #787878;
+		}
+
 
 		.hw-drop{
 			background: transparent;
@@ -995,7 +1005,6 @@
 	.ca{
 		margin-top: 10px;
 		padding: 5px 0;
-		border-top: 1px dashed #9b9b9b;
 
 		span{
 			font-size: 14px;
@@ -1010,6 +1019,13 @@
 			color: $blue-color;
 			cursor: pointer;
 		}
+	}
+
+	.cbbox{
+		padding: 15px 0 12px 15px;
+		border: 1px dashed #979797;
+		border-radius: 3px;
+		height:160px;
 	}
 	
 	.cb{
@@ -1045,7 +1061,7 @@
 		b{
 			width: 64px;
 			display: inline-block;
-			margin-right: 12px;
+			margin-right: 10px;
 			height: 32px;
 			line-height: 32px;
 			color: $color-7d;
@@ -1067,7 +1083,9 @@
 		height: 36px;
 		line-height: 36px;
 		font-size: 14px;
-		margin-top: 10px;
+		margin-top: 15px;
+		float: right;
+		margin-right: 14px;
 	}
 }
 
