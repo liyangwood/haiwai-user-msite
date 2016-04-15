@@ -35,8 +35,9 @@
 		needLogin : false,
 		page : 'view-store',
 		id : util.url.param('id'),
-		startFN : function(latitude, longitude, opts){
+		getGoogleMap : function(latitude, longitude, opts){
 			var myLatlng = new google.maps.LatLng(latitude, longitude);
+
 			var mapOptions = {
 				center: myLatlng,
 				panControl: false,
@@ -45,9 +46,21 @@
 			var map = new google.maps.Map(opts.elem, mapOptions);
 			var marker = new google.maps.Marker({
 				position: myLatlng,
-				map: map,
-				title: opts.name
+				map: map
+				//title: opts.name
 			});
+
+			return map;
+		},
+		getStaticMap : function(latitude, longitude){
+			var url = 'http://maps.googleapis.com/maps/api/staticmap?';
+			url += 'center='+latitude+','+longitude;
+			url += '&zoom=15';
+			url += '&markers=size:mid%7Ccolor:red%7Clabel:%7C'+latitude+','+longitude;
+			url += '&size=308x190';
+			url += '&key=AIzaSyCjKJoA5eBc75v5pQurBQ3IjP4vNkfoOzw';
+
+			return url;
 		}
 
 	});

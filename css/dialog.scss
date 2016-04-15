@@ -1,7 +1,7 @@
 #kg_modal_dialog{
 
     .modal-dialog{
-        margin-top: 150px;
+        margin-top: 120px;
     }
 
     .modal-header{
@@ -368,6 +368,28 @@
         }
         .hw-title{
             display: none !important;
+        }
+    }
+}
+.hw-dialog-gmap{
+    .modal-dialog{
+        width : 750px !important;
+        .modal-header{
+            height:0 !important;
+        }
+        .modal-body{
+            padding : 0 !important;
+            .hw-body{
+                padding: 0 !important;
+                height : 400px !important;
+            }
+            .hw-title{
+                position: relative !important;
+                top: -12px !important;
+                text-align: left !important;
+                padding-left: 15px !important;
+                line-height: 24px !important;
+            }
         }
     }
 }

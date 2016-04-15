@@ -132,6 +132,12 @@ label.require:after {
   width: 112px;
   height: 112px; }
 
+.icon.icon-loading {
+  display: block;
+  background: url(../image/loading.gif);
+  width: 32px;
+  height: 32px; }
+
 .hw-btn {
   display: inline-block;
   line-height: 40px;
@@ -650,7 +656,7 @@ label.require:after {
     width: 100%; }
 
 #kg_modal_dialog .modal-dialog {
-  margin-top: 150px; }
+  margin-top: 120px; }
 #kg_modal_dialog .modal-header {
   height: 50px;
   border-bottom: none; }
@@ -857,6 +863,22 @@ label.require:after {
       padding: 0 !important; }
   .hw-dialog-logininfo .modal-dialog .hw-title {
     display: none !important; }
+
+.hw-dialog-gmap .modal-dialog {
+  width: 750px !important; }
+  .hw-dialog-gmap .modal-dialog .modal-header {
+    height: 0 !important; }
+  .hw-dialog-gmap .modal-dialog .modal-body {
+    padding: 0 !important; }
+    .hw-dialog-gmap .modal-dialog .modal-body .hw-body {
+      padding: 0 !important;
+      height: 400px !important; }
+    .hw-dialog-gmap .modal-dialog .modal-body .hw-title {
+      position: relative !important;
+      top: -12px !important;
+      text-align: left !important;
+      padding-left: 15px !important;
+      line-height: 24px !important; }
 
 .hw-mybiz-index, .hw-mybiz-coupon {
   margin-top: 24px;

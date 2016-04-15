@@ -169,7 +169,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		var T2 = [
 			'<div style="margin-top: 16px;" class="c-box">',
 				'<dt class="c-title"><p>简介</p></dt>',
-				'<dd class="c-content hw-brief">',
+				'<dd class="c-content hw-brief js_desc">',
 					'{{#biz.briefintro | htmlToText}}',
 				'</dd>',
 			'</div>'
@@ -179,7 +179,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		var T3 = [
 
 			'<div style="margin-top: 16px;" class="c-box">',
-				'<div style="width:100%;height: 190px;" class="js_map"></div>',
+				'<div role="BaseLoadingImageBox" style="width:100%;height: 190px;" class="js_map"></div>',
 				'<dd class="c-content" style="padding-top:0;">',
 					'{{each biz.dynamic_list as item}}',
 					'{{if item.value}}',
@@ -860,11 +860,39 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		var address = template.helpers.storeFullAddress(this.data.biz);
 
 
-		var startFN = KG.data.get('startFN');
-		startFN && util.getLatAndLongWithAddress(address, function(geo){
-			startFN(geo.lat, geo.lng, {
-				name : 'Test Store',
-				elem : self.elem.find('.js_map')[0]
+		//var startFN = KG.data.get('startFN');
+		//startFN && util.getLatAndLongWithAddress(address, function(geo){
+		//	startFN(geo.lat, geo.lng, {
+		//		name : 'Test Store',
+		//		elem : self.elem.find('.js_map')[0]
+		//	});
+		//});
+		var map = KG.component.getObj(this.elem.find('.js_map'));
+		util.getLatAndLongWithAddress(address, function(geo){
+			var url = KG.data.get('getStaticMap')(geo.lat, geo.lng);
+			map.setUrl(url);
+
+			map.elem.addClass('hand').click(function(){
+				console.log(geo);
+				var id = util.getUuid();
+				var param = {
+					body : '<div id="'+id+'" style="width:100%;height:100%;" class="hw-center-image"><i class="icon icon-loading"></i></div>',
+					foot : false,
+					'class' : 'hw-dialog-gmap',
+					title : self.data.biz.name_cn+'<br/>'+template.helpers.storeFullAddress(self.data.biz),
+					beforeShowFn : function(){
+
+						_.delay(function(){
+
+							KG.data.get('getGoogleMap')(geo.lat, geo.lng, {
+								elem : $('#'+id)[0]
+							});
+						}, 500);
+
+					}
+				};
+
+				util.dialog.show(param);
 			});
 		});
 
@@ -889,6 +917,8 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		this.showManagerStoreBlockIfRoleAdmin();
 
 		util.setPageTitle(this.data.biz.name_cn || this.data.biz.name_en);
+
+		this.initDescriptionBox();
 	},
 
 	getCommentRpHtml : function(replyId){
@@ -1213,5 +1243,34 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 		var h = '<a class="hw-btn hw-mgstore" href="../mybiz/index.html"><i class="icon fa fa-pencil"></i>管理店铺</a>';
 		$(h).appendTo('div.c-top');
+	},
+
+	initDescriptionBox : function(){
+		var box = this.elem.find('.js_desc');
+		console.log(box.height());
+
+		var h = '<div class="hand js_down" style="height:32px;text-align: center;"><i style="font-size:32px;color:#9b9b9b;"' +
+			' class="icon fa' +
+			' fa-angle-down"></i></div>';
+		var tmp = box.height();
+		if(tmp > 170){
+			box.css({
+				height : '170px',
+				'overflow' : 'hidden',
+				'padding-bottom' : '0'
+			});
+
+			h = $(h);
+			box.after(h);
+
+			h.bind('click', function(){
+				box.animate({
+					height : (tmp+20)+'px',
+					'padding-bottom' : '12px'
+				});
+
+				h.remove();
+			});
+		}
 	}
 });

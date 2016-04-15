@@ -356,8 +356,14 @@ KG.Class.define('BaseLoadingImageBox', {
 	},
 	initEnd : function(){
 		var self = this;
-		var url = this.prop.url,
-			img = new Image();
+		var url = this.prop.url;
+		if(url){
+			this.setUrl(url);
+		}
+	},
+	setUrl : function(url){
+		var self = this;
+		var img = new Image();
 		img.src = url;
 		console.log(url);
 		$(img).load(function(e){
