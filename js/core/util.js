@@ -889,8 +889,14 @@ $(function(){
                 nick : data.name,
                 image : data.picture.data.url
             }, function(flag, rs){
-                console.log(flag, rs);
-                callback();
+                if(flag){
+                    callback(true, rs);
+                }
+                else{
+                    util.toast.showError(rs);
+                    callback(false);
+                }
+
             });
 
 

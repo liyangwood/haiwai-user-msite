@@ -720,9 +720,19 @@
                 var o = $(this);
 
                 o.button('loading');
-                util.Facebook.login(function(){
-                    o.button('reset');
-                    util.dialog.hide();
+                util.Facebook.login(function(flag, rs){
+
+                    if(flag){
+                        KG.user.getUserDetailWithToken(rs, function(){
+                            o.button('reset');
+                            util.dialog.hide();
+                            location.reload();
+                        });
+                    }
+                    else{
+                        o.button('reset');
+                        util.dialog.hide();
+                    }
                 });
             });
         },

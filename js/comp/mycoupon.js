@@ -33,7 +33,7 @@
                 '{{each list as item}}',
                 '<div class="hw-each">',
                 '{{if item.logo}}',
-                '<div class="hw-img" data-url="{{item.logo.path | absImage}}" role="BaseLoadingImageBox"></div>',
+                '<div class="hw-img" data-url="{{item | logoPath}}" role="BaseLoadingImageBox"></div>',
                 '{{/if}}',
 
                 '{{if item.is_active==="0"}}',
