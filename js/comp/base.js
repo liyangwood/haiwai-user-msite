@@ -874,14 +874,15 @@
 
                     if(flag){
                         KG.user.getUserDetailWithToken(rs, function(){
+
+                            location.reload();
                             o.button('reset');
                             util.dialog.hide();
-                            location.reload();
                         });
                     }
                     else{
                         o.button('reset');
-                        util.dialog.hide();
+                        util.toast.showError(rs);
                     }
                 });
             });
