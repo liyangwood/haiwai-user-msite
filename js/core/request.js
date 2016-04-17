@@ -730,7 +730,8 @@ KG.request = {
             category_id : opts.category,
             title : opts.title,
             msgbody : (opts.msgbody),
-            fk_entityID : opts.bizId
+            fk_entityID : opts.bizId,
+            region_id : opts.region
         };
 
         if(opts.id){

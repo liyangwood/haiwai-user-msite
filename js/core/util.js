@@ -900,8 +900,7 @@ $(function(){
                     callback(true, rs);
                 }
                 else{
-                    util.toast.showError(rs);
-                    callback(false);
+                    callback(false, rs);
                 }
 
             });

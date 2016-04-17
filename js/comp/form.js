@@ -190,9 +190,10 @@ KG.Class.define('MybizArticleForm', {
         var c = this.getElemObj();
         return {
             category : this.cat,
-            bizId : this.biz,
+            bizId : this.biz.entityID,
             title : c.title.getValue(),
-            msgbody : this.ck.getData()
+            msgbody : this.ck.getData(),
+            region : this.biz.fk_region_id
         };
     },
 
@@ -256,7 +257,7 @@ KG.Class.define('MybizArticleForm', {
             list : this.data.bizList,
             clickCallback : function(rs){
                 console.log(rs);
-                self.biz = rs.entityID;
+                self.biz = rs;
             },
             getEachHtml : function(){
                 return '{{item.name_cn}}, {{item | storeFullAddress}}';
