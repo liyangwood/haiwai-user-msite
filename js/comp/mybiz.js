@@ -437,7 +437,7 @@ KG.Class.define('MybizRunningCouponList', {
             '{{each list as item}}',
             '<div param="{{item.pk_id}}" class="hw-each js_each hand">',
             '<div class="hw-img" role="BaseLoadingImageBox" data-url="{{item | logoPath}}"></div>',
-            '<h4 style="margin-top: 0;padding-top:20px;">{{item.subject}}</h4>',
+            '<h4 style="margin-top: 0;padding-top:20px;overflow: hidden;">{{item.subject}}</h4>',
             '<p style="color: #9b9b9b;font-size: 14px;margin-top:15px;">{{item.count}}人已经领取</p>',
 
             '<div class="r">',

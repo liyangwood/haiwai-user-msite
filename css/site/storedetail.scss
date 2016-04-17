@@ -8,6 +8,7 @@
     
     img{
         max-width: 100%;
+        height:462px;
         margin: 0 auto;
     }
 
@@ -88,6 +89,14 @@
                 position: relative;
                 left: 18px;
                 border-radius: 3px;
+
+                span{
+                    display: inline-block;
+                    color: #f4a62a;
+                    width: 400px;
+                    overflow: hidden;
+                    text-overflow : ellipsis;
+                }
 
                 .icon{
                     background: url('../image/store_coupon.png');
@@ -235,6 +244,9 @@
             h4{
                 font-size: 20px;
                 color: #f4a62a;
+                width: 380px;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             .hw-lt{
                 color: $color-7d;

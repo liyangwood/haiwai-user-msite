@@ -490,7 +490,7 @@ KG.Class.define('MybizCouponForm', {
             '<label class="require">优惠开始时间</label>',
             '<label style="right:150px;" class="control-label hw-err"></label>',
             '<i class="before_input_icon icon fa fa-calendar-o js_cal_icon"></i>',
-            '<input style="width: 410px;display: block;left:40px;position:relative;" type="text" class="form-control js_startDate" readonly="true" placeholder="'+moment().format("MM/DD/YYYY")+'">',
+            '<input style="width: 450px;display: block;position:relative;padding-left:46px;" type="text" class="form-control js_startDate" readonly="true" placeholder="'+moment().format("MM/DD/YYYY")+'">',
             //'<input style="width: 140px;display: inline-block;margin-left: 50px;" type="text" class="form-control js_startTime" placeholder="8:30AM">',
             '</div>',
 
@@ -498,7 +498,7 @@ KG.Class.define('MybizCouponForm', {
             '<label class="require">优惠结束时间</label>',
             '<label style="right:150px;" class="control-label hw-err"></label>',
             '<i class="before_input_icon icon fa fa-calendar-o js_cal_icon"></i>',
-            '<input style="width: 410px;display: block;left:40px;position:relative;" type="text" class="form-control js_endDate" readonly="true" placeholder="'+moment().add(14, 'days').format("MM/DD/YYYY")+'">',
+            '<input style="width: 450px;display: block;position:relative;padding-left:46px;" type="text" class="form-control js_endDate" readonly="true" placeholder="'+moment().add(14, 'days').format("MM/DD/YYYY")+'">',
             '<label style="vertical-align: top;position: absolute;top: 14px;left:465px;"><input style="position: relative; top: 13px;margin-right:8px;" class="js_endlimit" type="checkbox" />不限结束时间</label>',
             //'<input style="width: 140px;display: inline-block;margin-left: 50px;" type="text" class="form-control js_endTime" placeholder="8:30AM">',
             '</div>',
@@ -590,13 +590,31 @@ KG.Class.define('MybizCouponForm', {
 
 
         this.jq.endDate.blur(function(){
-            var val = $(this).val();
-            if(!val){
-                self.jq.endDate.parent('div.form-group').addClass('has-error').find('.hw-err').html('请选择开始时间');
-            }
-            else{
-                self.jq.endDate.parent('div.form-group').removeClass('has-error').find('.hw-err').html('');
-            }
+            var o = $(this);
+            _.delay(function(){
+                var val = o.val();
+                if(!val){
+                    self.jq.endDate.parent('div.form-group').addClass('has-error').find('.hw-err').html('请选择结束时间');
+                    return false;
+                }
+                else{
+                    self.jq.endDate.parent('div.form-group').removeClass('has-error').find('.hw-err').html('');
+                }
+
+                var data = self.getFormValue();
+                var start = data.startDate ? moment(data.startDate) : moment(new Date());
+                if(data.endDate!=='unlimit'&&moment(data.endDate).isBefore(start, 'day')){
+                    self.jq.endDate.parent('div.form-group').addClass('has-error').find('.hw-err').html('结束时间不能早于开始时间');
+                }
+                else if(data.endDate!=='unlimit'&&moment(data.endDate).isBefore(moment(new Date()), 'day')){
+                    self.jq.endDate.parent('div.form-group').addClass('has-error').find('.hw-err').html('结束时间不能早于当前时间');
+
+                }
+                else{
+                    self.jq.endDate.parent('div.form-group').removeClass('has-error').find('.hw-err').html('');
+                }
+            }, 100);
+
         });
 
         this.jq.desc.blur(function(){
