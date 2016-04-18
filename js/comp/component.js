@@ -447,3 +447,24 @@ KG.Class.define('BaseLoadingMoreStatusBar', {
 		this.jq.b.trigger('click');
 	}
 });
+
+KG.Class.define('HWNoContentDiv', {
+	ParentClass : 'BaseComponent',
+	getTemplate : function(){
+		return [
+			'<div class="hw-HWNoContentDiv hw-center-image">',
+				'<p class="hw-text">{{text}}<p>',
+			'</div>'
+		].join('');
+	},
+	defineProperty : function(){
+		return {
+			text : {}
+		};
+	},
+	getData : function(box, data, next){
+		next({
+			text : this.prop.text
+		});
+	}
+});

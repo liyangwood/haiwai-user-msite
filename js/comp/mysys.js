@@ -114,11 +114,11 @@
         initEnd : function(){
             this.elem.find('.js_a').eq(0).html('全部系统消息（'+this.data.count.all+'）');
             this.elem.find('.js_a').eq(0).trigger('click');
-
             if(this.data.list.length < 1){
                 this.elem.addClass('no_dis');
-                var h = '<h2 style="position: absolute;top:50px;left:480px;font-weight: normal;">暂无系统消息</h2>';
+                var h = '<div role="HWNoContentDiv" style="width:840px;float: right;height:240px;" data-text="暂无系统消息"></div>';
                 this.elem.after(h);
+                KG.component.initWithElement($('div[role="HWNoContentDiv"]'));
             }
 
 

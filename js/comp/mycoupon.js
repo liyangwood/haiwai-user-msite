@@ -77,6 +77,13 @@
             var h = template.compile(this.getListTemplate())({
                 list : data
             });
+
+            if(!data || data.length < 1){
+
+                h = '<div role="HWNoContentDiv" style="height:180px;" data-text="暂无领取的优惠"></div>';
+
+            }
+
             this.jq.panelBody.html(h);
             KG.component.init(this.jq.panelBody);
         },

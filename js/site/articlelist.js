@@ -92,10 +92,16 @@ KG.Class.define('HWSiteArticleListPage', {
     },
 
     initEnd : function(){
-        this.setBoxHtml(this.data.list);
+        if(this.data.list.legnth < 1){
+            this.setBoxHtml(false);
+        }
+        else{
+            this.setBoxHtml(this.data.list);
+        }
+
         this.setLoadingStateHtml();
 
-        if(this.data.list.length > 0){
+        if(this.data.list.length > 14){
             this.lastid = this.data.list[this.data.list.length -1].id;
             this.jq.pageBox.find('.loading').hide();
             this.jq.pageBox.find('.js_more').show();
@@ -148,15 +154,21 @@ KG.Class.define('HWSiteArticleListPage', {
     },
 
     setBoxHtml : function(list){
-        _.map(list, function(item){
-            //item.image = KG.config.SiteRoot+item.pic;
-            item.description = item.msgbody.replace(/<([^>]*)>/g, '');
-            return item;
-        });
         var h = this.getItemTemplate();
-        h = template.compile(h)({
-            list : list
-        });
+        if(false === list){
+            h = '<div role="HWNoContentDiv" style="height:320px;" data-text="暂无本类内容"></div>';
+        }
+        else{
+            _.map(list, function(item){
+                //item.image = KG.config.SiteRoot+item.pic;
+                item.description = item.msgbody.replace(/<([^>]*)>/g, '');
+                return item;
+            });
+
+            h = template.compile(h)({
+                list : list
+            });
+        }
 
         this.elem.find('.js_box').append(h);
         KG.component.init(this.elem.find('.js_box'));
@@ -183,7 +195,7 @@ KG.Class.define('HWSiteArticleListPage', {
             }, function(flag, rs){
                 if(flag){
                     self.setBoxHtml(rs.list);
-                    if(rs.list.length > 0){
+                    if(rs.list.length > 14){
                         self.lastid = rs.list[rs.list.length -1].id;
                         self.jq.pageBox.find('.loading').hide();
                         self.jq.pageBox.find('.js_more').show();

@@ -561,7 +561,12 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 			self.rpId = $(this).attr('param');
 			var h = $(self.getCommentRpHtml(self.rpId));
+
+			var param1 = $(this).attr('param1');
 			h.appendTo(box).slideDown(200, function(){
+				if(param1){
+					box.find('textarea').val(param1);
+				}
 				box.find('textarea').focus();
 			});
 
@@ -1012,15 +1017,19 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			'{{/if}}',
 
 			'<p style="margin-top:10px;" class="r hw-action">',
-				'{{if role=="admin"}}<span param="{{item.id}}_{{item.userID}}" nick="{{item.userinfo.nick}}"' +
-				' class="js_rp">回复</span>{{/if}}',
+				'{{if role=="admin"}}<span param="{{item.id}}_{{item.userID}}" {{if item.reply}}param1="{{item.reply.msgbody}}"{{/if}} nick="{{item.userinfo.nick}}"' +
+				' class="js_rp">',
+				'{{if item.reply}}修改{{else}}回复{{/if}}',
+
+				'</span>{{/if}}',
 				'<span param="{{item.id}}" class="js_like">赞({{item.buzz}})</span>',
 				'<span param="{{item.id}}" class="js_jp">举报</span>',
 			'</p>',
 
 			'{{if item.reply}}',
 			'<div class="c-rp">',
-				'<img src="{{item.reply.userinfo.avatar_url | absImage}}" />',
+				//'<img src="{{item.reply.userinfo.avatar_url | absImage}}" />',
+				'<img src="{{biz | logoPath}}" />',
 				'<p>店主回复：</p>',
 				'<p>{{item.reply.msgbody}}</p>',
 			'</div>',
@@ -1039,9 +1048,15 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 		h = template.compile(h)({
 			list: list,
-			role : this.data.biz.role
+			role : this.data.biz.role,
+			biz : this.data.biz
 		});
 		box.find('.c-title p').html('评论（' + this.commentData.length + '）');
+
+		if(list.length < 1){
+			h = '<div role="HWNoContentDiv" style="height:220px;" data-text="本店暂无评论"></div>';
+		}
+
 		box.find('.c-content .dp').html(h);
 
 

@@ -402,6 +402,7 @@ KG.Class.define('HWSiteStoreListPage', {
 	},
 
 	setBoxHtml : function(list, isAppend){
+
 		isAppend = isAppend || false;
 
 		var h = this.getItemTemplate1();
@@ -413,6 +414,10 @@ KG.Class.define('HWSiteStoreListPage', {
 			this.jq.box1.append(h).show();
 		}
 		else{
+			if(list.length < 1){
+				h = '<div role="HWNoContentDiv" style="height:240px;" data-text="暂无本类商家"></div>';
+			}
+
 			this.jq.box1.html(h).show();
 		}
 

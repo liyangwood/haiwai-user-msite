@@ -132,6 +132,10 @@
                 }
             });
 
+            if(data.length < 1){
+                h = '<div role="HWNoContentDiv" style="height:180px;" data-text="暂无收藏店铺"></div>';
+            }
+
             this.jq.panelBody.find('.js_box').html(h);
             KG.component.init(this.jq.panelBody);
         },

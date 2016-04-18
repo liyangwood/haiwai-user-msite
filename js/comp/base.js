@@ -376,13 +376,13 @@
                 var rid = util.cookie.get('region_IP_ID');
                 if(KG.user.get('isLogin')){
                     if(!rid || KG.user.get().subregion_detail.id !== rid){
-                        rid = KG.user.get().subregion_detail.id
+                        rid = KG.user.get().subregion_detail.id;
                         util.cookie.set('region_IP_ID', rid);
                     }
 
                     list.push({
                         id : rid,
-                        cn : '其它地区',
+                        cn : '自动定位',
                         name : 'qita'
                     });
 
@@ -393,17 +393,18 @@
                     if(rid){
                         list.push({
                             id : rid,
-                            cn : '其它地区',
+                            cn : '自动定位',
                             name : 'qita'
                         });
                         next({list : list});
                     }
                     else{
                         KG.request.getCurrentRegionByIP({}, function(flag, rs){
-                            util.cookie.set('region_IP_ID', rs);
+                            util.cookie.set('region_IP_ID', rs.pk_id);
+                            util.cookie.set('region_IP_ID_Name', rs.name);
                             list.push({
-                                id : rs,
-                                cn : '其它地区',
+                                id : rs.pk_id,
+                                cn : '自动定位',
                                 name : 'qita'
                             });
                             next({list : list});

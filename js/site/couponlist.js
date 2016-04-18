@@ -351,6 +351,9 @@ KG.Class.define('HWSiteCouponListPage', {
             this.jq.box.append(h).show();
         }
         else{
+            if(list.length < 1){
+                h = '<div role="HWNoContentDiv" data-text="暂无优惠信息" style="height:320px;"></div>'
+            }
             this.jq.box.html(h).show();
         }
 

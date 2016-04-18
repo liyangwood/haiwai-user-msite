@@ -173,6 +173,10 @@ KG.Class.define('HWSiteIndexHotCoupon', {
 		KG.component.init(this.jq.box);
 	},
 	registerMessage : function(e, data){
+		if(!data || data.length < 1){
+			this.elem.addClass('no_dis');
+			return false;
+		}
 		this.setListHtml(data);
 	},
 	initEvent : function(){

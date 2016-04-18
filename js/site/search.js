@@ -153,7 +153,7 @@ KG.Class.define('HWSiteSearchStoreListPage', {
 
 			'{{if item.event}}',
 			'<div param="{{item.event.pk_id}}" class="hw-coupon js_coupon_item">',
-			'<i class="icon"></i>{{item.event.subject}}',
+			'<i class="icon"></i><span>{{item.event.subject}}</span>',
 			'</div>',
 			'{{/if}}',
 
