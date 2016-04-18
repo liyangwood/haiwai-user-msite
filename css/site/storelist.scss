@@ -68,8 +68,8 @@
             }
 
             .hw-logo{
-                width: 96px;
-                height: 96px;
+                width: 90px;
+                height: 90px;
                 position: absolute;
                 overflow: hidden;
                 top: 15px;
@@ -82,14 +82,15 @@
             }
 
             .right{
-                margin-left: 116px;
+                margin-left: 105px;
             }
 
             h4{
-                font-size: 20px;
+                font-size: 18px;
                 color: $color-4a;
                 margin: 0;
                 display: inline-block;
+                margin-top: 5px;
             }
 
             .icon-v{
@@ -100,23 +101,23 @@
             }
 
             .ca{
-                margin-top: 10px;
+                margin-top: 12px;
 
                 .hw-star{
                     .icon{
-                        font-size: 24px;
+                        font-size: 20px;
                     }
                 }
 
                 span{
-                    font-size: 17px;
+                    font-size: 15px;
                     margin-left: 12px;
                     color: $color-7d;
                 }
             }
 
             .hw-address{
-                font-size: 16px;
+                font-size: 14px;
                 color: $color-7d;
                 margin-top: 12px;
             }
@@ -124,10 +125,21 @@
             .hw-coupon{
                 border-top: 1px dashed #ebebeb;
                 margin-top: 10px;
-                color: $yellow-color;
                 font-size: 18px;
                 cursor: pointer;
                 padding-top: 5px;
+
+                span{
+                    color: $yellow-color;
+                    width: 580px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: inline-block;
+                    vertical-align: middle;
+                    position: relative;
+                    top: 2px;
+                    font-size: 18px;
+                }
 
                 .icon{
                     background: url('../image/store_coupon.png');

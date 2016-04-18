@@ -1046,7 +1046,7 @@ body {
     text-align: center;
     font-size: 24px;
     color: #f4a62a;
-    line-height: 24px;
+    line-height: 28px;
     margin: 0;
     word-break: break-all; }
   .hw-HWSiteCouponDetailComp .cb label {
@@ -1645,11 +1645,13 @@ body {
     color: #f4a62a;
     text-align: center;
     position: absolute;
-    width: 100%;
     left: 0;
     top: 228px;
     padding: 0 15px;
-    margin: 0; }
+    margin: 0;
+    width: 245px;
+    overflow: hidden;
+    text-overflow: ellipsis; }
 .hw-HWSiteCouponListPage .hw-cpage {
   margin-top: 24px;
   background: #ffffff;
@@ -1733,8 +1735,8 @@ body {
     .hw-HWSiteStoreListPage .box1 .hw-one1:hover h4 {
       color: #37bccd; }
     .hw-HWSiteStoreListPage .box1 .hw-one1 .hw-logo {
-      width: 96px;
-      height: 96px;
+      width: 90px;
+      height: 90px;
       position: absolute;
       overflow: hidden;
       top: 15px;
@@ -1743,36 +1745,46 @@ body {
         width: 100%;
         height: 100%; }
     .hw-HWSiteStoreListPage .box1 .hw-one1 .right {
-      margin-left: 116px; }
+      margin-left: 105px; }
     .hw-HWSiteStoreListPage .box1 .hw-one1 h4 {
-      font-size: 20px;
+      font-size: 18px;
       color: #4a4a4a;
       margin: 0;
-      display: inline-block; }
+      display: inline-block;
+      margin-top: 5px; }
     .hw-HWSiteStoreListPage .box1 .hw-one1 .icon-v {
       margin-left: 4px;
       line-height: 2px;
       position: relative;
       top: 4px; }
     .hw-HWSiteStoreListPage .box1 .hw-one1 .ca {
-      margin-top: 10px; }
+      margin-top: 12px; }
       .hw-HWSiteStoreListPage .box1 .hw-one1 .ca .hw-star .icon {
-        font-size: 24px; }
+        font-size: 20px; }
       .hw-HWSiteStoreListPage .box1 .hw-one1 .ca span {
-        font-size: 17px;
+        font-size: 15px;
         margin-left: 12px;
         color: #7d7d7d; }
     .hw-HWSiteStoreListPage .box1 .hw-one1 .hw-address {
-      font-size: 16px;
+      font-size: 14px;
       color: #7d7d7d;
       margin-top: 12px; }
     .hw-HWSiteStoreListPage .box1 .hw-one1 .hw-coupon {
       border-top: 1px dashed #ebebeb;
       margin-top: 10px;
-      color: #f4a62a;
       font-size: 18px;
       cursor: pointer;
       padding-top: 5px; }
+      .hw-HWSiteStoreListPage .box1 .hw-one1 .hw-coupon span {
+        color: #f4a62a;
+        width: 580px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        top: 2px;
+        font-size: 18px; }
       .hw-HWSiteStoreListPage .box1 .hw-one1 .hw-coupon .icon {
         background: url("../image/store_coupon.png");
         width: 30px;
@@ -1949,7 +1961,8 @@ body {
       line-height: 22px;
       position: relative;
       top: -2px;
-      font-weight: bold; }
+      font-weight: bold;
+      width: 500px; }
     .hw-HWSiteArticleListPage .hw-one h6 {
       font-size: 14px;
       line-height: 24px;
@@ -2183,23 +2196,25 @@ body {
     margin-top: 8px;
     height: 50px;
     position: relative;
-    padding-left: 40px; }
+    padding-left: 48px; }
     .hw-HWSiteArticleDetailMoreComp .hw-biz img {
       position: absolute;
       top: 0;
       left: 0;
-      width: 32px;
-      height: 32px;
-      border-radius: 16px; }
+      width: 42px;
+      height: 42px;
+      border-radius: 21px; }
     .hw-HWSiteArticleDetailMoreComp .hw-biz h6 {
       margin: 0;
       font-size: 14px;
-      color: #4a4a4a;
-      margin-top: 15px; }
+      color: #7d7d7d;
+      margin-top: 15px;
+      position: relative;
+      top: 5px; }
     .hw-HWSiteArticleDetailMoreComp .hw-biz .hw-p {
-      color: #4a4a4a;
+      color: #7d7d7d;
       font-size: 12px;
-      margin-top: 4px; }
+      margin-top: 10px; }
 
 .hw-HWSiteArticleDetailRightMoreCommentComp {
   width: 280px;
@@ -2579,7 +2594,11 @@ body {
       .hw-HWSiteStoreDetailPage .hw-left-box .hw-art h4 {
         font-size: 20px;
         color: #4a4a4a;
-        margin: 0; }
+        margin: 0;
+        width: 450px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
       .hw-HWSiteStoreDetailPage .hw-left-box .hw-art .hw-time {
         position: absolute;
         top: 12px;

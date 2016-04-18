@@ -1076,7 +1076,11 @@ label.require:after {
   .hw-comp-store-list .hw-each .hw-link {
     font-size: 18px;
     color: #4a4a4a;
-    margin-top: 10px; }
+    margin-top: 10px;
+    width: 350px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
   .hw-comp-store-list .hw-each p {
     color: #4a4a4a;
     font-size: 12px;
@@ -1831,11 +1835,15 @@ label.require:after {
         margin-left: 30px; }
       .hw-myfav-list .hw-right-panel-list .hw-each .h4 .cpt {
         color: #f4a62a;
-        font-size: 14px;
+        font-size: 16px;
         line-height: 18px;
         position: relative;
-        top: -2px;
-        left: 10px; }
+        top: 4px;
+        left: 10px;
+        width: 320px;
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis; }
     .hw-myfav-list .hw-right-panel-list .hw-each .hw-a {
       margin-top: 8px; }
   .hw-myfav-list .hw-right-panel-list .mask {
@@ -1868,7 +1876,11 @@ label.require:after {
       height: 24px; }
       .hw-mycoupon-list .hw-right-panel-list .hw-each .h4 b {
         font-size: 21px;
-        color: #f4a62a; }
+        color: #f4a62a;
+        width: 530px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block; }
       .hw-mycoupon-list .hw-right-panel-list .hw-each .h4 .icon {
         vertical-align: top;
         position: relative; }
@@ -2243,7 +2255,7 @@ label.require:after {
     text-align: center;
     font-size: 24px;
     color: #f4a62a;
-    line-height: 24px;
+    line-height: 28px;
     margin: 0;
     word-break: break-all; }
   .hw-HWSiteCouponDetailComp .cb label {
@@ -2494,23 +2506,17 @@ label.require:after {
     font-weight: bold; }
   .hw-ad-canyinmeishi .hw-ad1 {
     font-family: MicrosoftYaHei;
-    color: #ffffff;
+    color: #ea611a;
     position: absolute;
     height: 24px;
     line-height: 26px;
-    left: 0;
-    bottom: 0;
-    top: auto;
-    width: 100%;
-    background: #ea611a;
-    font-weight: normal; }
+    top: 34px;
+    font-size: 15px; }
   .hw-ad-canyinmeishi .hw-tel {
     font-family: MicrosoftYaHei;
-    color: #ea611a;
-    bottom: auto;
-    top: 36px;
-    position: absolute;
-    background: none; }
+    color: #ffffff;
+    background: #ea611a;
+    width: 100%; }
 
 .hw-ad-jiazhuangqingjie {
   border-color: #9dad3d; }

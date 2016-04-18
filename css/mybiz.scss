@@ -281,6 +281,10 @@
             font-size: 18px;
             color: $color-4a;
             margin-top: 10px;
+			width: 350px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
         }
         p{
             color: $color-4a;

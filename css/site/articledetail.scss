@@ -217,26 +217,28 @@
         height: 50px;
 
         position: relative;
-        padding-left: 40px;
+        padding-left: 48px;
 
         img{
             position: absolute;
             top: 0;
             left: 0;
-            width: 32px;
-            height: 32px;
-            border-radius: 16px;
+            width: 42px;
+            height: 42px;
+            border-radius: 21px;
         }
         h6{
             margin: 0;
             font-size: 14px;
-            color: $color-4a;
+            color: $color-7d;
             margin-top: 15px;
+            position: relative;
+            top: 5px;
         }
         .hw-p{
-            color: $color-4a;
+            color: $color-7d;
             font-size: 12px;
-            margin-top: 4px;
+            margin-top: 10px;
         }
     }
 

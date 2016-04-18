@@ -207,24 +207,24 @@
     }
     .hw-ad1{
         font-family: MicrosoftYaHei;
-        color: #ffffff;
+        color: #ea611a;
         position: absolute;
         height: 24px;
         line-height: 26px;
-        left : 0;
-        bottom: 0;
-        top: auto;
-        width:100%;
-        background: #ea611a;
-        font-weight: normal;
+        //left : 0;
+        //bottom: 0;
+        top: 34px;
+        font-size: 15px;
+        //font-weight: normal;
     }
     .hw-tel{
         font-family: MicrosoftYaHei;
-        color: #ea611a;
-        bottom: auto;
-        top: 36px;
-        position: absolute;
-        background: none;
+        color: #ffffff;
+        //bottom: auto;
+        //top: 36px;
+        //position: absolute;
+        background: #ea611a;
+        width:100%;
     }
 }
 .hw-ad-jiazhuangqingjie{

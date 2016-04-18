@@ -24,6 +24,10 @@
 				b{
 					font-size: 21px;
 					color: #f4a62a;
+					width: 530px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					display: block;
 				}
 
 				.icon{

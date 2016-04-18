@@ -437,7 +437,7 @@ KG.Class.define('MybizRunningCouponList', {
             '{{each list as item}}',
             '<div param="{{item.pk_id}}" class="hw-each js_each hand">',
             '<div class="hw-img" role="BaseLoadingImageBox" data-url="{{item | logoPath}}"></div>',
-            '<h4 style="margin-top: 0;padding-top:20px;overflow: hidden;">{{item.subject}}</h4>',
+            '<h4 style="margin-top: 0;padding-top:20px;overflow: hidden;width:330px;text-overflow: ellipsis;">{{item.subject}}</h4>',
             '<p style="color: #9b9b9b;font-size: 14px;margin-top:15px;">{{item.count}}人已经领取</p>',
 
             '<div class="r">',
@@ -703,7 +703,7 @@ KG.Class.define('MybizArticleList', {
 
             '<div class="hw-img" role="BaseLoadingImageBox" data-url="{{item | logoPath}}" style="width:130px;"></div>',
 
-            '<a class="hw-link" target="_blank" style="margin-top:20px;"' +
+            '<a class="hw-link" target="_blank" style=""' +
             ' href="{{item.link}}">{{item.title}}</a>',
             '<p style="color: #9b9b9b;font-size: 14px;margin-top:20px;">发表于{{item.dateline |' +
             ' formatDate:"yy年mm月dd日"}}</p>',
@@ -914,6 +914,10 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
         this.elem.find('.js_btn').click(function(){
             if(self.bizList.length < 1){
                 util.toast.showError('您没有可以创建广告的店铺');
+                return false;
+            }
+            else if(self.bizList.length === 1){
+                location.href = '../mybiz/createAds.html?store='+self.bizList[0].entityID;
                 return false;
             }
             self.showSelectBizDialog(self.bizList, function(data){

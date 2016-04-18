@@ -28,7 +28,7 @@ KG.request = {
             type : type,
             url : url,
             data : opts,
-            dataType : dataType,
+            dataType : type==='get'?'jsonp':dataType,
             success : function(json){
                 if(json.status === 404){
 

@@ -14,7 +14,7 @@ KG.Class.define('SiteCouponFilterComp', {
 
             '</div>',
 
-            '<div class="c">',
+            '<div class="c no_dis">',
             '<label>地区</label>',
             '<p class="js_loc">',
 

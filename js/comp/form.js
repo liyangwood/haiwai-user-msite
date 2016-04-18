@@ -487,7 +487,7 @@ KG.Class.define('MybizCouponForm', {
             '<div class="js_title" role="BaseInput" data-label="优惠标题" data-require="true" placeholder="e.g. 美食府金秋品尝会，邀您免费试吃"></div>',
 
             '<div class="form-group">',
-            '<label class="require">优惠开始时间</label>',
+            '<label class="require">开始时间</label>',
             '<label style="right:150px;" class="control-label hw-err"></label>',
             '<i class="before_input_icon icon fa fa-calendar-o js_cal_icon"></i>',
             '<input style="width: 450px;display: block;position:relative;padding-left:46px;" type="text" class="form-control js_startDate" readonly="true" placeholder="'+moment().format("MM/DD/YYYY")+'">',
@@ -495,7 +495,7 @@ KG.Class.define('MybizCouponForm', {
             '</div>',
 
             '<div class="form-group">',
-            '<label class="require">优惠结束时间</label>',
+            '<label class="require">结束时间</label>',
             '<label style="right:150px;" class="control-label hw-err"></label>',
             '<i class="before_input_icon icon fa fa-calendar-o js_cal_icon"></i>',
             '<input style="width: 450px;display: block;position:relative;padding-left:46px;" type="text" class="form-control js_endDate" readonly="true" placeholder="'+moment().add(14, 'days').format("MM/DD/YYYY")+'">',

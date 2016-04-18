@@ -127,7 +127,7 @@
                 '</div>',
 
                 '<p style="display: block;">',
-                '<span class="hw-time"></span>',
+                '{{if item.dateline}}<span class="hw-time">{{item.dateline | formatDate:"mm/dd/yy"}}</span>{{/if}}',
 
                 '<span class="hw-view">',
                 '<i class="fa fa-eye"></i>',

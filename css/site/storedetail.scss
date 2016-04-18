@@ -283,6 +283,10 @@
                 font-size: 20px;
                 color: $color-4a;
                 margin: 0;
+                width: 450px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
             .hw-time{
                 position: absolute;
