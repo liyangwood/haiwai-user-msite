@@ -141,7 +141,7 @@
                 '<a style="border-bottom:1px dashed #ebebeb;" href="../mycount/info.html">'+(KG.user.get('nick')||KG.user.get('email'))+'</a>',
                 '<a href="../myfav/list.html">我的收藏</a>',
                 '<a href="../mycoupon/list.html">我的领取</a>',
-                '<a href="../mysys/index.html">系统消息</a>',
+                '<a href="../mysys/index.html">系统消息{{if user.system_msg}}(user.system_msg){{/if}}</a>',
                 '<a href="../mycount/info.html">账户设置</a>',
                 '<a class="js_logout" href="javascript:void(0)">退出登录</a>'
             ].join('');
@@ -158,7 +158,7 @@
 
                     '<div class="input-group search js_search">',
                         '<span class="input-group-addon hand js_tosearch"><i class="icon"></i></span>',
-                        '<input type="text" class="form-control" data-placeholder="搜索店铺，专家服务...">',
+                        '<input type="text" class="form-control" data-placeholder="搜索本地店铺，专家服务…">',
                     '</div>',
 
                 '{{if user.isLogin && user.has_biz}}',
@@ -180,6 +180,7 @@
                     '<div class="dropdown">',
                     '<button data-href="../myfav/list.html" id="js_right_dd_2" class="c2" type="button" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">',
                     '<img src="{{user.image}}" />',
+                    '{{if user.system_msg}}<span class="badge hw-badge">{{user.system_msg}}</span>{{/if}}',
                     '<span>帐号管理</span>',
                     '</button>',
                     R,
@@ -193,6 +194,7 @@
                     '<div style="top:3px;" class="dropdown">',
                     '<button data-href="../myfav/list.html" id="js_right_dd_2" class="c2" type="button" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">',
                     '<img src="{{user.image}}" />',
+                    '{{if user.system_msg}}<span class="badge hw-badge">{{user.system_msg}}</span>{{/if}}',
                     '<span>帐号管理</span>',
                     '</button>',
                     R,
@@ -288,7 +290,7 @@
             if(!regionName){
                 regionName = '旧金山湾区';
             }
-            this.elem.find('.js_loc').show().find('span').html(regionName);
+            this.elem.find('.js_loc').show().find('span').attr('title', regionName).html(regionName);
 
             this.elem.find('[data-hover="dropdown"]').dropdownHover();
 
@@ -305,6 +307,8 @@
                 }
 
             }).blur();
+
+
         },
 
         getCurrentLocation : function(){
@@ -373,8 +377,9 @@
                     });
                 });
 
-                var rid = util.cookie.get('region_IP_ID');
-                if(KG.user.get('isLogin')){
+                var rid = util.cookie.get('region_IP_ID'),
+                    rname = util.cookie.get('region_IP_ID_Name');
+                if(false && KG.user.get('isLogin')){
                     if(!rid || KG.user.get().subregion_detail.id !== rid){
                         rid = KG.user.get().subregion_detail.id;
                         util.cookie.set('region_IP_ID', rid);
@@ -394,7 +399,7 @@
                         list.push({
                             id : rid,
                             cn : '自动定位',
-                            name : 'qita'
+                            name : rname
                         });
                         next({list : list});
                     }
@@ -405,7 +410,7 @@
                             list.push({
                                 id : rs.pk_id,
                                 cn : '自动定位',
-                                name : 'qita'
+                                name : rs.name
                             });
                             next({list : list});
                         });
@@ -427,6 +432,10 @@
                 util.cookie.set('regionID', data.id);
                 util.cookie.set('region_name', data.name);
                 util.cookie.set('region_cn', data.cn);
+
+                if(index > 13){
+                    util.cookie.set('region_cn', data.name);
+                }
 
                 KG.request.setHotLocationRegion({
                     regionID : data.id

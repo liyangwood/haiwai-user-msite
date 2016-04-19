@@ -358,7 +358,14 @@ label.require:after {
     cursor: pointer; }
     .kg-header-comp .hw-loc span {
       font-size: 13px;
-      color: #9b9b9b; }
+      color: #9b9b9b;
+      display: inline-block;
+      max-width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      top: 4px;
+      position: relative; }
     .kg-header-comp .hw-loc .icon {
       margin-left: 5px;
       font-size: 14px;
@@ -400,6 +407,20 @@ label.require:after {
           color: #37bccd;
           position: relative;
           top: 2px; }
+        .kg-header-comp .right .dropdown button .hw-badge {
+          position: absolute;
+          background: #37bccd;
+          color: #ffffff;
+          z-index: 9;
+          font-size: 12px;
+          top: -8px;
+          left: 18px;
+          height: 16px;
+          line-height: 14px;
+          display: inline-block;
+          font-weight: normal;
+          padding: 2px 6px;
+          min-width: 16px; }
         .kg-header-comp .right .dropdown button:focus {
           outline: none; }
         .kg-header-comp .right .dropdown button img {

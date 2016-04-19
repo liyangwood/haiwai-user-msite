@@ -1267,7 +1267,20 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
                 data.id = self.postid;
                 m = '修改成功，审核时间为1-2个工作日';
             }
+
             console.log(data);
+            if(!data.title){
+                util.toast.showError('请输入标题');
+                return false;
+            }
+            if(!data.ad1){
+                util.toast.showError('请输入文字第一行');
+                return false;
+            }
+            if(!data.tel){
+                util.toast.showError('请输入文字第三行');
+                return false;
+            }
 
             util.dom.loadingButton(o, true);
             KG.request.createAds(data, function(flag, rs){
