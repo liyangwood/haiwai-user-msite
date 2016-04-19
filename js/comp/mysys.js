@@ -112,7 +112,8 @@
             });
         },
         initEnd : function(){
-            this.elem.find('.js_a').eq(0).html('全部系统消息（'+this.data.count.all+'）');
+            //this.elem.find('.js_a').eq(0).html('全部系统消息（'+this.data.count.all+'）');
+            this.elem.find('.js_a').eq(0).html('全部系统消息');
             this.elem.find('.js_a').eq(0).trigger('click');
             if(this.data.list.length < 1){
                 this.elem.addClass('no_dis');

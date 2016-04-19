@@ -761,7 +761,7 @@
 
     //debug
     if(!util.url.param('debug')){
-        //console.log = console.error = function(){};
+        console.log = console.error = function(){};
     }
 })();
 

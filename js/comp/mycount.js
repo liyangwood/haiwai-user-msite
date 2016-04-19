@@ -177,9 +177,9 @@ KG.Class.define('UploadUserImage', {
 
         var b = this.elem.find('.js_del');
         this.elem.find('.hw-img-box').hover(function(){
-            b.slideDown(200);
+            //b.slideDown(200);
         }, function(){
-            b.slideUp(200);
+            //b.slideUp(200);
         });
 
         var jq = this.jq;
