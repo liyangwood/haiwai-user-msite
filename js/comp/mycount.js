@@ -227,7 +227,7 @@ KG.Class.define('SelectLocationRange', {
             '<select class="js_state"></select>',
             '<br />',
             '<select style="display: none;" class="js_city"></select>',
-            '<select style="display: none;" class="js_area"></select>',
+            '<select style="display: none;" class="js_area no_dis"></select>',
             '</div>'
         ].join('');
     },

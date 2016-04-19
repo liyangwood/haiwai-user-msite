@@ -258,7 +258,7 @@ KG.Class.define('SiteHeadingNav', {
 			},
 			{
 				logo : 'store.png',
-				title : [['私家小店', 643]],
+				title : [['个体微店', 643]],
 				children : [
 					[
 						['私家美食', 643, 645],

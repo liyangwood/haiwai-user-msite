@@ -54,6 +54,9 @@
 (function(){
 
     var site = 'http://beta.haiwai.com';
+    if(location.host === 'www.haiwai.com'){
+        site = 'http://www.haiwai.com';
+    }
 
     KG.config = {
         root : '/haiwai-user-msite',
@@ -83,10 +86,10 @@
         image : 'http://www.sinomedianet.com/haiwai2015.3.19/images/default_avatar.png',
         defaultImage : 'http://www.sinomedianet.com/haiwai2015.3.19/images/default_avatar.png',
         email : '',
-        userid : 14678,
+        userid : '',
         tel : '',
         token : '',
-        isLogin : true
+        isLogin : false
     };
     KG.user = {
         get : function(key){

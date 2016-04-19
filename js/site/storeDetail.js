@@ -1265,9 +1265,9 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		console.log(box.height());
 
 		var h = '<div class="hand js_down" style="height:32px;text-align: center;"><i style="font-size:32px;color:#9b9b9b;"' +
-			' class="icon fa' +
-			' fa-angle-down"></i></div>';
+			' class="icon fa fa-angle-down"></i></div>';
 		var tmp = box.height();
+		var ex = false;
 		if(tmp > 170){
 			box.css({
 				height : '170px',
@@ -1279,12 +1279,27 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			box.after(h);
 
 			h.bind('click', function(){
-				box.animate({
-					height : (tmp+20)+'px',
-					'padding-bottom' : '12px'
-				});
+				if(!ex){
+					box.animate({
+						height : (tmp+20)+'px',
+						'padding-bottom' : '12px'
+					}, function(){
+						h.find('i').removeClass('fa-angle-down').addClass('fa-angle-up');
+						ex = !ex;
+					});
+				}
+				else{
+					box.animate({
+						height : '170px',
+						'padding-bottom' : '0'
+					}, function(){
+						h.find('i').removeClass('fa-angle-up').addClass('fa-angle-down');
+						ex = !ex;
+					});
+				}
 
-				h.remove();
+
+				//h.remove();
 			});
 		}
 	}

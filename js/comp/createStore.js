@@ -698,10 +698,11 @@ KG.Class.define('MybizStoreInfoFormStep1', {
 
         });
 
+
+        var xobj = KG.component.getObj(self.elem.find('.js_tel'));
         this.elem.find('.js_tel').on('keydown', 'input', function(e){
-            var obj = KG.component.getObj(self.elem.find('.js_tel')),
-                val = obj.getValue();
-            console.log(e)
+            var val = xobj.getValue();
+
             if(!_.contains([8, 9], e.keyCode)){
                 if(e.keyCode < 48 || e.keyCode > 57){
                     return false;
@@ -1656,7 +1657,7 @@ KG.Class.define('MybizStoreInfoFormStep3', {
         util.dialog.show({
             foot : true,
             title : msg,
-            body : '<p>您马上就可以管理和分享您的店铺，我们会在1-2个工作日之内完成审核，将您的店铺发布到海外同城首页和文学城首页。</p>',
+            body : '<p>您马上就可以管理和分享您的店铺，我们会在24小时之内完成审核，将您的店铺发布到海外同城首页和文学城首页。</p>',
             'class' : 'hw-confirm',
             YesFn : function(){
                 var href = util.path.store(id);
