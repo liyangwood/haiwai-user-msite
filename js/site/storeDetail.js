@@ -1008,7 +1008,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			'<p class="r hw-msg">{{item.msgbody}}</p>',
 
 			'{{if item.pic}}',
-			'<div style="margin-top: 10px;" class="hw-rpimgbox">',
+			'<div style="margin-top: 10px;margin-left:90px;" class="hw-rpimgbox">',
 				'{{each item.pic as url index}}',
 				'<div class="hw-center-image"><img class="js_showCommentBidImage hand" param="{{index}}"' +
 				' src="{{url}}" /></div>',
