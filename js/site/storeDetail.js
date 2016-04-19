@@ -189,7 +189,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 					'{{/each}}',
 
 					'{{if biz.website}}',
-					'<p class="hw-la">网址 : <a target="_blank" href="{{biz.website}}">{{biz.website}}</a></p>',
+					'<p class="hw-la">网址 : <a target="_blank" href="{{biz.website | siteUrl}}">{{biz.website}}</a></p>',
 					'{{/if}}',
 
 				'</dd>',
