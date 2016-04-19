@@ -588,7 +588,7 @@ label.require:after {
   .hw-comp-star .icon {
     font-size: 20px;
     color: #f4a62a;
-    margin-right: 8px; }
+    margin-right: 6px; }
 
 .hw-HWSelectRegionLocation .hw-btn {
   height: 32px;
@@ -1773,7 +1773,7 @@ body {
         font-size: 20px; }
       .hw-HWSiteStoreListPage .box1 .hw-one1 .ca span {
         font-size: 15px;
-        margin-left: 12px;
+        margin-left: 15px;
         color: #7d7d7d; }
     .hw-HWSiteStoreListPage .box1 .hw-one1 .hw-address {
       font-size: 14px;
@@ -2252,7 +2252,9 @@ body {
       margin: 0;
       font-size: 16px;
       line-height: 22px;
-      color: #4a4a4a; }
+      color: #4a4a4a;
+      max-height: 44px;
+      overflow: hidden; }
     .hw-HWSiteArticleDetailRightMoreCommentComp .hw-one:hover h4 {
       color: #37bccd; }
 
@@ -2439,9 +2441,14 @@ body {
       .hw-HWSiteStoreDetailPage .c-top .c-r .hw-star {
         margin-top: 8px; }
       .hw-HWSiteStoreDetailPage .c-top .c-r .hw-rp {
-        margin-left: 15px;
+        margin-left: 18px;
         font-size: 16px;
-        color: #4a4a4a; }
+        color: #4a4a4a;
+        position: relative;
+        top: -2px; }
+      .hw-HWSiteStoreDetailPage .c-top .c-r .hw-comp-star .icon {
+        font-size: 24px;
+        margin-right: 7px; }
       .hw-HWSiteStoreDetailPage .c-top .c-r .hw-p {
         font-size: 16px;
         color: #4a4a4a;
@@ -2464,7 +2471,7 @@ body {
         .hw-HWSiteStoreDetailPage .c-top .c-r .hw-coupon span {
           display: inline-block;
           color: #f4a62a;
-          width: 400px;
+          max-width: 400px;
           overflow: hidden;
           text-overflow: ellipsis; }
         .hw-HWSiteStoreDetailPage .c-top .c-r .hw-coupon .icon {

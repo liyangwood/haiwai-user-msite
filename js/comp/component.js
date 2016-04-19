@@ -368,6 +368,7 @@ KG.Class.define('BaseLoadingImageBox', {
 		var img = new Image();
 		img.src = url;
 		console.log(url);
+		this.elem.html('<i class="icon icon-loading"></i>');
 		$(img).load(function(e){
 			var o = $(this);
 

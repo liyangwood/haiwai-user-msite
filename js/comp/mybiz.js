@@ -180,7 +180,7 @@ KG.Class.define('MybizRunningStoreList', {
             '{{each list as item}}',
             '<div class="hw-each" style="padding-left:112px;">',
             //'<div class="hw-img hw-center-image" style="width:96px;"><img src="{{item.logo[0].path | absImage}}"/></div>',
-            '<img class="hw-img" style="width:96px;" src="{{item.logo[0].path | absImage}}"/>',
+            '<div class="hw-img" role="BaseLoadingImageBox" style="width:96px;" data-url="{{item | logoPath}}"></div>',
             '<a class="h4" href="{{item.entityID | toStorePath}}">{{item.name_cn ||item.name_en}}</a>',
             '<p>{{item | storeFullAddress}}</p>',
             '<em>{{item.commentnum}}条评论</em>',
@@ -253,7 +253,7 @@ KG.Class.define('MybizStopStoreList', {
             '<div class="hw-comp-store-list">',
             '{{each list as item}}',
             '<div class="hw-each" style="padding-left:112px;">',
-            '<img class="hw-img" style="width:96px;" src="{{item.logo[0].path | absImage}}"/>',
+            '<div class="hw-img" role="BaseLoadingImageBox" style="width:96px;" data-url="{{item | logoPath}}"></div>',
             //'<h4 style="display: inline-block" class="h4">{{item.name_cn}}</h4>',
             '<a class="h4" href="{{item.entityID | toStorePath}}">{{item.name_cn ||item.name_en}}</a>',
             '<p>{{item.address}}, {{item.city}}, {{item.state}}, {{item.zip}}</p>',
@@ -1337,7 +1337,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
             bizId : this.bizId,
             tag : this.bizData.fk_main_tag_id,
             logo : this.logo,
-            region : KG.user.get('subregion_detail').id
+            region : this.bizData.fk_region_id
         };
 
         if(this.tpl === 'common1'){

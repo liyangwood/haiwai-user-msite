@@ -140,7 +140,7 @@ KG.Class.define('HWSiteSearchStoreListPage', {
 		return [
 			'{{each list as item}}',
 			'<a href="{{item.entityID | toStorePath}}" target="_blank" class="hw-one1">',
-			'<div class="hw-logo"><img src="{{item.logo[0].path | absImage}}" /></div>',
+			'<div class="hw-logo" role="BaseLoadingImageBox" data-url="{{item | logoPath}}"></div>',
 
 			'<div class="right">',
 			'<h4>{{item.name_cn || item.name_en}}</h4>',

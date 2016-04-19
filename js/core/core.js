@@ -76,7 +76,7 @@
         BizBigBgPic : '../../image/default_bg_pic.png',
         articleImage : KG.config.SiteRoot+'/images/lifetools_default_article.png',
         couponImage : KG.config.SiteRoot+'/images/default_event_logo.png',
-        storeImage : '../../image/store_default.png'
+        storeImage : KG.config.SiteRoot+'/images/default_logo.jpeg'
     };
 
     var user = {

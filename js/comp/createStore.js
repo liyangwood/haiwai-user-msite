@@ -301,6 +301,28 @@ KG.Class.define('MybizStoreInputDatepicker', {
         self.setBoxHtml();
         self.checkListBox();
     },
+    setValueByOrigin : function(data){
+        console.log(data);
+        var self = this;
+        var rs = [];
+        _.each(data, function(one){
+            var tmp = {
+                start : one.daytime[0],
+                end : one.daytime[1]
+            };
+            var wt = [];
+            _.each(one.weektime, function(x, index){
+                if(x === '1'){
+                    wt.push(self.DAY[index]);
+                }
+            });
+            tmp.week = wt;
+            rs.push(tmp);
+        });
+        self.td = rs;
+        self.setBoxHtml();
+        self.checkListBox();
+    },
     getValue : function(){
         var self = this;
         var rs = [];
@@ -752,8 +774,13 @@ KG.Class.define('MybizStoreInfoFormStep1', {
 
             this.elem.find('.js_state').val(this.data.biz.state.toUpperCase());
 
+            if(this.type === 'create'){
+                this.getElemObj().timeinfo.setValueByOrigin(this.data.biz.timeinfo);
+            }
+            else{
+                this.getElemObj().timeinfo.setValue(this.data.biz.timeinfo.unformat);
+            }
 
-            this.getElemObj().timeinfo.setValue(this.data.biz.timeinfo.unformat);
         }
 
         if(this.type === 'create'){
@@ -1167,7 +1194,8 @@ KG.Class.define('UploadStoreImage', {
         return [
             '<div>',
             '<div class="hw-img-box">',
-            '<img class="js_img" src="{{image}}" />',
+            //'<img class="js_img" src="{{image}}" />',
+            '<div style="width:100%;height:100%;" class="js_img" role="BaseLoadingImageBox" data-url="{{image}}"></div>',
             '<b class="js_del">删除</b>',
             '</div>',
 
@@ -1195,7 +1223,9 @@ KG.Class.define('UploadStoreImage', {
 
     setJqVar : function(){
         return {
-            delBtn : this.elem.find('.js_del')
+            delBtn : this.elem.find('.js_del'),
+            img : this.elem.find('.js_img'),
+            imgObj : KG.component.getObj(this.elem.find('.js_img'))
         };
     },
     initEvent : function(){
@@ -1216,7 +1246,7 @@ KG.Class.define('UploadStoreImage', {
 
         var jq = this.jq;
         jq.delBtn.click(function(){
-            jq.img.attr('src', '');
+            jq.imgObj.setUrl(KG.default.storeImage);
         });
     },
     uploadImageFn : function(file, callback){
@@ -1239,7 +1269,7 @@ KG.Class.define('UploadStoreImage', {
             KG.request.uploadTmpBizLogo(data, function(flag, rs){
                 if(flag){
                     console.log(rs);
-                    self.jq.img.attr('src', KG.config.SiteRoot+rs.files[0]);
+                    self.jq.imgObj.setUrl(KG.config.SiteRoot+rs.files[0]);
                 }
 
                 callback();
@@ -1254,7 +1284,7 @@ KG.Class.define('UploadStoreImage', {
 
     },
     getImageUrl : function(){
-        return this.jq.img.attr('src');
+        return this.jq.img.find('img').attr('src');
     }
 });
 
@@ -1373,8 +1403,9 @@ KG.Class.define('MybizUploadStoreImage', {
 
     getEachHtml : function(url, id){
         var h = [
-            '<div class="hw-one js_img">',
-            '<img src="{{url}}" />',
+            '<div class="hw-one js_img hand">',
+            //'<img src="{{url}}" />',
+            '<div style="width:100%;height:100%;" role="BaseLoadingImageBox" data-url="{{url}}"></div>',
             '<b param="'+id+'" class="js_del">删除</b>',
             '</div>'
         ].join('');
@@ -1421,6 +1452,8 @@ KG.Class.define('MybizUploadStoreImage', {
     addNewImage : function(src, id){
         var h = this.getEachHtml(src, id);
         this.jq.add.after(h);
+
+        KG.component.init(this.elem);
     },
 
     initEnd : function(){

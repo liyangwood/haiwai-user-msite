@@ -1019,7 +1019,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			'<p style="margin-top:10px;" class="r hw-action">',
 				'{{if role=="admin"}}<span param="{{item.id}}_{{item.userID}}" {{if item.reply}}param1="{{item.reply.msgbody}}"{{/if}} nick="{{item.userinfo.nick}}"' +
 				' class="js_rp">',
-				'{{if item.reply}}修改{{else}}回复{{/if}}',
+				'{{if item.reply}}修改回复{{else}}回复{{/if}}',
 
 				'</span>{{/if}}',
 				'<span param="{{item.id}}" class="js_like">赞({{item.buzz}})</span>',

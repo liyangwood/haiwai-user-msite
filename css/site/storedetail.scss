@@ -64,9 +64,18 @@
                 margin-top: 8px;
             }
             .hw-rp{
-                margin-left: 15px;
+                margin-left: 18px;
                 font-size: 16px;
                 color: $color-4a;
+                position: relative;
+                top: -2px;
+            }
+
+            .hw-comp-star{
+                .icon{
+                    font-size: 24px;
+                    margin-right: 7px;
+                }
             }
 
             .hw-p{
@@ -93,7 +102,7 @@
                 span{
                     display: inline-block;
                     color: #f4a62a;
-                    width: 400px;
+                    max-width: 400px;
                     overflow: hidden;
                     text-overflow : ellipsis;
                 }

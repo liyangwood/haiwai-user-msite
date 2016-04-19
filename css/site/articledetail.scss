@@ -276,6 +276,8 @@
             font-size: 16px;
             line-height: 22px;
             color: $color-4a;
+            max-height:44px;
+            overflow: hidden;
         }
 
         &:hover{
