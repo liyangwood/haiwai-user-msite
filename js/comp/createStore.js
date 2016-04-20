@@ -569,14 +569,21 @@ KG.Class.define('MybizStoreInfoFormStep1', {
             jq.tel.showError();
         }
 
-        if(!data.bizTagId){
-            this.jq.cat.showError('请选择店铺类别');
-            this.jq.cat.focus();
-            return false;
+        //处理历史老数据的分类不在目前列表中的情况
+        if(this.type === 'create'){
+            if(!data.bizTagId){
+                this.jq.cat.showError('请选择店铺类别');
+                this.jq.cat.focus();
+                return false;
+            }
+            else{
+                this.jq.cat.showError();
+            }
         }
         else{
-            this.jq.cat.showError();
+            data.bizTagId = this.data.biz.fk_main_tag_id;
         }
+
 
         if(!data.zip){
             jq.zip.showError('请输入邮编');
