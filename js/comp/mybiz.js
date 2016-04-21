@@ -367,6 +367,21 @@ KG.Class.define('MybizRunningCouponList', {
                     }
                 });
             }
+
+            var runningList = [],
+                stopList = [];
+            util.each(list, function(item){
+                if(item.visible === '1'){
+                    runningList.push(item);
+                }
+                else{
+                    stopList.push(item);
+                }
+            });
+
+            KG.component.initWithElement($('div[role="HWMybizIndexStoreAdsBlock"]'), {
+                bizList : runningList
+            });
         });
 
         next({});
@@ -632,17 +647,6 @@ KG.Class.define('MybizArticleList', {
                 list = rs;
             }
 
-            //var runningList = [],
-            //    stopList = [];
-            //util.each(list, function(item){
-            //    if(item.visible === '1'){
-            //        runningList.push(item);
-            //    }
-            //    else{
-            //        stopList.push(item);
-            //    }
-            //});
-
             if(list.length < 1){
                 util.dialog.confirm1({
                     msg : '您还没有创建店铺，请先建店！',
@@ -652,6 +656,21 @@ KG.Class.define('MybizArticleList', {
                     }
                 });
             }
+
+            var runningList = [],
+                stopList = [];
+            util.each(list, function(item){
+                if(item.visible === '1'){
+                    runningList.push(item);
+                }
+                else{
+                    stopList.push(item);
+                }
+            });
+
+            KG.component.initWithElement($('div[role="HWMybizIndexStoreAdsBlock"]'), {
+                bizList : runningList
+            });
         });
 
         next({});

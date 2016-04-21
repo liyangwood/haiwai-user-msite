@@ -360,7 +360,7 @@
                 '<a href="../myfav/list.html">我的收藏</a>',
                 '<a href="../mycoupon/list.html">我的优惠</a>',
                 '<a href="../mysys/index.html">系统消息</a>',
-                '<a href="../mycount/info.html">账户设置</a>',
+                '<a href="../mycount/info.html">帐号设置</a>',
                 '<a class="js_logout" href="javascript:void(0)">退出登录</a>',
                 '</div>',
                 '</div>',

@@ -447,7 +447,9 @@ label.require:after {
         font-size: 14px;
         text-indent: 10px;
         display: inline-block;
-        width: 100%; }
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis; }
         .kg-header-comp .right .dropdown-menu a:hover {
           background: #f5f5f5; }
     .kg-header-comp .right .hw-a {

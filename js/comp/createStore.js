@@ -754,6 +754,7 @@ KG.Class.define('MybizStoreInfoFormStep1', {
             },
             clickCallback : function(item){
                 self.switchCategory.call(self, item);
+                util.dom.scrollTo(140);
             }
         });
 

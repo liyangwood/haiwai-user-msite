@@ -13,7 +13,7 @@
             return [
                 '<div style="height: auto;" class="hw-MybizLeftUserNav">',
                 '<a class="hw-img" href="javascript:void(0)"><img src="{{user.image}}" /></a>',
-                '<span class="hw-email">{{user.email}}<a href="../mycount/info.html">[账户设置]</a></span>',
+                '<span class="hw-email">{{user.email}}<a style="display: block;" href="../mycount/info.html">[账户设置]</a></span>',
 
 
                 //'<a href="javascript:void(0)" class="hw-a js_{{page}}" style="margin-top: 24px;">{{dir}}</a>',

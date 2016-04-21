@@ -785,18 +785,10 @@ KG.Class.define('MybizCouponForm', {
                         }
 
                         //create success
-                        var msg = '<div class="hw-icon"><i class="fa fa-check"></i></div>创建优惠成功！别忘了点击“分享”，让更多的人知道！';
-                        util.dialog.show({
-                            foot : true,
-                            title : msg,
-                            body : '',
-                            'class' : 'hw-dialog-alert',
-                            YesFn : function(){
-
-                                location.href = '../mybiz/coupon.html';
-                            },
-                            YesText : '确定'
-                        });
+                        util.toast.alert('创建优惠成功！别忘了点击“分享”，让更多的人知道！');
+                        _.delay(function(){
+                            location.href = '../mybiz/coupon.html';
+                        }, 2000);
                     }
 
 
