@@ -351,7 +351,7 @@ label.require:after {
     height: 38px;
     position: absolute;
     left: 0;
-    top: 22px;
+    top: 25px;
     background: url("../image/newlogo2x.png") 0 0 no-repeat;
     background-size: 100%; }
   .kg-header-comp .hw-loc {
@@ -376,7 +376,7 @@ label.require:after {
   .kg-header-comp .search {
     width: 520px;
     height: 40px;
-    margin: 24px auto;
+    margin: 25px auto;
     border-color: #9b9b9b;
     position: relative; }
     .kg-header-comp .search span {
@@ -1354,7 +1354,8 @@ label.require:after {
   .hw-comp-MybizStoreInfoFormStep1 .hw-inline {
     width: 185px;
     display: inline-block;
-    margin-left: 22px; }
+    margin-left: 22px;
+    float: left; }
     .hw-comp-MybizStoreInfoFormStep1 .hw-inline select {
       width: 100%;
       display: inline-block;
@@ -1363,6 +1364,8 @@ label.require:after {
       padding-left: 8px;
       border: 1px solid #ccc;
       background: url(../image/arrow_down.png) right no-repeat #fff;
+      appearance: none;
+      -moz-appearance: none;
       -webkit-appearance: none;
       border-radius: 0;
       margin: 0;
@@ -1662,6 +1665,8 @@ label.require:after {
   padding-left: 8px;
   border: 1px solid #c5c5c5;
   background: url(../image/arrow_down.png) right no-repeat #fff;
+  appearance: none;
+  -moz-appearance: none;
   -webkit-appearance: none;
   border-radius: 2px; }
 .hw-MybizStoreInputDatepicker .cc {

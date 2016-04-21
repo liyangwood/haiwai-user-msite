@@ -1083,7 +1083,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
                     '<div class="form-group">',
                         '<label class="col-sm-2 control-label require">标题</label>',
                         '<div class="col-sm-8">',
-                            '<input type="text" class="form-control js_name" placeholder="">',
+                            '<input type="text" param_len="14" class="form-control js_name" placeholder="">',
                             '<span class="hw-tip">建议填写店铺名称，或者想要宣传的产品/服务名称</span>',
                         '</div>',
                     '</div>',
@@ -1091,7 +1091,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
                     '<div class="form-group">',
                     '<label class="col-sm-2 control-label require">文字第一行</label>',
                     '<div class="col-sm-10">',
-                        '<input type="text" class="form-control js_ad1" placeholder="职位名称或营业特色">',
+                        '<input type="text" param_len="26" class="form-control js_ad1" placeholder="职位名称或营业特色">',
                         '<span class="hw-tip">建议填写职位名称，营业特色，电话号码或想要宣传的产品/服务等</span>',
                     '</div>',
                     '</div>',
@@ -1099,7 +1099,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
                     '<div class="form-group">',
                     '<label class="col-sm-2 control-label require">文字第二行</label>',
                     '<div class="col-sm-10">',
-                        '<input type="text" class="form-control js_ad2" placeholder="广告宣传语">',
+                        '<input type="text" param_len="26" class="form-control js_ad2" placeholder="广告宣传语">',
                         '<span class="hw-tip">建议填写职位名称，营业特色，电话号码或想要宣传的产品/服务等</span>',
                     '</div>',
                     '</div>',
@@ -1107,7 +1107,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
                     '<div class="form-group">',
                     '<label class="col-sm-2 control-label require">文字第三行</label>',
                     '<div class="col-sm-10">',
-                        '<input type="text" class="form-control js_tel" placeholder="">',
+                        '<input type="text" param_len="26" class="form-control js_tel" placeholder="">',
                         '<span class="hw-tip">建议填写职位名称，营业特色，电话号码或想要宣传的产品/服务等</span>',
                     '</div>',
                     '</div>',
@@ -1275,8 +1275,21 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
             tm = window.setTimeout(function(){
                 self.toPreviewAD();
             }, 200);
-
         });
+
+        this.elem.find('.s-form').find('input').keyup(function(e){
+            var o = $(this),
+                val = o.val();
+            var len = val.replace(/[^x00-xff]/g, 'xx').length;
+            //console.log(val, len);
+            var max = parseInt(o.attr('param_len'), 10);
+            if(len > max){
+                val = val.slice(0, -1);
+                o.val(val);
+            }
+        });
+
+
 
         self.elem.find('.s-btn .js_sub').click(function(){
             var o = $(this);
@@ -1329,7 +1342,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
         this.jq.name.val(this.name);
         this.jq.ad1.val(this.ad1);
         this.jq.ad2.val(this.ad2);
-        this.jq.tel.val(this.tel);
+        this.jq.tel.val(template.helpers.formatPhone(this.tel));
 
         util.delay(function(){
             self.toPreviewAD();

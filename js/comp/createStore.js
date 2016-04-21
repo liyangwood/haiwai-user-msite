@@ -371,7 +371,7 @@ KG.Class.define('MybizStoreInfoFormStep1', {
             '<div {{if biz}}data-value="{{biz.city}}"{{/if}} class="js_city hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="城市"></div>',
             //'<div {{if biz}}data-value="{{biz.state}}"{{/if}} class="js_state hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="州/省"></div>',
 
-            '<div class="hw-inline form-group">',
+            '<div style="position:relative;top:2px;" class="hw-inline form-group">',
                 '<label class="require">州/省</label>',
             '<label class="control-label hw-err"></label>',
                 '<select class="js_state hw-inline">',

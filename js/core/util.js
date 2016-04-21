@@ -832,6 +832,15 @@
         }
         return rs;
     });
+    template.helper('htmlToTextNoBr', function(html){
+        var h = '';
+        try{
+            h = decodeURIComponent(html).replace(/<([^>]*)>/g, '');
+        }catch(e){
+            h = html.replace(/<([^>]*)>/g, '');
+        }
+        return h;
+    });
     template.helper('htmlToText', function(html){
         var h = '';
         try{

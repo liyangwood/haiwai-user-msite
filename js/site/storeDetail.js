@@ -1098,7 +1098,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			'<div class="hw-img" data-url="{{item | logoPath}}" role="BaseLoadingImageBox"></div>',
 			'<h4>{{item.title}}</h4>',
 			'<p class="hw-time">{{item.dateline | formatDate:"mm/dd/yy"}}</p>',
-			'<p class="hw-lt">{{item.msgbody | htmlToText}}</p>',
+			'<p class="hw-lt">{{item.msgbody | htmlToTextNoBr}}</p>',
 			'</a>',
 			'{{/each}}',
 			'{{if flag}}<p class="hw-more">查看更多</p>{{/if}}'

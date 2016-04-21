@@ -350,7 +350,7 @@ label.require:after {
     height: 38px;
     position: absolute;
     left: 0;
-    top: 22px;
+    top: 25px;
     background: url("../image/newlogo2x.png") 0 0 no-repeat;
     background-size: 100%; }
   .kg-header-comp .hw-loc {
@@ -375,7 +375,7 @@ label.require:after {
   .kg-header-comp .search {
     width: 520px;
     height: 40px;
-    margin: 24px auto;
+    margin: 25px auto;
     border-color: #9b9b9b;
     position: relative; }
     .kg-header-comp .search span {
