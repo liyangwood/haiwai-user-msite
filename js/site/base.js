@@ -669,7 +669,7 @@ KG.Class.define('HWBaseAdsBanner', {
 				'</div>',
 				'<div class="cc">',
 					'<p class="pb1">建店就送30天</p>',
-					'<p class="pb1 pb2"><a class="pb1 pb2" href="http://www.wenxuecity.com"' +
+					'<p class="pb1 pb2"><a class="pb1 pb2" href="'+KG.config.Wenxuecity_Ads_Url+'"' +
 					' target="_blank">文学城首页</a>广告</p>',
 					'<img src="../../image/adsprofile.png" />',
 					'<p class="pb">1. 免费创建店铺<br/>2. 选择广告模板，3分钟自制广告<br/>3. 广告发布到文学城首页30天</p>',

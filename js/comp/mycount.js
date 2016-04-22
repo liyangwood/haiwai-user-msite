@@ -409,10 +409,10 @@ KG.Class.define('MycountChangeInfoForm', {
 
             '<div class="hw-line"></div>',
 
-            '<div class="form-group">',
-            '<label class="lab require">所在地区</label>',
-            '<div class="js_loc" data-region="{{region}}" init-self="true" role="SelectLocationRange"></div>',
-            '</div>',
+            //'<div class="form-group">',
+            //'<label class="lab require">所在地区</label>',
+            //'<div class="js_loc" data-region="{{region}}" init-self="true" role="SelectLocationRange"></div>',
+            //'</div>',
 
             '<div class="js_phone" data-value="{{user.tel}}" data-label="联络电话" role="BaseInput"></div>',
             '<div class="js_wx" data-value="{{user.ims_value}}" data-label="微信号" role="BaseInput"></div>',
@@ -442,13 +442,13 @@ KG.Class.define('MycountChangeInfoForm', {
             email : KG.component.getObj(this.elem.find('.js_regemail')),
             tel : KG.component.getObj(this.elem.find('.js_phone')),
             wechat : KG.component.getObj(this.elem.find('.js_wx')),
-            region : KG.component.getObj(this.elem.find('.js_loc')),
+            //region : KG.component.getObj(this.elem.find('.js_loc')),
             desc : this.elem.find('.js_desc')
         };
     },
     getData : function(box, data, next){
-        KG.request.getUserDetailInfo({}, function(flag, rs){
-            console.log(rs);
+        //KG.request.getUserDetailInfo({}, function(flag, rs){
+            var rs = KG.user.get();
             var region = [],
                 tmp = rs.region_tree.reverse();
             for(var i= 0, len=tmp.length; i<len; i++){
@@ -458,7 +458,7 @@ KG.Class.define('MycountChangeInfoForm', {
                 region : region.join(','),
                 user : rs
             });
-        });
+        //});
 
     },
     initBlurEvent : function(){
@@ -495,7 +495,7 @@ KG.Class.define('MycountChangeInfoForm', {
             email : jq.email.getValue(),
             tel : jq.tel.getValue(),
             wechat : jq.wechat.getValue(),
-            region : jq.region.getValue(),
+            //region : jq.region.getValue(),
             description : jq.desc.val()
         };
 

@@ -952,7 +952,9 @@ label.require:after {
     line-height: 16px;
     font-size: 12px;
     margin: 10px auto;
-    padding: 0 15px; }
+    padding: 0 15px;
+    overflow: hidden;
+    text-overflow: ellipsis; }
     .hw-MybizLeftUserNav .hw-email a {
       display: inline;
       font-size: 12px;
@@ -1354,8 +1356,7 @@ label.require:after {
   .hw-comp-MybizStoreInfoFormStep1 .hw-inline {
     width: 185px;
     display: inline-block;
-    margin-left: 22px;
-    float: left; }
+    margin-left: 22px; }
     .hw-comp-MybizStoreInfoFormStep1 .hw-inline select {
       width: 100%;
       display: inline-block;

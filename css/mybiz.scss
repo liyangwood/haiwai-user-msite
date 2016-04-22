@@ -54,6 +54,8 @@
         font-size: 12px;
         margin: 10px auto;
 		padding: 0 15px;
+		overflow: hidden;
+		text-overflow: ellipsis;
 
 		a{
 			display: inline;
@@ -624,7 +626,7 @@
 		width: 185px;
 		display: inline-block;
 		margin-left: 22px;
-		float: left;
+		//float: left;
 
 		select{
 			width: 100%;

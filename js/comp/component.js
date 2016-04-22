@@ -473,3 +473,60 @@ KG.Class.define('HWNoContentDiv', {
 		});
 	}
 });
+
+KG.Class.define('HWBaseGoogleAdIFrame', {
+	ParentClass : 'BaseComponent',
+	getTemplate : function(){
+		return '<div style="text-align:center;"><iframe style="border:0;width:100%;height:100%;"></iframe></div>'
+	},
+	defineProperty : function(){
+		return {
+			id : {}
+		}
+	},
+
+	getAdUrl : function(){
+		var id = this.prop.id;
+
+		document.MAX_ct0 ='';
+		var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
+		var m3_r = Math.floor(Math.random()*99999999999);
+		var url = m3_u+'zoneid='+id+'&nodis=1&cb='+m3_r;
+
+		if (document.MAX_used != ','){
+			url += '&exclude='+document.MAX_used;
+		}
+		var tmp = (document.charset ? '&charset='+document.charset : (document.characterSet ? '&charset='+document.characterSet : ''));
+		url += tmp;
+		tmp = ("&loc=" + escape(window.location).substring(0,1600));
+		url += tmp;
+		if (document.context) tmp = ("&context=" + escape(document.context));
+		url += tmp;
+		if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
+			tmp = ("&ct0=" + escape(document.MAX_ct0));
+			url += tmp;
+		}
+		if (document.mmm_fo){
+			tmp = ("&amp;mmm_fo=1");
+			url += tmp;
+		}
+		return url;
+	},
+
+	initEnd : function(){
+		var self = this;
+		var elem = this.elem.find('iframe');
+		_.delay(function(){
+			var ifrm = elem[0];
+			ifrm = (ifrm.contentWindow) ? ifrm.contentWindow : (ifrm.contentDocument.document) ? ifrm.contentDocument.document : ifrm.contentDocument;
+
+			var adurl = self.getAdUrl();
+			console.log(adurl);
+
+			ifrm.document.open();
+			ifrm.document.write('<style>*{margin:0;padding:0;}</style>');
+			ifrm.document.write('<scr'+'ipt src="'+adurl+'"></scr'+'ipt>');
+			ifrm.document.close();
+		}, 100);
+	}
+});

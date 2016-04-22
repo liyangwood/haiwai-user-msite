@@ -1231,7 +1231,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			'<div style="display: none;" class="hw-store-bottom-ads">',
 				'<b class="hw-close js_close"><i class="icon fa fa-times-circle"></i></b>',
 				'<dd>',
-					'<span>3分钟创建广告，免费发布到<a target="_blank" href="http://www.wenxuecity.com">文学城</a>首页30天</span>',
+					'<span>3分钟创建广告，免费发布到<a target="_blank" href="'+KG.config.Wenxuecity_Ads_Url+'">文学城</a>首页30天</span>',
 					'<a href="../mybiz/createAds.html?store='+this.data.id+'" target="_blank" class="hw-btn' +
 					' hw-blue-btn">马上创建</a>',
 				'</dd>',

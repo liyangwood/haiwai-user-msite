@@ -371,7 +371,7 @@ KG.Class.define('MybizStoreInfoFormStep1', {
             '<div {{if biz}}data-value="{{biz.city}}"{{/if}} class="js_city hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="城市"></div>',
             //'<div {{if biz}}data-value="{{biz.state}}"{{/if}} class="js_state hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="州/省"></div>',
 
-            '<div style="position:relative;top:2px;" class="hw-inline form-group">',
+            '<div style="position:relative;top:1px;float: right;" class="hw-inline form-group">',
                 '<label class="require">州/省</label>',
             '<label class="control-label hw-err"></label>',
                 '<select class="js_state hw-inline">',
@@ -1226,7 +1226,7 @@ KG.Class.define('UploadStoreImage', {
     getData : function(box, data, next){
 
         next({
-            image : this.prop.image
+            image : this.prop.image || KG.default.storeImage
         });
     },
 
@@ -1245,7 +1245,7 @@ KG.Class.define('UploadStoreImage', {
         var b = this.elem.find('.js_del');
         this.elem.find('.hw-img-box').hover(function(){
             var val = self.getImageUrl();
-            if(!val){
+            if(!val || val === KG.default.storeImage){
                 return false;
             }
             b.slideDown(200);
@@ -1328,7 +1328,6 @@ KG.Class.define('MybizUploadStoreImage', {
     },
 
     getData : function(box, data, next){
-        var tmp = KG.user.get('image');
         var list = data.list;
         next({
             list : list

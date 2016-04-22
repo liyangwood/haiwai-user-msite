@@ -56,15 +56,18 @@
                     }catch(e){}
 
                     rs.view.msgbody = util.replaceHtmlImgSrcToAbsolute(rs.view.msgbody);
+                    var addGoogleAd = rs.category.category_id !== '30';
                     next({
                         id : id,
                         data : rs.view,
                         category : rs.category,
-                        bizInfo : rs.view.bizinfo
+                        bizInfo : rs.view.bizinfo,
+                        addGoogleAd : addGoogleAd
                     });
 
                     util.message.publish('HWSiteArticleDetailRightMoreCommentComp', {
-                        hotList : rs.hot
+                        hotList : rs.hot,
+                        addGoogleAd : addGoogleAd
                     });
 
                     if(rs.relative){
@@ -82,6 +85,19 @@
             this.elem.on('click', '.js_share', function(){
                 util.dialog.showQrCode(util.path.toMSiteArticle(id), '打开微信扫一扫以下二维码即可打开本页面，点击屏幕右上角分享按钮');
             });
+        },
+
+        initEnd : function(){
+            //add google ad
+            if(this.data.addGoogleAd){
+                this.addGoogleAd();
+            }
+        },
+        addGoogleAd : function(){
+            var h = '<div role="HWBaseGoogleAdIFrame" data-id="292571" style="margin-bottom:20px;width:728px;height:90px;float:left;margin-left:14px;"></div>';
+            h = $(h);
+            this.elem.before(h);
+            KG.component.initWithElement(h);
         }
     });
 
@@ -157,6 +173,7 @@
 
         getTemplate : function(){
             return [
+                '<div>',
                 '<div class="hw-HWSiteArticleDetailRightMoreCommentComp">',
                 '<div class="hw-head">',
                 '<label class="js_title">热门文章</label>',
@@ -165,6 +182,7 @@
 
                 '</div>',
 
+                '</div>',
                 '</div>'
             ].join('');
         },
@@ -191,6 +209,24 @@
 
         registerMessage : function(e, data){
             this.setListHtml(data.hotList);
+            if(data.addGoogleAd){
+                this.addGoogleAd();
+            }
+        },
+        addGoogleAd : function(){
+            var h = '<div>';
+            h += '<div role="HWBaseGoogleAdIFrame" data-id="292557"' +
+                ' style="margin-top:20px;width:300px;height:250px;"></div>';
+            h += '<div role="HWBaseGoogleAdIFrame" data-id="292569"' +
+                ' style="margin-top:20px;width:300px;height:600px;"></div>';
+            h += '<div role="HWBaseGoogleAdIFrame" data-id="292557"' +
+                ' style="margin-top:20px;width:300px;height:250px;"></div>';
+
+            h += '</div>';
+
+            h = $(h);
+            this.elem.append(h);
+            KG.component.init(h);
         }
     });
 

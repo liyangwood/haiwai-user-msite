@@ -922,7 +922,7 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
         var h = [
             '<div class="cg">',
             '<img src="../../image/adsbanner1.png" />',
-            '我们为店主提供<a href="http://www.wenxuecity.com" target="_blank">文学城首页</a>价值$300一个月免费广告服务，地理定向推广您在海外同城的店铺。一分钟即可自助创建160*90的图片广告。无需任何预付费信息，创建成功审核后自动发布。',
+            '我们为店主提供<a href="'+KG.config.Wenxuecity_Ads_Url+'" target="_blank">文学城首页</a>价值$300一个月免费广告服务，地理定向推广您在海外同城的店铺。一分钟即可自助创建160*90的图片广告。无需任何预付费信息，创建成功审核后自动发布。',
 
                 '<a class="hw-btn js_btn" href="javascript:void(0)">免费创建广告</a>',
             '</div>',
@@ -952,7 +952,7 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
     },
     showShowingBox : function() {
         var h = decodeURIComponent(this.ads.share);
-        h += '<div class="cf"> 您创建的图片广告已在<a href="http://www.wenxuecity.com" target="_blank">文学城首页</a>发布，我们的广告采用轮播的形式，即有其他店主新的广告，您的广告会自动下移，直到轮出广告区域。请随时留意您的广告是否下线，一个月以内可无限次自助上线广告。广告下线我们会在此处提示，请留意。</div>';
+        h += '<div class="cf"> 您创建的图片广告已在<a href="'+KG.config.Wenxuecity_Ads_Url+'" target="_blank">文学城首页</a>发布，我们的广告采用轮播的形式，即有其他店主新的广告，您的广告会自动下移，直到轮出广告区域。请随时留意您的广告是否下线，一个月以内可无限次自助上线广告。广告下线我们会在此处提示，请留意。</div>';
         h += '<a class="hw-btn hw-blue-btn js_btn" href="../mybiz/createAds.html?id='+this.ads.postid+'">修改广告</a>';
         this.jq.box.addClass('hw-showing').html(h);
         this.setTitle('广告已上线');
@@ -960,7 +960,7 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
     },
     showWaitingBox : function(){
         var h = decodeURIComponent(this.ads.share);
-        h += '<div class="cf">您的广告已创建，我们需要 1-2个工作日审核发布到<a href="http://www.wenxuecity.com" target="_blank">文学城首页</a></div>';
+        h += '<div class="cf">您的广告已创建，我们需要 1-2个工作日审核发布到<a href="'+KG.config.Wenxuecity_Ads_Url+'" target="_blank">文学城首页</a></div>';
         h += '<a class="hw-btn hw-blue-btn js_btn" href="../mybiz/createAds.html?id='+this.ads.postid+'">修改广告</a>';
         this.jq.box.addClass('hw-waiting').html(h);
         this.setTitle('广告正在审核中');
@@ -968,7 +968,7 @@ KG.Class.define('HWMybizIndexStoreAdsBlock', {
     showInvisibleBox : function(){
         var self = this;
         var h = decodeURIComponent(this.ads.share);
-        h += '<div class="cf">由于广告过多，您的广告已轮出<a href="http://www.wenxuecity.com" target="_blank">文学城首页</a>，一个月内可自助上线广告。</div>';
+        h += '<div class="cf">由于广告过多，您的广告已轮出<a href="'+KG.config.Wenxuecity_Ads_Url+'" target="_blank">文学城首页</a>，一个月内可自助上线广告。</div>';
         h += '<a class="hw-btn hw-blue-btn js_btn" param="'+this.ads.postid+'" href="javascript:void(0)">重新上线</a>';
         this.jq.box.addClass('hw-waiting').html(h);
 
@@ -1342,7 +1342,20 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
         this.jq.name.val(this.name);
         this.jq.ad1.val(this.ad1);
         this.jq.ad2.val(this.ad2);
-        this.jq.tel.val(template.helpers.formatPhone(this.tel));
+
+
+        if(self.postid){
+            this.jq.tel.val(this.tel);
+        }
+        else{
+            if(this.tel){
+                this.jq.tel.val(template.helpers.formatPhone(this.tel));
+            }
+            else{
+                this.jq.tel.val(this.tel);
+            }
+        }
+
 
         util.delay(function(){
             self.toPreviewAD();
