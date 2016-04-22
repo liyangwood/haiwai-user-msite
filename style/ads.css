@@ -1,0 +1,259 @@
+.hw-ad {
+  width: 160px;
+  height: 90px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden; }
+  .hw-ad p {
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
+
+.hw-ad-common1 {
+  border: 1px solid #00a7bc; }
+  .hw-ad-common1 .hw-logo {
+    position: absolute;
+    width: 70px;
+    height: 90px;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background: #ffffff; }
+    .hw-ad-common1 .hw-logo img {
+      height: 100%;
+      min-width: 100%; }
+  .hw-ad-common1 .hw-name {
+    font-size: 17px;
+    color: #00a7bc;
+    top: 6px;
+    position: absolute;
+    width: 85px;
+    left: 73px;
+    text-align: left;
+    font-weight: 700; }
+  .hw-ad-common1 .hw-ad1 {
+    font-size: 12px;
+    position: absolute;
+    color: #4a4a4a;
+    left: 73px;
+    width: 85px;
+    text-align: left;
+    top: 30px; }
+  .hw-ad-common1 .hw-ad2 {
+    margin: 0;
+    position: absolute;
+    left: 73px;
+    width: 85px;
+    font-size: 12px;
+    color: #4a4a4a;
+    text-align: left;
+    top: 46px; }
+  .hw-ad-common1 .hw-tel {
+    position: absolute;
+    width: 100%;
+    height: 24px;
+    line-height: 26px;
+    background: rgba(0, 167, 188, 0.65);
+    left: 0;
+    font-size: 13px;
+    bottom: 0;
+    margin: 0;
+    color: #fff;
+    text-align: center; }
+
+.hw-ad-common2 {
+  border: 1px solid #c5c5c5; }
+  .hw-ad-common2 .hw-logo {
+    position: absolute;
+    background-color: #ffffff;
+    width: 70px;
+    height: 90px;
+    top: 0;
+    right: 0;
+    overflow: hidden; }
+    .hw-ad-common2 .hw-logo img {
+      height: 100%; }
+  .hw-ad-common2 .hw-name {
+    font-family: STKaiti-SC-Regular;
+    font-size: 19px;
+    color: #000;
+    top: 24px;
+    position: absolute;
+    width: 85px;
+    left: 3px;
+    text-align: left;
+    font-weight: 700; }
+  .hw-ad-common2 .hw-ad1 {
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    position: absolute;
+    color: #4a4a4a;
+    left: 3px;
+    width: 85px;
+    text-align: left;
+    top: 6px; }
+  .hw-ad-common2 .hw-ad2 {
+    font-family: PingFangSC-Regular;
+    margin: 0;
+    position: absolute;
+    left: 3px;
+    width: 85px;
+    font-size: 12px;
+    color: #4a4a4a;
+    text-align: left;
+    top: 52px; }
+  .hw-ad-common2 .hw-tel {
+    font-family: PingFangSC-Regular;
+    position: absolute;
+    left: 5px;
+    font-size: 12px;
+    top: 68px;
+    color: #4a4a4a;
+    text-align: left; }
+
+.hw-ad-t3 {
+  border: 1px solid transparent;
+  text-align: center;
+  background: #ffffff; }
+  .hw-ad-t3 .hw-logo {
+    display: none !important; }
+  .hw-ad-t3 .hw-ad2 {
+    display: none !important; }
+  .hw-ad-t3 .hw-name {
+    font-family: STKaiti-SC-Black;
+    font-size: 21px;
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    text-align: center; }
+  .hw-ad-t3 .hw-ad1 {
+    font-size: 12px;
+    font-family: PingFangSC-Semi;
+    margin-top: 2px;
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    text-align: center; }
+  .hw-ad-t3 .hw-tel {
+    position: absolute;
+    font-size: 12px;
+    height: 24px;
+    line-height: 26px;
+    color: #ffffff;
+    left: 0;
+    bottom: 0;
+    width: 100%; }
+
+.hw-ad-sijiaxiaodian {
+  border-color: #ed5769; }
+  .hw-ad-sijiaxiaodian .hw-name {
+    color: #eb596b;
+    font-size: 17px; }
+  .hw-ad-sijiaxiaodian .hw-ad1 {
+    font-family: PingFangSC-Semibold;
+    color: #460008;
+    font-size: 16px;
+    top: 34px; }
+  .hw-ad-sijiaxiaodian .hw-tel {
+    background: #ed5769; }
+
+.hw-ad-canyinmeishi {
+  border-color: #ea611a; }
+  .hw-ad-canyinmeishi .hw-name {
+    font-family: MicrosoftYaHei;
+    color: #672300;
+    font-weight: bold; }
+  .hw-ad-canyinmeishi .hw-ad1 {
+    font-family: MicrosoftYaHei;
+    color: #ea611a;
+    position: absolute;
+    height: 24px;
+    line-height: 26px;
+    top: 34px;
+    font-size: 15px; }
+  .hw-ad-canyinmeishi .hw-tel {
+    font-family: MicrosoftYaHei;
+    color: #ffffff;
+    background: #ea611a;
+    width: 100%; }
+
+.hw-ad-jiazhuangqingjie {
+  border-color: #9dad3d; }
+  .hw-ad-jiazhuangqingjie .hw-name {
+    color: #565b30;
+    font-family: MicrosoftYaHei;
+    font-weight: bold; }
+  .hw-ad-jiazhuangqingjie .hw-ad1 {
+    color: #515f00;
+    font-family: MicrosoftYaHei;
+    top: 38px; }
+  .hw-ad-jiazhuangqingjie .hw-tel {
+    background: #9dad3d; }
+
+.hw-ad-kehoufudao {
+  border-color: #f4a62a; }
+  .hw-ad-kehoufudao .hw-name {
+    font-family: MicrosoftYaHei;
+    font-weight: bold;
+    color: #6e4300; }
+  .hw-ad-kehoufudao .hw-ad1 {
+    font-family: MicrosoftYaHei;
+    color: #f4a62a;
+    top: 38px; }
+  .hw-ad-kehoufudao .hw-tel {
+    background: #f4a62a; }
+
+.hw-ad-kuijibaoxian {
+  border-color: #875296; }
+  .hw-ad-kuijibaoxian .hw-name {
+    color: #875296;
+    font-size: 17px;
+    position: relative; }
+  .hw-ad-kuijibaoxian .hw-ad1 {
+    font-family: PingFangSC-SemiBold;
+    color: #290135;
+    font-size: 16px;
+    top: 34px; }
+  .hw-ad-kuijibaoxian .hw-tel {
+    background: #875296; }
+
+.hw-ad-qicheweixiu {
+  border-color: #38383b; }
+  .hw-ad-qicheweixiu .hw-name {
+    color: #4a4a4a;
+    font-family: MicrosoftYaHei;
+    font-weight: bold; }
+  .hw-ad-qicheweixiu .hw-ad1 {
+    color: #4a4a4a;
+    font-family: MicrosoftYaHei;
+    top: 38px; }
+  .hw-ad-qicheweixiu .hw-tel {
+    background: #38383b; }
+
+.hw-ad-zhongyiyayi {
+  border-color: #eb596b; }
+  .hw-ad-zhongyiyayi .hw-name {
+    color: #45010a;
+    font-family: MicrosoftYaHei;
+    font-weight: bold; }
+  .hw-ad-zhongyiyayi .hw-ad1 {
+    color: #eb596b;
+    font-family: MicrosoftYaHei; }
+  .hw-ad-zhongyiyayi .hw-tel {
+    background: #eb596b; }
+
+.hw-ad-xiuxianmeirong {
+  border-color: #37bccd; }
+  .hw-ad-xiuxianmeirong .hw-name {
+    color: #40bccc;
+    font-size: 17px; }
+  .hw-ad-xiuxianmeirong .hw-ad1 {
+    color: #00383f;
+    font-size: 16px;
+    font-family: PingFangSC-SemiBold;
+    top: 34px; }
+  .hw-ad-xiuxianmeirong .hw-tel {
+    background: #37bccd; }
+
+/*# sourceMappingURL=ads.css.map */

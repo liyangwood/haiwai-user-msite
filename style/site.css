@@ -921,7 +921,7 @@ body {
   margin-top: 24px;
   min-height: 400px;
   margin-bottom: 50px;
-  overflow-x: hidden; }
+  overflow: hidden; }
 
 .kg-site-header-nav-comp .js_tab {
   width: 250px; }
