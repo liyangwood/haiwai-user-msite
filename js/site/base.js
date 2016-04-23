@@ -556,11 +556,11 @@ KG.Class.define('HWSiteCouponDetailComp', {
 		}
 
 		var h = [
-			'<div class="">',
+			'<a class="" href="{{biz.entityID | toStorePath}}">',
 				'<img src="{{biz.logo[0].path | absImage}}" />',
-				'<a href="{{biz.entityID | toStorePath}}" class="h4">{{biz.name_cn || biz.name_en}}</a>',
+				'<div class="h4">{{biz.name_cn || biz.name_en}}</div>',
 				'<p>{{biz | storeFullAddress}}</p>',
-			'</div>'
+			'</a>'
 		].join('');
 		h = template.compile(h)({
 			biz : data.bizinfo

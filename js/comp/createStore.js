@@ -673,6 +673,7 @@ KG.Class.define('MybizStoreInfoFormStep1', {
     initEvent : function(){
         var self = this;
         this.jq.btn.click(function(){
+            var o = $(this);
             var data = self.getFormValue();
             console.log(data);
             if(!self.validate(data)){
@@ -680,13 +681,20 @@ KG.Class.define('MybizStoreInfoFormStep1', {
             }
             if(self.type === 'edit'){
                 data.bizId = KG.data.get('id');
+
+                util.dom.loadingButton(o, true);
                 KG.request.saveStoreByStep1(data, function(flag, rs){
+                    util.dom.loadingButton(o, false);
                     if(flag){
-                        console.log(rs);
-                        util.toast.alert('修改成功');
-                        util.delay(function(){
-                            //location.href = '../mybiz/index.html';
-                        }, 1000);
+                        var param = {
+                            msg : '<div class="hw-icon"><i class="fa fa-check"></i></div>'+'修改成功',
+                            YesText : '去看看',
+                            NoText : '关闭',
+                            YesFn : function(){
+                                util.path.go(util.path.store(data.bizId));
+                            }
+                        };
+                        util.dialog.confirm1(param);
                     }
                 });
 
@@ -695,7 +703,9 @@ KG.Class.define('MybizStoreInfoFormStep1', {
                 //save value to storage
                 util.storage.set(self.__name, data);
 
+                util.dom.loadingButton(o, true);
                 KG.request.createStoreByStep1(data, function(flag, rs){
+                    util.dom.loadingButton(o, false);
                     if(flag){
                         console.log(rs);
                         location.href = 'createStore_2.html?tmp_biz_id='+rs.entityID+'&main_tag_id='+rs.main_tag_id;
@@ -931,6 +941,7 @@ KG.Class.define('MybizStoreInfoFormStep2', {
     initEvent : function(){
         var self = this;
         this.jq.btn.click(function(){
+            var o = $(this);
             var data = self.getFormValue();
             data.dynamic = self.getDynamicData();
 
@@ -942,23 +953,35 @@ KG.Class.define('MybizStoreInfoFormStep2', {
                 //save to storage
                 util.storage.set(self.__name, data);
 
+                util.dom.loadingButton(o, true);
                 KG.request.createStoreByStep2(data, function(flag, rs){
+                    util.dom.loadingButton(o, false);
                     if(flag){
                         console.log(rs);
                         location.href = 'createStore_3.html?tmp_biz_id='+rs+'&main_tag_id='+KG.data.get('mainTagId');
+                    }
+                    else{
+                        alert(rs);
                     }
                 });
             }
             else if(self.type === 'edit'){
                 data.bizId = self.id;
                 delete data.bizTmpId;
+
+                util.dom.loadingButton(o, true);
                 KG.request.saveStoreByStep2(data, function(flag, rs){
-                    if(true || flag){
-                        console.log(rs);
-                        util.toast.alert('修改成功');
-                        util.delay(function(){
-                            //location.href = '../mybiz/index.html';
-                        }, 1000);
+                    util.dom.loadingButton(o, false);
+                    if(flag){
+                        var param = {
+                            msg : '<div class="hw-icon"><i class="fa fa-check"></i></div>'+'修改成功',
+                            YesText : '去看看',
+                            NoText : '关闭',
+                            YesFn : function(){
+                                util.path.go(util.path.store(self.id));
+                            }
+                        };
+                        util.dialog.confirm1(param);
                     }
                     else{
                         util.toast.showError('修改失败，请检查');
@@ -1501,7 +1524,7 @@ KG.Class.define('MybizStoreInfoFormStep3', {
             '{{/if}}',
 
             '<div class="form-group">',
-            '<label class="lab">店铺头像</label>',
+            '<label class="lab">店铺头像（可选）</label>',
             '<p class="hw-img-p">店铺头像是您店铺的重要识别，建议采用店铺标识、职业头像或者主要产品的图片。</p>',
             '{{if tmpId}}',
             '<div class="hw-upload js_logo" data-biztype="tmp" init-self="true" data-bizid="{{tmpId}}"' +
@@ -1515,7 +1538,7 @@ KG.Class.define('MybizStoreInfoFormStep3', {
             '<div class="hw-line"></div>',
 
             '<div class="form-group">',
-            '<label class="lab">上传更多图片，让大家更全面了解您的环境、产品、成功案例</label>',
+            '<label class="lab">上传图片（可选）</label>',
             '<div class="js_image" data-type="'+this.type+'" role="MybizUploadStoreImage"' +
             ' init-self="true"></div>',
 
@@ -1643,10 +1666,16 @@ KG.Class.define('MybizStoreInfoFormStep3', {
                 KG.request.updateStoreByStep3(data, function(flag, rs){
                     util.dom.loadingButton(o, false);
                     if(true || flag){
-                        util.toast.alert('修改成功');
-                        util.delay(function(){
-                            //location.href = '../mybiz/index.html';
-                        }, 1000);
+                        var param = {
+                            msg : '<div class="hw-icon"><i class="fa fa-check"></i></div>'+'修改成功',
+                            YesText : '去看看',
+                            NoText : '关闭',
+                            YesFn : function(){
+                                util.path.go(util.path.store(self.data.bizId));
+                            }
+                        };
+                        util.dialog.confirm1(param);
+
                     }
                     else{
                         util.toast.showError('修改失败，请检查');

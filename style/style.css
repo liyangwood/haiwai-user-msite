@@ -1424,7 +1424,7 @@ label.require:after {
   margin-top: 0;
   padding-bottom: 150px; }
   .hw-comp-MybizStoreInfoFormStep3 .form-group {
-    margin-bottom: 30px; }
+    margin-bottom: 10px; }
     .hw-comp-MybizStoreInfoFormStep3 .form-group .hw-img-p {
       position: absolute;
       font-size: 14px;
@@ -1475,7 +1475,7 @@ label.require:after {
   .hw-comp-MybizStoreInfoFormStep3 .hw-line {
     height: 0;
     border-top: 1px solid #c5c5c5;
-    margin-bottom: 25px; }
+    margin-bottom: 10px; }
   .hw-comp-MybizStoreInfoFormStep3 .hw-bigimage {
     display: inline-block;
     position: relative;
@@ -2278,14 +2278,14 @@ label.require:after {
       position: absolute;
       top: 8px;
       left: 30px; }
-    .hw-HWSiteCouponDetailComp .ca a.h4 {
+    .hw-HWSiteCouponDetailComp .ca .h4 {
       font-size: 16px;
       color: #4a4a4a;
       font-weight: normal;
       margin: 0;
       margin-top: 15px;
       display: block; }
-      .hw-HWSiteCouponDetailComp .ca a.h4:hover {
+      .hw-HWSiteCouponDetailComp .ca .h4:hover {
         color: #37bccd; }
     .hw-HWSiteCouponDetailComp .ca p {
       font-size: 14px;

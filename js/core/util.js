@@ -476,7 +476,7 @@
             var param = {
                 title : opts.msg,
                 body : false,
-                NoText : '取消',
+                NoText : opts.NoText || '取消',
                 YesText : opts.YesText || '确认',
                 'class' : 'hw-confirm1',
                 YesFn : opts.YesFn
