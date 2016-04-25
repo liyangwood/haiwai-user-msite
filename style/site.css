@@ -93,7 +93,8 @@ input.blur, textarea.blur {
   position: relative; }
   .form-group .lab {
     color: #4a4a4a;
-    font-size: 14px; }
+    font-size: 14px;
+    margin-bottom: 10px; }
   .form-group .hw-err {
     float: right;
     position: relative;

@@ -94,7 +94,8 @@ input.blur, textarea.blur {
   position: relative; }
   .form-group .lab {
     color: #4a4a4a;
-    font-size: 14px; }
+    font-size: 14px;
+    margin-bottom: 10px; }
   .form-group .hw-err {
     float: right;
     position: relative;
@@ -1424,7 +1425,7 @@ label.require:after {
   margin-top: 0;
   padding-bottom: 150px; }
   .hw-comp-MybizStoreInfoFormStep3 .form-group {
-    margin-bottom: 10px; }
+    margin-bottom: 24px; }
     .hw-comp-MybizStoreInfoFormStep3 .form-group .hw-img-p {
       position: absolute;
       font-size: 14px;
@@ -1475,7 +1476,7 @@ label.require:after {
   .hw-comp-MybizStoreInfoFormStep3 .hw-line {
     height: 0;
     border-top: 1px solid #c5c5c5;
-    margin-bottom: 10px; }
+    margin-bottom: 24px; }
   .hw-comp-MybizStoreInfoFormStep3 .hw-bigimage {
     display: inline-block;
     position: relative;
