@@ -607,7 +607,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				foot : true,
 				title : h+'成功提交申请，我们会在24小时内电话联系您。',
 				'class' : 'hw-confirm',
-				body : '<div style="text-align:center;"><div style="width:400px;margin:0 auto;" class="js_tel" role="BaseInput" data-label="请输入您的联系电话" data-require="true" placeholder="e.g. 5107687776"></div></div>',
+				body : '<div style="text-align:center;"><div style="width:400px;margin:0 auto;" class="js_tel" role="BaseInput" data-label="请输入您的联系电话" data-format="phone" data-require="true" placeholder="请输入北美10位电话号码 例: 5101234567"></div></div>',
 				YesFn : function(callback){
 					var obj = util.dialog.get(),
 						jq = KG.component.getObj(obj.find('.js_tel')),

@@ -613,7 +613,7 @@ KG.Class.define('HWSiteCouponDetailComp', {
 	setActionBoxHtml : function(data){
 		var h = [
 			'<p style="margin:0;font-size;14px;color:#7d7d7d;">输入手机号，我们会将优惠发至您的手机，兑现时请出示该条优惠短信。</p>',
-			'<div style="width:400px;margin: 0 auto;" class="js_tel" role="BaseInput" placeholder="请输入手机号"></div>',
+			'<div style="width:400px;margin: 0 auto;" data-format="phone" class="js_tel" role="BaseInput" placeholder="请输入北美10位电话号码 例: 5101234567"></div>',
 			//TODO verify code
 			'<button class="hw-btn hw-blue-btn js_getCoupon">领取优惠</button>'
 		].join('');

@@ -414,7 +414,7 @@ KG.Class.define('MycountChangeInfoForm', {
             //'<div class="js_loc" data-region="{{region}}" init-self="true" role="SelectLocationRange"></div>',
             //'</div>',
 
-            '<div class="js_phone" data-value="{{user.tel}}" data-label="联络电话" role="BaseInput"></div>',
+            '<div class="js_phone" data-format="phone" data-value="{{user.tel}}" placeholder="请输入北美10位电话号码 例: 5101234567" data-label="联络电话" role="BaseInput"></div>',
             '<div class="js_wx" data-value="{{user.ims_value}}" data-label="微信号" role="BaseInput"></div>',
 
             '<div class="hw-line"></div>',

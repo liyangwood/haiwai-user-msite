@@ -355,7 +355,7 @@ KG.Class.define('MybizStoreInfoFormStep1', {
         return [
             '<div class="hw-comp-MybizStoreInfoFormStep1">',
             '<div {{if biz}}data-value="{{biz.name_cn}}"{{/if}} class="js_name" role="BaseInput" data-label="店铺名称" data-require="true" placeholder="e.g. 小肥羊Fremont店 （请尽量用中文名，分店请尽量添加城市名）"></div>',
-            '<div {{if biz}}data-value="{{biz.tel}}"{{/if}} class="js_tel" role="BaseInput" data-label="营业电话" data-require="true" placeholder="e.g. 5107687776"></div>',
+            '<div {{if biz}}data-value="{{biz.tel}}"{{/if}} class="js_tel" role="BaseInput" data-label="营业电话" data-require="true" data-format="phone" placeholder="请输入北美10位电话号码 例: 5101234567"></div>',
 
             '<div class="js_cat" data-label="服务类别" data-require="true" role="BaseSelectInput" init-self="true" placeholder="请选择一种类别"></div>',
 
@@ -716,20 +716,6 @@ KG.Class.define('MybizStoreInfoFormStep1', {
         });
 
 
-        var xobj = KG.component.getObj(self.elem.find('.js_tel'));
-        this.elem.find('.js_tel').on('keydown', 'input', function(e){
-            var val = xobj.getValue();
-
-            if(!_.contains([8, 9], e.keyCode)){
-                if(e.keyCode < 48 || e.keyCode > 57){
-                    return false;
-                }
-                if(val.length > 9){
-                    return false;
-                }
-            }
-
-        });
 
         var jq = this.getElemObj();
         jq.zip.elem.find('input').keyup(function(){

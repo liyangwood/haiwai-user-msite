@@ -4,8 +4,6 @@
 
 (function(){
 
-
-
     KG.Class.define('MyfavLeftUserNav', {
         ParentClass : 'BaseComponent',
         getTemplate : function(){
@@ -94,7 +92,8 @@
             var h = [
                 '{{each list as item}}',
                 '<div class="hw-each">',
-                    '<img class="hw-img" src="{{item | logoPath}}" />',
+                    //'<img class="hw-img" src="{{item | logoPath}}" />',
+                    '<div class="hw-img" role="BaseLoadingImageBox" data-url="{{item | logoPath}}"></div>',
 
                     '{{if item.bizType==="pause"}}',
                     '<div class="mask">暂停营业</div>',

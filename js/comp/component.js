@@ -23,7 +23,8 @@ KG.Class.define('BaseInput', {
 			type : {
 				defaultValue : 'text'
 			},
-			delbtn : {}
+			delbtn : {},
+			format : {}
 		};
 	},
 	getTemplate : function(){
@@ -64,6 +65,22 @@ KG.Class.define('BaseInput', {
 			ip.bind('keyup', this.checkDeleteIcon.bind(this));
 			ip.bind('paste', this.checkDeleteIcon.bind(this));
 		}
+
+		if(this.prop.format === 'phone'){
+			this.elem.find('input').bind('keydown', function(e){
+				var val = self.getValue();
+
+				if(!_.contains([8, 9], e.keyCode)){
+					if(e.keyCode < 48 || e.keyCode > 57){
+						return false;
+					}
+					if(val.length > 9){
+						return false;
+					}
+				}
+
+			});
+		}
 	},
 
 	setBlurEvent : function(fn){
@@ -71,6 +88,12 @@ KG.Class.define('BaseInput', {
 		this.elem.find('input').blur(function(){
 			var val = self.getValue();
 			fn.call(self, val);
+		});
+	},
+
+	setEnterEvent : function(fn){
+		this.elem.find('input').keyup(function(e){
+			console.log(e.keyCode);
 		});
 	},
 
