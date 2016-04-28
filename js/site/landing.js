@@ -52,6 +52,7 @@
         },
 
         initLoginBox : function(){
+            var self = this;
             KG.component.init(this.jq.box);
             var x = KG.component.getObj(this.jq.box.find('.js_email'));
             x.elem.find('input').addClass('hw-input');
@@ -67,6 +68,10 @@
                 }
             });
 
+            x.setEnterEvent(function(){
+                self.jq.box.find('.js_login').trigger('click');
+            });
+
             var x1 = KG.component.getObj(this.jq.box.find('.js_pwd'));
             x1.elem.find('input').addClass('hw-input');
             x1.setBlurEvent(function(val){
@@ -76,6 +81,10 @@
                 else{
                     this.showError();
                 }
+            });
+
+            x1.setEnterEvent(function(){
+                self.jq.box.find('.js_login').trigger('click');
             });
         },
 
@@ -95,6 +104,7 @@
         },
 
         initRegBox : function(){
+            var self = this;
             KG.component.init(this.jq.box);
             var email = KG.component.getObj(this.jq.box.find('.js_email')),
                 pwd = KG.component.getObj(this.jq.box.find('.js_pwd')),
@@ -132,6 +142,16 @@
                 else{
                     this.showError();
                 }
+            });
+
+            email.setEnterEvent(function(){
+                self.jq.box.find('.js_reg').trigger('click');
+            });
+            pwd.setEnterEvent(function(){
+                self.jq.box.find('.js_reg').trigger('click');
+            });
+            pwd2.setEnterEvent(function(){
+                self.jq.box.find('.js_reg').trigger('click');
             });
         },
 

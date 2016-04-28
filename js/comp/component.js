@@ -93,7 +93,9 @@ KG.Class.define('BaseInput', {
 
 	setEnterEvent : function(fn){
 		this.elem.find('input').keyup(function(e){
-			console.log(e.keyCode);
+			if(e.keyCode === 13){
+				fn();
+			}
 		});
 	},
 

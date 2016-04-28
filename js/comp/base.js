@@ -673,6 +673,7 @@
             this.initLoginBox();
         },
         initLoginBox : function(){
+            var self = this;
             KG.component.init(this.jq.left);
 
             var obj = {
@@ -700,6 +701,13 @@
                     this.showError();
                 }
             });
+
+            obj.email.setEnterEvent(function(){
+                self.elem.find('.js_loginBtn').trigger('click');
+            });
+            obj.pwd.setEnterEvent(function(){
+                self.elem.find('.js_loginBtn').trigger('click');
+            });
         },
 
         setRegBox : function(){
@@ -725,6 +733,7 @@
         },
 
         initRegBox : function(){
+            var self = this;
             KG.component.init(this.jq.left);
             var obj = this.getRegisterObj();
 
@@ -755,6 +764,16 @@
                 else{
                     this.showError();
                 }
+            });
+
+            obj.email.setEnterEvent(function(){
+                self.elem.find('.js_regBtn').trigger('click');
+            });
+            obj.pwd.setEnterEvent(function(){
+                self.elem.find('.js_regBtn').trigger('click');
+            });
+            obj.pwd2.setEnterEvent(function(){
+                self.elem.find('.js_regBtn').trigger('click');
             });
         },
 
