@@ -852,7 +852,7 @@ KG.Class.define('MybizStoreInfoFormStep2', {
 
 
             '<div class="form-group">',
-            '<label class="lab require">店铺描述</label>',
+            '<label class="lab require">店铺简介</label>',
             '<label class="control-label hw-err"></label>',
             '<textarea style="height: 150px;" class="form-control hw-area js_desc"></textarea>',
             '</div>',
@@ -914,7 +914,7 @@ KG.Class.define('MybizStoreInfoFormStep2', {
     validate : function(data){
         var jq = this.getElemObj();
         if(!data.description){
-            jq.desc.parent('div.form-group').addClass('has-error').find('.hw-err').html('请输入描述');
+            jq.desc.parent('div.form-group').addClass('has-error').find('.hw-err').html('请输入店铺简介');
             return false;
         }
         else{

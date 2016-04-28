@@ -14,8 +14,8 @@
   border: 1px solid #00a7bc; }
   .hw-ad-common1 .hw-logo {
     position: absolute;
-    width: 70px;
-    height: 90px;
+    width: 65px;
+    height: 65px;
     top: 0;
     left: 0;
     overflow: hidden;
@@ -28,23 +28,23 @@
     color: #00a7bc;
     top: 6px;
     position: absolute;
-    width: 85px;
-    left: 73px;
+    width: 90px;
+    left: 70px;
     text-align: left;
     font-weight: 700; }
   .hw-ad-common1 .hw-ad1 {
     font-size: 12px;
     position: absolute;
     color: #4a4a4a;
-    left: 73px;
-    width: 85px;
+    width: 90px;
+    left: 70px;
     text-align: left;
     top: 30px; }
   .hw-ad-common1 .hw-ad2 {
     margin: 0;
     position: absolute;
-    left: 73px;
-    width: 85px;
+    width: 90px;
+    left: 70px;
     font-size: 12px;
     color: #4a4a4a;
     text-align: left;
