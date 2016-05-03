@@ -1641,7 +1641,9 @@ KG.Class.define('MybizStoreInfoFormStep3', {
                     util.dom.loadingButton(o, false);
                     if(flag){
                         //location.href = 'http://beta.haiwai.com/biz/view.php?id='+rs;
-                        self.showSuccessDialog(rs);
+                        //self.showSuccessDialog(rs);
+                        util.storage.set('hw-create-store-flag', rs);
+                        location.href = util.path.store(rs);
                     }
                 });
             }

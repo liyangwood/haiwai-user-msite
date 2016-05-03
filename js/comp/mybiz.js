@@ -1294,7 +1294,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
         self.elem.find('.s-btn .js_sub').click(function(){
             var o = $(this);
             var data = self.getSubmitData();
-            var m = '广告已提交审核，审核时间为1-2个工作日';
+            var m = '广告已成功创建！5分钟内将出现在文学城首页“海外同城”栏目两侧';
             if(self.postid){
                 data.id = self.postid;
                 m = '修改成功，审核时间为1-2个工作日';

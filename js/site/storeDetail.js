@@ -924,6 +924,8 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		util.setPageTitle(this.data.biz.name_cn || this.data.biz.name_en);
 
 		this.initDescriptionBox();
+
+		this.showCreateStoreSuccessDialog();
 	},
 
 	getCommentRpHtml : function(replyId){
@@ -1262,7 +1264,6 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 	initDescriptionBox : function(){
 		var box = this.elem.find('.js_desc');
-		console.log(box.height());
 
 		var h = '<div class="hand js_down" style="height:32px;text-align: center;"><i style="font-size:32px;color:#9b9b9b;"' +
 			' class="icon fa fa-angle-down"></i></div>';
@@ -1302,5 +1303,39 @@ KG.Class.define('HWSiteStoreDetailPage', {
 				//h.remove();
 			});
 		}
+	},
+
+	showCreateStoreSuccessDialog : function(id){
+		var self = this;
+		if(!KG.user.get('isLogin')){
+			return false;
+		}
+
+		var flag = util.storage.get('hw-create-store-flag');
+		if(!flag || this.data.id !== flag.toString()){
+			return false;
+		}
+
+		var msg = '<div class="hw-icon"><i class="fa fa-check"></i></div>您的店铺已建成！';
+		util.dialog.show({
+			foot : true,
+			title : msg,
+			body : '<p style="text-align:center;">恭喜您！您的店铺已建成，可以立即进行管理或分享.<br/>点击下方按钮，立即创建文学城首页免费广告！</p>',
+			'class' : 'hw-confirm',
+			YesFn : function(){
+				var href = '../mybiz/createAds.html?store='+self.data.id;
+				location.href = href;
+			},
+			YesText : '创建免费广告',
+			NoFn : function(){
+
+			},
+			NoText : '关闭',
+			beforeShowFn : function(){
+				this.find('.js_no').hide();
+			}
+		});
+
+		util.storage.set('hw-create-store-flag', null);
 	}
 });
