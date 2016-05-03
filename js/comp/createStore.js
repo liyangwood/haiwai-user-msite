@@ -368,7 +368,7 @@ KG.Class.define('MybizStoreInfoFormStep1', {
             '<div {{if biz}}data-value="{{biz.address}}"{{/if}} class="js_address" role="BaseInput" data-label="店铺地址" placeholder="街道地址，如3442 Mackenzie Dr (可选)"></div>',
 
             '<div {{if biz}}data-value="{{biz.zip}}"{{/if}} style="margin-left: 0;" class="js_zip hw-inline" role="BaseInput" data-require="true" data-label="邮编" placeholder="e.g. 94536"></div>',
-            '<div {{if biz}}data-value="{{biz.city}}"{{/if}} class="js_city hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="城市"></div>',
+            '<div {{if biz}}data-value="{{biz.city}}"{{/if}} class="js_city hw-inline" role="BaseInput" data-require="true" data-label="城市"></div>',
             //'<div {{if biz}}data-value="{{biz.state}}"{{/if}} class="js_state hw-inline" data-delbtn="true" role="BaseInput" data-require="true" data-label="州/省"></div>',
 
             '<div style="position:relative;top:1px;float: right;" class="hw-inline form-group">',

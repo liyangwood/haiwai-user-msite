@@ -1240,13 +1240,16 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
         box.html(h.join(''));
         if(this.tpl === 'common1'){
             box.find('img').eq(0).addClass('active');
+            this.setPlaceHolder(0);
         }
         else if(this.tpl === 'common2'){
             box.find('img').eq(1).addClass('active');
+            this.setPlaceHolder(1);
         }
         else{
             box.find('img').eq(2).addClass('active');
             self.jq.ad2.attr('disabled', true).parents('.form-group').addClass('disable');
+            this.setPlaceHolder(2);
         }
     },
     initEvent : function(){
@@ -1256,6 +1259,8 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
             if(o.hasClass('active')) return false;
             o.parent().find('img').removeClass('active');
             o.addClass('active');
+
+            self.setPlaceHolder(self.elem.find('.s-tpl img').index(o));
 
             if(self.elem.find('.s-tpl img').index(o) === 2){
                 self.jq.ad2.attr('disabled', true).parents('.form-group').addClass('disable');
@@ -1277,17 +1282,17 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
             }, 200);
         });
 
-        this.elem.find('.s-form').find('input').keyup(function(e){
-            var o = $(this),
-                val = o.val();
-            var len = val.replace(/[^x00-xff]/g, 'xx').length;
-            //console.log(val, len);
-            var max = parseInt(o.attr('param_len'), 10);
-            if(len > max){
-                val = val.slice(0, -1);
-                o.val(val);
-            }
-        });
+        //this.elem.find('.s-form').find('input').keyup(function(e){
+        //    var o = $(this),
+        //        val = o.val();
+        //    var len = val.replace(/[^x00-xff]/g, 'xx').length;
+        //    //console.log(val, len);
+        //    var max = parseInt(o.attr('param_len'), 10);
+        //    if(len > max){
+        //        val = val.slice(0, -1);
+        //        o.val(val);
+        //    }
+        //});
 
 
 
@@ -1412,6 +1417,34 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
 
 
         return data;
+    },
+    setPlaceHolder : function(index){
+        var st = [
+            {
+                title : '限5个中文字',
+                ad1 : '限7个中文字',
+                ad2 : '限7个中文字',
+                tel : '限12个中文字'
+            },
+            {
+                title : '限5个中文字',
+                ad1 : '限7个中文字',
+                ad2 : '限7个中文字',
+                tel : '限12个中文字'
+            },
+            {
+                title : '限7个中文字',
+                ad1 : '限13个中文字',
+                ad2 : '本模板不使用此行文字',
+                tel : '限13个中文字'
+            }
+        ];
+
+        var d = st[index];
+        this.jq.name.attr('placeholder', d.title);
+        this.jq.ad1.attr('placeholder', d.ad1);
+        this.jq.ad2.attr('placeholder', d.ad2);
+        this.jq.tel.attr('placeholder', d.tel);
     }
 });
 

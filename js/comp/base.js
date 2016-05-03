@@ -36,6 +36,7 @@
                 var tmp = o.attr('placeholder');
                 o.focus(function(){
                     var val = o.val();
+                    tmp = o.attr('placeholder');
                     if(!val){
                         o.removeAttr('placeholder');
                     }
@@ -478,7 +479,7 @@
                     '<div class="hw-img"><img src="{{user.image}}"/></div>',
                     '<p>{{user.email}}</p>',
                     '<h4>欢迎您！<br/>成为商家用户，请设置密码</h4>',
-                    '<div role="BaseInput" data-type="password" class="js_pwd" placeholder="密码"></div>',
+                    '<div role="BaseInput" data-type="password" class="js_pwd" placeholder="密码（至少6个字符）"></div>',
                     '<button class="hw-btn hw-blue-btn js_btn">确定</button>',
                 '</div>'
             ].join('');
@@ -496,6 +497,11 @@
                     val = pwd.getValue();
                 if(!val){
                     pwd.showError('请输入密码');
+                    pwd.focus();
+                    return false;
+                }
+                else if(!util.validate.password(val)){
+                    pwd.showError('密码不能少于6位');
                     pwd.focus();
                     return false;
                 }
@@ -531,7 +537,7 @@
                 '<div class="hw-img"><img src="{{user.image}}"/></div>',
                 '<h4>欢迎您！<br/>成为商家用户，请绑定邮箱，设置密码</h4>',
                 '<div role="BaseInput" class="js_email" placeholder="邮箱"></div>',
-                '<div role="BaseInput" data-type="password" class="js_pwd" placeholder="密码"></div>',
+                '<div role="BaseInput" data-type="password" class="js_pwd" placeholder="密码（至少6个字符）"></div>',
                 '<button class="hw-btn hw-blue-btn js_btn">确定</button>',
                 '</div>'
             ].join('');
@@ -563,6 +569,11 @@
 
                 if(!val){
                     pwd.showError('请输入密码');
+                    pwd.focus();
+                    return false;
+                }
+                else if(!util.validate.password(val)){
+                    pwd.showError('密码不能少于6位');
                     pwd.focus();
                     return false;
                 }
@@ -659,7 +670,7 @@
                 '<h4>登录海外同城</h4>',
                 '<div class="c-error"></div>',
                 '<div role="BaseInput" data-type="text" class="js_email" placeholder="邮箱" ></div>',
-                '<div role="BaseInput" data-type="password" class="js_pwd" placeholder="密码" ></div>',
+                '<div role="BaseInput" data-type="password" class="js_pwd" placeholder="密码（至少6个字符）" ></div>',
                 '<button class="hw-btn hw-blue-btn js_loginBtn">登录</button>',
                 '<p>忘记账号或密码？<a href="../mycount/forgetpassword.html">在这里找回</a></p>'
             ].join('');
@@ -714,7 +725,7 @@
             var h = [
                 '<div class="c-error"></div>',
                 '<div role="BaseInput" data-type="text" class="js_email" placeholder="邮箱" ></div>',
-                '<div role="BaseInput" data-type="password" class="js_pwd" placeholder="密码" ></div>',
+                '<div role="BaseInput" data-type="password" class="js_pwd" placeholder="密码（至少6个字符）" ></div>',
                 '<div role="BaseInput" data-type="password" class="js_pwd2" placeholder="确认密码" ></div>',
                 '<button class="hw-btn hw-blue-btn js_regBtn">注册</button>',
                 '<p>点击注册表示您同意海外同城的<a target="_blank" href="../help/terms.html">使用协议</a>和<a target="_blank" href="../help/privacy.html">隐私保护协议</a></p>'

@@ -38,7 +38,7 @@
             var h = [
                 '<div role="BaseInput" data-type="text" class="js_email" placeholder="邮箱"></div>',
                 //'<input style="margin-top: 55px;" type="text" class="hw-input js_email" placeholder="邮箱" />',
-                '<div role="BaseInput" data-type="password" class="js_pwd" placeholder="密码"></div>',
+                '<div role="BaseInput" data-type="password" class="js_pwd" placeholder="密码（至少6个字符）"></div>',
                 //'<input type="password" style="margin-top: 25px;" class="hw-input js_pwd" placeholder="密码" />',
                 '<a href="javascript:void(0)" class="hw-btn hw-blue-btn js_login">立即登录，创建店铺</a>',
                 '<p>还没有海外帐户？<b class="js_toReg">注册</b></p>'
@@ -92,7 +92,7 @@
             var h = [
                 '<div role="BaseInput" style="margin-top:-10px;" data-type="text" class="js_email" placeholder="邮箱"' +
                 ' ></div>',
-                '<div role="BaseInput" data-type="password" style="" class="js_pwd" placeholder="密码"' +
+                '<div role="BaseInput" data-type="password" style="" class="js_pwd" placeholder="密码（至少6个字符）"' +
                 ' ></div>',
                 '<div role="BaseInput" data-type="password" style="" class="js_pwd2" placeholder="确认密码" ></div>',
                 '<a href="javascript:void(0)" style="margin-top: 15px;" class="hw-btn hw-blue-btn js_reg">立即注册，创建店铺</a>',
