@@ -36,7 +36,7 @@
                 var tmp = o.attr('placeholder');
                 o.focus(function(){
                     var val = o.val();
-                    tmp = o.attr('placeholder');
+                    tmp = o.attr('placeholder') || tmp;
                     if(!val){
                         o.removeAttr('placeholder');
                     }
