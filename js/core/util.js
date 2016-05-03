@@ -686,13 +686,13 @@
         },
 
         toMSiteStore : function(id){
-            return KG.config.SiteRoot+'/mobile/ionic/store.html?id='+id;
+            return KG.config.SiteRoot+'/m/page/store.view.html?id='+id;
         },
         toMSiteArticle : function(id){
-            return KG.config.SiteRoot+'/mobile/ionic/article.html?id='+id;
+            return KG.config.SiteRoot+'/m/page/article.view.html?id='+id;
         },
         toMSiteCoupon : function(id){
-            return KG.config.SiteRoot+'/mobile/ionic/action.html?id='+id;
+            return KG.config.SiteRoot+'/m/page/coupon.view.html?id='+id;
         }
     };
 

@@ -926,6 +926,8 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		this.initDescriptionBox();
 
 		this.showCreateStoreSuccessDialog();
+
+		this.initStoreQrCode();
 	},
 
 	getCommentRpHtml : function(replyId){
@@ -1337,5 +1339,11 @@ KG.Class.define('HWSiteStoreDetailPage', {
 		});
 
 		util.storage.set('hw-create-store-flag', null);
+	},
+
+	initStoreQrCode : function(){
+		var qr = util.getQrCode(util.path.toMSiteStore(this.data.id), 120);
+		var h = '<div style="position: absolute;right:56px;top:106px;"><img style="width:88px;height:88px;" src="'+qr+'" /><p style="color:#777;text-align: left;">我的微信店铺</p></div>';
+		$(h).appendTo('div.c-top');
 	}
 });
