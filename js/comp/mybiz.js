@@ -1302,7 +1302,7 @@ KG.Class.define('HWMybizCreateAdsPageForm', {
             var m = '广告已成功创建！5分钟内将出现在文学城首页“海外同城”栏目两侧';
             if(self.postid){
                 data.id = self.postid;
-                m = '修改成功，审核时间为1-2个工作日';
+                m = '修改成功，5分钟内将出现在文学城首页“海外同城”栏目两侧';
             }
 
             console.log(data);
