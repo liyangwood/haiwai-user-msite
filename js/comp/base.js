@@ -1038,7 +1038,7 @@ $(function(){
             if(flag){
                 KG.user.getUserDetailWithToken(rs, function(user){
                     if(true || user.email){
-                        location.href = location.href.replace('&code='+util.url.param('code'), '').replace('&state=aaa', '');
+                        location.href = location.href.replace('code='+util.url.param('code'), '').replace('&state=aaa', '');
                         return false;
                     }
                     util.toast.alert('登录成功，请补充资料');
