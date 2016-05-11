@@ -54,7 +54,7 @@
 (function(){
 
     var site = 'http://beta.haiwai.com';
-    if(location.host === 'www.haiwai.com'){
+    if(location.host === 'www.haiwai.com' || location.host === 'home.haiwai.com'){
         site = 'http://www.haiwai.com';
     }
 
@@ -70,7 +70,7 @@
         GoogleMapApiKey : 'AIzaSyCjKJoA5eBc75v5pQurBQ3IjP4vNkfoOzw',
         WeixinAppID : 'wx4c519e506d840934',
         WeixinAppSecret : 'a160e78f682317dbf6ed8ffe4e56bc30',
-        WeixinLoginRedirectUrl : 'http://beta.haiwai.com/pc/page/site/index.html',
+        WeixinLoginRedirectUrl : 'http://www.haiwai.com/pc/page/site/index.html',
 
         SJAPP_AppleStore_Url : 'https://itunes.apple.com/us/app/hai-wai-tong-cheng-shang-jia/id974815137',
 
