@@ -193,7 +193,7 @@ KG.Class.define('MybizStoreInputDatepicker', {
         };
 
         if(et.y === st.y){
-            if(et.x > st.x){
+            if(et.x >= st.x){
                 return true;
             }
         }

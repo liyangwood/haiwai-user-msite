@@ -41,7 +41,7 @@ KG.Class.define('MybizEditStoreLeftDropdown', {
             //stop
             util.dialog.confirm({
                 title : '确认要暂停营业吗？',
-                msg : '点击确认，您的店铺将会进入暂停营业的状态。暂停营业的店铺将不可以修改基本信息，但您可以在任何时候将它转为营业中的状态。',
+                msg : '点击确认，您的店铺将会进入暂停营业的状态，并将删除本店铺的所有优惠。暂停营业的店铺将不可以修改基本信息，但您可以在任何时候将它转为营业中的状态。',
                 YesFn : function(callback){
                     self.stopStore.call(self);
 
@@ -53,7 +53,7 @@ KG.Class.define('MybizEditStoreLeftDropdown', {
             //delete
             util.dialog.confirm({
                 title : '确认要删除这个店铺吗？',
-                msg : '点击确认，我们将为您删除这个店铺的所有信息，包括基本信息，图片，店铺评级和评论等，并且不能再找回这些信息，请谨慎操作。',
+                msg : '点击确认，我们将为您删除这个店铺的所有信息，包括基本信息，图片，店铺评级、评论、和本店铺的所有优惠和文章，并且不能再找回这些信息，请谨慎操作。',
                 YesFn : function(callback){
                     self.deleteStore();
 

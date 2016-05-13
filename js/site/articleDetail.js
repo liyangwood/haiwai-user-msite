@@ -10,6 +10,8 @@
                     '<h3>{{data.title}}</h3>',
 
                     '<p class="hw-st">',
+                        '{{if data.username}}<span class="hw-time" style="margin-right:20px;">文章来源 :' +
+                        ' {{data.username}}</span>{{/if}}',
                         '<span class="hw-time">{{data.dateline | formatDate:"yy年mm月dd日"}}</span>',
 
 
