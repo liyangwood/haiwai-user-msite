@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 FROM=${PWD};
-TO=~/Users/JackyLee/Desktop/haiwai.inc/haiwai/pc;
+TO=/Users/JackyLee/Desktop/haiwai.inc/haiwai/pc;
 
 
 
@@ -18,6 +18,7 @@ copyFile(){
 
 cd ${TO}
 git pull
+cd ${FROM}
 
 echo "---- start copy file ----";
 gulp pub;

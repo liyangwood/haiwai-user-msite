@@ -2,6 +2,7 @@ bower_components
 node_modules
 build
 .idea
+.DS_Store
 
 */.sass-cache
 .sass-cache
