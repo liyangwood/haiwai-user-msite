@@ -185,19 +185,29 @@ KG.Class.define('MybizStoreInputDatepicker', {
             et = dt[1];
         st = {
             x : parseInt(st.substr(0, 2), 10),
+            z : parseInt(st.substr(3, 2), 10),
             y : st.substr(5, 2)
         };
+
+        var stt = st.x%12;
+        if(st.y === 'PM'){
+            stt = stt+12;
+        }
+        stt = stt*100+st.z;
+
         et = {
             x : parseInt(et.substr(0, 2), 10),
+            z : parseInt(et.substr(3, 2), 10),
             y : et.substr(5, 2)
         };
-
-        if(et.y === st.y){
-            if(et.x >= st.x){
-                return true;
-            }
+        var ett = et.x%12;
+        if(et.y === 'PM'){
+            ett = ett+12;
         }
-        else if(et.y === 'PM'){
+        ett = ett*100+et.z;
+
+        console.log(stt,ett);
+        if(ett > stt){
             return true;
         }
 
