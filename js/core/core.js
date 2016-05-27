@@ -53,15 +53,12 @@
 
 (function(){
 
-    var site = 'http://beta.haiwai.com';
+    var site = 'http://www.haiwai.com';
     if(location.host === 'www.haiwai.com' || location.host === 'home.haiwai.com'){
         //site = 'http://www.haiwai.com';
         site = 'http://'+location.host;
     }
 
-    if(location.href.indexOf('debug=asia') > 0){
-        site = 'http://104.199.130.54';
-    }
 
     KG.config = {
         root : '/haiwai-user-msite',

@@ -284,7 +284,7 @@ KG.Class.define('HWSiteIndexHotArticle', {
 		return [
 			'<div class="hw-HWSiteIndexHotArticle">',
 			'<dt>',
-			'<label>生活指南</label>',
+			'<label><a href="../site/articlelist.html?category=hot">生活指南</a></label>',
 			'</dt>',
 			'<dd class="js_box"></dd>',
 			'</div>'

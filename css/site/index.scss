@@ -320,6 +320,15 @@
             line-height: 26px;
             padding-left: 15px;
             font-weight: normal;
+
+            &>a{
+                font-size: 20px;
+                color: $color-4a;
+
+                &:hover{
+                    color: $blue-color;
+                }
+            }
         }
 
     }
