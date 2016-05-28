@@ -218,10 +218,10 @@
             var sy = 'style="width:300px;height:250px;border:none;margin-top:25px;"';
 
             var h = '<div style="width:300px;">';
-            //h += '<div role="HWBaseGoogleAdIFrame" data-id="292557"' +
-            //    ' style="margin-top:20px;width:300px;height:250px;"></div>';
-            //h += '<div role="HWBaseGoogleAdIFrame" data-id="292569"' +
-            //    ' style="margin-top:20px;width:300px;height:600px;"></div>';
+            h += '<div role="HWBaseGoogleAdIFrame" data-id="292557"' +
+                ' style="margin-top:20px;width:300px;height:250px;"></div>';
+            h += '<div role="HWBaseGoogleAdIFrame" data-id="292569"' +
+                ' style="margin-top:20px;width:300px;height:600px;"></div>';
             //h += '<div role="HWBaseGoogleAdIFrame" data-id="292557"' +
             //    ' style="margin-top:20px;width:300px;height:250px;"></div>';
             h += '<iframe '+sy+' src="//a.impactradius-go.com/gen-ad-code/260225/284381/4015/" width="300" height="250" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"></iframe>';
