@@ -405,6 +405,12 @@ KG.Class.define('HWSiteStoreDetailPage', {
 			}
 			return KG.config.SiteRoot+item.path;
 		});
+		rs.bigImageList = _.map(rs.files, function(item){
+			if(/^http/.test(item.path)){
+				return item.path
+			}
+			return KG.config.SiteRoot+item.oripath;
+		});
 
 		rs.articles = _.map(rs.articles, function(item){
 			if(!item.image){
@@ -458,7 +464,7 @@ KG.Class.define('HWSiteStoreDetailPage', {
 
 	showFocusImage : function(index){
 		var self = this;
-		var obj = util.dialog.showFocusImage(index, self.data.biz.imagelist);
+		var obj = util.dialog.showFocusImage(index, self.data.biz.bigImageList);
 		var hh = '<div style="position: relative;font-size: 16px;line-height: 25px;top:-10px;" class="hand"><i' +
 			' style="margin-right:10px;font-size:18px;position:relative;top:2px;"' +
 			' class="icon glyphicon glyphicon-th"></i>返回相册</div>';
