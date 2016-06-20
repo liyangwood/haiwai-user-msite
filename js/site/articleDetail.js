@@ -55,9 +55,13 @@
                     try{
                         rs.view.msgbody = decodeURIComponent(rs.view.msgbody);
                     }catch(e){}
-
                     rs.view.msgbody = util.replaceHtmlImgSrcToAbsolute(rs.view.msgbody);
+
+                    //replace all html attribute
+                    rs.view.msgbody = rs.view.msgbody.replace(/(?![^>]*(?=<))(?=role|class|style)\b[^\s]+=["']?[^"']*["']?(?=\s|>)/gi, '');
+
                     var addGoogleAd = rs.category.category_id !== '30';
+console.log(rs.view.msgbody);
                     next({
                         id : id,
                         data : rs.view,
